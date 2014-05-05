@@ -1,0 +1,2 @@
+msgid  "New Chamado"
+msgstr "Adicionar"
