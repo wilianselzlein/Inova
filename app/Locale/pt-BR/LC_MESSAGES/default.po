@@ -1,2 +1,98 @@
-msgid  "New Chamado"
+msgid  "New"
 msgstr "Adicionar"
+
+msgid  "View"
+msgstr "Visualizar"
+
+msgid  "Edit"
+msgstr "Alterar"
+
+msgid  "Delete"
+msgstr "Excluir"
+
+msgid  "List"
+msgstr "Listar"
+
+msgid  "Role"
+msgstr "Cargo"
+
+msgid  "Created"
+msgstr "Criado em"
+
+msgid  "Modified"
+msgstr "Modificado em"
+
+msgid  "Previous"
+msgstr "Anterior"
+
+msgid  "Next"
+msgstr "Próximo"
+
+msgid  "Subgrupo"
+msgstr "Prioridade"
+
+msgid  "Subgrupos"
+msgstr "Prioridades"
+
+msgid  "Login"
+msgstr "Acessar"
+
+msgid  "Username"
+msgstr "Usuário"
+
+msgid  "Password"
+msgstr "Senha"
+
+msgid "Welcome"
+msgstr "Bem-vindo(a)"
+
+msgid "You're logged in."
+msgstr "Você está logado no sistema."
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Users"
+msgstr "Usuários"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Murals"
+msgstr "Murais"
+
+msgid "Historico"
+msgstr "Histórico"
+
+msgid "Historicos"
+msgstr "Históricos"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "The record has been saved"
+msgstr "O registro foi salvo"
+
+msgid "The record could not be saved. Please, try again."
+msgstr "O registro não pôde ser salvo. Por favor, tente novamente."
+
+msgid "The record could not be found."
+msgstr "O registro não pôde ser encontrado."
+
+msgid "Record deleted"
+msgstr "Registro excluído"
+
+msgid "The record was not deleted"
+msgstr "O registro não foi excluído."
+
+msgid "Invalid username or password, try again"
+msgstr "Usuário ou senha inválida, tente novamente"
+
+msgid "You must be logged in to view this page."
+msgstr "Você deve estar conectado para acessar o sistema."
+
+msgid "Please enter your username and password"
+msgstr "Por favor digite seus dados de acesso"
+
+msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
+msgstr "Página {:page} de {:pages}, exibindo {:current} registros de um total de {:count}, iniciando no registro {:start}, terminando no {:end}"

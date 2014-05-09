@@ -1,59 +1,80 @@
-<div class="users view">
-<h2><?php echo __('User'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
+
+<div id="page-container" class="row">
+
+	<div id="sidebar" class="col-sm-3">
+		
+		<div class="actions">
+			
+			<ul class="list-group">			
+						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('User'), array('action' => 'edit', $user['User']['id']), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('User'), array('action' => 'delete', $user['User']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Users'), array('action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('User'), array('action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Clientes'), array('controller' => 'clientes', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cliente'), array('controller' => 'clientes', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Historicos'), array('controller' => 'historicos', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Murals'), array('controller' => 'murals', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Mural'), array('controller' => 'murals', 'action' => 'add'), array('class' => '')); ?> </li>
+				
+			</ul><!-- /.list-group -->
+			
+		</div><!-- /.actions -->
+		
+	</div><!-- /#sidebar .span3 -->
+	
+	<div id="page-content" class="col-sm-9">
+		
+		<div class="users view">
+
+			<h2><?php  echo __('User'); ?></h2>
+			
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+		<td>
 			<?php echo h($user['User']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Username'); ?></strong></td>
+		<td>
 			<?php echo h($user['User']['username']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Role'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Role'); ?></strong></td>
+		<td>
 			<?php echo h($user['User']['role']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Created'); ?></strong></td>
+		<td>
 			<?php echo h($user['User']['created']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Modified'); ?></strong></td>
+		<td>
 			<?php echo h($user['User']['modified']); ?>
 			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Murals'), array('controller' => 'murals', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Mural'), array('controller' => 'murals', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Clientes'); ?></h3>
-	<?php if (!empty($user['Cliente'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
+		</td>
+</tr>					</tbody>
+				</table><!-- /.table table-striped table-bordered -->
+			</div><!-- /.table-responsive -->
+			
+		</div><!-- /.view -->
+
+					
+			<div class="related">
+
+				<h3><?php echo __('Clientes'); ?></h3>
+				
+				<?php if (!empty($user['Cliente'])): ?>
+					
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Fantasia'); ?></th>
 		<th><?php echo __('Razaosocial'); ?></th>
 		<th><?php echo __('Cpfcnpj'); ?></th>
@@ -81,9 +102,13 @@
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Cep'); ?></th>
 		<th><?php echo __('Unidade Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($user['Cliente'] as $cliente): ?>
+									<th class="actions"><?php echo __('Actions'); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+									<?php
+										$i = 0;
+										foreach ($user['Cliente'] as $cliente): ?>
 		<tr>
 			<td><?php echo $cliente['id']; ?></td>
 			<td><?php echo $cliente['fantasia']; ?></td>
@@ -114,36 +139,49 @@
 			<td><?php echo $cliente['cep']; ?></td>
 			<td><?php echo $cliente['unidade_id']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $cliente['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'clientes', 'action' => 'delete', $cliente['id']), null, __('Are you sure you want to delete # %s?', $cliente['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'clientes', 'action' => 'delete', $cliente['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $cliente['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+							</tbody>
+						</table><!-- /.table table-striped table-bordered -->
+					</div><!-- /.table-responsive -->
+					
+				<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Historicos'); ?></h3>
-	<?php if (!empty($user['Historico'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
+				
+				<div class="actions">
+					<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Cliente'), array('controller' => 'clientes', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				</div><!-- /.actions -->
+				
+			</div><!-- /.related -->
+
+					
+			<div class="related">
+
+				<h3><?php echo __('Historicos'); ?></h3>
+				
+				<?php if (!empty($user['Historico'])): ?>
+					
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Chamado Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Datainicial'); ?></th>
 		<th><?php echo __('Datafinal'); ?></th>
 		<th><?php echo __('Descricao'); ?></th>
 		<th><?php echo __('Checklist Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($user['Historico'] as $historico): ?>
+									<th class="actions"><?php echo __('Actions'); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+									<?php
+										$i = 0;
+										foreach ($user['Historico'] as $historico): ?>
 		<tr>
 			<td><?php echo $historico['id']; ?></td>
 			<td><?php echo $historico['chamado_id']; ?></td>
@@ -153,51 +191,71 @@
 			<td><?php echo $historico['descricao']; ?></td>
 			<td><?php echo $historico['checklist_id']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'historicos', 'action' => 'delete', $historico['id']), null, __('Are you sure you want to delete # %s?', $historico['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'historicos', 'action' => 'delete', $historico['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+							</tbody>
+						</table><!-- /.table table-striped table-bordered -->
+					</div><!-- /.table-responsive -->
+					
+				<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Murals'); ?></h3>
-	<?php if (!empty($user['Mural'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
+				
+				<div class="actions">
+					<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				</div><!-- /.actions -->
+				
+			</div><!-- /.related -->
+
+					
+			<div class="related">
+
+				<h3><?php echo __('Murals'); ?></h3>
+				
+				<?php if (!empty($user['Mural'])): ?>
+					
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Data'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Recado'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($user['Mural'] as $mural): ?>
+									<th class="actions"><?php echo __('Actions'); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+									<?php
+										$i = 0;
+										foreach ($user['Mural'] as $mural): ?>
 		<tr>
 			<td><?php echo $mural['id']; ?></td>
 			<td><?php echo $mural['data']; ?></td>
 			<td><?php echo $mural['user_id']; ?></td>
 			<td><?php echo $mural['recado']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'murals', 'action' => 'view', $mural['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'murals', 'action' => 'edit', $mural['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'murals', 'action' => 'delete', $mural['id']), null, __('Are you sure you want to delete # %s?', $mural['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'murals', 'action' => 'view', $mural['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'murals', 'action' => 'edit', $mural['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'murals', 'action' => 'delete', $mural['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $mural['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+							</tbody>
+						</table><!-- /.table table-striped table-bordered -->
+					</div><!-- /.table-responsive -->
+					
+				<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Mural'), array('controller' => 'murals', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+				
+				<div class="actions">
+					<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Mural'), array('controller' => 'murals', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				</div><!-- /.actions -->
+				
+			</div><!-- /.related -->
+
+			
+	</div><!-- /#page-content .span9 -->
+
+</div><!-- /#page-container .row-fluid -->

@@ -23,7 +23,7 @@ class ChamadosController extends AppController {
  */
 	public function index() {
 		$this->Chamado->recursive = 0;
-		$this->set('chamados', $this->Paginator->paginate());
+		$this->set('chamados', $this->paginate());
 	}
 
 /**
@@ -35,7 +35,7 @@ class ChamadosController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Chamado->exists($id)) {
-			throw new NotFoundException(__('Invalid chamado'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id));
 		$this->set('chamado', $this->Chamado->find('first', $options));
@@ -50,17 +50,18 @@ class ChamadosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Chamado->create();
 			if ($this->Chamado->save($this->request->data)) {
-				$this->Session->setFlash(__('The chamado has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The chamado could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 		$tipos = $this->Chamado->Tipo->find('list');
 		$clientes = $this->Chamado->Cliente->find('list');
+		$prioridades = $this->Chamado->Prioridade->find('list');
 		$problemas = $this->Chamado->Problema->find('list');
 		$situacaos = $this->Chamado->Situacao->find('list');
-		$this->set(compact('tipos', 'clientes', 'problemas', 'situacaos'));
+		$this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades'));
 	}
 
 /**
@@ -71,15 +72,16 @@ class ChamadosController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $this->Chamado->id = $id;
 		if (!$this->Chamado->exists($id)) {
-			throw new NotFoundException(__('Invalid chamado'));
+			throw new NotFoundException(__('The record could not be found.?>'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Chamado->save($this->request->data)) {
-				$this->Session->setFlash(__('The chamado has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The chamado could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
 			$options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id));
@@ -87,29 +89,33 @@ class ChamadosController extends AppController {
 		}
 		$tipos = $this->Chamado->Tipo->find('list');
 		$clientes = $this->Chamado->Cliente->find('list');
+		$prioridades = $this->Chamado->Prioridade->find('list');
 		$problemas = $this->Chamado->Problema->find('list');
 		$situacaos = $this->Chamado->Situacao->find('list');
-		$this->set(compact('tipos', 'clientes', 'problemas', 'situacaos'));
+		$this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades'));
 	}
 
 /**
  * delete method
  *
  * @throws NotFoundException
+ * @throws MethodNotAllowedException
  * @param string $id
  * @return void
  */
 	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
 		$this->Chamado->id = $id;
 		if (!$this->Chamado->exists()) {
-			throw new NotFoundException(__('Invalid chamado'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$this->request->onlyAllow('post', 'delete');
 		if ($this->Chamado->delete()) {
-			$this->Session->setFlash(__('The chamado has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The chamado could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
 	}
 }

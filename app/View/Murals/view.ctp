@@ -1,36 +1,60 @@
-<div class="murals view">
-<h2><?php echo __('Mural'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
+
+<div id="page-container" class="row">
+
+	<div id="sidebar" class="col-sm-3">
+		
+		<div class="actions">
+			
+			<ul class="list-group">			
+						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Mural'), array('action' => 'edit', $mural['Mural']['id']), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Mural'), array('action' => 'delete', $mural['Mural']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $mural['Mural']['id'])); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Murals'), array('action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Mural'), array('action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Users'), array('controller' => 'users', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('User'), array('controller' => 'users', 'action' => 'add'), array('class' => '')); ?> </li>
+				
+			</ul><!-- /.list-group -->
+			
+		</div><!-- /.actions -->
+		
+	</div><!-- /#sidebar .span3 -->
+	
+	<div id="page-content" class="col-sm-9">
+		
+		<div class="murals view">
+
+			<h2><?php  echo __('Mural'); ?></h2>
+			
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+		<td>
 			<?php echo h($mural['Mural']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Data'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>
+		<td>
 			<?php echo h($mural['Mural']['data']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($mural['User']['username'], array('controller' => 'users', 'action' => 'view', $mural['User']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('User'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($mural['User']['username'], array('controller' => 'users', 'action' => 'view', $mural['User']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Recado'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Recado'); ?></strong></td>
+		<td>
 			<?php echo h($mural['Mural']['recado']); ?>
 			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Mural'), array('action' => 'edit', $mural['Mural']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Mural'), array('action' => 'delete', $mural['Mural']['id']), null, __('Are you sure you want to delete # %s?', $mural['Mural']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Murals'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Mural'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+		</td>
+</tr>					</tbody>
+				</table><!-- /.table table-striped table-bordered -->
+			</div><!-- /.table-responsive -->
+			
+		</div><!-- /.view -->
+
+			
+	</div><!-- /#page-content .span9 -->
+
+</div><!-- /#page-container .row-fluid -->

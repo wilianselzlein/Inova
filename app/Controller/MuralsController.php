@@ -23,7 +23,7 @@ class MuralsController extends AppController {
  */
 	public function index() {
 		$this->Mural->recursive = 0;
-		$this->set('murals', $this->Paginator->paginate());
+		$this->set('murals', $this->paginate());
 	}
 
 /**
@@ -35,7 +35,7 @@ class MuralsController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Mural->exists($id)) {
-			throw new NotFoundException(__('Invalid mural'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('conditions' => array('Mural.' . $this->Mural->primaryKey => $id));
 		$this->set('mural', $this->Mural->find('first', $options));
@@ -50,10 +50,10 @@ class MuralsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Mural->create();
 			if ($this->Mural->save($this->request->data)) {
-				$this->Session->setFlash(__('The mural has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The mural could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 		$users = $this->Mural->User->find('list');
@@ -68,15 +68,16 @@ class MuralsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $this->Mural->id = $id;
 		if (!$this->Mural->exists($id)) {
-			throw new NotFoundException(__('Invalid mural'));
+			throw new NotFoundException(__('The record could not be found.?>'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Mural->save($this->request->data)) {
-				$this->Session->setFlash(__('The mural has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The mural could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
 			$options = array('conditions' => array('Mural.' . $this->Mural->primaryKey => $id));
@@ -90,20 +91,23 @@ class MuralsController extends AppController {
  * delete method
  *
  * @throws NotFoundException
+ * @throws MethodNotAllowedException
  * @param string $id
  * @return void
  */
 	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
 		$this->Mural->id = $id;
 		if (!$this->Mural->exists()) {
-			throw new NotFoundException(__('Invalid mural'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$this->request->onlyAllow('post', 'delete');
 		if ($this->Mural->delete()) {
-			$this->Session->setFlash(__('The mural has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The mural could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
 	}
 }

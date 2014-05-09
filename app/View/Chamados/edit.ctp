@@ -1,35 +1,72 @@
-<div class="chamados form">
-<?php echo $this->Form->create('Chamado'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Chamado'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('tipo_id');
-		echo $this->Form->input('descricao');
-		echo $this->Form->input('contato');
-		echo $this->Form->input('cliente_id');
-		echo $this->Form->input('prioridade');
-		echo $this->Form->input('problema_id');
-		echo $this->Form->input('situacao_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Chamado.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Chamado.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Chamados'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Problemas'), array('controller' => 'problemas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Problema'), array('controller' => 'problemas', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Situacaos'), array('controller' => 'situacaos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<div id="page-container" class="row">
+
+	<div id="sidebar" class="col-sm-3">
+		
+		<div class="actions">
+		
+			<ul class="list-group">
+				<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Chamado.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Chamado.id'))); ?></li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Chamados'), array('action' => 'index')); ?></li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Problemas'), array('controller' => 'problemas', 'action' => 'index')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Problema'), array('controller' => 'problemas', 'action' => 'add')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Situacaos'), array('controller' => 'situacaos', 'action' => 'index')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
+			</ul><!-- /.list-group -->
+		
+		</div><!-- /.actions -->
+		
+	</div><!-- /#sidebar .col-sm-3 -->
+	
+	<div id="page-content" class="col-sm-9">
+
+		<h2><?php echo __('Edit').' '.__('Chamado'); ?></h2>
+
+		<div class="chamados form">
+		
+			<?php echo $this->Form->create('Chamado', array('role' => 'form')); ?>
+
+				<fieldset>
+
+					<div class="form-group">
+						<?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('tipo_id', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('problema_id', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('situacao_id', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
+
+					<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-large btn-primary')); ?>
+
+				</fieldset>
+
+			<?php echo $this->Form->end(); ?>
+
+		</div><!-- /.form -->
+			
+	</div><!-- /#page-content .col-sm-9 -->
+
+</div><!-- /#page-container .row-fluid -->

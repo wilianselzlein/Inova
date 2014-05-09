@@ -125,6 +125,13 @@ class Chamado extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Prioridade' => array(
+			'className' => 'Subgrupo',
+			'foreignKey' => 'prioridade',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Problema' => array(
 			'className' => 'Problema',
 			'foreignKey' => 'problema_id',

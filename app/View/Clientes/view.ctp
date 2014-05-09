@@ -1,173 +1,199 @@
-<div class="clientes view">
-<h2><?php echo __('Cliente'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
+
+<div id="page-container" class="row">
+
+	<div id="sidebar" class="col-sm-3">
+		
+		<div class="actions">
+			
+			<ul class="list-group">			
+						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Cliente'), array('action' => 'edit', $cliente['Cliente']['id']), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Cliente'), array('action' => 'delete', $cliente['Cliente']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $cliente['Cliente']['id'])); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Clientes'), array('action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cliente'), array('action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Cidades'), array('controller' => 'cidades', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cidade'), array('controller' => 'cidades', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Subgrupos'), array('controller' => 'subgrupos', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Subgrupo'), array('controller' => 'subgrupos', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Users'), array('controller' => 'users', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('User'), array('controller' => 'users', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Unidades'), array('controller' => 'unidades', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Unidade'), array('controller' => 'unidades', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Chamados'), array('controller' => 'chamados', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Chamado'), array('controller' => 'chamados', 'action' => 'add'), array('class' => '')); ?> </li>
+				
+			</ul><!-- /.list-group -->
+			
+		</div><!-- /.actions -->
+		
+	</div><!-- /#sidebar .span3 -->
+	
+	<div id="page-content" class="col-sm-9">
+		
+		<div class="clientes view">
+
+			<h2><?php  echo __('Cliente'); ?></h2>
+			
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Fantasia'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Fantasia'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['fantasia']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Razaosocial'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Razaosocial'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['razaosocial']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Cpfcnpj'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Cpfcnpj'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['cpfcnpj']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Cidade'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($cliente['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $cliente['Cidade']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Cidade'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $cliente['Cidade']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Subgrupo'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($cliente['Subgrupo']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $cliente['Subgrupo']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Subgrupo'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['Subgrupo']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $cliente['Subgrupo']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Dtvenda'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Dtvenda'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['dtvenda']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Endereco'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Endereco'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['endereco']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Numero'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Numero'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['numero']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Bairro'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Bairro'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['bairro']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Complemento'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Complemento'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['complemento']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Ie'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Ie'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['ie']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Senha'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Senha'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['senha']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Dtinstalacao'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Dtinstalacao'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['dtinstalacao']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Contato'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Contato'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['contato']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Caixas'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Caixas'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['caixas']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Retaguardas'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Retaguardas'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['retaguardas']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Prioridade'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Prioridade'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['prioridade']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Mensalidade'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Mensalidade'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['mensalidade']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Valorvenda'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Valorvenda'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['valorvenda']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Estrutura'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Estrutura'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['estrutura']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Obs'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Obs'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['obs']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($cliente['User']['username'], array('controller' => 'users', 'action' => 'view', $cliente['User']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('User'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['User']['username'], array('controller' => 'users', 'action' => 'view', $cliente['User']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Telefone'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Telefone'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['telefone']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Celular'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Celular'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['celular']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Email'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Email'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['email']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Cep'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Cep'); ?></strong></td>
+		<td>
 			<?php echo h($cliente['Cliente']['cep']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Unidade'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Unidade'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Cliente'), array('action' => 'edit', $cliente['Cliente']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Cliente'), array('action' => 'delete', $cliente['Cliente']['id']), null, __('Are you sure you want to delete # %s?', $cliente['Cliente']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientes'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cliente'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Cidades'), array('controller' => 'cidades', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cidade'), array('controller' => 'cidades', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Subgrupos'), array('controller' => 'subgrupos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Subgrupo'), array('controller' => 'subgrupos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Unidades'), array('controller' => 'unidades', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Unidade'), array('controller' => 'unidades', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Chamados'), array('controller' => 'chamados', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Chamado'), array('controller' => 'chamados', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Chamados'); ?></h3>
-	<?php if (!empty($cliente['Chamado'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
+		</td>
+</tr>					</tbody>
+				</table><!-- /.table table-striped table-bordered -->
+			</div><!-- /.table-responsive -->
+			
+		</div><!-- /.view -->
+
+					
+			<div class="related">
+
+				<h3><?php echo __('Chamados'); ?></h3>
+				
+				<?php if (!empty($cliente['Chamado'])): ?>
+					
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Tipo Id'); ?></th>
 		<th><?php echo __('Descricao'); ?></th>
 		<th><?php echo __('Contato'); ?></th>
@@ -175,9 +201,13 @@
 		<th><?php echo __('Prioridade'); ?></th>
 		<th><?php echo __('Problema Id'); ?></th>
 		<th><?php echo __('Situacao Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($cliente['Chamado'] as $chamado): ?>
+									<th class="actions"><?php echo __('Actions'); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+									<?php
+										$i = 0;
+										foreach ($cliente['Chamado'] as $chamado): ?>
 		<tr>
 			<td><?php echo $chamado['id']; ?></td>
 			<td><?php echo $chamado['tipo_id']; ?></td>
@@ -188,18 +218,25 @@
 			<td><?php echo $chamado['problema_id']; ?></td>
 			<td><?php echo $chamado['situacao_id']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'chamados', 'action' => 'view', $chamado['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'chamados', 'action' => 'edit', $chamado['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'chamados', 'action' => 'delete', $chamado['id']), null, __('Are you sure you want to delete # %s?', $chamado['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'chamados', 'action' => 'view', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'chamados', 'action' => 'edit', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'chamados', 'action' => 'delete', $chamado['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+							</tbody>
+						</table><!-- /.table table-striped table-bordered -->
+					</div><!-- /.table-responsive -->
+					
+				<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Chamado'), array('controller' => 'chamados', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+				
+				<div class="actions">
+					<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Chamado'), array('controller' => 'chamados', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				</div><!-- /.actions -->
+				
+			</div><!-- /.related -->
+
+			
+	</div><!-- /#page-content .span9 -->
+
+</div><!-- /#page-container .row-fluid -->

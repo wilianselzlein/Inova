@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Controller', 'Controller');
 
 /**
@@ -32,13 +32,24 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-  public $helpers = array('Mustache.Mustache');
-
-  public function beforeFilter() {
-    $locale = Configure::read('Config.language');
-    if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath)) {
-        // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
-        $this->viewPath = $locale . DS . $this->viewPath;
+    
+    public $theme = "Cakestrap";
+    
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+        $this->Auth->authError = __('You must be logged in to view this page.');
+        $locale = Configure::read('Config.language');
+        if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath)) {
+            // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
+            $this->viewPath = $locale . DS . $this->viewPath;
+        }
     }
-}
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')            
+        )
+    );
+    
 }

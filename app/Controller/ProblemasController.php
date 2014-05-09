@@ -23,7 +23,7 @@ class ProblemasController extends AppController {
  */
 	public function index() {
 		$this->Problema->recursive = 0;
-		$this->set('problemas', $this->Paginator->paginate());
+		$this->set('problemas', $this->paginate());
 	}
 
 /**
@@ -35,7 +35,7 @@ class ProblemasController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Problema->exists($id)) {
-			throw new NotFoundException(__('Invalid problema'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('conditions' => array('Problema.' . $this->Problema->primaryKey => $id));
 		$this->set('problema', $this->Problema->find('first', $options));
@@ -50,10 +50,10 @@ class ProblemasController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Problema->create();
 			if ($this->Problema->save($this->request->data)) {
-				$this->Session->setFlash(__('The problema has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The problema could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 	}
@@ -66,15 +66,16 @@ class ProblemasController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $this->Problema->id = $id;
 		if (!$this->Problema->exists($id)) {
-			throw new NotFoundException(__('Invalid problema'));
+			throw new NotFoundException(__('The record could not be found.?>'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Problema->save($this->request->data)) {
-				$this->Session->setFlash(__('The problema has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The problema could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
 			$options = array('conditions' => array('Problema.' . $this->Problema->primaryKey => $id));
@@ -86,20 +87,23 @@ class ProblemasController extends AppController {
  * delete method
  *
  * @throws NotFoundException
+ * @throws MethodNotAllowedException
  * @param string $id
  * @return void
  */
 	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
 		$this->Problema->id = $id;
 		if (!$this->Problema->exists()) {
-			throw new NotFoundException(__('Invalid problema'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$this->request->onlyAllow('post', 'delete');
 		if ($this->Problema->delete()) {
-			$this->Session->setFlash(__('The problema has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The problema could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
 	}
 }

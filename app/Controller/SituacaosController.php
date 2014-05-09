@@ -23,7 +23,7 @@ class SituacaosController extends AppController {
  */
 	public function index() {
 		$this->Situacao->recursive = 0;
-		$this->set('situacaos', $this->Paginator->paginate());
+		$this->set('situacaos', $this->paginate());
 	}
 
 /**
@@ -35,7 +35,7 @@ class SituacaosController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Situacao->exists($id)) {
-			throw new NotFoundException(__('Invalid situacao'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('conditions' => array('Situacao.' . $this->Situacao->primaryKey => $id));
 		$this->set('situacao', $this->Situacao->find('first', $options));
@@ -50,10 +50,10 @@ class SituacaosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Situacao->create();
 			if ($this->Situacao->save($this->request->data)) {
-				$this->Session->setFlash(__('The situacao has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The situacao could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 	}
@@ -66,15 +66,16 @@ class SituacaosController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+        $this->Situacao->id = $id;
 		if (!$this->Situacao->exists($id)) {
-			throw new NotFoundException(__('Invalid situacao'));
+			throw new NotFoundException(__('The record could not be found.?>'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Situacao->save($this->request->data)) {
-				$this->Session->setFlash(__('The situacao has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The situacao could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
 			$options = array('conditions' => array('Situacao.' . $this->Situacao->primaryKey => $id));
@@ -86,20 +87,23 @@ class SituacaosController extends AppController {
  * delete method
  *
  * @throws NotFoundException
+ * @throws MethodNotAllowedException
  * @param string $id
  * @return void
  */
 	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
 		$this->Situacao->id = $id;
 		if (!$this->Situacao->exists()) {
-			throw new NotFoundException(__('Invalid situacao'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$this->request->onlyAllow('post', 'delete');
 		if ($this->Situacao->delete()) {
-			$this->Session->setFlash(__('The situacao has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The situacao could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
 	}
 }

@@ -1,82 +1,112 @@
-<div class="chamados view">
-<h2><?php echo __('Chamado'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
+
+<div id="page-container" class="row">
+
+	<div id="sidebar" class="col-sm-3">
+		
+		<div class="actions">
+			
+			<ul class="list-group">			
+						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Chamado'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Chamado'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Chamados'), array('action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Chamado'), array('action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Tipos'), array('controller' => 'tipos', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Tipo'), array('controller' => 'tipos', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Clientes'), array('controller' => 'clientes', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cliente'), array('controller' => 'clientes', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Problemas'), array('controller' => 'problemas', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Problema'), array('controller' => 'problemas', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Situacaos'), array('controller' => 'situacaos', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Situacao'), array('controller' => 'situacaos', 'action' => 'add'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Historicos'), array('controller' => 'historicos', 'action' => 'index'), array('class' => '')); ?> </li>
+		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add'), array('class' => '')); ?> </li>
+				
+			</ul><!-- /.list-group -->
+			
+		</div><!-- /.actions -->
+		
+	</div><!-- /#sidebar .span3 -->
+	
+	<div id="page-content" class="col-sm-9">
+		
+		<div class="chamados view">
+
+			<h2><?php  echo __('Chamado'); ?></h2>
+			
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+		<td>
 			<?php echo h($chamado['Chamado']['id']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Tipo'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Descricao'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Descricao'); ?></strong></td>
+		<td>
 			<?php echo h($chamado['Chamado']['descricao']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Contato'); ?></dt>
-		<dd>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Contato'); ?></strong></td>
+		<td>
 			<?php echo h($chamado['Chamado']['contato']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Cliente'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($chamado['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Cliente'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($chamado['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Prioridade'); ?></dt>
-		<dd>
-			<?php echo h($chamado['Chamado']['prioridade']); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Prioridade'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Problema'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Problema'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Situacao'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($chamado['Situacao']['nome'], array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id'])); ?>
+		</td>
+</tr><tr>		<td><strong><?php echo __('Situacao'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($chamado['Situacao']['nome'], array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => '')); ?>
 			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Chamado'), array('action' => 'edit', $chamado['Chamado']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Chamado'), array('action' => 'delete', $chamado['Chamado']['id']), null, __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Chamados'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Chamado'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Problemas'), array('controller' => 'problemas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Problema'), array('controller' => 'problemas', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Situacaos'), array('controller' => 'situacaos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Historicos'); ?></h3>
-	<?php if (!empty($chamado['Historico'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
+		</td>
+</tr>					</tbody>
+				</table><!-- /.table table-striped table-bordered -->
+			</div><!-- /.table-responsive -->
+			
+		</div><!-- /.view -->
+
+					
+			<div class="related">
+
+				<h3><?php echo __('Historicos'); ?></h3>
+				
+				<?php if (!empty($chamado['Historico'])): ?>
+					
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Chamado Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Datainicial'); ?></th>
 		<th><?php echo __('Datafinal'); ?></th>
 		<th><?php echo __('Descricao'); ?></th>
 		<th><?php echo __('Checklist Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($chamado['Historico'] as $historico): ?>
+									<th class="actions"><?php echo __('Actions'); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+									<?php
+										$i = 0;
+										foreach ($chamado['Historico'] as $historico): ?>
 		<tr>
 			<td><?php echo $historico['id']; ?></td>
 			<td><?php echo $historico['chamado_id']; ?></td>
@@ -86,18 +116,25 @@
 			<td><?php echo $historico['descricao']; ?></td>
 			<td><?php echo $historico['checklist_id']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'historicos', 'action' => 'delete', $historico['id']), null, __('Are you sure you want to delete # %s?', $historico['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'historicos', 'action' => 'delete', $historico['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+							</tbody>
+						</table><!-- /.table table-striped table-bordered -->
+					</div><!-- /.table-responsive -->
+					
+				<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+				
+				<div class="actions">
+					<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				</div><!-- /.actions -->
+				
+			</div><!-- /.related -->
+
+			
+	</div><!-- /#page-content .span9 -->
+
+</div><!-- /#page-container .row-fluid -->
