@@ -7,7 +7,7 @@
 			
 			<ul class="list-group">			
 						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Chamado'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => '')); ?> </li>
-		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Chamado'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?> </li>
+		<!--<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Chamado'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?> </li>-->
 		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Chamados'), array('action' => 'index'), array('class' => '')); ?> </li>
 		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Chamado'), array('action' => 'add'), array('class' => '')); ?> </li>
 		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Tipos'), array('controller' => 'tipos', 'action' => 'index'), array('class' => '')); ?> </li>

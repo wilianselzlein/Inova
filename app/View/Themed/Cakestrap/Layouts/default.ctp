@@ -16,7 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('cake_dev', 'Inovatech');
 ?>
 <?php echo $this->Html->docType('html5'); ?> 
 <html>
@@ -75,7 +75,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div class="container">
                     
 			<div class="well well-sm">
-                            <footer>Copyright &copy; <?php echo date('Y');?> <a href="http://inovatechinfo.com.br/sistema" style="color:#fff">Inova: Revenda Domper</a></footer>
+                            <footer>Copyright &copy; <?php echo date('Y');?> <a href="http://inovatechinfo.com.br/sistema" style="color:#fff">Inovatech Solu&ccedil;&odblac;es Tecnol&oacute;gicas</a></footer>
 			<!--/	<small>
 					<php echo $this->element('sql_dump'); ?>
 				</small> -->

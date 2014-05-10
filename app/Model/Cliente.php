@@ -120,7 +120,7 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),/*
 		'complemento' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -131,7 +131,7 @@ class Cliente extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'ie' => array(
+		/*'ie' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -150,7 +150,7 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'dtinstalacao' => array(
 			'date' => array(
 				'rule' => array('date'),
@@ -231,7 +231,7 @@ class Cliente extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'obs' => array(
+		/*'obs' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -240,7 +240,7 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'user_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -260,7 +260,7 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),/*
 		'celular' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -290,7 +290,7 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'unidade_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),

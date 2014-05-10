@@ -17,7 +17,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'Inova: Revenda Domper');
+$cakeDescription = __d('cake_dev', 'Inovatech');
 ?>
 <!DOCTYPE html>
 <html>

@@ -6,7 +6,7 @@
 		<div class="actions">
 		
 			<ul class="list-group">
-				<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Chamado.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Chamado.id'))); ?></li>
+				<!-- <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Chamado.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Chamado.id'))); ?></li> -->
 				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Chamados'), array('action' => 'index')); ?></li>
 				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
