@@ -1,6 +1,9 @@
 msgid  "New"
 msgstr "Adicionar"
 
+msgid  "Add"
+msgstr "Adicionar"
+
 msgid  "View"
 msgstr "Visualizar"
 
@@ -12,6 +15,9 @@ msgstr "Excluir"
 
 msgid  "List"
 msgstr "Listar"
+
+msgid  "Submit"
+msgstr "Salvar"
 
 msgid  "Role"
 msgstr "Cargo"
