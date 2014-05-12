@@ -30,6 +30,12 @@
 	height: 150px;
 }
 
+.mini-logo
+{
+	float: right;
+	width:107px;
+	height: 50px !important;
+}
 footer{
 	color:#777;
 	text-align: center;

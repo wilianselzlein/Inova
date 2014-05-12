@@ -34,5 +34,8 @@
 			</li>
 			<li style="font-style:italic"><?php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout')) ?></li>
 		</ul><!-- /.nav navbar-nav -->
+		
+		<?php echo $this->Html->image('logo.png', array('class' =>'mini-logo'));?>
+		 
 	</div><!-- /.navbar-collapse -->
 </nav><!-- /.navbar navbar-default -->

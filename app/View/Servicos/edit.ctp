@@ -41,7 +41,7 @@
 							<?php echo $this->Form->input('Historico');?>
 					</div><!-- .form-group -->
 
-					<?php echo $this->Form->submit('Submit', array('class' => 'btn btn-large btn-primary')); ?>
+					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
 				</fieldset>
 
