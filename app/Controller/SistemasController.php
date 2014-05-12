@@ -1,13 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Clientes Controller
+ * Sistemas Controller
  *
- * @property Cliente $Cliente
+ * @property Sistema $Sistema
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ClientesController extends AppController {
+class SistemasController extends AppController {
 
 /**
  * Components
@@ -22,8 +22,8 @@ class ClientesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Cliente->recursive = 0;
-		$this->set('clientes', $this->paginate());
+		$this->Sistema->recursive = 0;
+		$this->set('Sistemas', $this->paginate());
 	}
 
 /**
@@ -34,11 +34,11 @@ class ClientesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->Cliente->exists($id)) {
+		if (!$this->Sistema->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id));
-		$this->set('cliente', $this->Cliente->find('first', $options));
+		$options = array('conditions' => array('Sistema.' . $this->Sistema->primaryKey => $id));
+		$this->set('Sistema', $this->Sistema->find('first', $options));
 	}
 
 /**
@@ -48,20 +48,14 @@ class ClientesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Cliente->create();
-			if ($this->Cliente->save($this->request->data)) {
+			$this->Sistema->create();
+			if ($this->Sistema->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cidades = $this->Cliente->Cidade->find('list');	  
-		$sistemas = $this->Cliente->Sistema->find('list');
-		$subgrupos = $this->Cliente->Subgrupo->find('list');
-		$users = $this->Cliente->User->find('list');
-		$unidades = $this->Cliente->Unidade->find('list');
-		$this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
 	}
 
 /**
@@ -72,27 +66,21 @@ class ClientesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-        $this->Cliente->id = $id;
-		if (!$this->Cliente->exists($id)) {
+        $this->Sistema->id = $id;
+		if (!$this->Sistema->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.?>'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Cliente->save($this->request->data)) {
+			if ($this->Sistema->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id));
-			$this->request->data = $this->Cliente->find('first', $options);
+			$options = array('conditions' => array('Sistema.' . $this->Sistema->primaryKey => $id));
+			$this->request->data = $this->Sistema->find('first', $options);
 		}
-		$cidades = $this->Cliente->Cidade->find('list');
-		$sistemas = $this->Cliente->Sistema->find('list');
-		$subgrupos = $this->Cliente->Subgrupo->find('list');
-		$users = $this->Cliente->User->find('list');
-		$unidades = $this->Cliente->Unidade->find('list');
-		$this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
 	}
 
 /**
@@ -107,11 +95,11 @@ class ClientesController extends AppController {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
-		$this->Cliente->id = $id;
-		if (!$this->Cliente->exists()) {
+		$this->Sistema->id = $id;
+		if (!$this->Sistema->exists()) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		if ($this->Cliente->delete()) {
+		if ($this->Sistema->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
 			$this->redirect(array('action' => 'index'));
 		}

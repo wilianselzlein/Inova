@@ -38,6 +38,8 @@
 							<th><?php echo $this->Paginator->sort('razaosocial'); ?></th>
 							<th><?php echo $this->Paginator->sort('cpfcnpj'); ?></th>
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
+                            <th><?php echo $this->Paginator->sort('sistema_id'); ?></th>
+                            <th><?php echo $this->Paginator->sort('build'); ?></th>
 							<th><?php echo $this->Paginator->sort('subgrupo_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('dtvenda'); ?></th>
 							<th><?php echo $this->Paginator->sort('endereco'); ?></th>
@@ -74,6 +76,10 @@
 		<td>
 			<?php echo $this->Html->link($cliente['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $cliente['Cidade']['id'])); ?>
 		</td>
+		<td>
+			<?php echo $this->Html->link($cliente['Sistema']['nome'], array('controller' => 'sistemas', 'action' => 'view', $cliente['Sistema']['id'])); ?>
+		</td>
+		<td><?php echo h($cliente['Cliente']['build']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($cliente['Subgrupo']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $cliente['Subgrupo']['id'])); ?>
 		</td>

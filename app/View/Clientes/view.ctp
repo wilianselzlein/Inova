@@ -61,6 +61,16 @@
 			<?php echo $this->Html->link($cliente['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $cliente['Cidade']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Sistema'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['Sistema']['nome'], array('controller' => 'sistemas', 'action' => 'view', $cliente['Sistema']['id']), array('class' => '')); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Build'); ?></strong></td>
+		<td>
+			<?php  echo h($cliente['Cliente']['build']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Subgrupo'); ?></strong></td>
 		<td>
 			<?php echo $this->Html->link($cliente['Subgrupo']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $cliente['Subgrupo']['id']), array('class' => '')); ?>

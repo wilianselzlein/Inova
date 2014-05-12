@@ -4,6 +4,7 @@ App::uses('AppModel', 'Model');
  * Cliente Model
  *
  * @property Cidade $Cidade
+ * @property Sistema $Sistema
  * @property Subgrupo $Subgrupo
  * @property User $User
  * @property Unidade $Unidade
@@ -70,7 +71,17 @@ class Cliente extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),/*
+        'sistema_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),*/
 		'subgrupo_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -314,6 +325,13 @@ class Cliente extends AppModel {
 		'Cidade' => array(
 			'className' => 'Cidade',
 			'foreignKey' => 'cidade_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+        'Sistema' => array(
+			'className' => 'Sistema',
+			'foreignKey' => 'sistema_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
