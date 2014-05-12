@@ -28,7 +28,8 @@
 					<li><?php echo $this->Html->link(__('Situações'), 	array('controller' => 'situacaos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Subgrupos'), 	array('controller' => 'subgrupos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Tipos'), 		array('controller' => 'tipos', 		'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>				
-					<li><?php echo $this->Html->link(__('Unidades'), 	array('controller' => 'unidades', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>				
+					<li><?php echo $this->Html->link(__('Unidades'), 	array('controller' => 'unidades', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Visitas'), 	array('controller' => 'visitas', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 				</ul>
 			</li>
 			<li style="font-style:italic"><?php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout')) ?></li>
