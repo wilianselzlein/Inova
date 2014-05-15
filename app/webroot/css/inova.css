@@ -40,3 +40,23 @@ footer{
 	color:#777;
 	text-align: center;
 }
+.select-documento{
+    display: inline-block !important;
+     border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+.mask-cpf-cnpj{
+    display: inline-block !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.label-inline{
+    display: inline-block !important;
+    width:20%;
+   
+}
+.input-inline{
+    display: inline-block !important;
+    width:80%;
+    
+}
