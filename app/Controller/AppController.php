@@ -35,8 +35,10 @@ class AppController extends Controller {
     
     public $theme = "Cakestrap";
     
+    var $helpers = array('Js' => array('Jquery'));
+    
     public function beforeFilter() {
-        $this->Auth->allow('index', 'view');
+        //$this->Auth->allow('index', 'view');
         $this->Auth->authError = __('You must be logged in to view this page.');
         $locale = Configure::read('Config.language');
         if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath)) {

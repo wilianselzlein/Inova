@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(function() {
+$(document).ready(function() {
     $(".select-documento").change(function() {
         if ($(this).val() === '2')
             $('.mask-cpf-cnpj').mask("99.999.999/9999-99");
@@ -23,7 +23,7 @@ $(function() {
     $('.mask-ddd-celular').mask("(00) 0000-0000", options);
 
     $('.mask-cpf-cnpj').mask("999.999.999-99");
-    $('.mask-ddd-fone').mask("(00) 00000-0000");
+    $('.mask-ddd-fone').mask("(00) 0000-0000");
     $('.mask-cep').mask("00000-000");
 
 });

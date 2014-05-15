@@ -50,7 +50,15 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
         echo $this->Html->script('mascaras');
 
         echo $this->fetch('script');
+        echo $this->Js->writeBuffer(); // note: write cached scripts 
         ?>
+        <script type="text/javascript">
+		function __loading(){
+		  var objLoader = document.getElementById("loading-box");
+		  objLoader.style.display = "block";
+		  objLoader.style.visibility = "visible";
+		}
+	</script>
     </head>
 
     <body>
@@ -69,23 +77,22 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
             <div id="content" class="container">
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->fetch('content'); ?>
-            </div><!-- /#content .container -->
-            <!-- /
-            <div id="footer" class="well well-sm" >				
-                <footer>Copyright &copy; <php echo date('Y');?> <a href="http://inovatechinfo.com.br/" style="color:#777">Inova: Revenda Domper</a></footer>
-            </div>#footer .container -->
-
-        </div><!-- /#main-container -->
+            </div>
+        </div>
         <?php if ($this->Session->read('Auth.User')): ?>
             {
             <div class="container">
 
                 <div class="well well-sm">
                     <footer>Copyright &copy; <?php echo date('Y'); ?> <a href="http://inovatechinfo.com.br/sistema" style="color:#fff">Inovatech Solu&ccedil;&odblac;es Tecnol&oacute;gicas</a></footer>
-                <!--/	<small>
-                                <php echo $this->element('sql_dump'); ?>
-                        </small> -->
+                	<small>
+                                <?php echo $this->element('sql_dump'); ?>
+                        </small> 
                 </div><!-- /.well well-sm -->
+                <div id="loading-box" style="display: none; visibility: hidden;">
+			<br/>
+			<?php echo __('Carregando...')?>
+		</div>
             </div> <!-- /.container -->
         <?php endif; ?>
     </body>

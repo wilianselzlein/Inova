@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -16,11 +17,11 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Cadastros')?><b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><?php echo $this->Html->link(__('Chamados'), 	array('controller' => 'chamados', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
-					<li><?php echo $this->Html->link(__('Checklists'), 	array('controller' => 'checklists', 'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Checklists'), 	array('controller' => 'checklists',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Cidades'), 	array('controller' => 'cidades', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Grupos'), 		array('controller' => 'grupos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
-					<li><?php echo $this->Html->link(__('Históricos'), 	array('controller' => 'historicos', 'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Históricos'), 	array('controller' => 'historicos',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Mural'), 		array('controller' => 'murals', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Problemas'), 	array('controller' => 'problemas', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Serviços'), 	array('controller' => 'servicos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
