@@ -30,4 +30,11 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    private $date_format = "Y-m-d H:i";
+     
+    public function convertDateFormat($date)
+    {
+        $newDate = str_replace("/", "-", $date);
+        return date($this->date_format, strtotime($newDate));
+    }
 }

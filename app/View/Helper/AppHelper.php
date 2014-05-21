@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level View Helper
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Helper', 'View');
 
 /**
@@ -30,4 +30,29 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+
+    /**
+     * Esta função retorna uma data escrita da seguinte maneira:
+     * Exemplo: Terça-feira, 17 de Abril de 2007
+     * @author Leandro Vieira Pinho [http://leandro.w3invent.com.br]
+     * @param string $strDate data a ser analizada; por exemplo: 2007-04-17 15:10:59
+     * @return string
+     */
+    function formata_data_extenso($strDate) {
+        // Array com os dia da semana em português;
+        $arrDaysOfWeek = array('Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado');
+        // Array com os meses do ano em português;
+        $arrMonthsOfYear = array(1 => 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro');
+        // Descobre o dia da semana
+        $intDayOfWeek = date('w', strtotime($strDate));
+        // Descobre o dia do mês
+        $intDayOfMonth = date('d', strtotime($strDate));
+        // Descobre o mês
+        $intMonthOfYear = date('n', strtotime($strDate));
+        // Descobre o ano
+        $intYear = date('Y', strtotime($strDate));
+        // Formato a ser retornado
+        return $arrDaysOfWeek[$intDayOfWeek] . ', ' . $intDayOfMonth . ' de ' . $arrMonthsOfYear[$intMonthOfYear] . ' de ' . $intYear;
+    }
+
 }

@@ -30,7 +30,7 @@
                     <?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('data', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
+                    <?php echo $this->Form->input('data', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>

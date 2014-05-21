@@ -30,9 +30,11 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
 
         echo $this->fetch('meta');
 
-        echo $this->Html->css('bootstrap');
+       
+        echo $this->Html->css('bootstrap');       
         echo $this->Html->css('main');
-        echo $this->Html->css('datepicker');
+        //echo $this->Html->css('datepicker');
+        echo $this->Html->css('bootstrap-datetimepicker');
         echo $this->Html->css('inova');
         echo $this->Html->css('cores');
 
@@ -43,10 +45,11 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
         echo $this->Html->script('libs/jquery-1.10.2.min');
         echo $this->Html->script('libs/bootstrap.min');
         echo $this->Html->script('libs/bootstrap-datepicker');
+        echo $this->Html->script('libs/bootstrap-datetimepicker');
         echo $this->Html->script('libs/jquery.mask');
 
 
-        echo $this->Html->script('datepicker');
+        echo $this->Html->script('datetimepicker');
         echo $this->Html->script('mascaras');
 
         echo $this->fetch('script');
@@ -80,7 +83,7 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
             </div>
         </div>
         <?php if ($this->Session->read('Auth.User')): ?>
-            {
+            
             <div class="container">
 
                 <div class="well well-sm">

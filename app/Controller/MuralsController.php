@@ -57,7 +57,8 @@ class MuralsController extends AppController {
 			}
 		}
 		$users = $this->Mural->User->find('list');
-		$this->set(compact('users'));
+                $cadastradopors = $this->Mural->UserFrom->find('list');
+		$this->set(compact('users', 'cadastradopors'));
 	}
 
 /**

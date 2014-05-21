@@ -109,3 +109,7 @@ a{
 footer{
 	color:#fff;
 }
+
+.alert a{
+	color: inherit !important;
+}

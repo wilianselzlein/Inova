@@ -38,10 +38,10 @@
                     <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('datainicial', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
+                    <?php echo $this->Form->input('datainicial', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('datafinal', array('type' => 'text', 'class' => 'form-control datepickerEnd')); ?>
+                    <?php echo $this->Form->input('datafinal', array('type' => 'text', 'class' => 'form-control datetimepickerEnd')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
