@@ -103,9 +103,9 @@ class Mural extends AppModel {
     );
 
     public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['data'])) {            
-            $this->data[$this->alias]['data'] = $this->convertDateFormat($this->data[$this->alias]['data']);
-        }
+        
+        $this->convertAndSetDateFormat(array('data'));
+       
         return true;
     }
 

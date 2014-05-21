@@ -53,26 +53,26 @@ class Historico extends AppModel {
             ),
         ),
         /*
-        'datainicial' => array(
-            'datetime' => array(
-                'rule' => array('datetime'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'datafinal' => array(
-            'datetime' => array(
-                'rule' => array('datetime'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
+          'datainicial' => array(
+          'datetime' => array(
+          'rule' => array('datetime'),
+          //'message' => 'Your custom message here',
+          //'allowEmpty' => false,
+          //'required' => false,
+          //'last' => false, // Stop validation after this rule
+          //'on' => 'create', // Limit validation to 'create' or 'update' operations
+          ),
+          ),
+          'datafinal' => array(
+          'datetime' => array(
+          'rule' => array('datetime'),
+          //'message' => 'Your custom message here',
+          //'allowEmpty' => false,
+          //'required' => false,
+          //'last' => false, // Stop validation after this rule
+          //'on' => 'create', // Limit validation to 'create' or 'update' operations
+          ),
+          ),
          * 
          */
         'descricao' => array(
@@ -150,13 +150,9 @@ class Historico extends AppModel {
     );
 
     public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['datainicial'])) {
-            $this->data[$this->alias]['datainicial'] = $this->convertDateFormat($this->data[$this->alias]['datainicial']);
-        }
-        if (isset($this->data[$this->alias]['datafinal'])) {
-            $this->data[$this->alias]['datafinal'] = $this->convertDateFormat($this->data[$this->alias]['datafinal']);
-        }
 
+        $this->convertAndSetDateFormat(array('datainicial', 'datafinal'));
+        
         return true;
     }
 

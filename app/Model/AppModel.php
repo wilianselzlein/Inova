@@ -37,4 +37,13 @@ class AppModel extends Model {
         $newDate = str_replace("/", "-", $date);
         return date($this->date_format, strtotime($newDate));
     }
+    
+    public function convertAndSetDateFormat($array_datetime_fields=array())
+    {
+     foreach ($array_datetime_fields as $datetime_field) {
+            if (isset($this->data[$this->alias][$datetime_field])) {
+                $this->data[$this->alias][$datetime_field] = $this->convertDateFormat($this->data[$this->alias][$datetime_field]);
+            }
+        }           
+    }
 }

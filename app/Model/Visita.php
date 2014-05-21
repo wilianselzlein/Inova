@@ -1,5 +1,7 @@
 <?php
+
 App::uses('AppModel', 'Model');
+
 /**
  * Visita Model
  *
@@ -7,53 +9,58 @@ App::uses('AppModel', 'Model');
  */
 class Visita extends AppModel {
 
-/**
- * Use database config
- *
- * @var string
- */
-	public $useDbConfig = 'inova';
+    /**
+     * Use database config
+     *
+     * @var string
+     */
+    public $useDbConfig = 'inova';
 
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'detalhes';
+    /**
+     * Display field
+     *
+     * @var string
+     */
+    public $displayField = 'detalhes';
 
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'cliente_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		)
-	);
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public $validate = array(
+        'cliente_id' => array(
+            'numeric' => array(
+                'rule' => array('numeric'),
+            //'message' => 'Your custom message here',
+            //'allowEmpty' => false,
+            //'required' => false,
+            //'last' => false, // Stop validation after this rule
+            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        )
+    );
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+    //The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Cliente' => array(
-			'className' => 'Cliente',
-			'foreignKey' => 'cliente_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+    /**
+     * belongsTo associations
+     *
+     * @var array
+     */
+    public $belongsTo = array(
+        'Cliente' => array(
+            'className' => 'Cliente',
+            'foreignKey' => 'cliente_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
+
+    public function beforeSave($options = array()) {        
+        $this->convertAndSetDateFormat(array('data', 'nova', 'real'));   
+        return true;
+    }
 
 }
