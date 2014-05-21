@@ -29,7 +29,9 @@ class Mural extends AppModel {
      * @var string
      */
     public $displayField = 'recado';
-
+    
+    
+    public $datetimeFields = array('data');
     /**
      * Validation rules
      *
@@ -100,13 +102,5 @@ class Mural extends AppModel {
             'fields' => '',
             'order' => ''
         )
-    );
-
-    public function beforeSave($options = array()) {
-        
-        $this->convertAndSetDateFormat(array('data'));
-       
-        return true;
-    }
-
+    );   
 }
