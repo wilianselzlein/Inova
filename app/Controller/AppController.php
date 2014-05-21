@@ -32,11 +32,11 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    
     public $theme = "Cakestrap";
-    
-    var $helpers = array('Js' => array('Jquery'));
-    
+    var $helpers = array('Js'   => array('Jquery'),
+                         'Mural' => array('className' => 'Mural')
+    );
+
     public function beforeFilter() {
         //$this->Auth->allow('index', 'view');
         $this->Auth->authError = __('You must be logged in to view this page.');
@@ -46,12 +46,31 @@ class AppController extends Controller {
             $this->viewPath = $locale . DS . $this->viewPath;
         }
     }
+
     public $components = array(
         'Session',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
-            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')            
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
         )
     );
-    
+
+    private function convertAndSetDateFormat($model) {
+        foreach ($this->$model->datetimeFields as $datetime_field) {
+            if (isset($this->request->data[$this->$model->alias][$datetime_field])) {
+                $this->request->data[$this->$model->alias][$datetime_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$datetime_field], true);
+            }
+        }
+    }
+
+    public function beforeRender() {
+        $model = $this->modelClass;
+
+        if (isset($this->$model->datetimeFields)) {
+            $this->convertAndSetDateFormat($model);
+        }
+
+        return parent::beforeRender();
+    }
+
 }

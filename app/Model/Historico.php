@@ -31,6 +31,8 @@ class Historico extends AppModel {
      *
      * @var array
      */
+    public $datetimeFields = array('datainicial', 'datafinal');
+    
     public $validate = array(
         'chamado_id' => array(
             'numeric' => array(
@@ -149,11 +151,6 @@ class Historico extends AppModel {
         )
     );
 
-    public function beforeSave($options = array()) {
-
-        $this->convertAndSetDateFormat(array('datainicial', 'datafinal'));
-        
-        return true;
-    }
+    
 
 }

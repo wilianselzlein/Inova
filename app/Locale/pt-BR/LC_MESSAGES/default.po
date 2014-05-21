@@ -102,3 +102,15 @@ msgstr "Por favor digite seus dados de acesso"
 
 msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
 msgstr "Página {:page} de {:pages}, exibindo {:current} registros de um total de {:count}, iniciando no registro {:start}, terminando no {:end}"
+
+msgid "From"
+msgstr "Enviado por"
+
+msgid "MessageFrom"
+msgstr "De"
+
+msgid "MessageTo"
+msgstr "Para"
+
+msgid "me"
+msgstr "mim"

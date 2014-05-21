@@ -46,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
         echo $this->Html->script('libs/bootstrap.min');
         echo $this->Html->script('libs/bootstrap-datepicker');
         echo $this->Html->script('libs/bootstrap-datetimepicker');
+        echo $this->Html->script('libs/locales/bootstrap-datetimepicker.pt-BR');
         echo $this->Html->script('libs/jquery.mask');
 
 

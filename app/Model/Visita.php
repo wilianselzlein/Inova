@@ -22,6 +22,9 @@ class Visita extends AppModel {
      * @var string
      */
     public $displayField = 'detalhes';
+    
+    
+    public $datetimeFields = array('data', 'nova', 'real');
 
     /**
      * Validation rules
@@ -58,9 +61,6 @@ class Visita extends AppModel {
         )
     );
 
-    public function beforeSave($options = array()) {        
-        $this->convertAndSetDateFormat(array('data', 'nova', 'real'));   
-        return true;
-    }
+   
 
 }

@@ -84,7 +84,7 @@ class HistoricosController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('Historico.' . $this->Historico->primaryKey => $id));
-			$this->request->data = $this->Historico->find('first', $options);
+			$this->request->data = $this->Historico->find('first', $options);                                 
 		}
 		$chamados = $this->Historico->Chamado->find('list');
 		$users = $this->Historico->User->find('list');

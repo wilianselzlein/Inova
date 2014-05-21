@@ -29,7 +29,11 @@ App::uses('Helper', 'View');
  *
  * @package       app.View.Helper
  */
+
+
 class AppHelper extends Helper {
+
+    private $dateTimeFormatView = "%A,%e de %B de %Y, %H:%M";
 
     /**
      * Esta função retorna uma data escrita da seguinte maneira:
@@ -38,7 +42,7 @@ class AppHelper extends Helper {
      * @param string $strDate data a ser analizada; por exemplo: 2007-04-17 15:10:59
      * @return string
      */
-    function formata_data_extenso($strDate) {
+    public function formata_data_extenso($strDate) {
         // Array com os dia da semana em português;
         $arrDaysOfWeek = array('Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado');
         // Array com os meses do ano em português;
@@ -54,5 +58,11 @@ class AppHelper extends Helper {
         // Formato a ser retornado
         return $arrDaysOfWeek[$intDayOfWeek] . ', ' . $intDayOfMonth . ' de ' . $arrMonthsOfYear[$intMonthOfYear] . ' de ' . $intYear;
     }
+
+    public function __getDateTimeFormatView() {
+        return $this->dateTimeFormatView;
+    }
+
+    
 
 }

@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 $(document).ready(function() {
-    $('.datepickerStart').datepicker({
-        format: 'dd/mm/yyyy'
-    });
-    
-    $('.datepickerEnd').datepicker({
-        format: 'dd/mm/yyyy'
-    });
 
     $('.datetimepickerStart').datetimepicker({
-    	format: 'dd/mm/yyyy hh:ii'
+    	format: 'dd/mm/yyyy hh:ii',
+        todayBtn: true,
+        autoclose: true,
+        language: 'pt-BR'
+
 	});
 	$('.datetimepickerEnd').datetimepicker({
-    	format: 'dd/mm/yyyy hh:ii'
+    	format: 'dd/mm/yyyy hh:ii',
+        todayBtn: true,
+        autoclose: true,
+        language: 'pt-BR'
 	});
 });
 

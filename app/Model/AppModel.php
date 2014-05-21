@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application model for CakePHP.
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Model', 'Model');
 
 /**
@@ -30,20 +30,36 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
     private $date_format = "Y-m-d H:i";
-     
-    public function convertDateFormat($date)
-    {
-        $newDate = str_replace("/", "-", $date);
-        return date($this->date_format, strtotime($newDate));
+    private $date_format_reverse = "d/m/Y H:i";
+
+    //public $dateFields = array();
+
+    public function convertDateFormat($date, $reverse = false) {
+
+        if ($reverse) {
+            return date($this->date_format_reverse, strtotime($date));
+        } else {
+            $newDate = str_replace("/", "-", $date);
+            return date($this->date_format, strtotime($newDate));
+        }
+        
     }
-    
-    public function convertAndSetDateFormat($array_datetime_fields=array())
-    {
-     foreach ($array_datetime_fields as $datetime_field) {
+
+    public function convertAndSetDateFormat($reverse = false) {
+        foreach ($this->datetimeFields as $datetime_field) {
             if (isset($this->data[$this->alias][$datetime_field])) {
-                $this->data[$this->alias][$datetime_field] = $this->convertDateFormat($this->data[$this->alias][$datetime_field]);
+                $this->data[$this->alias][$datetime_field] = $this->convertDateFormat($this->data[$this->alias][$datetime_field], $reverse);
             }
-        }           
+        }
     }
+
+    public function beforeSave($options = array()) {
+        if (isset($this->datetimeFields)) {
+            $this->convertAndSetDateFormat();
+        }
+
+        return true;
+    }    
 }
