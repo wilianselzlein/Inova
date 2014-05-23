@@ -41,7 +41,7 @@
                         <tr>		
                             <td><strong><?php echo __('MessageFrom'); ?></strong></td>
                             <td>
-                                <?php echo $this->Html->link($this->Mural->check_friendly_username_message($mural['UserFrom']['username']), array('controller' => 'users', 'action' => 'view', $mural['User']['id']), array('class' => '')); ?>                                &nbsp;
+                                <?php echo $this->Html->link($this->Mural->check_friendly_username_message($mural['UserFrom']['username']), array('controller' => 'users', 'action' => 'view', $mural['UserFrom']['id']), array('class' => '')); ?>                                &nbsp;
                             </td>
                         </tr>
                         <tr>		

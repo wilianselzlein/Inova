@@ -42,7 +42,7 @@
                                 </td>
                                 <td>
                                     <?php 
-                                    echo $this->Html->link($this->Mural->check_friendly_username_message($mural['UserFrom']['username']), array('controller' => 'users', 'action' => 'view', $mural['User']['id'])); ?>
+                                    echo $this->Html->link($this->Mural->check_friendly_username_message($mural['UserFrom']['username']), array('controller' => 'users', 'action' => 'view', $mural['UserFrom']['id'])); ?>
                                 </td>
                                 <td>
                                     <?php echo $this->Html->link($this->Mural->check_friendly_username_message($mural['User']['username']), array('controller' => 'users', 'action' => 'view', $mural['User']['id'])); ?>
