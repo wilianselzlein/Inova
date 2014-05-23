@@ -78,7 +78,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Dtvenda'); ?></strong></td>
 		<td>
-			<?php echo h($cliente['Cliente']['dtvenda']); ?>
+			<?php echo date("d/m/y", strtotime($cliente['Cliente']['dtvenda'])); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Endereco'); ?></strong></td>
@@ -113,7 +113,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Dtinstalacao'); ?></strong></td>
 		<td>
-			<?php echo h($cliente['Cliente']['dtinstalacao']); ?>
+			<?php echo date("d/m/y", strtotime($cliente['Cliente']['dtinstalacao'])); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Contato'); ?></strong></td>

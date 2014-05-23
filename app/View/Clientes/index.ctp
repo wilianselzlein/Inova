@@ -38,8 +38,8 @@
 							<th><?php echo $this->Paginator->sort('razaosocial'); ?></th>
 							<th><?php echo $this->Paginator->sort('cpfcnpj'); ?></th>
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('sistema_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('build'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('sistema_id'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('build'); ?></th>
 							<th><?php echo $this->Paginator->sort('subgrupo_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('dtvenda'); ?></th>
 							<th><?php echo $this->Paginator->sort('endereco'); ?></th>
@@ -83,14 +83,14 @@
 		<td>
 			<?php echo $this->Html->link($cliente['Subgrupo']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $cliente['Subgrupo']['id'])); ?>
 		</td>
-		<td><?php echo h($cliente['Cliente']['dtvenda']); ?>&nbsp;</td>
+		<td><?php echo date("d/m/y", strtotime($cliente['Cliente']['dtvenda'])); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['endereco']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['numero']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['bairro']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['complemento']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['ie']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['senha']); ?>&nbsp;</td>
-		<td><?php echo h($cliente['Cliente']['dtinstalacao']); ?>&nbsp;</td>
+		<td><?php echo date("d/m/y", strtotime($cliente['Cliente']['dtinstalacao'])); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['contato']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['caixas']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['retaguardas']); ?>&nbsp;</td>

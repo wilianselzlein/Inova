@@ -33,7 +33,8 @@ App::uses('Helper', 'View');
 
 class AppHelper extends Helper {
 
-    private $dateTimeFormatView = "%A,%e de %B de %Y, %H:%M";
+    //private $dateTimeFormatView = "%A,%e de %B de %Y, %H:%M";
+    private $dateTimeFormatView = "%d/%m/%Y %H:%M";
 
     /**
      * Esta função retorna uma data escrita da seguinte maneira:
