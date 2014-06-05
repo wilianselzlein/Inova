@@ -6,7 +6,7 @@
         <div class="actions">
 
             <ul class="list-group">
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('action' => 'index')); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('action' => 'index', $basico)); ?></li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Cidades'), array('controller' => 'cidades', 'action' => 'index')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cidade'), array('controller' => 'cidades', 'action' => 'add')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Subgrupos'), array('controller' => 'subgrupos', 'action' => 'index')); ?> </li>
@@ -39,6 +39,7 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('razaosocial', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
+			<?php if ($basico == 'N') { ?> 
                 <div class="form-group">
                     <?php
                         $options = array(1 => 'CPF', 2 => 'CNPJ');                    
@@ -123,7 +124,38 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
-
+			<?php } else { ?>
+                <div class="form-group">
+                    <?php echo $this->Form->input('cidade_id', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('endereco', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('numero', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('bairro', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('complemento', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('cep', array('class' => 'form-control mask-cep')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('obs', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('telefone', array('class' => 'form-control mask-ddd-fone')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+			<?php } ?>
                 <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
             </fieldset>

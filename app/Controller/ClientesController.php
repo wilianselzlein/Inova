@@ -23,9 +23,10 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function index() {
+    public function index($basico = 'N') {
         $this->Cliente->recursive = 0;
         $this->set('clientes', $this->paginate());
+        $this->set('basico', $basico);
     }
 
     /**
@@ -48,7 +49,7 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function add() {
+    public function add($basico = 'N') {
         if ($this->request->is('post')) {
             $this->Cliente->create();
             if ($this->Cliente->save($this->request->data)) {
@@ -63,6 +64,7 @@ class ClientesController extends AppController {
         $subgrupos = $this->Cliente->Subgrupo->find('list');
         $users = $this->Cliente->User->find('list');
         $unidades = $this->Cliente->Unidade->find('list');
+		$this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
     }
 
@@ -73,7 +75,8 @@ class ClientesController extends AppController {
      * @param string $id
      * @return void
      */
-    public function edit($id = null) {
+    public function edit($id = null, $basico = 'N') {
+        
         $this->Cliente->id = $id;
         if (!$this->Cliente->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
@@ -94,6 +97,7 @@ class ClientesController extends AppController {
         $subgrupos = $this->Cliente->Subgrupo->find('list');
         $users = $this->Cliente->User->find('list');
         $unidades = $this->Cliente->Unidade->find('list');
+		$this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
     }
 
