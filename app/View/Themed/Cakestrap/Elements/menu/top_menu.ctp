@@ -20,6 +20,7 @@
 					<li><?php echo $this->Html->link(__('Checklists'), 	array('controller' => 'checklists',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Cidades'), 	array('controller' => 'cidades', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Clientes Rápido'), 	array('controller' => 'clientes', 	'action' => 'index', 'S'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Grupos'), 		array('controller' => 'grupos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Históricos'), 	array('controller' => 'historicos',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Mural'), 		array('controller' => 'murals', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>

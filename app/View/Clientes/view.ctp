@@ -186,7 +186,12 @@
 			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
-</tr>					</tbody>
+</tr><tr>		<td><strong><?php echo __('Prospect'); ?></strong></td>
+		<td>
+			<?php echo h($cliente['Cliente']['prospect']); ?>
+			&nbsp;
+		</td>
+</tr>					</tbody>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
 			
