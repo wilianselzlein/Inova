@@ -95,10 +95,10 @@
                     <?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('mensalidade', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('mensalidade', array('class' => 'form-control monetario', 'type'=>'text')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('valorvenda', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('valorvenda', array('class' => 'form-control monetario', 'type'=>'text')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('estrutura', array('class' => 'form-control')); ?>

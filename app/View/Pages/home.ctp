@@ -24,8 +24,12 @@ $titulo = __('Recado(s)');
     ?>
 </div>
    
-<?php  echo '<h4>'.$titulo.'</h4>';
-       $this->Mural->desenha($recado_mural);
+<?php   echo '<div class="recados">';
+        echo '<h4>'.$titulo.'</h4>';
+        echo '</div>';
+        echo '<div class="recados-lista">';
+        $this->Mural->desenha($recado_mural);
+        echo '</div>';
 ?>
         
 

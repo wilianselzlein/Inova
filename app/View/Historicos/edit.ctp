@@ -50,7 +50,7 @@
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('checklist_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('checklist_id', array('class' => 'form-control', 'empty'=>'')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('Servico'); ?>

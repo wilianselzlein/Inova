@@ -33,7 +33,7 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
        
         echo $this->Html->css('bootstrap');       
         echo $this->Html->css('main');
-        //echo $this->Html->css('datepicker');
+        echo $this->Html->css('datepicker');
         echo $this->Html->css('bootstrap-datetimepicker');
         echo $this->Html->css('inova');
         echo $this->Html->css('cores');
@@ -44,12 +44,14 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
 
         echo $this->Html->script('libs/jquery-1.10.2.min');
         echo $this->Html->script('libs/bootstrap.min');
-        echo $this->Html->script('libs/bootstrap-datepicker');
+        echo $this->Html->script('libs/data/bootstrap-datepicker');
+        echo $this->Html->script('libs/data/locales/bootstrap-datepicker.pt-BR');        
         echo $this->Html->script('libs/bootstrap-datetimepicker');
         echo $this->Html->script('libs/locales/bootstrap-datetimepicker.pt-BR');
         echo $this->Html->script('libs/jquery.mask');
 
 
+        echo $this->Html->script('datepicker');
         echo $this->Html->script('datetimepicker');
         echo $this->Html->script('mascaras');
 
@@ -63,6 +65,22 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
 		  objLoader.style.visibility = "visible";
 		}
 	</script>
+        <script>
+	function drawMiniLogo(){
+   		var canvas = document.getElementById('mini-logo');
+   		var ctx = canvas.getContext('2d');
+   		var img=  document.createElement('img');
+
+   		img.onload = function(){
+    		ctx.drawImage(this,0,0, 107, 50);
+   		}
+
+    	img.src='http://inovatechinfo.com.br/sistema/app/webroot/img/logo.png';
+    	//img.width = 60;  
+	    //img.height = 60;
+	}
+
+    </script>
     </head>
 
     <body>

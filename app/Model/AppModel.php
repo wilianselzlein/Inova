@@ -31,23 +31,32 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-    private $date_format = "Y-m-d H:i";
-    private $date_format_reverse = "d/m/Y H:i";
+    private $datetime_format = "Y-m-d H:i";
+    private $datetime_format_reverse = "d/m/Y H:i";
+    private $date_format = "Y-m-d";
+    private $date_format_reverse = "d/m/Y";
 
     //public $dateFields = array();
 
-    public function convertDateFormat($date, $reverse = false) {
-
-        if ($reverse) {
-            return date($this->date_format_reverse, strtotime($date));
+    public function convertDateFormat($date, $reverse = false, $datetime = true) {
+        if ($datetime) {
+            if ($reverse) {
+                return date($this->datetime_format_reverse, strtotime($date));
+            } else {
+                $newDate = str_replace("/", "-", $date);
+                return date($this->datetime_format, strtotime($newDate));
+            }
         } else {
-            $newDate = str_replace("/", "-", $date);
-            return date($this->date_format, strtotime($newDate));
+            if ($reverse) {
+                return date($this->date_format_reverse, strtotime($date));
+            } else {
+                $newDate = str_replace("/", "-", $date);
+                return date($this->date_format, strtotime($newDate));
+            }
         }
-        
     }
 
-    public function convertAndSetDateFormat($reverse = false) {
+    public function convertAndSetDatetimeFormat($reverse = false) {
         foreach ($this->datetimeFields as $datetime_field) {
             if (isset($this->data[$this->alias][$datetime_field])) {
                 $this->data[$this->alias][$datetime_field] = $this->convertDateFormat($this->data[$this->alias][$datetime_field], $reverse);
@@ -55,11 +64,52 @@ class AppModel extends Model {
         }
     }
 
+    public function convertAndSetDateFormat($reverse = false) {
+        foreach ($this->dateFields as $date_field) {
+            if (isset($this->data[$this->alias][$date_field])) {
+                $this->data[$this->alias][$date_field] = $this->convertDateFormat($this->data[$this->alias][$date_field], $reverse, false);
+            }
+        }
+    }
+
+    public function convertMonetaryFormat($monetary, $reverse = false) {
+        
+        if ($reverse) {
+            $antes = substr($monetary, 0, $monetary.length-2);
+            $depois = substr($monetary, $monetary.length-2);
+            $monetary = $antes . "," . $depois;
+
+           return $monetary;
+        } else {            
+            $newValue = str_replace(".","", $monetary);
+            $newValue = str_replace(",","", $newValue);
+            return $newValue;
+        }
+        
+        
+    }
+
+    public function convertAndSetMonetaryFormat($reverse = false) {
+        foreach ($this->monetaryFields as $monetary_field) {
+            if (isset($this->data[$this->alias][$monetary_field])) {
+                $this->data[$this->alias][$monetary_field] = $this->convertMonetaryFormat($this->data[$this->alias][$monetary_field], $reverse);
+            }
+        }
+    }
+
     public function beforeSave($options = array()) {
+
         if (isset($this->datetimeFields)) {
+            $this->convertAndSetDatetimeFormat();
+        }
+        if (isset($this->dateFields)) {
             $this->convertAndSetDateFormat();
+        }
+        if (isset($this->monetaryFields)) {
+            $this->convertAndSetMonetaryFormat();
         }
 
         return true;
-    }    
+    }
+
 }

@@ -115,8 +115,8 @@
 		<td><?php echo h($cliente['Cliente']['caixas']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['retaguardas']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['prioridade']); ?>&nbsp;</td>
-		<td><?php echo h($cliente['Cliente']['mensalidade']); ?>&nbsp;</td>
-		<td><?php echo h($cliente['Cliente']['valorvenda']); ?>&nbsp;</td>
+		<td><?php echo $this->Number->currency($cliente['Cliente']['mensalidade']/100, 'BRL'); ?>&nbsp;</td>
+		<td><?php echo $this->Number->currency($cliente['Cliente']['valorvenda']/100, 'BRL'); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['estrutura']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['obs']); ?>&nbsp;</td>
 		<td>

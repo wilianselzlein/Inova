@@ -17,6 +17,7 @@
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S')); ?></li>
             </ul><!-- /.list-group -->
 
         </div><!-- /.actions -->

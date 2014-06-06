@@ -138,12 +138,14 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Mensalidade'); ?></strong></td>
 		<td>
-			<?php echo h($cliente['Cliente']['mensalidade']); ?>
+			<?php 
+                        
+                        echo $this->Number->currency($cliente['Cliente']['mensalidade']/100, 'BRL'); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Valorvenda'); ?></strong></td>
 		<td>
-			<?php echo h($cliente['Cliente']['valorvenda']); ?>
+			<?php echo $this->Number->currency($cliente['Cliente']['valorvenda']/100, 'BRL'); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Estrutura'); ?></strong></td>

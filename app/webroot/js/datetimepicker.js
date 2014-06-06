@@ -18,5 +18,6 @@ $(document).ready(function() {
         autoclose: true,
         language: 'pt-BR'
 	});
+    
 });
 

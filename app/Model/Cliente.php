@@ -27,7 +27,10 @@ class Cliente extends AppModel {
      * @var string
      */
     public $displayField = 'razaosocial';
-
+    
+    public $dateFields = array('dtvenda','dtinstalacao' );
+    
+    public $monetaryFields = array('valorvenda', 'mensalidade');
     /**
      * Validation rules
      *
@@ -84,16 +87,16 @@ class Cliente extends AppModel {
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
         ),
-        'dtvenda' => array(
-            'date' => array(
-                'rule' => array('date'),
+        //'dtvenda' => array(
+        //    'date' => array(
+         //       'rule' => array('date'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
+      //      ),
+      //  ),
         'endereco' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),

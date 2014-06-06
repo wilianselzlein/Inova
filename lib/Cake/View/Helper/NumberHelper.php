@@ -22,6 +22,8 @@ App::uses('CakeNumber', 'Utility');
 App::uses('AppHelper', 'View/Helper');
 App::uses('Hash', 'Utility');
 
+CakeNumber::addFormat('BRL', array('before' => 'R$ ', 'thousands' => '.', 'decimals' => ','));
+
 /**
  * Number helper library.
  *

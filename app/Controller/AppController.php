@@ -55,10 +55,26 @@ class AppController extends Controller {
         )
     );
 
-    private function convertAndSetDateFormat($model) {
+    private function convertAndSetDatetimeFormat($model) {
         foreach ($this->$model->datetimeFields as $datetime_field) {
             if (isset($this->request->data[$this->$model->alias][$datetime_field])) {
-                $this->request->data[$this->$model->alias][$datetime_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$datetime_field], true);
+                $this->request->data[$this->$model->alias][$datetime_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$datetime_field], true, true);
+            }
+        }
+    }
+    
+    private function convertAndSetDateFormat($model) {
+        foreach ($this->$model->dateFields as $date_field) {
+            if (isset($this->request->data[$this->$model->alias][$date_field])) {
+                $this->request->data[$this->$model->alias][$date_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$date_field], true, false);
+            }
+        }
+    }
+    
+    private function convertAndSetMonetaryFormat($model) {
+        foreach ($this->$model->monetaryFields as $monetary_field) {
+            if (isset($this->request->data[$this->$model->alias][$monetary_field])) {
+                $this->request->data[$this->$model->alias][$monetary_field] = $this->$model->convertMonetaryFormat($this->request->data[$this->$model->alias][$monetary_field], true);
             }
         }
     }
@@ -67,9 +83,14 @@ class AppController extends Controller {
         $model = $this->modelClass;
 
         if (isset($this->$model->datetimeFields)) {
-            $this->convertAndSetDateFormat($model);
+            $this->convertAndSetDatetimeFormat($model);
         }
-
+        if (isset($this->$model->dateFields)){
+             $this->convertAndSetDateFormat($model);
+        }
+         if (isset($this->monetaryFields)) {
+            $this->convertAndSetMonetaryFormat($model);
+        }
         return parent::beforeRender();
     }
 

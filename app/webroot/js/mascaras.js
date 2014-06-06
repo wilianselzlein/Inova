@@ -25,6 +25,7 @@ $(document).ready(function() {
     $('.mask-cpf-cnpj').mask("999.999.999-99");
     $('.mask-ddd-fone').mask("(00) 0000-0000");
     $('.mask-cep').mask("00000-000");
+    $('.monetario').mask("#.##0,00", {reverse: true, maxlength: false});
 
 });
 
