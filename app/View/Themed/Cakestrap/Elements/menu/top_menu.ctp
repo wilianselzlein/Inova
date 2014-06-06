@@ -1,6 +1,6 @@
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
+    <nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header" >
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
@@ -35,8 +35,9 @@
 			</li>
 			<li style="font-style:italic"><?php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout')) ?></li>
 		</ul><!-- /.nav navbar-nav -->
-		
-		<?php echo $this->Html->image('logo.png', array('class' =>'mini-logo'));?>
+		<canvas id="mini-logo"  width="107" height="50" class="mini-logo"></canvas>
+                <script>drawMiniLogo();</script>
+		<!--php echo $this->Html->image('logo.png', array('class' =>'mini-logo'));-->
 		 
 	</div><!-- /.navbar-collapse -->
 </nav><!-- /.navbar navbar-default -->
