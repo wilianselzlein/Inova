@@ -73,6 +73,9 @@ msgstr "Histórico"
 msgid "Historicos"
 msgstr "Históricos"
 
+msgid "Descricao"
+msgstr "Descrição"
+
 msgid "User"
 msgstr "Usuário"
 
@@ -114,3 +117,93 @@ msgstr "Para"
 
 msgid "me"
 msgstr "mim"
+
+msgid "Descricao"
+msgstr "Descrição"
+
+msgid "Situacao"
+msgstr "Situação"
+
+msgid "Situacaos"
+msgstr "Situações"
+
+msgid "Datainicial"
+msgstr "Data Inicial"
+
+msgid "Datafinal"
+msgstr "Data Final"
+
+msgid "User Id"
+msgstr "Usuário"
+
+msgid "Chamado Id"
+msgstr "Chamado"
+
+msgid "Checklist Id"
+msgstr "Checklist"
+
+msgid "Razaosocial"
+msgstr "Razão Social"
+
+msgid "Cpfcnpj"
+msgstr "CPF/CNPJ"
+
+msgid "Dtvenda"
+msgstr "Data Venda"
+
+msgid "Endereco"
+msgstr "Endereço"
+
+msgid "Numero"
+msgstr "Número"
+
+msgid "Ie"
+msgstr "IE"
+
+msgid "Dtinstalacao"
+msgstr "Data Instal."
+
+msgid "Cep"
+msgstr "CEP"
+
+msgid "Valorvenda"
+msgstr "Valor Venda"
+
+msgid "Obs"
+msgstr "Observações"
+
+msgid "Tipo Id"
+msgstr "Tipo"
+
+msgid "Cliente Id"
+msgstr "Cliente"
+
+msgid "Problema Id"
+msgstr "Problema"
+
+msgid "Situacao Id"
+msgstr "Situação"
+
+msgid "Servico"
+msgstr "Serviço"
+
+msgid "Servicos"
+msgstr "Serviços"
+
+msgid "Uf"
+msgstr "UF"
+
+msgid "Cidade Id"
+msgstr "Cidade"
+
+msgid "Subgrupo Id"
+msgstr "Prioridade"
+
+msgid "Unidade Id"
+msgstr "Unidade"
+
+msgid "Are you sure you want to delete # %s?"
+msgstr "Você deseja excluir # %s?"
+
+msgid "Sistema Id"
+msgstr "Sistema"
