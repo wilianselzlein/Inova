@@ -17,10 +17,7 @@ class ClientesController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
-    
-    private function conditionalRedirect($redirect){
-        
-    }
+ 
     
     /**
      * index method
