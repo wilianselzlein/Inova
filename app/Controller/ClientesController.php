@@ -17,7 +17,11 @@ class ClientesController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
-
+    
+    private function conditionalRedirect($redirect){
+        
+    }
+    
     /**
      * index method
      *
@@ -49,12 +53,16 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function add($basico = 'N') {
+    public function add($basico = 'N', $origem=null) {        
         if ($this->request->is('post')) {
             $this->Cliente->create();
             if ($this->Cliente->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-                $this->redirect(array('action' => 'index'));
+                if(isset($origem)){
+                    $this->redirect(array('controller' => $origem, 'action' => 'add', $this->Cliente->id));                   
+                }else{
+                    $this->redirect(array('action' => 'index'));
+                }
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }

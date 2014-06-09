@@ -48,7 +48,7 @@ class ChamadosController extends AppController {
      *
      * @return void
      */
-    public function add() {
+    public function add($selected = null) {
         if ($this->request->is('post')) {
             $this->Chamado->create();
             if ($this->Chamado->save($this->request->data)) {
@@ -57,6 +57,9 @@ class ChamadosController extends AppController {
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
+        }
+        if (isset($selected)) {
+            $this->set(compact('selected'));
         }
         $tipos = $this->Chamado->Tipo->find('list');
         $clientes = $this->Chamado->Cliente->find('list');

@@ -17,7 +17,7 @@
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S')); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S', 'chamados')); ?></li>
             </ul><!-- /.list-group -->
 
         </div><!-- /.actions -->
@@ -33,7 +33,17 @@
             <?php echo $this->Form->create('Chamado', array('role' => 'form')); ?>
 
             <fieldset>
-
+                <div class="form-group">
+                     <?php 
+                        if(isset($selected))
+                        {
+                            echo $this->Form->input('cliente_id', array('class' => 'form-control', 'selected'=> $selected )); 
+                        }else
+                        {
+                            echo $this->Form->input('cliente_id', array('class' => 'form-control' )); 
+                        }                    
+                    ?>
+                </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('tipo_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
@@ -43,9 +53,7 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
+                
                 <div class="form-group">
                     <?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->

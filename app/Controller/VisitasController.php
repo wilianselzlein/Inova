@@ -46,7 +46,7 @@ class VisitasController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($selected=null) {
 		if ($this->request->is('post')) {
 			$this->Visita->create();
 			if ($this->Visita->save($this->request->data)) {
@@ -57,6 +57,10 @@ class VisitasController extends AppController {
 			}
 		}
 		$clientes = $this->Visita->Cliente->find('list');
+                
+                if(isset($selected)){                       
+                    $this->set(compact('selected'));
+                }
 		$this->set(compact('clientes'));
 	}
 
