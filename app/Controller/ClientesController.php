@@ -26,8 +26,8 @@ class ClientesController extends AppController {
      */
     public function index($basico = 'N') {
         $this->Cliente->recursive = 0;
-        $this->set('clientes', $this->paginate());
-        $this->set('basico', $basico);
+        $this->set('clientes', $this->paginate()); 
+        $this->set('basico', $basico);  
     }
 
     /**

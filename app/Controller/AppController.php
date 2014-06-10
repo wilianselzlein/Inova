@@ -34,7 +34,8 @@ class AppController extends Controller {
 
     public $theme = "Cakestrap";
     var $helpers = array('Js'   => array('Jquery'),
-                         'Mural' => array('className' => 'Mural')
+                         'Mural' => array('className' => 'Mural'),
+                         'Visita' => array('className' => 'Visita')
     );
 
     public function beforeFilter() {
