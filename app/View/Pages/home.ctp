@@ -1,12 +1,15 @@
 <?php
 $components = array('Paginator', 'Session');
-$usuario_logado = $this->Session->read('Auth.User');  //Retorna o array com o id, nome do usu�rio e password. 
+$usuario_logado = $this->Session->read('Auth.User');
+//Retorna o array com o id, nome do usu�rio e password. 
+
 if(strtolower($usuario_logado['role'])=='admin'){
-    $coditions = null;
+    
+    $conditions = null;
 }else{
     $conditions = array('conditions' => array('Mural.user_id = ' => $usuario_logado['id']));
 }
-$recado_mural = ClassRegistry::init('Mural')->find('all', array('limit' => 5, $coditions, 'order' => 'Mural.data desc'));
+$recado_mural = ClassRegistry::init('Mural')->find('all', array('limit' => 5, $conditions, 'order' => 'Mural.data desc'));
 $titulo = __('Recado(s)');
 ?>
 
