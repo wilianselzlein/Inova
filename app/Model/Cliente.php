@@ -26,7 +26,7 @@ class Cliente extends AppModel {
      *
      * @var string
      */
-    public $displayField = 'razaosocial';
+    public $displayField = 'fantasia';
     
     public $dateFields = array('dtvenda','dtinstalacao' );
     

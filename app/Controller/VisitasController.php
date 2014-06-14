@@ -56,7 +56,7 @@ class VisitasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$clientes = $this->Visita->Cliente->find('list');
+		$clientes = $this->Visita->Cliente->find('list', array('conditions' => 'prospect = "S"'));
                 
                 if(isset($selected)){                       
                     $this->set(compact('selected'));

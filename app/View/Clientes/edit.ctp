@@ -37,10 +37,10 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('fantasia', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
+        <?php if ($basico == 'N') { ?> 
                 <div class="form-group">
                     <?php echo $this->Form->input('razaosocial', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
-        <?php if ($basico == 'N') { ?> 
                 <div class="form-group">
                     <?php
                         $options = array(1 => 'CPF', 2 => 'CNPJ');                    
