@@ -32,7 +32,7 @@
 		<div class="clientes index">
 		
 			<h2><?php echo __('Clientes'); ?></h2>
-			
+			<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'filtros.php'; ?>
 			<div class="table-responsive">
 				<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
 					<thead>

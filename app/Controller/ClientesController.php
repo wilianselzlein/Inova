@@ -25,12 +25,45 @@ class ClientesController extends AppController {
      * @return void
      */
     public function index($basico = 'N') {
+        
+        $this->Filter->addFilters(
+                array('filter1' => array('OR' => array(
+                        'Cliente.id' => array('operator' => 'LIKE'),
+                        'Cliente.RazaoSocial' => array('operator' => 'LIKE'),
+                        'Cliente.Fantasia' => array('operator' => 'LIKE'),
+                        'Cliente.cpfcnpj' => array('operator' => 'LIKE'),
+                        'Subgrupo.nome' => array('operator' => 'LIKE'),
+                        'Cidade.nome' => array('operator' => 'LIKE'),
+                        'Cliente.endereco' => array('operator' => 'LIKE'),
+                        'Cliente.bairro' => array('operator' => 'LIKE'),
+                        'Cliente.numero' => array('operator' => 'LIKE'),
+                        'Cliente.complemento' => array('operator' => 'LIKE'),   
+                        'Cliente.Ie' => array('operator' => 'LIKE'),   
+                        'Cliente.contato' => array('operator' => 'LIKE'),   
+                        'Cliente.estrutura' => array('operator' => 'LIKE'),   
+                        'Cliente.build' => array('operator' => 'LIKE'),   
+                        'Cliente.obs' => array('operator' => 'LIKE'),   
+                        'Cliente.telefone' => array('operator' => 'LIKE'),
+                        'Cliente.celular' => array('operator' => 'LIKE'),
+                        'Cliente.email' => array('operator' => 'LIKE'),
+                        'Cliente.cep' => array('operator' => 'LIKE'),
+                        'Unidade.nome' => array('operator' => 'LIKE'),
+                        'Sistema.nome' => array('operator' => 'LIKE')
+                        )
+                )
+                )
+        );
+        $this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+        //$this->Filter->setPaginate('limit', 10); // optional
+        $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
         $this->Cliente->recursive = 0;
-        $this->set('clientes', $this->paginate()); 
+
+        $this->set('clientes', $this->paginate());         
         $this->set('basico', $basico);  
     }
 
-    /**
+        /**
      * view method
      *
      * @throws NotFoundException

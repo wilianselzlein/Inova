@@ -35,7 +35,8 @@ class AppController extends Controller {
     public $theme = "Cakestrap";
     var $helpers = array('Js'   => array('Jquery'),
                          'Mural' => array('className' => 'Mural'),
-                         'Visita' => array('className' => 'Visita')
+                         'Visita' => array('className' => 'Visita'),
+						  'FilterResults.Search'
     );
 
     public function beforeFilter() {
@@ -53,6 +54,16 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
             'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
+        ),
+        'FilterResults.Filter' => array(
+            'auto' => array(
+                'paginate' => false,
+                'explode' => true, // recomendado
+            ),
+            'explode' => array(
+                'character' => ' ',
+                 'concatenate' => 'AND',
+            )
         )
     );
 
