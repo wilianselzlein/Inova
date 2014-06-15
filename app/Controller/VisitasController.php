@@ -22,6 +22,22 @@ class VisitasController extends AppController {
  * @return void
  */
 	public function index() {
+                $this->Filter->addFilters(
+                        array('filter1' => array('OR' => array(
+                                'Visita.id' => array('operator' => 'LIKE'),
+                                'Visita.data' => array('operator' => 'LIKE'),
+                                'Visita.nova' => array('operator' => 'LIKE'),
+                                'Cliente.Raz    aoSocial' => array('operator' => 'LIKE'),
+                                'Cliente.Fantasia' => array('operator' => 'LIKE'),
+                                'Visita.detalhes' => array('operator' => 'LIKE')
+                                )
+                        )
+                        )
+                );
+                //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+                //$this->Filter->setPaginate('limit', 10); // optional
+                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Visita->recursive = 0;
 		$this->set('Visitas', $this->paginate());
 	}
