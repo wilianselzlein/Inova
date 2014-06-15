@@ -28,7 +28,7 @@
         <div class="chamados index">
 
             <h2><?php echo __('Chamados'); ?></h2>
-
+            <?php echo $this->element('filtros'); ?>
             <div class="table-responsive">
                 <table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
                     <thead>

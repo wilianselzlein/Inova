@@ -20,7 +20,7 @@
         <div class="murals index">
 
             <h2><?php echo __('Murals'); ?></h2>
-
+            <?php echo $this->element('filtros'); ?>
             <div class="table-responsive">
                 <table cellpadding="0" cellspacing="0" class="table table-striped table-bordered">
                     <thead>

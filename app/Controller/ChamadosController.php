@@ -23,7 +23,27 @@ class ChamadosController extends AppController {
      *
      * @return void
      */
-    public function index() {
+    public function index() {               
+                $this->Filter->addFilters(
+                        array('filter1' => array('OR' => array(                           
+                                'Chamado.id' => array('operator' => 'LIKE'),
+                                'Chamado.descricao' => array('operator' => 'LIKE'),
+                                'Chamado.contato' => array('operator' => 'LIKE'),
+                                'Tipo.nome' => array('operator' => 'LIKE'),
+                                'Cliente.fantasia' => array('operator' => 'LIKE'),
+                                'Cliente.razaosocial' => array('operator' => 'LIKE'),
+                                'Prioridade.nome' => array('operator' => 'LIKE'),
+                                'User.username' => array('operator' => 'LIKE'),
+                                'Problema.nome' => array('operator' => 'LIKE'),
+                                'Situacao.nome' => array('operator' => 'LIKE')
+                                )
+                        )
+                        )
+                );
+                //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+                //$this->Filter->setPaginate('limit', 10); // optional
+                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
         $this->Chamado->recursive = 0;
         $this->set('chamados', $this->paginate());
     }

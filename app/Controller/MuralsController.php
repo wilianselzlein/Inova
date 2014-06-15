@@ -24,6 +24,21 @@ class MuralsController extends AppController {
      * @return void
      */
     public function index() {
+                $this->Filter->addFilters(
+                        array('filter1' => array('OR' => array(                           
+                                'Mural.id' => array('operator' => 'LIKE'),
+                                'Mural.data' => array('operator' => 'LIKE'),
+                                'Mural.recado' => array('operator' => 'LIKE'),
+                                'User.UserName' => array('operator' => 'LIKE'),
+                                'UserFrom.UserName' => array('operator' => 'LIKE')
+                                )
+                        )
+                        )
+                );
+                //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+                //$this->Filter->setPaginate('limit', 10); // optional
+                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
         $this->Mural->recursive = 0;
 
         if (strtolower($this->Session->read('Auth.User.role')) == 'admin') {
