@@ -38,7 +38,7 @@
                             <tr>
                                 <td><?php echo h($Visita['Visita']['id']); ?>&nbsp;</td>
                                 <td>
-                                    <?php echo $this->Html->link($Visita['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id'])); ?>
+                                    <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id'])); ?>
                                 </td>
                                 <td>
                                     <?php echo $this->Time->i18nFormat($Visita['Visita']['data'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;

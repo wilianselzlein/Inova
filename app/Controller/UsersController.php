@@ -77,7 +77,8 @@ class UsersController extends AppController {
             }
         }
          $roles = $this->roles;   
-         $this->set(compact('roles'));
+         $unidades = $this->User->Unidade->find('list');
+         $this->set(compact('roles', 'unidades'));
     }
 
     /**
@@ -103,8 +104,9 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-        $roles = $this->roles;   
-        $this->set(compact('roles'));
+        $roles = $this->roles;
+        $unidades = $this->User->Unidade->find('list');
+        $this->set(compact('roles', 'unidades'));
     }
 
     /**

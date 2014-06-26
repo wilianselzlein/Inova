@@ -188,6 +188,16 @@
 			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Criado'); ?></strong></td>
+		<td>
+                        <?php echo $this->Time->i18nFormat($cliente['Cliente']['created'], $this->Html->__getDateTimeFormatView()); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Modificado'); ?></strong></td>
+		<td>
+                    <?php echo $this->Time->i18nFormat($cliente['Cliente']['modified'], $this->Html->__getDateTimeFormatView()); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Prospect'); ?></strong></td>
 		<td>
 			<?php echo h($cliente['Cliente']['prospect']); ?>
@@ -256,4 +266,4 @@
 			
 	</div><!-- /#page-content .span9 -->
 
-</div><!-- /#page-container .row-fluid -->
+*</div><!-- /#page-container .row-fluid -->

@@ -11,7 +11,9 @@
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
-			<li class="active"><?php echo $this->Html->link(__('Chamados'), 	array('controller' => 'chamados', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+			<li class="active">
+			    <?php echo $this->Html->link(__('Chamados'), 	array('controller' => 'chamados', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?>
+			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Comercial')?><b class="caret"></b></a>
 				<ul class="dropdown-menu">

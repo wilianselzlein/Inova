@@ -57,6 +57,12 @@
 			<?php echo h($user['User']['modified']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Unidade'); ?></strong></td>
+		<td>
+                        <?php echo $this->Html->link($user['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $user['Unidade']['id']), array('class' => '')); ?>
+			&nbsp;
+		</td>
+                
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->

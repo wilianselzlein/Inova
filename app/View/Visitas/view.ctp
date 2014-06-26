@@ -35,7 +35,7 @@
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Cliente'); ?></strong></td>
                             <td>
-                                <?php echo $this->Html->link($Visita['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')); ?>
+                                <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')) . ' - ' . $this->Html->link($Visita['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')); ?>
                                 &nbsp;
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>
