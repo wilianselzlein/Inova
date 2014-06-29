@@ -58,7 +58,7 @@ class HistoricosController extends AppController {
 		}
 		$chamados = $this->Historico->Chamado->findAsCombo();
 		$users = $this->Historico->User->findAsCombo();
-		$checklists = $this->Historico->ChecklistfindAsCombo();
+		$checklists = $this->Historico->Checklist->findAsCombo();
 		$servicos = $this->Historico->Servico->findAsCombo();
 		$this->set(compact('chamados', 'users', 'checklists', 'servicos'));
 	}
