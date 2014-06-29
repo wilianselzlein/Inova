@@ -56,7 +56,7 @@ class UnidadesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cidades = $this->Unidade->Cidade->find('list');
+		$cidades = $this->Unidade->Cidade->findAsCombo();
 		$this->set(compact('cidades'));
 	}
 
@@ -83,7 +83,7 @@ class UnidadesController extends AppController {
 			$options = array('conditions' => array('Unidade.' . $this->Unidade->primaryKey => $id));
 			$this->request->data = $this->Unidade->find('first', $options);
 		}
-		$cidades = $this->Unidade->Cidade->find('list');
+		$cidades = $this->Unidade->Cidade->findAsCombo();
 		$this->set(compact('cidades'));
 	}
 

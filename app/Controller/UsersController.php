@@ -77,7 +77,7 @@ class UsersController extends AppController {
             }
         }
          $roles = $this->roles;   
-         $unidades = $this->User->Unidade->find('list');
+         $unidades = $this->User->Unidade->ffindAsCombo();
          $this->set(compact('roles', 'unidades'));
     }
 
@@ -105,7 +105,7 @@ class UsersController extends AppController {
             $this->request->data = $this->User->find('first', $options);
         }
         $roles = $this->roles;
-        $unidades = $this->User->Unidade->find('list');
+        $unidades = $this->User->Unidade->findAsCombo();
         $this->set(compact('roles', 'unidades'));
     }
 

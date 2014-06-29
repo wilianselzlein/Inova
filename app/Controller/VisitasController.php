@@ -72,7 +72,7 @@ class VisitasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$clientes = $this->Visita->Cliente->find('list', array('conditions' => 'prospect = "S"'));
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
                 
                 if(isset($selected)){                       
                     $this->set(compact('selected'));
@@ -103,7 +103,7 @@ class VisitasController extends AppController {
 			$options = array('conditions' => array('Visita.' . $this->Visita->primaryKey => $id));
 			$this->request->data = $this->Visita->find('first', $options);
 		}
-		$clientes = $this->Visita->Cliente->find('list');
+		$clientes = $this->Visita->Cliente->findAsCombo();
 		$this->set(compact('clientes'));
 	}
 

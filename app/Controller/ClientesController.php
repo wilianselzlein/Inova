@@ -97,11 +97,11 @@ class ClientesController extends AppController {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
-        $cidades = $this->Cliente->Cidade->find('list');
-        $sistemas = $this->Cliente->Sistema->find('list');
-        $subgrupos = $this->Cliente->Subgrupo->find('list');
-        $users = $this->Cliente->User->find('list');
-        $unidades = $this->Cliente->Unidade->find('list');
+        $cidades = $this->Cliente->Cidade->findAsCombo();
+        $sistemas = $this->Cliente->Sistema->findAsCombo();
+        $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
+        $users = $this->Cliente->User->findAsCombo();
+        $unidades = $this->Cliente->Unidade->findAsCombo();
 		$this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
     }
@@ -130,11 +130,11 @@ class ClientesController extends AppController {
             $options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id));
             $this->request->data = $this->Cliente->find('first', $options);
         }
-        $cidades = $this->Cliente->Cidade->find('list');
-        $sistemas = $this->Cliente->Sistema->find('list');
-        $subgrupos = $this->Cliente->Subgrupo->find('list');
-        $users = $this->Cliente->User->find('list');
-        $unidades = $this->Cliente->Unidade->find('list');
+        $cidades = $this->Cliente->Cidade->findAsCombo();
+        $sistemas = $this->Cliente->Sistema->findAsCombo();
+        $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
+        $users = $this->Cliente->User->findAsCombo();
+        $unidades = $this->Cliente->Unidade->findAsCombo();
 		$this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
     }

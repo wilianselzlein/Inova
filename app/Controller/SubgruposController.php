@@ -56,7 +56,7 @@ class SubgruposController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$grupos = $this->Subgrupo->Grupo->find('list');
+		$grupos = $this->Subgrupo->Grupo->findAsCombo();
 		$this->set(compact('grupos'));
 	}
 
@@ -83,7 +83,7 @@ class SubgruposController extends AppController {
 			$options = array('conditions' => array('Subgrupo.' . $this->Subgrupo->primaryKey => $id));
 			$this->request->data = $this->Subgrupo->find('first', $options);
 		}
-		$grupos = $this->Subgrupo->Grupo->find('list');
+		$grupos = $this->Subgrupo->Grupo->findAsCombo();
 		$this->set(compact('grupos'));
 	}
 

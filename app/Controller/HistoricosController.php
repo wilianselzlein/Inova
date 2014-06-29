@@ -56,10 +56,10 @@ class HistoricosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$chamados = $this->Historico->Chamado->find('list');
-		$users = $this->Historico->User->find('list');
-		$checklists = $this->Historico->Checklist->find('list');
-		$servicos = $this->Historico->Servico->find('list');
+		$chamados = $this->Historico->Chamado->findAsCombo();
+		$users = $this->Historico->User->findAsCombo();
+		$checklists = $this->Historico->ChecklistfindAsCombo();
+		$servicos = $this->Historico->Servico->findAsCombo();
 		$this->set(compact('chamados', 'users', 'checklists', 'servicos'));
 	}
 
@@ -86,10 +86,10 @@ class HistoricosController extends AppController {
 			$options = array('conditions' => array('Historico.' . $this->Historico->primaryKey => $id));
 			$this->request->data = $this->Historico->find('first', $options);                                 
 		}
-		$chamados = $this->Historico->Chamado->find('list');
-		$users = $this->Historico->User->find('list');
-		$checklists = $this->Historico->Checklist->find('list');
-		$servicos = $this->Historico->Servico->find('list');
+		$chamados = $this->Historico->Chamado->findAsCombo();
+		$users = $this->Historico->User->findAsCombo();
+		$checklists = $this->Historico->Checklist->findAsCombo();
+		$servicos = $this->Historico->Servico->findAsCombo();
 		$this->set(compact('chamados', 'users', 'checklists', 'servicos'));
 	}
 

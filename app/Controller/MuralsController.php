@@ -82,8 +82,8 @@ class MuralsController extends AppController {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
-        $users = $this->Mural->User->find('list');
-        $cadastradopors = $this->Mural->UserFrom->find('list');
+        $users = $this->Mural->User->findAsCombo();
+        $cadastradopors = $this->Mural->UserFrom->findAsCombo();
         $this->set(compact('users', 'cadastradopors'));
     }
 
@@ -110,7 +110,7 @@ class MuralsController extends AppController {
             $options = array('conditions' => array('Mural.' . $this->Mural->primaryKey => $id));
             $this->request->data = $this->Mural->find('first', $options);
         }
-        $users = $this->Mural->User->find('list');
+        $users = $this->Mural->User->findAsCombo();
         $this->set(compact('users'));
     }
 

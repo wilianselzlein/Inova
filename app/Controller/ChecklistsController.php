@@ -56,7 +56,7 @@ class ChecklistsController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$servicos = $this->Checklist->Servico->find('list');
+		$servicos = $this->Checklist->Servico->findAsCombo();
 		$this->set(compact('servicos'));
 	}
 
@@ -83,7 +83,7 @@ class ChecklistsController extends AppController {
 			$options = array('conditions' => array('Checklist.' . $this->Checklist->primaryKey => $id));
 			$this->request->data = $this->Checklist->find('first', $options);
 		}
-		$servicos = $this->Checklist->Servico->find('list');
+		$servicos = $this->Checklist->Servico->findAsCombo();
 		$this->set(compact('servicos'));
 	}
 

@@ -81,12 +81,12 @@ class ChamadosController extends AppController {
         if (isset($selected)) {
             $this->set(compact('selected'));
         }
-        $tipos = $this->Chamado->Tipo->find('list');
-        $clientes = $this->Chamado->Cliente->find('list');
-        $prioridades = $this->Chamado->Prioridade->find('list');
-        $problemas = $this->Chamado->Problema->find('list');
-        $situacaos = $this->Chamado->Situacao->find('list');
-        $users = $this->Chamado->User->find('list');
+        $tipos = $this->Chamado->Tipo->findAsCombo();
+        $clientes = $this->Chamado->Cliente->findAsCombo();
+        $prioridades = $this->Chamado->Prioridade->findAsCombo();
+        $problemas = $this->Chamado->Problema->findAsCombo();
+        $situacaos = $this->Chamado->Situacao->findAsCombo();
+        $users = $this->Chamado->User->findAsCombo();
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
 
@@ -113,12 +113,12 @@ class ChamadosController extends AppController {
             $options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id));
             $this->request->data = $this->Chamado->find('first', $options);
         }
-        $tipos = $this->Chamado->Tipo->find('list');
-        $clientes = $this->Chamado->Cliente->find('list');
-        $prioridades = $this->Chamado->Prioridade->find('list');
-        $problemas = $this->Chamado->Problema->find('list');
-        $situacaos = $this->Chamado->Situacao->find('list');
-        $users = $this->Chamado->User->find('list');
+        $tipos = $this->Chamado->Tipo->findAsCombo();
+        $clientes = $this->Chamado->Cliente->findAsCombo();
+        $prioridades = $this->Chamado->Prioridade->findAsCombo();
+        $problemas = $this->Chamado->Problema->findAsCombo();
+        $situacaos = $this->Chamado->Situacao->findAsCombo();
+        $users = $this->Chamado->User->findAsCombo();
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
 

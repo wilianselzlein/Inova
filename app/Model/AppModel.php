@@ -110,6 +110,13 @@ class AppModel extends Model {
         }
 
         return true;
+    }   
+    
+    public function findAsCombo($order='asc', $conditions=array()){ 
+        
+        $list  = $this->find('list', array('order' => $this->displayField.' '.$order, 'conditions'=> $conditions));
+        return $list;
     }
 
+    
 }

@@ -56,8 +56,8 @@ class ServicosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$checklists = $this->Servico->Checklist->find('list');
-		$historicos = $this->Servico->Historico->find('list');
+		$checklists = $this->Servico->Checklist->findAsCombo();
+		$historicos = $this->Servico->Historico->findAsCombo();
 		$this->set(compact('checklists', 'historicos'));
 	}
 
@@ -84,8 +84,8 @@ class ServicosController extends AppController {
 			$options = array('conditions' => array('Servico.' . $this->Servico->primaryKey => $id));
 			$this->request->data = $this->Servico->find('first', $options);
 		}
-		$checklists = $this->Servico->Checklist->find('list');
-		$historicos = $this->Servico->Historico->find('list');
+		$checklists = $this->Servico->Checklist->findAsCombo();
+		$historicos = $this->Servico->Historico->findAsCombo();
 		$this->set(compact('checklists', 'historicos'));
 	}
 
