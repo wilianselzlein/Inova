@@ -27,7 +27,7 @@ class VisitasController extends AppController {
                                 'Visita.id' => array('operator' => 'LIKE'),
                                 'Visita.data' => array('operator' => 'LIKE'),
                                 'Visita.nova' => array('operator' => 'LIKE'),
-                                'Cliente.Raz    aoSocial' => array('operator' => 'LIKE'),
+                                'Cliente.RazaoSocial' => array('operator' => 'LIKE'),
                                 'Cliente.Fantasia' => array('operator' => 'LIKE'),
                                 'Visita.detalhes' => array('operator' => 'LIKE')
                                 )

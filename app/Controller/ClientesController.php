@@ -115,7 +115,7 @@ class ClientesController extends AppController {
      */
     public function edit($id = null, $basico = 'N') {
         
-        $this->Cliente->id = $id;
+        $this->Cliente->id = $id;      
         if (!$this->Cliente->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
         }
