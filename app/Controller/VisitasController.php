@@ -103,7 +103,7 @@ class VisitasController extends AppController {
 			$options = array('conditions' => array('Visita.' . $this->Visita->primaryKey => $id));
 			$this->request->data = $this->Visita->find('first', $options);
 		}
-		$clientes = $this->Visita->Cliente->findAsCombo();
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
 		$this->set(compact('clientes'));
 	}
 

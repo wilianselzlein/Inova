@@ -50,16 +50,16 @@ class ClientesController extends AppController {
                         'Unidade.nome' => array('operator' => 'LIKE'),
                         'Sistema.nome' => array('operator' => 'LIKE')
                         )
-                )
+                    )
                 )
         );
         $this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
         //$this->Filter->setPaginate('limit', 10); // optional
         $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-
+        
         $this->Cliente->recursive = 0;
 
-        $this->set('clientes', $this->paginate());         
+        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  $basico)));
         $this->set('basico', $basico);  
     }
 
@@ -91,7 +91,7 @@ class ClientesController extends AppController {
                 if(isset($origem)){
                     $this->redirect(array('controller' => $origem, 'action' => 'add', $this->Cliente->id));                   
                 }else{
-                    $this->redirect(array('action' => 'index'));
+                    $this->redirect(array('action' => 'index', $basico));
                 }
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

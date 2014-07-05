@@ -82,7 +82,6 @@
 							<th><?php echo $this->Paginator->sort('telefone'); ?></th>
 				<?php } ?>
 							<th><?php echo $this->Paginator->sort('unidade_id'); ?></th>
-                                                        <th><?php echo $this->Paginator->sort('prospect'); ?></th>
 							<th class="actions"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -146,7 +145,6 @@
 		<td>
 			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id'])); ?>
 		</td>
-                <td><?php echo h($cliente['Cliente']['prospect']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $cliente['Cliente']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $cliente['Cliente']['id'], $basico), array('class' => 'btn btn-default btn-xs')); ?>

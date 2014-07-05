@@ -82,7 +82,7 @@ class ChamadosController extends AppController {
             $this->set(compact('selected'));
         }
         $tipos = $this->Chamado->Tipo->findAsCombo();
-        $clientes = $this->Chamado->Cliente->findAsCombo();
+        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"');
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();
@@ -114,7 +114,7 @@ class ChamadosController extends AppController {
             $this->request->data = $this->Chamado->find('first', $options);
         }
         $tipos = $this->Chamado->Tipo->findAsCombo();
-        $clientes = $this->Chamado->Cliente->findAsCombo();
+        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"');
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();

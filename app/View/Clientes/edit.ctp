@@ -156,17 +156,15 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
-        <?php } ?>
+        <?php } /*?>
 
                 <div class="form-group">
                     <?php echo $this->Form->input('prospect', array('class' => 'form-control', 'options' => array('S' => 'S', 'N' => 'N'))); ?>
                 </div><!-- .form-group -->
                 
-                <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
+                <?php*/ echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
-            </fieldset>
-
-            
+            </fieldset>          
 
             <?php echo $this->Form->end(); ?>
 
