@@ -52,8 +52,10 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('checklist_id', array('class' => 'form-control', 'empty'=>'')); ?>
                 </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('Servico'); ?>
+                
+                <div class="form-group" id="HistoricoServicoId">
+                    <?php echo $this->Form->input('Servico', array('type' => 'select',
+          'options' => $servicos, 'multiple' => 'checkbox')); ?>
                 </div><!-- .form-group -->
 
                 <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
@@ -67,3 +69,20 @@
     </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
+<?php
+$this->Js->get('#HistoricoChecklistId')->event('change', 
+	$this->Js->request(array(
+		'controller'=>'historicos',
+		'action'=>'getComboServicos'
+		), array(
+		'update'=>'#HistoricoServicoId',
+		'async' => true,
+		'method' => 'post',
+		'dataExpression'=>true,
+		'data'=> $this->Js->serializeForm(array(
+			'isForm' => true,
+			'inline' => true
+			))
+		))
+	);
+?>

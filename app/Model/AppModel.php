@@ -73,7 +73,6 @@ class AppModel extends Model {
     }
 
     public function convertMonetaryFormat($monetary, $reverse = false) {
-        
         if ($reverse) {
             $antes = substr($monetary, 0, $monetary.length-2);
             $depois = substr($monetary, $monetary.length-2);
@@ -82,11 +81,9 @@ class AppModel extends Model {
            return $monetary;
         } else {            
             $newValue = str_replace(".","", $monetary);
-            $newValue = str_replace(",","", $newValue);
-            return $newValue;
+            $value = str_replace(",","", $newValue);
+            return $value;
         }
-        
-        
     }
 
     public function convertAndSetMonetaryFormat($reverse = false) {
@@ -112,11 +109,43 @@ class AppModel extends Model {
         return true;
     }   
     
-    public function findAsCombo($order='asc', $conditions=array()){ 
-        
+    public function findAsCombo($order='asc', $conditions=array()){         
         $list  = $this->find('list', array('order' => $this->displayField.' '.$order, 'conditions'=> $conditions));
         return $list;
     }
 
-    
+    /**
+* Transform a set of hasMany multi-select data into a format which can be saved
+* using saveAll in the controller
+* 
+* @param array $data
+* @param str $fieldToSave
+* @param int $deleteId
+* @return array
+*/
+public function massageHasManyForSaveAll($data, $fieldToSave, $deleteId = null) {
+  foreach ($this->belongsTo as $model => $relationship) {
+      if ($relationship['foreignKey'] != $fieldToSave) {
+          $relatedModel = $model;
+          $relatedModelPrimaryKey = $this->{$model}->primaryKey;
+          $relatedForeignKey = $relationship['foreignKey'];
+      }
+  }
+
+  if ($deleteId !== null) {
+      $this->deleteAll(array(
+          $this->alias .'.'. $relatedForeignKey => $deleteId
+      ));
+  }
+
+  if (is_array($data[$fieldToSave])) {
+      foreach ($data[$fieldToSave] as $packageId) {
+          $return[] = array($fieldToSave => $packageId);
+      }
+      
+      return $return;
+  }
+
+  return $data;
+}
 }
