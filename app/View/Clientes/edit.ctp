@@ -44,8 +44,8 @@
                 <div class="form-group">
                     <?php
                         $options = array(1 => 'CPF', 2 => 'CNPJ');                    
-                        echo $this->Form->input('_', array('options' => $options, 'default'=>1, 'class' =>'form-control select-documento', 'label'=>false, 'div'=>array('class'=>'label-inline')));
-                        echo $this->Form->input('cpfcnpj', array('class' => 'form-control mask-cpf-cnpj', 'label'=>false, 'div'=>array('class'=>'input-inline'))); ?>
+                        //echo $this->Form->input('_', array('options' => $options, 'default'=>1, 'class' =>'form-control select-documento', 'label'=>false, 'div'=>array('class'=>'label-inline')));
+                        echo $this->Form->input('cpfcnpj', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('cidade_id', array('class' => 'form-control')); ?>
