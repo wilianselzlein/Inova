@@ -36,7 +36,8 @@
 					<li><?php echo $this->Html->link(__('Grupos'), 		array('controller' => 'grupos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Históricos'), 	array('controller' => 'historicos',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Problemas'), 	array('controller' => 'problemas', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
-					<li><?php echo $this->Html->link(__('Serviços'), 	array('controller' => 'servicos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Relatórios'), 	array('controller' => 'relatorios', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+                                        <li><?php echo $this->Html->link(__('Serviços'), 	array('controller' => 'servicos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Sistemas'), 	array('controller' => 'sistemas', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Situações'), 	array('controller' => 'situacaos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Subgrupos'), 	array('controller' => 'subgrupos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>

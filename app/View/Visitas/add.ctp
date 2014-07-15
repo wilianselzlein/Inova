@@ -48,6 +48,9 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('detalhes', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
 
                 <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary ')); ?>
 

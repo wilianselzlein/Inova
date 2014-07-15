@@ -72,12 +72,13 @@ class VisitasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
+                $users = $this->Visita->User->findAsCombo();
 		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
                 
                 if(isset($selected)){                       
                     $this->set(compact('selected'));
                 }
-		$this->set(compact('clientes'));
+		$this->set(compact('clientes', 'users'));
 	}
 
 /**
@@ -103,8 +104,9 @@ class VisitasController extends AppController {
 			$options = array('conditions' => array('Visita.' . $this->Visita->primaryKey => $id));
 			$this->request->data = $this->Visita->find('first', $options);
 		}
+                $users = $this->Visita->User->findAsCombo();
 		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
-		$this->set(compact('clientes'));
+		$this->set(compact('clientes', 'users'));
 	}
 
 /**

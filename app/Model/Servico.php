@@ -86,7 +86,7 @@ class Servico extends AppModel {
                     "table" => "checklists_servicos",
                     "alias" => "cs",
                     "type" => "INNER",
-                    "conditions" => array('cs.servico_id = servico.id')
+                    "conditions" => array('cs.servico_id = Servico.id')
                 ),
                 array(
                     "table" => "checklists",
