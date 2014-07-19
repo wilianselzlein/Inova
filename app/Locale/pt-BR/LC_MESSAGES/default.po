@@ -207,3 +207,6 @@ msgstr "Você deseja excluir # %s?"
 
 msgid "Sistema Id"
 msgstr "Sistema"
+
+msgid "Previsaoexecucao"
+msgstr "Previsão de Execução"

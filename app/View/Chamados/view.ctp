@@ -87,7 +87,7 @@
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Previsaoexecucao'); ?></strong></td>
                             <td>
-                                <?php echo h($chamado['Chamado']['previsaoexecucao']); ?>
+                                <?php echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());  ?>
                                 &nbsp;
                             </td>
                         </tr>	</tbody>
