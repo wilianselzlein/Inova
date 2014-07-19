@@ -58,10 +58,10 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tipo</th>
-                                <th>Descrição</th>
-                                <th>Contato</th>
+                                <th><?php echo __('Lançamento'); ?></th>
                                 <th>Cliente</th>
+                                <th>Contato</th>
+                                <th><?php echo __('Descrição'); ?></th>
                                 <th>Prioridade</th>
                                 <th>Problema</th>
                                 <th>Usuário</th>
@@ -71,19 +71,31 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                             <?php if ($tab[$model_tabs]['id'] == $task[$model_tabs]['id']): ?>
                                 <tr>
                                     <td>
-                                        <?php echo $task['Chamado']['id'] ?>
+                                        <?php echo $this->Html->link($task['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
                                     </td>
                                      <td>
-                                        <?php echo $this->Html->link($task['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $task['Tipo']['id'])) ?>
+                                        <?php 
+                                            $hist = ClassRegistry::init('historico')->find('first', array(
+                                                'conditions' => array('Historico.chamado_id' => $task['Chamado']['id']),
+                                                'fields' => array('Historico.id', 'Historico.chamado_id, Historico.datainicial'),
+                                                'order' => array('Historico.datainicial' => 'asc'),
+                                                'limit' => 1,
+                                                'recursive' => 0,
+                                             ));
+                                            if (count($hist) > 0)
+                                              echo $this->Html->link(
+                                                      $this->Time->i18nFormat($hist['Historico']['datainicial'], $this->Html->__getDateTimeFormatView()),
+                                                      array('controller' => 'historicos', 'action' => 'view', $hist['Historico']['id']));
+                                        ?> &nbsp;
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
@@ -123,7 +135,7 @@ echo '</div>';
 ?>
 
 <?php
-if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_logado['role']) == 'Vendas')) {
+if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_logado['role']) == 'vendas')) {
     //$conditions = array('conditions' => array('Visita.user_id = ' => $usuario_logado['id']));
     $visita_conditions = array('conditions' => array('Visita.data >= ' => date('y.m.d')));
     $visita_mural = ClassRegistry::init('Visita')->find('all', array('limit' => 5, $visita_conditions, 'order' => 'Visita.data desc'));
