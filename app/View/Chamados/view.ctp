@@ -85,6 +85,11 @@
                                 <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id']), array('class' => '')); ?>
                                 &nbsp;
                             </td>
+                        </tr><tr>		<td><strong><?php echo __('Previsaoexecucao'); ?></strong></td>
+                            <td>
+                                <?php echo h($chamado['Chamado']['previsaoexecucao']); ?>
+                                &nbsp;
+                            </td>
                         </tr>	</tbody>
                 </table><!-- /.table table-striped table-bordered -->
             </div><!-- /.table-responsive -->

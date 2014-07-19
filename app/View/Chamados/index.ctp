@@ -42,6 +42,7 @@
                             <th><?php echo $this->Paginator->sort('problema_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('situacao_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('user_id'); ?></th>
+                            <th><?php echo $this->Paginator->sort('previsaoexecucao'); ?></th>
                             <th class="actions"><?php echo __('Actions'); ?></th>
                         </tr>
                     </thead>
@@ -67,6 +68,7 @@
                                 <td>
                                     <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
                                 </td>
+                                <td><?php echo h($chamado['Chamado']['previsaoexecucao']); ?>&nbsp;</td>
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
