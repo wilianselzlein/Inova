@@ -123,14 +123,16 @@ echo '</div>';
 ?>
 
 <?php
-//$conditions = array('conditions' => array('Visita.user_id = ' => $usuario_logado['id']));
-$visita_conditions = array('conditions' => array('Visita.data >= ' => date('y.m.d')));
-$visita_mural = ClassRegistry::init('Visita')->find('all', array('limit' => 5, $visita_conditions, 'order' => 'Visita.data desc'));
+if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_logado['role']) == 'Vendas')) {
+    //$conditions = array('conditions' => array('Visita.user_id = ' => $usuario_logado['id']));
+    $visita_conditions = array('conditions' => array('Visita.data >= ' => date('y.m.d')));
+    $visita_mural = ClassRegistry::init('Visita')->find('all', array('limit' => 5, $visita_conditions, 'order' => 'Visita.data desc'));
 
-echo '<div class="recados">';
-echo '<h4>Visitas</h4>';
-echo '</div>';
-echo '<div class="recados-lista">';
-$this->Visita->desenha($visita_mural);
-echo '</div>';
+    echo '<div class="recados">';
+    echo '<h4>Visitas</h4>';
+    echo '</div>';
+    echo '<div class="recados-lista">';
+    $this->Visita->desenha($visita_mural);
+    echo '</div>';
+}
 ?>
