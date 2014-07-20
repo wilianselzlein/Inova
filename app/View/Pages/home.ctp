@@ -16,8 +16,9 @@ $titulo = __('Recado(s)');
 <div class="alert alert-success">
     <button type="button" class="close" data-dismiss="alert">×</button>
     <?php
+    echo '<span class="glyphicon glyphicon-user"></span> &nbsp;';
     echo __('Welcome') . ' ' . $usuario_logado['username'] . '! ' . __("You're logged in.");
-    echo '<br><br>';
+    echo '<br>';
     ?>
 </div>
 <?php
@@ -50,6 +51,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                     <a href="<?php echo '#tab' . $tab[$model_tabs]['id'] ?>"  data-toggle="tab"><?php echo ucwords(strtolower($tab[$model_tabs]['nome'])) ?></a>
                 </li>
             <?php endforeach; ?>
+                <li>
+                    <a href="#tabPrev" data-toggle="tab"><?php echo __('Previsão de Execução'); ?></a>
+                </li>
         </ul>
         <div id="my-tab-content" class="tab-content">
             <?php foreach ($tab_list as $tab): ?>
@@ -112,6 +116,145 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                     </table>
                 </div>
             <?php endforeach; ?>
+                <div class="tab-pane" id="tabPrev">            
+                    <table class="table">  
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th><?php echo __('Lançamento'); ?></th>
+                                <th><?php echo __('Previsão de Execução'); ?></th>
+                                <th>Cliente</th>
+                                <th>Contato</th>
+                                <th><?php echo __('Descrição'); ?></th>
+                                <th>Prioridade</th>
+                                <th>Problema</th>
+                                <th>Usuário</th>
+                            </tr>
+                        </thead>
+                        <?php 
+                            $tab_content = ClassRegistry::init($model_tabs_content)->find('all', 
+                                    array(
+                                        'conditions' => array(
+                                            'Chamado.user_id' => $usuario_logado['id'],
+                                            'Chamado.previsaoexecucao >=' => Date('Y.m.d'), //H:i:s
+                                        ),
+                                        'limit' => 5,
+                                        'order' => 'Chamado.previsaoexecucao asc',
+                                    )
+                                );
+
+                            foreach ($tab_content as $task): ?>                        
+                                <tr>
+                                    <td colspan="9">
+                                        <span class="label label-success"><?php echo __('Próximos chamados:') ?></span>
+                                        <span class="glyphicon glyphicon-dashboard"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                    </td>
+                                     <td>
+                                        <?php 
+                                            $hist = ClassRegistry::init('historico')->find('first', array(
+                                                'conditions' => array('Historico.chamado_id' => $task['Chamado']['id']),
+                                                'fields' => array('Historico.id', 'Historico.chamado_id, Historico.datainicial'),
+                                                'order' => array('Historico.datainicial' => 'asc'),
+                                                'limit' => 1,
+                                                'recursive' => 0,
+                                             ));
+                                            if (count($hist) > 0)
+                                              echo $this->Html->link(
+                                                      $this->Time->i18nFormat($hist['Historico']['datainicial'], $this->Html->__getDateTimeFormatView()),
+                                                      array('controller' => 'historicos', 'action' => 'view', $hist['Historico']['id']));
+                                        ?> &nbsp;
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Time->i18nFormat($task['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView()); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo  $task['Chamado']['contato'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $task['Problema']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
+                                    </td>
+                                </tr>
+                        <?php endforeach;
+                            $tab_content = ClassRegistry::init($model_tabs_content)->find('all', 
+                                    array(
+                                        'conditions' => array(
+                                            'Chamado.user_id' => $usuario_logado['id'],
+                                            'Chamado.previsaoexecucao <=' => Date('Y.m.d'), //H:i:s
+                                        ),
+                                        'limit' => 5,
+                                        'order' => 'Chamado.previsaoexecucao desc',
+                                    )
+                                );
+
+                            foreach ($tab_content as $task): ?>                        
+                                <tr>
+                                    <td colspan="9">
+                                        <span class="label label-default"><?php echo __('Chamados anteriores:') ?></span>
+                                        <span class="glyphicon glyphicon-dashboard"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                    </td>
+                                     <td>
+                                        <?php 
+                                            $hist = ClassRegistry::init('historico')->find('first', array(
+                                                'conditions' => array('Historico.chamado_id' => $task['Chamado']['id']),
+                                                'fields' => array('Historico.id', 'Historico.chamado_id, Historico.datainicial'),
+                                                'order' => array('Historico.datainicial' => 'asc'),
+                                                'limit' => 1,
+                                                'recursive' => 0,
+                                             ));
+                                            if (count($hist) > 0)
+                                              echo $this->Html->link(
+                                                      $this->Time->i18nFormat($hist['Historico']['datainicial'], $this->Html->__getDateTimeFormatView()),
+                                                      array('controller' => 'historicos', 'action' => 'view', $hist['Historico']['id']));
+                                        ?> &nbsp;
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Time->i18nFormat($task['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView()); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo  $task['Chamado']['contato'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $task['Problema']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
+                                    </td>
+                                </tr>
+
+                        <?php endforeach; ?>
+                    </table>
+                </div>
         </div>
     </div>
 
