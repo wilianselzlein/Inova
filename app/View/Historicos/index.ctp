@@ -55,12 +55,14 @@
                                 <td><?php echo $this->Time->i18nFormat($historico['Historico']['datafinal'], $this->Html->__getDateTimeFormatView());?></td>
                                 <td><?php echo h($historico['Historico']['descricao']); ?>&nbsp;</td>
                                 <td>
-    <?php echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['Checklist']['id'])); ?>
+                                    <?php echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['Checklist']['id'])); ?>
                                 </td>
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?>
+                                    <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                    <?php   echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?>
+                                    <?php } ?>
                                 </td>
                             </tr>
 <?php endforeach; ?>

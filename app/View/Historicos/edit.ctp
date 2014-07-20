@@ -6,7 +6,9 @@
         <div class="actions">
 
             <ul class="list-group">
-                <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Historico.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Historico.id'))); ?></li>
+                <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                   <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Historico.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Historico.id'))); ?></li>
+                <?php } ?>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('action' => 'index')); ?></li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Chamados'), array('controller' => 'chamados', 'action' => 'index')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Chamado'), array('controller' => 'chamados', 'action' => 'add')); ?> </li>

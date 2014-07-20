@@ -7,7 +7,9 @@
 
             <ul class="list-group">			
                 <li class="list-group-item"><?php echo $this->Html->link(__('Edit') . ' ' . __('Historico'), array('action' => 'edit', $historico['Historico']['id']), array('class' => '')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete') . ' ' . __('Historico'), array('action' => 'delete', $historico['Historico']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?> </li>
+                <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                    <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete') . ' ' . __('Historico'), array('action' => 'delete', $historico['Historico']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?> </li>
+                <?php } ?>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('action' => 'index'), array('class' => '')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Historico'), array('action' => 'add'), array('class' => '')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Chamados'), array('controller' => 'chamados', 'action' => 'index'), array('class' => '')); ?> </li>
@@ -101,7 +103,9 @@
                                     <td class="actions">
                                         <?php echo $this->Html->link(__('View'), array('controller' => 'servicos', 'action' => 'view', $servico['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                         <?php echo $this->Html->link(__('Edit'), array('controller' => 'servicos', 'action' => 'edit', $servico['id']), array('class' => 'btn btn-default btn-xs')); ?>
-        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'servicos', 'action' => 'delete', $servico['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $servico['id'])); ?>
+                                        <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                            <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'servicos', 'action' => 'delete', $servico['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $servico['id'])); ?>
+                                        <?php } ?>
                                     </td>
                                 </tr>
     <?php endforeach; ?>
