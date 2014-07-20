@@ -142,14 +142,14 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         'order' => 'Chamado.previsaoexecucao asc',
                                     )
                                 );
-
-                            foreach ($tab_content as $task): ?>                        
-                                <tr>
+                            ?>
+                            <tr>
                                     <td colspan="9">
                                         <span class="label label-success"><?php echo __('Próximos chamados:') ?></span>
                                         <span class="glyphicon glyphicon-dashboard"></span>
                                     </td>
-                                </tr>
+                            </tr>
+                            <?php foreach ($tab_content as $task): ?>                        
                                 <tr>
                                     <td>
                                         <?php echo $this->Html->link($task['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
@@ -202,14 +202,15 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         'order' => 'Chamado.previsaoexecucao desc',
                                     )
                                 );
-
-                            foreach ($tab_content as $task): ?>                        
+                            ?>
                                 <tr>
                                     <td colspan="9">
                                         <span class="label label-default"><?php echo __('Chamados anteriores:') ?></span>
                                         <span class="glyphicon glyphicon-dashboard"></span>
                                     </td>
                                 </tr>
+                            <?php foreach ($tab_content as $task): ?>
+                                
                                 <tr>
                                     <td>
                                         <?php echo $this->Html->link($task['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
