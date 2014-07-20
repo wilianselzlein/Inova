@@ -270,7 +270,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
 
 <?php
 echo '<div class="recados">';
-echo '<h4>' . $titulo . '</h4>';
+echo '<h4><span class="glyphicon glyphicon-pencil"></span>&nbsp;' . $titulo . '</h4>';
 echo '</div>';
 echo '<div class="recados-lista">';
 $this->Mural->desenha($recado_mural);
@@ -284,7 +284,7 @@ if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_loga
     $visita_mural = ClassRegistry::init('Visita')->find('all', array('limit' => 5, $visita_conditions, 'order' => 'Visita.data desc'));
 
     echo '<div class="recados">';
-    echo '<h4>Visitas</h4>';
+    echo '<h4><span class="glyphicon glyphicon-road"></span>&nbsp;Visitas</h4>';
     echo '</div>';
     echo '<div class="recados-lista">';
     $this->Visita->desenha($visita_mural);
