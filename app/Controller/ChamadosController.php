@@ -32,8 +32,9 @@ class ChamadosController extends AppController {
                                 $situacao = $this->Chamado->Situacao->findById($this->request->data['value']);
 				echo $situacao['Situacao']['nome'];
                                 
+								$usuario_logado = $this->Session->read('Auth.User');
                                 $historico['chamado_id'] = $this->request->data['id'];
-                                $historico['user_id'] = $this->Session->read('Auth.User')['id'];
+                                $historico['user_id'] = $usuario_logado['id'];
                                 $historico['datainicial'] = Date('Y.m.d H.i.s');
                                 $historico['datafinal'] = Date('Y.m.d H.i.s');
                                 $historico['descricao'] = 'Trocou a situação do chamado para ' . $situacao['Situacao']['nome'];
@@ -109,9 +110,10 @@ class ChamadosController extends AppController {
         if ($this->request->is('post')) {
             $this->Chamado->create();
             if ($this->Chamado->save($this->request->data)) {
-                                                                
+                 
+                $usuario_logado = $this->Session->read('Auth.User');
                 $historico['chamado_id'] = $this->Chamado->getLastInsertID();
-                $historico['user_id'] = $this->Session->read('Auth.User')['id'];
+                $historico['user_id'] = $usuario_logado['id'];
                 $historico['datainicial'] = Date('Y.m.d H.i.s');
                 $historico['datafinal'] = Date('Y.m.d H.i.s');
                 $historico['descricao'] = 'Registro cadastrado';

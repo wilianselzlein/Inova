@@ -7,7 +7,9 @@
 
             <ul class="list-group">			
                 <li class="list-group-item"><?php echo $this->Html->link(__('Edit') . ' ' . __('Historico'), array('action' => 'edit', $historico['Historico']['id']), array('class' => '')); ?> </li>
-                <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                <?php 
+				  $user = $this->Session->read('Auth.User');
+				  if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
                     <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete') . ' ' . __('Historico'), array('action' => 'delete', $historico['Historico']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?> </li>
                 <?php } ?>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('action' => 'index'), array('class' => '')); ?> </li>

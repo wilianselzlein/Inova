@@ -6,7 +6,9 @@
         <div class="actions">
 
             <ul class="list-group">			
-                <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                <?php 
+				   $user = $this->Session->read('Auth.User');
+				   if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
                 <li class="list-group-item"><?php echo $this->Html->link(__('Edit') . ' ' . __('Chamado'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => '')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete') . ' ' . __('Chamado'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?> </li>
                 <?php } ?>
@@ -134,7 +136,9 @@
                                     <td><?php echo $historico['checklist_id']; ?></td>
                                     <td class="actions">
                                             <?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                        <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                        <?php 
+										   $user = $this->Session->read('Auth.User');
+										   if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
                                             <?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                             <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'historicos', 'action' => 'delete', $historico['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['id'])); ?>
                                         <?php } ?>

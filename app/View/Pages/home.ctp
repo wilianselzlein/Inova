@@ -4,7 +4,7 @@ $components = array('Paginator', 'Session');
 $usuario_logado = $this->Session->read('Auth.User');
 //Retorna o array com o id, nome do usu�rio e password. 
 
-if (strtolower($usuario_logado['role']) == 'admin') {
+if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_logado['role']) == 'root')) {
 
     $conditions = null;
 } else {
@@ -31,7 +31,7 @@ $model_tabs_content = 'Chamado';
 
 $model = ClassRegistry::init('Situacao');
 
-if (strtolower($usuario_logado['role']) == 'admin') {
+if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_logado['role']) == 'root')) {
     $conditions = null;
 } else {
     $conditions = array('conditions' => array('Chamado.user_id' => $usuario_logado['id']));

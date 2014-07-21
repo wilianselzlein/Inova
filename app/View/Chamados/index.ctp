@@ -75,12 +75,12 @@
                                         'action' => 'situacao',
                                     ), 
                                     array(
-                                        'indicator' => '<img src="/Inova/img/load.gif">',
-                                        'submit' => '<img src="/Inova/img/bullet_disk.png">',
+                                        'indicator' => '<img src="/sistema/img/load.gif">',
+                                        'submit' => '<img src="/sistema/img/bullet_disk.png">',
                                         'type' => 'select',
                                         'style' => 'inherit',
                                         'submitdata' => array('id'=> h($chamado['Chamado']['id'])),
-                                        'data' => $situacoes, // array('Lorem ipsum'=>'Lorem ipsum','Ipsum dolor'=>'Ipsum dolor','Dolor sit'=>'Dolor sit'),
+                                        'data' => $situacoes,
                                         'tooltip'   => 'Clique para alterar a situação'
                                         )
                                 );
@@ -97,7 +97,9 @@
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                    <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                    <?php 
+									    $user = $this->Session->read('Auth.User');
+									    if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
                                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
                                     <?php } ?>                                    
                                     <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>

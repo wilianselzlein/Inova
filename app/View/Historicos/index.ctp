@@ -60,7 +60,9 @@
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                    <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                    <?php 
+									$user = $this->Session->read('Auth.User');
+									if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
                                     <?php   echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $historico['Historico']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $historico['Historico']['id'])); ?>
                                     <?php } ?>
                                 </td>
