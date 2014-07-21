@@ -1,4 +1,5 @@
-
+<?php echo $this->html->script("libs/jquery-latest", array('inline'=>false)); ?>
+<?php echo $this->Javascript->link('jquery.jeditable.mini'); ?>
 <div id="page-container" class="row">
 
     <div id="sidebar" class="col-sm-3">
@@ -40,7 +41,7 @@
                             <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('prioridade'); ?></th>
                             <th><?php echo $this->Paginator->sort('problema_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('situacao_id'); ?></th>
+                            <th colspan="2"><?php echo $this->Paginator->sort('situacao_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('user_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('previsaoexecucao'); ?></th>
                             <th class="actions"><?php echo __('Actions'); ?></th>
@@ -63,7 +64,30 @@
                                     <?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id'])); ?>
                                 </td>
                                 <td>
-                                    <?php echo $this->Html->link($chamado['Situacao']['nome'], array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id'])); ?>
+                                    <div class="edit" id="situacao<?php echo $chamado['Chamado']['id']; ?>">
+                                    <?php echo $chamado['Situacao']['nome']; ?>
+                                </div>
+                                <?php 
+                                echo $this->Ajax->editor(
+                                    'situacao' . $chamado['Chamado']['id'], 
+                                    array( 
+                                        'controller' => 'Chamados', 
+                                        'action' => 'situacao',
+                                    ), 
+                                    array(
+                                        'indicator' => '<img src="/Inova/img/load.gif">',
+                                        'submit' => '<img src="/Inova/img/bullet_disk.png">',
+                                        'type' => 'select',
+                                        'style' => 'inherit',
+                                        'submitdata' => array('id'=> h($chamado['Chamado']['id'])),
+                                        'data' => $situacoes, // array('Lorem ipsum'=>'Lorem ipsum','Ipsum dolor'=>'Ipsum dolor','Dolor sit'=>'Dolor sit'),
+                                        'tooltip'   => 'Clique para alterar a situação'
+                                        )
+                                );
+                                ?>
+                                </td>
+                                <td>
+                                    <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs')); ?> 
                                 </td>
                                 <td>
                                     <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
@@ -73,7 +97,10 @@
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                    <!--<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>-->
+                                    <?php if ((strtolower($this->Session->read('Auth.User')['role']) == 'root') || (strtolower($this->Session->read('Auth.User')['role']) == 'admin')) { ?>
+                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
+                                    <?php } ?>                                    
+                                    <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

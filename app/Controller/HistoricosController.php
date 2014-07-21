@@ -48,7 +48,7 @@ class HistoricosController extends AppController {
      *
      * @return void
      */
-    public function add() {
+    public function add($chamado_id = null) {
         if ($this->request->is('post')) {
             $this->Historico->create();
             if ($this->Historico->save($this->request->data)) {
@@ -62,7 +62,7 @@ class HistoricosController extends AppController {
         $users = $this->Historico->User->findAsCombo();
         $checklists = $this->Historico->Checklist->findAsCombo();
         $servicos = $this->Historico->Servico->findByChecklist(null);
-        $this->set(compact('chamados', 'users', 'checklists', 'servicos'));
+        $this->set(compact('chamados', 'users', 'checklists', 'servicos', 'chamado_id'));
     }
 
     /**

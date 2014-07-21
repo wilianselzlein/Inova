@@ -69,6 +69,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                 <th>Prioridade</th>
                                 <th>Problema</th>
                                 <th>Usuário</th>
+                                <th><?php echo __('Actions'); ?></th>
                             </tr>
                         </thead>
                         <?php foreach ($tab_content as $task): ?>                        
@@ -110,6 +111,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                     <td>
                                         <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
                                     </td>
+                                    <td>
+                                        <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                                    </td>
                                 </tr>
                             <?php endif; ?>
                         <?php endforeach; ?>
@@ -129,6 +133,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                 <th>Prioridade</th>
                                 <th>Problema</th>
                                 <th>Usuário</th>
+                                <th><?php echo __('Actions'); ?></th>
                             </tr>
                         </thead>
                         <?php 
@@ -144,9 +149,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                 );
                             ?>
                             <tr>
-                                    <td colspan="9">
+                                    <td colspan="10">
                                         <span class="label label-success"><?php echo __('Próximos chamados:') ?></span>
-                                        <span class="glyphicon glyphicon-dashboard"></span>
+                                        <span class="glyphicon glyphicon-time"></span>
                                     </td>
                             </tr>
                             <?php foreach ($tab_content as $task): ?>                        
@@ -190,6 +195,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                     <td>
                                         <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
                                     </td>
+                                    <td>
+                                        <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                                    </td>
                                 </tr>
                         <?php endforeach;
                             $tab_content = ClassRegistry::init($model_tabs_content)->find('all', 
@@ -204,9 +212,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                 );
                             ?>
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="10">
                                         <span class="label label-default"><?php echo __('Chamados anteriores:') ?></span>
-                                        <span class="glyphicon glyphicon-dashboard"></span>
+                                        <span class="glyphicon glyphicon-time"></span>
                                     </td>
                                 </tr>
                             <?php foreach ($tab_content as $task): ?>
@@ -250,6 +258,9 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     </td>
                                 </tr>
 

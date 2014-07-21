@@ -32,16 +32,16 @@
             <fieldset>
 
                 <div class="form-group">
-                    <?php echo $this->Form->input('chamado_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('chamado_id', array('class' => 'form-control', 'default' => $chamado_id)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('datainicial', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
+                    <?php echo $this->Form->input('datainicial', array('type' => 'text', 'class' => 'form-control datetimepickerStart', 'default' => Date('d.m.Y H.i'))); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('datafinal', array('type' => 'text', 'class' => 'form-control datetimepickerEnd')); ?>
+                    <?php echo $this->Form->input('datafinal', array('type' => 'text', 'class' => 'form-control datetimepickerEnd', 'default' => Date('d.m.Y H.i'))); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>

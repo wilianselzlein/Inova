@@ -17,7 +17,38 @@ class ChamadosController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
+    /**
+     * index method
+     *
+     * @return void
+     */
+	function situacao() {
 
+		if (!empty($this->request->data)) {
+                        $this->request->data['situacao_id'] = $this->request->data['value'];
+            		if ($this->Chamado->save($this->request->data)) {
+				$thisId=$this->Chamado->id;
+				$this->header("Content-Type: application/json");
+                                $situacao = $this->Chamado->Situacao->findById($this->request->data['value']);
+				echo $situacao['Situacao']['nome'];
+                                
+                                $historico['chamado_id'] = $this->request->data['id'];
+                                $historico['user_id'] = $this->Session->read('Auth.User')['id'];
+                                $historico['datainicial'] = Date('Y.m.d H.i.s');
+                                $historico['datafinal'] = Date('Y.m.d H.i.s');
+                                $historico['descricao'] = 'Trocou a situação do chamado para ' . $situacao['Situacao']['nome'];
+
+                                $this->Chamado->Historico->create();
+                                $this->Chamado->Historico->save($historico);
+                                                                
+				exit;
+			} else {
+				return 'Fail';
+			}
+		}
+		$this->Autorender = false;
+		exit;
+        }
     /**
      * index method
      *
@@ -44,8 +75,14 @@ class ChamadosController extends AppController {
                 //$this->Filter->setPaginate('limit', 10); // optional
                 $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
+        $situacoes_data = $this->Chamado->Situacao->find('all', array('recursive' => 0));
+        for ($i = 0; $i < count($situacoes_data); $i++){
+            $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; //
+        }
+        
         $this->Chamado->recursive = 0;
         $this->set('chamados', $this->paginate());
+        $this->set('situacoes', $situacoes);
     }
 
     /**
@@ -72,6 +109,16 @@ class ChamadosController extends AppController {
         if ($this->request->is('post')) {
             $this->Chamado->create();
             if ($this->Chamado->save($this->request->data)) {
+                                                                
+                $historico['chamado_id'] = $this->Chamado->getLastInsertID();
+                $historico['user_id'] = $this->Session->read('Auth.User')['id'];
+                $historico['datainicial'] = Date('Y.m.d H.i.s');
+                $historico['datafinal'] = Date('Y.m.d H.i.s');
+                $historico['descricao'] = 'Registro cadastrado';
+                
+                $this->Chamado->Historico->create();
+                $this->Chamado->Historico->save($historico);
+
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
