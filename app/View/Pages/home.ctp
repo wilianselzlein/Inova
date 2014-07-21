@@ -1,4 +1,5 @@
 <?php
+$LIMITE_CARACTERES_DESCRICAO = 50;
 $components = array('Paginator', 'Session');
 $usuario_logado = $this->Session->read('Auth.User');
 //Retorna o array com o id, nome do usu�rio e password. 
@@ -100,7 +101,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
@@ -184,7 +185,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
@@ -248,7 +249,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
