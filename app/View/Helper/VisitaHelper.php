@@ -36,7 +36,7 @@ class VisitaHelper extends HtmlHelper {
     }
     
     private function draw_note($class, $recado) {
-        echo $this->div("alert alert-" . $class, $this->draw_note_title($recado) . $this->draw_note_content($recado));
+        echo $this->div("alert alert-" . $class, '<button type="button" class="close" data-dismiss="alert">×</button>' .  $this->draw_note_title($recado) . $this->draw_note_content($recado));
     }
 
     private function draw_note_title($recado) {

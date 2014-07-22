@@ -17,7 +17,27 @@ class MuralsController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
+/**
+     * Ler method
+     *
+     * @return void
+     */
+	function ler() {
 
+		if (!empty($this->request->data)) {
+                        $this->request->data['resposta'] = $this->request->data['value'];
+                        $this->request->data['lido'] = true;
+            		if ($this->Mural->save($this->request->data)) {
+				$this->header("Content-Type: application/json");
+				echo 'Recado respondido!';
+                                exit;
+			} else {
+				return 'Fail';
+			}
+		}
+		$this->Autorender = false;
+		exit;
+        }
     /**
      * index method
      *

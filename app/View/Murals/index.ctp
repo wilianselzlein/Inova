@@ -30,6 +30,8 @@
                             <th><?php echo $this->Paginator->sort('cadastradopor_id', __('MessageFrom')); ?></th>
                             <th><?php echo $this->Paginator->sort('user_id', __('MessageTo')); ?></th>
                             <th><?php echo $this->Paginator->sort('recado'); ?></th>
+                            <th><?php echo $this->Paginator->sort('resposta'); ?></th>
+                            <th><?php echo $this->Paginator->sort('lido'); ?></th>
                             <th class="actions"><?php echo __('Actions'); ?></th>
                         </tr>
                     </thead>
@@ -48,6 +50,9 @@
                                     <?php echo $this->Html->link($this->Mural->check_friendly_username_message($mural['User']['username']), array('controller' => 'users', 'action' => 'view', $mural['User']['id'])); ?>
                                 </td>
                                 <td><?php echo h($mural['Mural']['recado']); ?>&nbsp;</td>
+                                <td><?php echo h($mural['Mural']['resposta']); ?>&nbsp;</td>
+                                <td><span class="<?php echo ($mural['Mural']['lido'] == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'); ?>"></span> &nbsp;</td> 
+                                
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $mural['Mural']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mural['Mural']['id']), array('class' => 'btn btn-default btn-xs')); ?>

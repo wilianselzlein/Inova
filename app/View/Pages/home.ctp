@@ -1,16 +1,10 @@
+<?php echo $this->html->script("libs/jquery-latest", array('inline'=>false)); ?>
+<?php echo $this->Javascript->link('jquery.jeditable.mini'); ?>
 <?php
 $LIMITE_CARACTERES_DESCRICAO = 50;
 $components = array('Paginator', 'Session');
 $usuario_logado = $this->Session->read('Auth.User');
-//Retorna o array com o id, nome do usu�rio e password. 
 
-if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_logado['role']) == 'root')) {
-
-    $conditions = null;
-} else {
-    $conditions = array('conditions' => array('Mural.user_id = ' => $usuario_logado['id']));
-}
-$recado_mural = ClassRegistry::init('Mural')->find('all', array('limit' => 5, $conditions, 'order' => 'Mural.data desc'));
 $titulo = __('Recado(s)');
 ?>
 
@@ -279,16 +273,34 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
     </script>    
 </div> <!-- container -->
 
-
-
 <?php
-echo '<div class="recados">';
-echo '<h4><span class="glyphicon glyphicon-pencil"></span>&nbsp;' . $titulo . '</h4>';
-echo '</div>';
-echo '<div class="recados-lista">';
-$this->Mural->desenha($recado_mural);
-echo '</div>';
-?>
+$recado_mural = ClassRegistry::init('Mural')->find('all', array('limit' => 5, 'conditions' => array('Mural.user_id = ' => $usuario_logado['id'], 'Mural.Lido' => false), 'order' => 'Mural.data desc'));
+if (count($recado_mural) > 0) { ?>
+    <div class="recados">
+    <h4><span class="glyphicon glyphicon-pencil"></span>&nbsp;<?php echo $titulo; ?></h4>
+    </div>
+    <div class="recados-lista">
+<?php 
+     foreach ($recado_mural as $recado) {
+        $this->Mural->desenha($recado);
+            echo $this->Ajax->editor(
+                'recado' . $recado['Mural']['id'], 
+                array( 
+                    'controller' => 'Murals', 
+                    'action' => 'Ler',
+                ), 
+                array(
+                    'indicator' => '<img src="/sistema/img/load.gif">',
+                    'submit' => '<img src="/sistema/img/bullet_disk.png">',
+                    'style' => 'inherit',
+                    'submitdata' => array('id'=> h($recado['Mural']['id'])),
+                    'data' => '',
+                    'tooltip'   => 'Clique para responder o recado'
+                    )
+            );
+    } ?>
+    </div>
+<?php } ?>
 
 <?php
 if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_logado['role']) == 'vendas')) {

@@ -55,7 +55,20 @@
                                 <?php echo h($mural['Mural']['recado']); ?>
                                 &nbsp;
                             </td>
-                        </tr>					</tbody>
+                        </tr>		
+                        <tr>		<td><strong><?php echo __('Lido'); ?></strong></td>
+                            <td>
+                                <span class="<?php echo ($mural['Mural']['lido'] == true ? 'glyphicon glyphicon-check' : 'glyphicon glyphicon-unchecked'); ?>"></span>
+                                &nbsp;
+                            </td>
+                        </tr>		
+                        <tr>		<td><strong><?php echo __('Resposta'); ?></strong></td>
+                            <td>
+                                <?php echo h($mural['Mural']['resposta']); ?>
+                                &nbsp;
+                            </td>
+                        </tr>
+                </tbody>
                 </table><!-- /.table table-striped table-bordered -->
             </div><!-- /.table-responsive -->
 

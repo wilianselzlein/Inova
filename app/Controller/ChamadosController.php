@@ -18,7 +18,7 @@ class ChamadosController extends AppController {
      */
     public $components = array('Paginator', 'Session');
     /**
-     * index method
+     * situacao method
      *
      * @return void
      */
