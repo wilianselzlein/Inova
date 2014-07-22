@@ -78,7 +78,7 @@ class ChamadosController extends AppController {
 
         $situacoes_data = $this->Chamado->Situacao->find('all', array('recursive' => 0));
         for ($i = 0; $i < count($situacoes_data); $i++){
-            $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; //
+            $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; 
         }
         
         $this->Chamado->recursive = 0;

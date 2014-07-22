@@ -3,8 +3,7 @@
 <?php
 $LIMITE_CARACTERES_DESCRICAO = 50;
 $components = array('Paginator', 'Session');
-$usuario_logado = $this->Session->read('Auth.User');
-
+$usuario_logado = $this->Session->read('Auth.User');        
 $titulo = __('Recado(s)');
 ?>
 
@@ -29,6 +28,11 @@ if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_log
     $conditions = null;
 } else {
     $conditions = array('conditions' => array('Chamado.user_id' => $usuario_logado['id']));
+}
+
+$situacoes_data = ClassRegistry::init($model_tabs)->find('all', array('recursive' => 0));
+for ($i = 0; $i < count($situacoes_data); $i++){
+    $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; 
 }
 
 $tab_list = ClassRegistry::init($model_tabs)->find('all');
@@ -108,6 +112,29 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                                        <a class="btn btn-default btn-xs">
+                                            <div class="edit" id="situacao<?php echo $task['Chamado']['id']; ?>">
+                                                <?php echo $task['Situacao']['nome']; ?>
+                                            </div>
+                                        </a>
+                                        <?php 
+                                        echo $this->Ajax->editor(
+                                            'situacao' . $task['Chamado']['id'], 
+                                            array( 
+                                                'controller' => 'Chamados', 
+                                                'action' => 'situacao',
+                                            ), 
+                                            array(
+                                                'indicator' => '<img src="/sistema/img/load.gif">',
+                                                'submit' => '<img src="/sistema/img/bullet_disk.png">',
+                                                'type' => 'select',
+                                                'style' => 'inherit',
+                                                'submitdata' => array('id'=> h($task['Chamado']['id'])),
+                                                'data' => $situacoes,
+                                                'tooltip'   => 'Clique para alterar a situação'
+                                                )
+                                        );
+                                        ?>
                                     </td>
                                 </tr>
                             <?php endif; ?>
