@@ -92,7 +92,11 @@
                                 <td>
                                     <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
                                 </td>
-                                <td><?php echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());  ?>&nbsp;</td>
+                                <td><?php 
+                                if(isset($chamado['Chamado']['previsaoexecucao'])){
+                                    echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());     
+                                }                              
+                                ?>&nbsp;</td>
                                 
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>

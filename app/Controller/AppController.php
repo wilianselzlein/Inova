@@ -69,7 +69,7 @@ class AppController extends Controller {
 
     private function convertAndSetDatetimeFormat($model) {
         foreach ($this->$model->datetimeFields as $datetime_field) {
-            if (isset($this->request->data[$this->$model->alias][$datetime_field])) {
+            if (isset($this->request->data[$this->$model->alias][$datetime_field]) && $this->request->data[$this->$model->alias][$datetime_field] != "") {
                 $this->request->data[$this->$model->alias][$datetime_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$datetime_field], true, true);
             }
         }
@@ -77,7 +77,7 @@ class AppController extends Controller {
     
     private function convertAndSetDateFormat($model) {
         foreach ($this->$model->dateFields as $date_field) {
-            if (isset($this->request->data[$this->$model->alias][$date_field])) {
+            if (isset($this->request->data[$this->$model->alias][$date_field]) && $this->request->data[$this->$model->alias][$date_field] != "") {
                 $this->request->data[$this->$model->alias][$date_field] = $this->$model->convertDateFormat($this->request->data[$this->$model->alias][$date_field], true, false);
             }
         }

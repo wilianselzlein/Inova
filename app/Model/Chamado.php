@@ -32,6 +32,8 @@ class Chamado extends AppModel {
      *
      * @var array
      */
+    public $datetimeFields = array('previsaoexecucao');
+    
     public $validate = array(
         'tipo_id' => array(
             'numeric' => array(

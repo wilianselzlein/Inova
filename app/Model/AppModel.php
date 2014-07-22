@@ -58,7 +58,7 @@ class AppModel extends Model {
 
     public function convertAndSetDatetimeFormat($reverse = false) {
         foreach ($this->datetimeFields as $datetime_field) {
-            if (isset($this->data[$this->alias][$datetime_field])) {
+            if (isset($this->data[$this->alias][$datetime_field]) && $this->data[$this->alias][$datetime_field] != "") {
                 $this->data[$this->alias][$datetime_field] = $this->convertDateFormat($this->data[$this->alias][$datetime_field], $reverse);
             }
         }
@@ -66,7 +66,7 @@ class AppModel extends Model {
 
     public function convertAndSetDateFormat($reverse = false) {
         foreach ($this->dateFields as $date_field) {
-            if (isset($this->data[$this->alias][$date_field])) {
+            if (isset($this->data[$this->alias][$date_field]) && $this->data[$this->alias][$date_field] != "") {
                 $this->data[$this->alias][$date_field] = $this->convertDateFormat($this->data[$this->alias][$date_field], $reverse, false);
             }
         }
@@ -74,14 +74,14 @@ class AppModel extends Model {
 
     public function convertMonetaryFormat($monetary, $reverse = false) {
         if ($reverse) {
-            $antes = substr($monetary, 0, $monetary.length-2);
-            $depois = substr($monetary, $monetary.length-2);
+            $antes = substr($monetary, 0, $monetary . length - 2);
+            $depois = substr($monetary, $monetary . length - 2);
             $monetary = $antes . "," . $depois;
 
-           return $monetary;
-        } else {            
-            $newValue = str_replace(".","", $monetary);
-            $value = str_replace(",","", $newValue);
+            return $monetary;
+        } else {
+            $newValue = str_replace(".", "", $monetary);
+            $value = str_replace(",", "", $newValue);
             return $value;
         }
     }
@@ -107,45 +107,46 @@ class AppModel extends Model {
         }
 
         return true;
-    }   
-    
-    public function findAsCombo($order='asc', $conditions=array()){         
-        $list  = $this->find('list', array('order' => $this->displayField.' '.$order, 'conditions'=> $conditions));
+    }
+
+    public function findAsCombo($order = 'asc', $conditions = array()) {
+        $list = $this->find('list', array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
         return $list;
     }
 
     /**
-* Transform a set of hasMany multi-select data into a format which can be saved
-* using saveAll in the controller
-* 
-* @param array $data
-* @param str $fieldToSave
-* @param int $deleteId
-* @return array
-*/
-public function massageHasManyForSaveAll($data, $fieldToSave, $deleteId = null) {
-  foreach ($this->belongsTo as $model => $relationship) {
-      if ($relationship['foreignKey'] != $fieldToSave) {
-          $relatedModel = $model;
-          $relatedModelPrimaryKey = $this->{$model}->primaryKey;
-          $relatedForeignKey = $relationship['foreignKey'];
-      }
-  }
+     * Transform a set of hasMany multi-select data into a format which can be saved
+     * using saveAll in the controller
+     * 
+     * @param array $data
+     * @param str $fieldToSave
+     * @param int $deleteId
+     * @return array
+     */
+    public function massageHasManyForSaveAll($data, $fieldToSave, $deleteId = null) {
+        foreach ($this->belongsTo as $model => $relationship) {
+            if ($relationship['foreignKey'] != $fieldToSave) {
+                $relatedModel = $model;
+                $relatedModelPrimaryKey = $this->{$model}->primaryKey;
+                $relatedForeignKey = $relationship['foreignKey'];
+            }
+        }
 
-  if ($deleteId !== null) {
-      $this->deleteAll(array(
-          $this->alias .'.'. $relatedForeignKey => $deleteId
-      ));
-  }
+        if ($deleteId !== null) {
+            $this->deleteAll(array(
+                $this->alias . '.' . $relatedForeignKey => $deleteId
+            ));
+        }
 
-  if (is_array($data[$fieldToSave])) {
-      foreach ($data[$fieldToSave] as $packageId) {
-          $return[] = array($fieldToSave => $packageId);
-      }
-      
-      return $return;
-  }
+        if (is_array($data[$fieldToSave])) {
+            foreach ($data[$fieldToSave] as $packageId) {
+                $return[] = array($fieldToSave => $packageId);
+            }
 
-  return $data;
-}
+            return $return;
+        }
+
+        return $data;
+    }
+
 }

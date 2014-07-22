@@ -9,6 +9,7 @@ $(document).ready(function() {
     	format: 'dd/mm/yyyy hh:ii',
         todayBtn: true,
         autoclose: true,
+        empty:true,
         language: 'pt-BR'
 
 	});
