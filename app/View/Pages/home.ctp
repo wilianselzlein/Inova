@@ -47,7 +47,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <?php foreach ($tab_list as $tab): ?>
                 <li <?php echo ($tab === reset($tab_list)) ? 'class="active"' : ""; ?>>
-                    <a href="<?php echo '#tab' . $tab[$model_tabs]['id'] ?>"  data-toggle="tab"><?php echo ucwords(strtolower($tab[$model_tabs]['nome'])) ?></a>
+                    <a href="<?php echo '#tab' . $tab[$model_tabs]['id'] ?>"  data-toggle="tab"><?php echo ucwords(utf8_encode(strtolower(utf8_decode($tab[$model_tabs]['nome'])))) ?></a>
                 </li>
             <?php endforeach; ?>
                 <li>
