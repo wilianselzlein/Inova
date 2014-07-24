@@ -93,7 +93,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         ?> &nbsp;
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                        <?php echo $this->Html->link($task['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo  $task['Chamado']['contato'] ?>
@@ -162,7 +162,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                             $tab_content = ClassRegistry::init($model_tabs_content)->find('all', 
                                     array(
                                         'conditions' => array(
-                                            'Chamado.user_id' => $usuario_logado['id'],
+                                            //'Chamado.user_id' => $usuario_logado['id'],
                                             'Chamado.previsaoexecucao >=' => Date('Y.m.d'), //H:i:s
                                         ),
                                         'limit' => 5,
@@ -200,7 +200,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo $this->Time->i18nFormat($task['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                        <?php echo $this->Html->link($task['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo  $task['Chamado']['contato'] ?>
@@ -225,7 +225,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                             $tab_content = ClassRegistry::init($model_tabs_content)->find('all', 
                                     array(
                                         'conditions' => array(
-                                            'Chamado.user_id' => $usuario_logado['id'],
+                                            //'Chamado.user_id' => $usuario_logado['id'],
                                             'Chamado.previsaoexecucao <=' => Date('Y.m.d'), //H:i:s
                                         ),
                                         'limit' => 5,
@@ -264,7 +264,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo $this->Time->i18nFormat($task['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView()); ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link($task['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
+                                        <?php echo $this->Html->link($task['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
                                     </td>
                                     <td>
                                         <?php echo  $task['Chamado']['contato'] ?>

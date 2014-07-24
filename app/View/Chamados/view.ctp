@@ -62,7 +62,7 @@
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Cliente'); ?></strong></td>
                             <td>
-                                <?php echo $this->Html->link($chamado['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id']), array('class' => '')); ?>
+                                <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id']), array('class' => '')); ?>
                                 &nbsp;
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Prioridade'); ?></strong></td>
@@ -129,11 +129,11 @@
                                 <tr>
                                     <td><?php echo $historico['id']; ?></td>
                                     <td><?php echo $historico['chamado_id']; ?></td>
-                                    <td><?php echo $historico['user_id']; ?></td>
-                                    <td><?php echo $historico['datainicial']; ?></td>
-                                    <td><?php echo $historico['datafinal']; ?></td>
+                                    <td><?php echo $this->Html->link($historico['User']['username'], array('controller' => 'users', 'action' => 'view', $historico['user_id']), array('class' => '')); ?></td>
+                                    <td><?php echo $this->Time->i18nFormat($historico['datainicial'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;</td>
+                                    <td><?php echo $this->Time->i18nFormat($historico['datafinal'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;</td>
                                     <td><?php echo $historico['descricao']; ?></td>
-                                    <td><?php echo $historico['checklist_id']; ?></td>
+                                    <td><?php echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['checklist_id']), array('class' => '')); ?></td>
                                     <td class="actions">
                                             <?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                         <?php 

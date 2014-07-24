@@ -97,7 +97,7 @@ class ChamadosController extends AppController {
         if (!$this->Chamado->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id));
+        $options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id), 'recursive' => 2);
         $this->set('chamado', $this->Chamado->find('first', $options));
     }
 

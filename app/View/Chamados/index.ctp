@@ -57,7 +57,7 @@
                                 <td><?php echo h($chamado['Chamado']['descricao']); ?>&nbsp;</td>
                                 <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
                                 <td>
-                                    <?php echo $this->Html->link($chamado['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
+                                    <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
                                 </td>
                                 <td><?php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id'])); ?></td>
                                 <td>
