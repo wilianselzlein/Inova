@@ -35,7 +35,9 @@
                     <?php echo $this->Form->input('chamado_id', array('class' => 'form-control', 'default' => $chamado_id)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
+                    <?php 
+                    $usuario_logado = $this->Session->read('Auth.User');
+                    echo $this->Form->input('user_id', array('class' => 'form-control', 'selected' => $usuario_logado['id'])); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('datainicial', array('type' => 'text', 'class' => 'form-control datetimepickerStart', 'default' => Date('d.m.Y H.i'))); ?>
