@@ -114,14 +114,14 @@ class ChamadosController extends AppController {
                 $usuario_logado = $this->Session->read('Auth.User');
                 $historico['chamado_id'] = $this->Chamado->getLastInsertID();
                 $historico['user_id'] = $usuario_logado['id'];
-                $historico['datainicial'] = Date('Y.m.d H.i.s');
-                $historico['datafinal'] = Date('Y.m.d H.i.s');
+                $historico['datainicial'] = Date('Y/m/d H.i.s');
+                $historico['datafinal'] = Date('Y/m/d H.i.s');
                 $historico['descricao'] = 'Registro cadastrado';
                 
                 $this->Chamado->Historico->create();
                 $this->Chamado->Historico->save($historico);
 
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved') . ' ' . $this->Chamado->getLastInsertID(), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

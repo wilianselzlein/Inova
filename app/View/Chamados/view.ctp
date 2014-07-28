@@ -133,7 +133,7 @@
                                     <td><?php echo $this->Time->i18nFormat($historico['datainicial'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;</td>
                                     <td><?php echo $this->Time->i18nFormat($historico['datafinal'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;</td>
                                     <td><?php echo $historico['descricao']; ?></td>
-                                    <td><?php echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['checklist_id']), array('class' => '')); ?></td>
+                                    <td><?php if (isset($historico['Checklist']['nome'])) echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['checklist_id']), array('class' => '')); ?></td>
                                     <td class="actions">
                                             <?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                         <?php 
@@ -150,7 +150,7 @@
                 </div><!-- /.table-responsive -->
 
             <?php endif; ?>
-
+-
 
             <div class="actions">
                 <?php echo $this->Html->link('<i class="icon-plus icon-white"></i> ' . __('New') . ' ' . __('Historico'), array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-primary', 'escape' => false)); ?>

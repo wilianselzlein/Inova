@@ -64,7 +64,9 @@
                     <?php echo $this->Form->input('situacao_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
+                    <?php 
+                        $usuario_logado = $this->Session->read('Auth.User');
+                        echo $this->Form->input('user_id', array('class' => 'form-control', 'selected' => $usuario_logado['id'])); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
