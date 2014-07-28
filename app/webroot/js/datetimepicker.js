@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 $(document).ready(function() {
-
     $('.datetimepickerStart').datetimepicker({
     	format: 'dd/mm/yyyy hh:ii',
         todayBtn: true,

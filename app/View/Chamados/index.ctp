@@ -1,4 +1,4 @@
-<?php echo $this->html->script("libs/jquery-latest", array('inline'=>false)); ?>
+
 <?php echo $this->Javascript->link('jquery.jeditable.mini'); ?>
 <div id="page-container" class="row">
 
@@ -54,7 +54,7 @@
                                 <td>
                                     <?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
                                 </td>
-                                <td><?php echo h($chamado['Chamado']['descricao']); ?>&nbsp;</td>
+                                <td><?php echo $this->Html->wrapText($chamado['Chamado']['id'], $chamado['Chamado']['descricao']); ?>&nbsp;</td>
                                 <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
                                 <td>
                                     <?php echo $this->Html->link($chamado['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
@@ -65,45 +65,44 @@
                                 </td>
                                 <td>
                                     <div class="edit" id="situacao<?php echo $chamado['Chamado']['id']; ?>">
-                                    <?php echo $chamado['Situacao']['nome']; ?>
-                                </div>
-                                <?php 
-                                echo $this->Ajax->editor(
-                                    'situacao' . $chamado['Chamado']['id'], 
-                                    array( 
-                                        'controller' => 'Chamados', 
+                                        <?php echo $chamado['Situacao']['nome']; ?>
+                                    </div>
+                                    <?php
+                                    echo $this->Ajax->editor(
+                                            'situacao' . $chamado['Chamado']['id'], array(
+                                        'controller' => 'Chamados',
                                         'action' => 'situacao',
-                                    ), 
-                                    array(
+                                            ), array(
                                         'indicator' => '<img src="/sistema/img/load.gif">',
                                         'submit' => '<img src="/sistema/img/bullet_disk.png">',
                                         'type' => 'select',
                                         'style' => 'inherit',
-                                        'submitdata' => array('id'=> h($chamado['Chamado']['id'])),
+                                        'submitdata' => array('id' => h($chamado['Chamado']['id'])),
                                         'data' => $situacoes,
-                                        'tooltip'   => 'Clique para alterar a situação'
-                                        )
-                                );
-                                ?>
+                                        'tooltip' => 'Clique para alterar a situação'
+                                            )
+                                    );
+                                    ?>
                                 </td>
                                 <td>
-                                    <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs')); ?> 
+    <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs')); ?> 
                                 </td>
                                 <td>
-                                    <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
+    <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
                                 </td>
-                                <td><?php 
-                                if(isset($chamado['Chamado']['previsaoexecucao'])){
-                                    echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());     
-                                }                              
-                                ?>&nbsp;</td>
-                                
+                                <td><?php
+    if (isset($chamado['Chamado']['previsaoexecucao'])) {
+        echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());
+    }
+    ?>&nbsp;</td>
+
                                 <td class="actions">
-                                    <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+    <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                    <?php 
-									    $user = $this->Session->read('Auth.User');
-									    if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) { ?>
+                                    <?php
+                                    $user = $this->Session->read('Auth.User');
+                                    if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) {
+                                        ?>
                                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
                                     <?php } ?>                                    
                                     <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>

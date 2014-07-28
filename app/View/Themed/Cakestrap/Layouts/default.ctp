@@ -49,12 +49,14 @@ $cakeDescription = __d('cake_dev', 'Inovatech');
         echo $this->Html->script('libs/bootstrap-datetimepicker');
         echo $this->Html->script('libs/locales/bootstrap-datetimepicker.pt-BR');
         echo $this->Html->script('libs/jquery.mask');
+        echo $this->Html->script('libs/jquery.bpopup.min');
 
 
         echo $this->Html->script('datepicker');
         echo $this->Html->script('datetimepicker');
         echo $this->Html->script('mascaras');
-
+        echo $this->Html->script('wrapped-text-popup-1.0');
+        
         echo $this->fetch('script');
         echo $this->Js->writeBuffer(); // note: write cached scripts 
         ?>

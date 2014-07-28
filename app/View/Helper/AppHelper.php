@@ -32,7 +32,7 @@ App::uses('Helper', 'View');
 
 
 class AppHelper extends Helper {
-
+    var $helpers = array('Html', 'Form', 'Text');
     //private $dateTimeFormatView = "%A,%e de %B de %Y, %H:%M";
     private $dateTimeFormatView = "%d/%m/%Y %H:%M";
 
@@ -62,6 +62,21 @@ class AppHelper extends Helper {
 
     public function __getDateTimeFormatView() {
         return $this->dateTimeFormatView;
+    }
+    
+    /**
+     * Encurta o conteúdo de um campo e joga o conteúdo completo em uma popup, 
+     * renderizada pelo evento mouseenter ( hover) 
+     * @param type $component_id o identificador que será usado para popup gerada
+     * @param type $value o conteúdo que será inserido na popup
+     * @return type dois components, uma <div> com o conteúdo comprimido e um <input type='hidden'> com o conteúdo completo
+     */
+    public function wrapText($component_id, $value){        
+        $custom_id = 'wrapped-text-'.$component_id;
+        $hidden = $this->Form->hidden($custom_id, array('value' => $value));        
+        $span= $this->Html->div('div-to-pop', $this->Text->truncate(h($value), 30, array('ellipsis' => '...', 'exact' => false)), array('for' =>$custom_id ));
+        
+        return $hidden.$span;
     }
 
     
