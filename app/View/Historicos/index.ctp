@@ -46,14 +46,14 @@
                             <tr>
                                 <td><?php echo h($historico['Historico']['id']); ?>&nbsp;</td>
                                 <td>
-                                    <?php echo $this->Html->link($historico['Chamado']['descricao'], array('controller' => 'chamados', 'action' => 'view', $historico['Chamado']['id'])); ?>
+                                    <?php echo $this->Html->wrapText($historico['Chamado']['id'], $historico['Chamado']['descricao']); ?>
                                 </td>
                                 <td>
                                     <?php echo $this->Html->link($historico['User']['username'], array('controller' => 'users', 'action' => 'view', $historico['User']['id'])); ?>
                                 </td>
                                 <td><?php echo $this->Time->i18nFormat($historico['Historico']['datainicial'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;</td>
                                 <td><?php echo $this->Time->i18nFormat($historico['Historico']['datafinal'], $this->Html->__getDateTimeFormatView());?></td>
-                                <td><?php echo h($historico['Historico']['descricao']); ?>&nbsp;</td>
+                                <td><?php echo $this->Html->wrapText($historico['Chamado']['id'], $historico['Historico']['descricao']); ?> &nbsp;</td>
                                 <td>
                                     <?php echo $this->Html->link($historico['Checklist']['nome'], array('controller' => 'checklists', 'action' => 'view', $historico['Checklist']['id'])); ?>
                                 </td>

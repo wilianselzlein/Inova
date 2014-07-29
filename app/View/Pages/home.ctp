@@ -1,5 +1,10 @@
-<?php echo $this->html->script("libs/jquery-latest", array('inline'=>false)); ?>
-<?php echo $this->Javascript->link('jquery.jeditable.mini'); ?>
+<?php 
+  echo $this->html->script("libs/jquery-latest", array('inline'=>false)); 
+  echo $this->Javascript->link('jquery.jeditable.mini'); 
+  echo $this->Html->script('libs/jquery.bpopup.min');  
+  echo $this->Html->script('wrapped-text-popup-1.0'); 
+?>
+
 <?php
 $LIMITE_CARACTERES_DESCRICAO = 50;
 $components = array('Paginator', 'Session');
@@ -99,7 +104,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->wrapText($task['Chamado']['id'], $task['Chamado']['descricao']); ?>&nbsp;
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
@@ -206,7 +211,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->wrapText($task['Chamado']['id'], $task['Chamado']['descricao']); ?>&nbsp;
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>
@@ -270,7 +275,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                         <?php echo  $task['Chamado']['contato'] ?>
                                     </td>
                                     <td>
-                                        <?php echo $this->Html->link(substr($task['Chamado']['descricao'], 1, $LIMITE_CARACTERES_DESCRICAO). '...', array('controller' => 'chamados', 'action' => 'view', $task['Chamado']['id'])) ?>
+                                        <?php echo $this->Html->wrapText($task['Chamado']['id'], $task['Chamado']['descricao']); ?>&nbsp;
                                     </td>
                                     <td>
                                         <?php echo $this->Html->link($task['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $task['Prioridade']['id'])) ?>

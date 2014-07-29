@@ -31,12 +31,8 @@
 						<?php echo $this->Form->input('nome', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-							<?php echo $this->Form->input('Checklist');?>
+							<?php echo $this->Form->input('Checklist', array('style' => 'width: 100%; height: 250pt'));?>
 					</div><!-- .form-group -->
-					<div class="form-group">
-							<?php echo $this->Form->input('Historico');?>
-					</div><!-- .form-group -->
-
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
 				</fieldset>
