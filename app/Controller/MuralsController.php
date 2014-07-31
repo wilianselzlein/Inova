@@ -86,7 +86,7 @@ class MuralsController extends AppController {
         $options = array('conditions' => array('Mural.' . $this->Mural->primaryKey => $id));
         $this->set('mural', $this->Mural->find('first', $options));
     }
-
+    
     /**
      * add method
      *

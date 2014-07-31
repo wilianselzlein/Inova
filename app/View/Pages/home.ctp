@@ -1,4 +1,70 @@
 <?php 
+echo $this->Javascript->link('ui.core.js');
+echo $this->Javascript->link('ui.resizable.js');
+echo $this->Javascript->link('fullcalendar.min.js');
+echo $this->Javascript->link('ui.draggable.js');
+
+echo $this->Javascript->link('moment.min.js');
+echo $this->Javascript->link('jquery.min.js');
+echo $this->Javascript->link('jquery-ui.custom.min.js');
+echo $this->Javascript->link('fullcalendar.min.js');
+
+echo $this->html->css('fullcalendar');
+?>
+<script type='text/javascript'>// <![CDATA[
+ 
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            events: "/Inova/visitas/feed",
+            //theme: true,
+            header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+            },
+            //defaultDate: '2014-06-12',
+            editable: true,
+            eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+                if (dayDelta>=0) {
+                    dayDelta = "+"+dayDelta;
+                }
+                /*if (minuteDelta>=0) {
+                    minuteDelta="+"+minuteDelta;
+                }*/
+                $.post("/Inova/visitas/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
+            },
+            dayClick: function(date, jsEvent, view) {     
+                var st = date.format();
+                st = st.replace('T', '/');
+                st = st.replace('-', '/');
+                st = st.replace('-', '/');
+                st = st.replace(':', '/');
+                st = st.replace(':', '/');
+                //alert('Clicked on: ' + st);
+                $("#eventdata").show();
+                //$("#eventdata").load("/Inova/visitas/add2/"+ date.format());
+                $("#eventdata").load("/Inova/visitas/add2/"+ st + "/",
+                function(response, status, xhr){
+                    $("#eventdata").html(response);
+                });
+                //alert('Clicked on: ' + date.format());
+                //alert('Clicked on: ' +$.fullCalendar.formatDate( date, "dd/MM/yyyy/HH/mm"));
+                //window.location="/Inova/visitas/add/"+date.format();
+                $(this).css('background-color', 'red');
+                document.getElementById('detalhes').focus();
+            }
+        });
+    });
+ 
+// ]]></script>
+<!-- hide the eventdata div when the page   loads -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#eventdata").hide();
+});
+</script>
+
+<?php 
   echo $this->html->script("libs/jquery-latest", array('inline'=>false)); 
   echo $this->Javascript->link('jquery.jeditable.mini'); 
   echo $this->Html->script('libs/jquery.bpopup.min');  
@@ -344,7 +410,28 @@ if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_loga
     echo '<h4><span class="glyphicon glyphicon-road"></span>&nbsp;Visitas</h4>';
     echo '</div>';
     echo '<div class="recados-lista">';
-    $this->Visita->desenha($visita_mural);
-    echo '</div>';
+    ?>
+            <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#tab_1" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span> Calend&aacute;rio</a>
+                    </li>
+                    <li>
+                        <a href="#tab_2" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> Lista</a>
+                    </li>
+            </ul>
+            <br>
+            <div id="tab_" class="tab-content">
+                <div class="tab-pane active" id="tab_1"> 
+                    <div id="calendar"></div>
+                    <br>
+                    <div id="eventdata"> </div>
+                </div>
+                <div class="tab-pane" id="tab_2">
+                    <?php 
+                        $this->Visita->desenha($visita_mural);
+                        echo '</div>';
+                    ?>
+                </div>
+            </div> <?php
 }
 ?>

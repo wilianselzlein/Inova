@@ -16,6 +16,44 @@ class VisitasController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+    /**
+     * move method
+     *
+     * @return void
+     */
+    function move ($id=null,$dayDelta/*,$minDelta,$allDay*/) {
+        if ($id!=null) {            
+            $ev = $this->Visita->findById($id);
+            /*if ($allDay==true) {
+                $ev['Event']['allday'] = 1;
+            } else {
+                $ev['Event']['allday'] = 0;
+            }
+            $ev['Visita']['end']=date('Y-m-d H:i:s',strtotime($dayDelta.' days '.$minDelta.' minutes',strtotime($ev['Event']['end'])));
+            $ev['Visita']['data']=date('Y-m-d H:i:s',strtotime($dayDelta.' days ',strtotime($ev['Visita']['data'])));*/
+            $ev['Visita']['data']= date('Y-m-d H:i:s',strtotime(($dayDelta / 1000 / 3600 * 60).' minutes ' , strtotime($ev['Visita']['data'])));
+            $this->Visita->save($ev);
+            //$this->redirect(array('controller' => 'events', 'action' => “calendar”,substr($ev['Event']['start'],0,4),substr($ev['Event']['start'],5,2),substr($ev['Event']['start'],8,2)));
+        }
+    }
+
+    /**
+     * feed method
+     *
+     * @return void
+     */
+    function feed() {
+            //1. Transform request parameters to MySQL datetime format.
+        $mysqlstart = date('Y-m-d', strtotime($this->params['url']['start'])); //H:i:s
+        $mysqlend = date('Y-m-d', strtotime($this->params['url']['end'])); //H:i:s
+
+        //2. Get the events corresponding to the time range
+        $conditions = array('Visita.data BETWEEN ? AND ?'  => array($mysqlstart,$mysqlend));
+        $events = $this->Visita->find('all',array('conditions' =>$conditions, 
+            'fields' => array('Visita.id', 'Cliente.fantasia', 'Visita.data', 'AddTime(Visita.data, "1:0:0") as fim')));
+
+        $this->set('events', $events);
+    }
 /**
  * index method
  *
@@ -55,6 +93,32 @@ class VisitasController extends AppController {
 		}
 		$options = array('conditions' => array('Visita.' . $this->Visita->primaryKey => $id));
 		$this->set('Visita', $this->Visita->find('first', $options));
+	}
+
+/**
+ * add2 method
+ *
+ * @return void
+ */
+	public function add2($ano = null, $mes = null, $dia = null, $hora = null, $min = null, $seg = null) {
+		if ($this->request->is('post')) {
+			$this->Visita->create();
+			if ($this->Visita->save($this->request->data)) {
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			}
+		}
+                $users = $this->Visita->User->findAsCombo();
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
+                $this->layout='';
+                $data = $dia . '/' . $mes . '/' . $ano;
+                if (! $hora == null)
+                  $hora = $hora . ':' . $min;
+                $this->set('data', $data);
+                $this->set('hora', $hora);
+		$this->set(compact('clientes', 'users'));
 	}
 
 /**
