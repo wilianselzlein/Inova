@@ -15,7 +15,7 @@ echo $this->html->css('fullcalendar');
  
     $(document).ready(function() {
         $('#calendar').fullCalendar({
-            events: "/Inova/visitas/feed",
+            events: "/sistema/visitas/feed",
             //theme: true,
             header: {
                     left: 'prev,next today',
@@ -31,7 +31,7 @@ echo $this->html->css('fullcalendar');
                 /*if (minuteDelta>=0) {
                     minuteDelta="+"+minuteDelta;
                 }*/
-                $.post("/Inova/visitas/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
+                $.post("/sistema/visitas/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
             },
             dayClick: function(date, jsEvent, view) {     
                 var st = date.format();
@@ -43,7 +43,7 @@ echo $this->html->css('fullcalendar');
                 //alert('Clicked on: ' + st);
                 $("#eventdata").show();
                 //$("#eventdata").load("/Inova/visitas/add2/"+ date.format());
-                $("#eventdata").load("/Inova/visitas/add2/"+ st + "/",
+                $("#eventdata").load("/sistema/visitas/add2/"+ st + "/",
                 function(response, status, xhr){
                     $("#eventdata").html(response);
                 });
