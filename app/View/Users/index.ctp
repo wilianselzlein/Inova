@@ -13,6 +13,11 @@
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Historico'), array('controller' => 'historicos', 'action' => 'add'), array('class' => '')); ?></li> 
 				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Murals'), array('controller' => 'murals', 'action' => 'index'), array('class' => '')); ?></li> 
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Mural'), array('controller' => 'murals', 'action' => 'add'), array('class' => '')); ?></li> 
+				<br>
+				<li class="list-group-item"><?php echo $this->Html->link(__('Acos'), array('controller' => 'acos', 'action' => 'index'), array('class' => '')); ?></li> 
+				<li class="list-group-item"><?php echo $this->Html->link(__('Aros'), array('controller' => 'aros', 'action' => 'index'), array('class' => '')); ?></li> 
+				<li class="list-group-item"><?php echo $this->Html->link(__('ArosAcos'), array('controller' => 'arosacos', 'action' => 'index'), array('class' => '')); ?></li> 
+				<li class="list-group-item"><?php echo $this->Html->link(__('Roles'), array('controller' => 'roles', 'action' => 'index'), array('class' => '')); ?></li> 
 			</ul><!-- /.list-group -->
 			
 		</div><!-- /.actions -->

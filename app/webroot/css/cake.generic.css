@@ -167,6 +167,9 @@ table tr td {
 table tr:nth-child(even) {
 	background: #f9f9f9;
 }
+table .altrow td {
+        background: #f5f5f5;
+}
 td.actions {
 	text-align: center;
 	white-space: nowrap;
@@ -242,6 +245,9 @@ dl {
 dl dd:nth-child(4n+2),
 dl dt:nth-child(4n+1) {
 	background: #f4f4f4;
+}
+dl .altrow {
+        background: #f4f4f4;
 }
 
 dt {

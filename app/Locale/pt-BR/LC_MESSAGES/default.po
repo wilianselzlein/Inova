@@ -1,4 +1,4 @@
-msgid  "New"
+﻿msgid  "New"
 msgstr "Adicionar"
 
 msgid  "Add"
@@ -21,6 +21,12 @@ msgstr "Salvar"
 
 msgid  "Role"
 msgstr "Cargo"
+
+msgid  "Roles"
+msgstr "Cargos"
+
+msgid  "Alias"
+msgstr "Sigla"
 
 msgid  "Created"
 msgstr "Criado em"
@@ -210,3 +216,66 @@ msgstr "Sistema"
 
 msgid "Previsaoexecucao"
 msgstr "Previsão de Execução"
+
+msgid "Left"
+msgstr "Esquerda"
+
+msgid "Right"
+msgstr "Direita"
+
+msgid "Lft"
+msgstr "Esquerda"
+
+msgid "Rght"
+msgstr "Direita"
+
+msgid "Foreign_key"
+msgstr "Relacionamento"
+
+msgid "Parent_id"
+msgstr "Pai"
+
+msgid "Parent"
+msgstr "Pai"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid "aro"
+msgstr "Aro"
+
+msgid "create"
+msgstr "Adicionar"
+
+msgid "read"
+msgstr "Visualizar"
+
+msgid "update"
+msgstr "Editar"
+
+msgid "delete"
+msgstr "Deletar"
+
+msgid "Sons"
+msgstr "Filhos"
+
+msgid "Son"
+msgstr "Filho"
+
+msgid "son"
+msgstr "filho"
+
+msgid "Aco"
+msgstr "Ações"
+
+msgid "Acos"
+msgstr "Ações"
+
+msgid "Aro"
+msgstr "Grupos"
+
+msgid "Aros"
+msgstr "Grupos"
+
+msgid "ArosAcos"
+msgstr "Permissões"
