@@ -178,6 +178,11 @@
 			<?php echo h($cliente['Cliente']['email']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Emailalt'); ?></strong></td>
+		<td>
+			<?php echo h($cliente['Cliente']['emailalt']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Cep'); ?></strong></td>
 		<td>
 			<?php echo h($cliente['Cliente']['cep']); ?>

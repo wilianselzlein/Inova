@@ -279,3 +279,12 @@ msgstr "Grupos"
 
 msgid "ArosAcos"
 msgstr "Permissões"
+
+msgid "Emailsup"
+msgstr "Email Superior"
+
+msgid "Emailalt"
+msgstr "Email Alternativo"
+
+msgid "__PERMISSAO"
+msgstr "Você não tem permissão para acessar esse local."

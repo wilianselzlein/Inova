@@ -40,6 +40,8 @@
 							<th><?php echo $this->Paginator->sort('created'); ?></th>
 							<th><?php echo $this->Paginator->sort('modified'); ?></th>
                                                         <th><?php echo $this->Paginator->sort('unidade_id'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('email'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('emailsup'); ?></th>
 							<th class="actions"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -52,6 +54,8 @@
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
                 <td><?php echo $this->Html->link($user['Unidade']['nome'], array('controller' => 'unidadess', 'action' => 'view', $user['User']['unidade_id'])); ?></td>
+                <td><?php echo h($user['User']['email']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['emailsup']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>

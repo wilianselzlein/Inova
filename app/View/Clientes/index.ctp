@@ -67,6 +67,7 @@
 							<th><?php echo $this->Paginator->sort('telefone'); ?></th>
 							<th><?php echo $this->Paginator->sort('celular'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('emailalt'); ?></th>
 							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 				<?php } else {?>
 							<th><?php echo $this->Paginator->sort('fantasia'); ?></th>
@@ -125,6 +126,7 @@
 		<td><?php echo h($cliente['Cliente']['telefone']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['email']); ?>&nbsp;</td>
+                <td><?php echo h($cliente['Cliente']['emailalt']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['cep']); ?>&nbsp;</td>
 	<?php } else {?>
 		<td><?php echo h($cliente['Cliente']['id']); ?>&nbsp;</td>

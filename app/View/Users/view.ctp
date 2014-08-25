@@ -63,6 +63,16 @@
 			&nbsp;
 		</td>
                 
+</tr><tr>		<td><strong><?php echo __('Email'); ?></strong></td>
+		<td>
+			<?php echo h($user['User']['email']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Emailsup'); ?></strong></td>
+		<td>
+			<?php echo h($user['User']['emailsup']); ?>
+			&nbsp;
+		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->

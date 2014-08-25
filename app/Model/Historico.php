@@ -150,7 +150,4 @@ class Historico extends AppModel {
             'finderQuery' => '',
         )
     );
-
-    
-
 }

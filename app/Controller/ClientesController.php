@@ -18,14 +18,23 @@ class ClientesController extends AppController {
      */
     public $components = array('Paginator', 'Session');
  
-    
+    private function TestaPermissao($basico = 'N') {
+        $usuario_logado = $this->Session->read('Auth.User');        
+        if ((strtolower($usuario_logado['role']) == 'vendas') && ($basico == 'N')) {
+            //throw new NotFoundException(__('__PERMISSAO'));
+            $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+            $this->redirect(array('action' => 'index', 'S'));            
+        }
+    }
     /**
      * index method
      *
      * @return void
      */
     public function index($basico = 'N') {
-        
+
+        $this->TestaPermissao($basico);
+
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(
                         'Cliente.id' => array('operator' => 'LIKE'),
@@ -83,7 +92,8 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function add($basico = 'N', $origem=null) {        
+    public function add($basico = 'N', $origem=null) {       
+        $this->TestaPermissao($basico);
         if ($this->request->is('post')) {
             $this->Cliente->create();
             if ($this->Cliente->save($this->request->data)) {
@@ -114,7 +124,7 @@ class ClientesController extends AppController {
      * @return void
      */
     public function edit($id = null, $basico = 'N') {
-        
+        $this->TestaPermissao($basico);
         $this->Cliente->id = $id;      
         if (!$this->Cliente->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
