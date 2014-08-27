@@ -19,6 +19,15 @@ class UsersController extends AppController {
     public $components = array('Paginator', 'Session');
     private $roles = array('Root' => 'Root', 'Admin' => 'Admin', 'Técnico' => 'Técnico', 'Operador' => 'Operador', 'Vendas' => 'Vendas', 'Cliente' => 'Cliente');
 
+    private function TestaPermissao() {
+        $usuario_logado = $this->Session->read('Auth.User');        
+        if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
+            //throw new NotFoundException(__('__PERMISSAO'));
+            $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+            $this->redirect(array('controller' => 'murals', 'action' => 'index'));    
+        }
+    }
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout');
@@ -42,6 +51,7 @@ class UsersController extends AppController {
      * @return void
      */
     public function index() {
+        $this->TestaPermissao();
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
@@ -54,6 +64,7 @@ class UsersController extends AppController {
      * @return void
      */
     public function view($id = null) {
+        $this->TestaPermissao();
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
@@ -67,6 +78,7 @@ class UsersController extends AppController {
      * @return void
      */
     public function add() {
+        $this->TestaPermissao();
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
@@ -89,6 +101,7 @@ class UsersController extends AppController {
      * @return void
      */
     public function edit($id = null) {
+        $this->TestaPermissao();
         $this->User->id = $id;
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
@@ -118,6 +131,7 @@ class UsersController extends AppController {
      * @return void
      */
     public function delete($id = null) {
+        $this->TestaPermissao();
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
