@@ -17,6 +17,16 @@ class ChamadosController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
+    
+    private function TestaPermissao() {
+        $usuario_logado = $this->Session->read('Auth.User');        
+        if (strtolower($usuario_logado['role']) = 'vendas') {
+            //throw new NotFoundException(__('__PERMISSAO'));
+            $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+            $this->redirect(array('controller' => 'murals', 'action' => 'index'));    
+        }
+    }
+
     /**
      * situacao method
      *
@@ -55,26 +65,27 @@ class ChamadosController extends AppController {
      *
      * @return void
      */
-    public function index() {               
-                $this->Filter->addFilters(
-                        array('filter1' => array('OR' => array(                           
-                                'Chamado.id' => array('operator' => 'LIKE'),
-                                'Chamado.descricao' => array('operator' => 'LIKE'),
-                                'Chamado.contato' => array('operator' => 'LIKE'),
-                                'Tipo.nome' => array('operator' => 'LIKE'),
-                                'Cliente.fantasia' => array('operator' => 'LIKE'),
-                                'Cliente.razaosocial' => array('operator' => 'LIKE'),
-                                'Prioridade.nome' => array('operator' => 'LIKE'),
-                                'User.username' => array('operator' => 'LIKE'),
-                                'Problema.nome' => array('operator' => 'LIKE'),
-                                'Situacao.nome' => array('operator' => 'LIKE')
-                                )
+    public function index() {         
+        $this->TestaPermissao();
+        $this->Filter->addFilters(
+                array('filter1' => array('OR' => array(                           
+                        'Chamado.id' => array('operator' => 'LIKE'),
+                        'Chamado.descricao' => array('operator' => 'LIKE'),
+                        'Chamado.contato' => array('operator' => 'LIKE'),
+                        'Tipo.nome' => array('operator' => 'LIKE'),
+                        'Cliente.fantasia' => array('operator' => 'LIKE'),
+                        'Cliente.razaosocial' => array('operator' => 'LIKE'),
+                        'Prioridade.nome' => array('operator' => 'LIKE'),
+                        'User.username' => array('operator' => 'LIKE'),
+                        'Problema.nome' => array('operator' => 'LIKE'),
+                        'Situacao.nome' => array('operator' => 'LIKE')
                         )
-                        )
-                );
-                //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
-                //$this->Filter->setPaginate('limit', 10); // optional
-                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+                )
+                )
+        );
+        //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+        //$this->Filter->setPaginate('limit', 10); // optional
+        $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
         $situacoes_data = $this->Chamado->Situacao->find('all', array('recursive' => 0));
         for ($i = 0; $i < count($situacoes_data); $i++){
@@ -94,6 +105,7 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function view($id = null) {
+        $this->TestaPermissao();
         if (!$this->Chamado->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
@@ -107,6 +119,7 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function add($selected = null) {
+        $this->TestaPermissao();
         if ($this->request->is('post')) {
             $this->Chamado->create();
             if ($this->Chamado->save($this->request->data)) {
@@ -147,6 +160,7 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function edit($id = null) {
+        $this->TestaPermissao();
         $this->Chamado->id = $id;
         if (!$this->Chamado->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
@@ -180,6 +194,7 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function delete($id = null) {
+        $this->TestaPermissao();
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }

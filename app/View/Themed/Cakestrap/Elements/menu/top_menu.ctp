@@ -18,7 +18,7 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Comercial')?><b class="caret"></b></a>
 				<ul class="dropdown-menu">
                             		<li><?php echo $this->Html->link(__('Visitas'), 	array('controller' => 'visitas', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
-					<li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index', 'S'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+					<li><?php echo $this->Html->link(__('Prospectos'), 	array('controller' => 'clientes', 	'action' => 'index', 'S'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 				</ul>
                         </li>
 			<li class="dropdown">

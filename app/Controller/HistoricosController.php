@@ -1,6 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Historicos Controller
@@ -25,7 +26,7 @@ class HistoricosController extends AppController {
      */
     public function index() {
         $this->Historico->recursive = 0;
-        $this->set('historicos', $this->paginate());
+        $this->set('historicos', $this->paginate());     
     }
 
     /**

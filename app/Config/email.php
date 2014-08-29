@@ -41,19 +41,19 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'you@localhost',
+		'from' => 'chamados@inovatechinfo.com.br,'
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
-		'port' => 25,
+		'from' => array('chamados@inovatechinfo.com.br' => 'Inovatech Soluções Tecnológicas'),
+		'host' => 'mail.inovatechinfo.com.br',
+		'port' => 587,
 		'timeout' => 30,
-		'username' => 'user',
-		'password' => 'secret',
+		'username' => 'chamados@inovatechinfo.com.br',
+		'password' => 'q1w2e3r4t5',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',
@@ -61,7 +61,7 @@ class EmailConfig {
 	);
 
 	public $fast = array(
-		'from' => 'you@localhost',
+		'from' => 'chamados@inovatechinfo.com.br',
 		'sender' => null,
 		'to' => null,
 		'cc' => null,
@@ -80,11 +80,11 @@ class EmailConfig {
 		'attachments' => null,
 		'emailFormat' => null,
 		'transport' => 'Smtp',
-		'host' => 'localhost',
-		'port' => 25,
+		'host' => 'mail.inovatechinfo.com.br',
+		'port' => 587,
 		'timeout' => 30,
-		'username' => 'user',
-		'password' => 'secret',
+		'username' => 'chamados@inovatechinfo.com.br',
+		'password' => 'q1w2e3r4t5',
 		'client' => null,
 		'log' => true,
 		//'charset' => 'utf-8',

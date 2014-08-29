@@ -20,7 +20,7 @@ class UsersController extends AppController {
     private $roles = array('Root' => 'Root', 'Admin' => 'Admin', 'Técnico' => 'Técnico', 'Operador' => 'Operador', 'Vendas' => 'Vendas', 'Cliente' => 'Cliente');
 
     private function TestaPermissao() {
-        $usuario_logado = $this->Session->read('Auth.User');        
+        $usuario_logado = $this->Session->read('Auth.User');
         if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
             //throw new NotFoundException(__('__PERMISSAO'));
             $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');

@@ -32,6 +32,48 @@ class Historico extends AppModel {
      * @var array
      */
     public $datetimeFields = array('datainicial', 'datafinal');
+
+    private function SendEmail() {
+        $chamado = $this->find('first', 
+                array('conditions' => array(
+                    $this->alias . '.' . $this->primaryKey => $this->data[$this->alias]['id']),
+                    'recursive' => 2,
+                )
+            );
+        
+        $emails = array('samuel@inovatechinfo.com.br');
+        if (isset($chamado['Chamado']['User']['emailsup']))
+          array_push($emails, $chamado['Chamado']['User']['emailsup']);
+        if (isset($chamado['Chamado']['Cliente']['email']))
+          array_push($emails, $chamado['Chamado']['Cliente']['email']);
+        if (isset($chamado['Chamado']['Cliente']['emailalt']))
+          array_push($emails, $chamado['Chamado']['Cliente']['emailalt']);
+                
+        $Email = new CakeEmail('smtp');
+        $Email->to($emails);
+        $Email->subject('Chamado Inovatech');
+        
+        $Email->send('
+Chamado aberto pelo usuário: ' . $chamado['Chamado']['User']['username'] . '
+Data: ' . Date('Y/m/d H:i') . '
+Chamado: ' .  $chamado['Chamado']['descricao'] . '
+Prioridade: ' .  $chamado['Chamado']['Prioridade']['nome'] . '
+Chamado designado ao analista: ' . $chamado['Chamado']['User']['username'] . '
+Email de contato do analista: ' . $chamado['Chamado']['User']['email'] . '
+Email de contato direção/reclamações: ' . $chamado['Chamado']['User']['emailsup'] . '
+
+No caso de não receber uma posição de seu chamado em até 24hs (dia útil) favor entrar em contato com o nosso suporte. 
+Inovatech Soluções Tecnológicas (54)3211-6250
+            
+Email automático, apenas leitura, favor não responder no mesmo.');
+    }
+
+
+    public function afterSave($created, $options = Array()) {
+        parent::afterSave($options);
+
+        $this->SendEmail();
+    }
     
     public $validate = array(
         'chamado_id' => array(
