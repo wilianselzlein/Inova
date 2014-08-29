@@ -42,11 +42,11 @@ class Historico extends AppModel {
             );
         
         $emails = array('samuel@inovatechinfo.com.br');
-        if (isset($chamado['Chamado']['User']['emailsup']))
+        if ((isset($chamado['Chamado']['User']['emailsup'])) && ($chamado['Chamado']['User']['emailsup'] != ''))
           array_push($emails, $chamado['Chamado']['User']['emailsup']);
-        if (isset($chamado['Chamado']['Cliente']['email']))
+        if ((isset($chamado['Chamado']['Cliente']['email'])) && ($chamado['Chamado']['Cliente']['email'] != ''))
           array_push($emails, $chamado['Chamado']['Cliente']['email']);
-        if (isset($chamado['Chamado']['Cliente']['emailalt']))
+        if ((isset($chamado['Chamado']['Cliente']['emailalt'])) && ($chamado['Chamado']['Cliente']['emailalt'] != ''))
           array_push($emails, $chamado['Chamado']['Cliente']['emailalt']);
                 
         $Email = new CakeEmail('smtp');
@@ -54,9 +54,15 @@ class Historico extends AppModel {
         $Email->subject('Chamado Inovatech');
         
         $Email->send('
+' . $chamado['Chamado']['Cliente']['fantasia'] . '
+    
 Chamado aberto pelo usuário: ' . $chamado['Chamado']['User']['username'] . '
 Data: ' . Date('Y/m/d H:i') . '
+--------------------------------------------
 Chamado: ' .  $chamado['Chamado']['descricao'] . '
+--------------------------------------------
+Histórico: ' .  $this->data[$this->alias]['descricao'] . '
+--------------------------------------------
 Prioridade: ' .  $chamado['Chamado']['Prioridade']['nome'] . '
 Chamado designado ao analista: ' . $chamado['Chamado']['User']['username'] . '
 Email de contato do analista: ' . $chamado['Chamado']['User']['email'] . '

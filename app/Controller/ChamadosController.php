@@ -20,7 +20,7 @@ class ChamadosController extends AppController {
     
     private function TestaPermissao() {
         $usuario_logado = $this->Session->read('Auth.User');        
-        if (strtolower($usuario_logado['role']) = 'vendas') {
+        if (strtolower($usuario_logado['role']) == 'vendas') {
             //throw new NotFoundException(__('__PERMISSAO'));
             $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
             $this->redirect(array('controller' => 'murals', 'action' => 'index'));    
