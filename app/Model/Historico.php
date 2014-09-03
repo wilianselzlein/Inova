@@ -50,28 +50,31 @@ class Historico extends AppModel {
           array_push($emails, $chamado['Chamado']['Cliente']['emailalt']);
                 
         $Email = new CakeEmail('smtp');
+        $Email->emailFormat('html');
         $Email->to($emails);
         $Email->subject('Chamado Inovatech');
         
-        $Email->send('
-' . $chamado['Chamado']['Cliente']['fantasia'] . '
-    
-Chamado aberto pelo usuário: ' . $chamado['Chamado']['User']['username'] . '
-Data: ' . Date('Y/m/d H:i') . '
---------------------------------------------
-Chamado: ' .  $chamado['Chamado']['descricao'] . '
---------------------------------------------
-Histórico: ' .  $this->data[$this->alias]['descricao'] . '
---------------------------------------------
-Prioridade: ' .  $chamado['Chamado']['Prioridade']['nome'] . '
-Chamado designado ao analista: ' . $chamado['Chamado']['User']['username'] . '
-Email de contato do analista: ' . $chamado['Chamado']['User']['email'] . '
-Email de contato direção/reclamações: ' . $chamado['Chamado']['User']['emailsup'] . '
-
-No caso de não receber uma posição de seu chamado em até 24hs (dia útil) favor entrar em contato com o nosso suporte. 
-Inovatech Soluções Tecnológicas (54)3211-6250
-            
-Email automático, apenas leitura, favor não responder no mesmo.');
+        $Email->send(
+            'Chamado do cliente: <b><br>' . 
+            $chamado['Chamado']['Cliente']['fantasia'] . '</b><br>' .
+            '<br>' .
+            'Chamado aberto pelo usuário: ' . $chamado['Chamado']['User']['username'] . '<br>' .
+            'Data: ' . Date('Y/m/d H:i') . '<br>' .
+            '--------------------------------------------<br>' .
+            'Chamado: ' .  $chamado['Chamado']['descricao'] . '<br>' . 
+            '<b>Contato: ' .  $chamado['Chamado']['contato'] . '</b><br>' . 
+            '--------------------------------------------<br>' .
+            'Adição de Histórico: ' .  $this->data[$this->alias]['descricao'] . '<br>' .
+            '--------------------------------------------<br>' .
+            'Prioridade: ' .  $chamado['Chamado']['Prioridade']['nome'] . '<br>' .
+            '<b>Chamado designado ao analista: ' . $chamado['Chamado']['User']['username'] . '</b><br>' . 
+            'Email de contato do analista: ' . $chamado['Chamado']['User']['email'] . '<br>' .
+            'Email de contato direção/reclamações: ' . $chamado['Chamado']['User']['emailsup'] . '<br>' .
+            '<br>'.
+            'No caso de não receber uma posição de seu chamado em até 24hs (dia útil) favor entrar em contato com o nosso suporte. <br>' .
+            'Inovatech Soluções Tecnológicas (54)3211-6250<br>' .
+            '<br>' .
+            'Email automático, apenas leitura, favor não responder no mesmo.<br>');
     }
 
 

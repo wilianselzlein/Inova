@@ -401,7 +401,9 @@ if (count($recado_mural) > 0) { ?>
 <?php } ?>
 
 <?php
-if ((strtolower($usuario_logado['role']) == 'root') || (strtolower($usuario_logado['role']) == 'vendas')) {
+if ((strtolower($usuario_logado['role']) == 'admin') || 
+    (strtolower($usuario_logado['role']) == 'root') || 
+    (strtolower($usuario_logado['role']) == 'vendas')) {
     //$conditions = array('conditions' => array('Visita.user_id = ' => $usuario_logado['id']));
     $visita_conditions = array('conditions' => array('Visita.data >= ' => date('y.m.d')));
     $visita_mural = ClassRegistry::init('Visita')->find('all', array('limit' => 5, $visita_conditions, 'order' => 'Visita.data desc'));
