@@ -39,16 +39,6 @@ class AppController extends Controller {
 						  'FilterResults.Search'
     );
 
-    public function beforeFilter() {
-        //$this->Auth->allow('index', 'view');
-        $this->Auth->authError = __('You must be logged in to view this page.');
-        $locale = Configure::read('Config.language');
-        if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath)) {
-            // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
-            $this->viewPath = $locale . DS . $this->viewPath;
-        }
-    }
-
     public $components = array(
         'Session',
         'Auth' => array(
@@ -66,6 +56,74 @@ class AppController extends Controller {
             )
         )
     );
+        
+    public function beforeFilter() {
+        //$this->Auth->allow('index', 'view');
+        $this->Auth->authError = __('You must be logged in to view this page.');
+        $locale = Configure::read('Config.language');
+        if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath)) {
+            // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
+            $this->viewPath = $locale . DS . $this->viewPath;
+        }
+        
+        if (($this->Auth->user('id') != '') &&
+            (($this->modelClass != 'Page') && ($this->view != 'display'))
+            ) {
+            $model = ClassRegistry::init('ArosAco');
+            $permissoes = $model->query(
+                'SELECT * 
+                FROM aros_acos aa
+                join aros ar on aa.aro_id = ar.id
+                join acos ac on aa.aco_id = ac.id
+                join roles r on ar.alias = r.alias
+                join users u on r.role = u.role
+                where u.id = "' . $this->Auth->user('id') . '"
+                and aa.aco_id in (
+                select fil.Id
+                from acos fil 
+                where fil.model = "' . $this->modelClass . '"
+                union all
+                select pai.Id
+                from acos fil 
+                join acos pai on fil.parent_id = pai.id
+                where fil.model = "' . $this->modelClass . '"
+                union all
+                select vo.Id
+                from acos fil 
+                join acos pai on fil.parent_id = pai.id
+                join acos vo on pai.parent_id = vo.id
+                where fil.model = "' . $this->modelClass . '"
+                )
+                order by aa.id desc');
+
+            if ((isset($permissoes)) && (count($permissoes) > 0)) {
+
+                $acesso = false;
+
+                switch ($this->view) {
+                    case "index":
+                        $acesso = $permissoes[0]['aa']['_read'];
+                        break;
+                    case "edit":
+                        $acesso = $permissoes[0]['aa']['_update'];
+                        break;
+                    case "add":
+                        $acesso = $permissoes[0]['aa']['_create'];
+                        break;
+                    case "delete":
+                        $acesso = $permissoes[0]['aa']['_delete'];
+                        break;
+                }
+                $acesso = (bool) $acesso;
+                if (! $acesso) {
+                    //throw new NotFoundException(__('The record could not be found.'));
+                    $this->Session->setFlash(__('__PERMISSAO'), 'flash/error'); // . ' ' . $this->modelClass . '/' . $this->view . ' - ' . $this->Auth->user('role')
+                    $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
+                }
+            }
+        
+        }
+    }
 
     private function convertAndSetDatetimeFormat($model) {
         foreach ($this->$model->datetimeFields as $datetime_field) {

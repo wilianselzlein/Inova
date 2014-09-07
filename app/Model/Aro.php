@@ -19,7 +19,7 @@ class Aro extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'alias';
+	public $displayField = 'model';
 
 /**
  * Validation rules
@@ -41,6 +41,21 @@ class Aro extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+    //The Associations below have been created with all possible keys, those that are not needed can be removed
+    /**
+     * belongsTo associations
+     *
+     * @var array
+     */
+    public $belongsTo = array(
+        'Role' => array(
+            'className' => 'Role',
+            'foreignKey' => 'model',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+    );
 /**
  * hasMany associations
  *

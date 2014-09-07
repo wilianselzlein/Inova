@@ -77,7 +77,14 @@ class User extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
+        ),
+        'Role' => array(
+            'className' => 'Role',
+            'foreignKey' => 'role',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
     );
     /**
      * hasMany associations

@@ -32,7 +32,7 @@
 						<?php echo $this->Form->input('parent_id', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('model', array('class' => 'form-control')); ?>
+                                                <?php echo $this->Form->input('model' ,array('type' => 'select', 'options'=>$model, 'class' => 'form-control'));?>
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('foreign_key', array('class' => 'form-control')); ?>

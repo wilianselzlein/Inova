@@ -1,4 +1,3 @@
-
 <div id="page-container" class="row">
 
 	<div id="sidebar" class="col-sm-3">

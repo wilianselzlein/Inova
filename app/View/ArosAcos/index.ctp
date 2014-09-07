@@ -30,7 +30,7 @@
                 <tr>
                         <td><?php echo h($arosAco['ArosAco']['id']); ?>&nbsp;</td>
                         <td>
-                                <?php echo $this->Html->link($arosAco['Aro']['alias'], array('controller' => 'aros', 'action' => 'view', $arosAco['Aro']['id'])); ?>
+                                <?php echo $this->Html->link($arosAco['Aro']['model'], array('controller' => 'aros', 'action' => 'view', $arosAco['Aro']['id'])); ?>
                         </td>
                         <td>
                                 <?php echo $this->Html->link($arosAco['Aco']['alias'], array('controller' => 'acos', 'action' => 'view', $arosAco['Aco']['id'])); ?>
@@ -42,7 +42,7 @@
                         <td class="actions">
                                 <?php echo $this->Html->link(__('View'), array('action' => 'view', $arosAco['ArosAco']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                 <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $arosAco['ArosAco']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                                <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $arosAco['Aro']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $arosAco['Aro']['id'])); ?>
+                                <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $arosAco['ArosAco']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $arosAco['ArosAco']['id'])); ?>
                         </td>
                 </tr>
                 <?php endforeach; ?>

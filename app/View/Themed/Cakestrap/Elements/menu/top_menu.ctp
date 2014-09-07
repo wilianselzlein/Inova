@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button><!-- /.navbar-toggle -->
-		<?php echo $this->Html->Link('Inovatech', 'http://inovatechinfo.com.br/sistema/', array('class' => 'navbar-brand')); ?>
+                <?php echo $this->Html->Link('Inovatech', array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
 	</div><!-- /.navbar-header -->
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">

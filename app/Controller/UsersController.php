@@ -17,7 +17,6 @@ class UsersController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
-    private $roles = array('Root' => 'Root', 'Admin' => 'Admin', 'Técnico' => 'Técnico', 'Operador' => 'Operador', 'Vendas' => 'Vendas', 'Cliente' => 'Cliente');
 
     private function TestaPermissao() {
         $usuario_logado = $this->Session->read('Auth.User');
@@ -88,7 +87,8 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
-         $roles = $this->roles;   
+
+         $roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
          $unidades = $this->User->Unidade->findAsCombo();
          $this->set(compact('roles', 'unidades'));
     }
@@ -117,7 +117,7 @@ class UsersController extends AppController {
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
-        $roles = $this->roles;
+        $roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
         $unidades = $this->User->Unidade->findAsCombo();
         $this->set(compact('roles', 'unidades'));
     }

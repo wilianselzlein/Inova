@@ -62,7 +62,8 @@ class ArosController extends AppController {
 			}
 		}
             $parents = $this->Aro->find('list');
-            $this->set(compact('parents'));
+            $model = $this->Aro->Role->find('list', array('fields' => 'Role.role, Role.role'));
+            $this->set(compact('parents', 'model'));
 	}
 
 /**
@@ -89,7 +90,8 @@ class ArosController extends AppController {
                     $this->request->data = $this->Aro->find('first', $options);
             }
             $parents = $this->Aro->find('list');
-            $this->set(compact('parents'));
+            $model = $this->Aro->Role->find('list', array('fields' => 'Role.role, Role.role'));
+            $this->set(compact('parents', 'model'));
 	}
 
 /**
