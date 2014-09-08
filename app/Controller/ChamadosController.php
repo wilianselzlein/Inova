@@ -20,11 +20,11 @@ class ChamadosController extends AppController {
     public $components = array('Paginator', 'Session');
     
     private function TestaPermissao() {
-        $usuario_logado = $this->Session->read('Auth.User');        
+        $usuario_logado = $this->Session->read('Auth.User');
         if (strtolower($usuario_logado['role']) == 'vendas') {
             //throw new NotFoundException(__('__PERMISSAO'));
             $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
-            $this->redirect(array('controller' => 'murals', 'action' => 'index'));    
+            $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
         }
     }
 

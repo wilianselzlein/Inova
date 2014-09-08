@@ -65,17 +65,22 @@ class AppController extends Controller {
             // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
             $this->viewPath = $locale . DS . $this->viewPath;
         }
+        $parametro = ClassRegistry::init('Parametro');
         
         if (($this->Auth->user('id') != '') &&
-            (($this->modelClass != 'Page') && ($this->view != 'display'))
+            ($parametro->valor(1) == 'S') &&
+            (($this->modelClass != 'Page') && ($this->view != 'display')) &&
+                (($this->modelClass != 'User') && ($this->view != 'logout')) &&
+                (($this->modelClass != 'User') && ($this->view != 'login'))
             ) {
+            
             $model = ClassRegistry::init('ArosAco');
             $permissoes = $model->query(
                 'SELECT * 
                 FROM aros_acos aa
                 join aros ar on aa.aro_id = ar.id
                 join acos ac on aa.aco_id = ac.id
-                join roles r on ar.alias = r.alias
+                join roles r on ar.model = r.role
                 join users u on r.role = u.role
                 where u.id = "' . $this->Auth->user('id') . '"
                 and aa.aco_id in (

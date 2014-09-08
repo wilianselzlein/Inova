@@ -288,3 +288,9 @@ msgstr "Email Alternativo"
 
 msgid "__PERMISSAO"
 msgstr "Você não tem permissão para acessar esse local."
+
+msgid "Parametro"
+msgstr "Parâmetro"
+
+msgid "Parametros"
+msgstr "Parâmetros"

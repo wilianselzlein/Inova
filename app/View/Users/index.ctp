@@ -18,6 +18,7 @@
 				<li class="list-group-item"><?php echo $this->Html->link(__('Aros'), array('controller' => 'aros', 'action' => 'index'), array('class' => '')); ?></li> 
 				<li class="list-group-item"><?php echo $this->Html->link(__('ArosAcos'), array('controller' => 'arosacos', 'action' => 'index'), array('class' => '')); ?></li> 
 				<li class="list-group-item"><?php echo $this->Html->link(__('Roles'), array('controller' => 'roles', 'action' => 'index'), array('class' => '')); ?></li> 
+				<li class="list-group-item"><?php echo $this->Html->link(__('Parametros'), array('controller' => 'parametros', 'action' => 'index'), array('class' => '')); ?></li> 				
 			</ul><!-- /.list-group -->
 			
 		</div><!-- /.actions -->

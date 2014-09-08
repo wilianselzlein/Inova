@@ -23,7 +23,7 @@ class UsersController extends AppController {
         if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
             //throw new NotFoundException(__('__PERMISSAO'));
             $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
-            $this->redirect(array('controller' => 'murals', 'action' => 'index'));    
+            $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
         }
     }
 
