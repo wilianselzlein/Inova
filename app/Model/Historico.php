@@ -81,9 +81,10 @@ class Historico extends AppModel {
     public function afterSave($created, $options = Array()) {
         parent::afterSave($options);
 
-        $this->SendEmail();
+        if ($this->ValorParametro(2) == 'S')
+          $this->SendEmail();
     }
-    
+
     public $validate = array(
         'chamado_id' => array(
             'numeric' => array(

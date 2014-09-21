@@ -36,7 +36,7 @@ class AppController extends Controller {
     var $helpers = array('Js'   => array('Jquery'),
                          'Mural' => array('className' => 'Mural'),
                          'Visita' => array('className' => 'Visita'),
-						  'FilterResults.Search'
+			 'FilterResults.Search'
     );
 
     public $components = array(
@@ -65,6 +65,7 @@ class AppController extends Controller {
             // e.g. use /app/View/fra/Pages/tos.ctp instead of /app/View/Pages/tos.ctp
             $this->viewPath = $locale . DS . $this->viewPath;
         }
+        
         $parametro = ClassRegistry::init('Parametro');
         
         if (($this->Auth->user('id') != '') &&
@@ -118,6 +119,9 @@ class AppController extends Controller {
                     case "delete":
                         $acesso = $permissoes[0]['aa']['_delete'];
                         break;
+                    default:
+                        $acesso = 1; //liberar todas as exceçoes de views
+                        break;
                 }
                 $acesso = (bool) $acesso;
                 if (! $acesso) {
@@ -168,5 +172,9 @@ class AppController extends Controller {
         }
         return parent::beforeRender();
     }
-   
+
+    private function ValorParametro($id = null) {
+        $parametro = ClassRegistry::init('Parametro');
+        return $parametro->valor($id);
+    }
 }

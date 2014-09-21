@@ -148,5 +148,10 @@ class AppModel extends Model {
 
         return $data;
     }
+    
+        public function ValorParametro($id = null) {
+		$parametro = ClassRegistry::init('Parametro');
+                return $parametro->valor($id);
+	}
 
 }

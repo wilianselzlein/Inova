@@ -19,6 +19,37 @@ class ChamadosController extends AppController {
      */
     public $components = array('Paginator', 'Session');
     
+    /**
+     * feed method
+     *
+     * @return void
+     */
+    function feed() {
+        $mysqlstart = date('Y-m-d', strtotime($this->params['url']['start'])); //H:i:s
+        $mysqlend = date('Y-m-d', strtotime($this->params['url']['end'])); //H:i:s
+        
+        $filtrousuario = '';
+        $usuario_logado = $this->Session->read('Auth.User');
+        if ((strtolower($usuario_logado['role']) !== 'admin') && (strtolower($usuario_logado['role']) !== 'admin')) {
+           $filtrousuario = 'and Historicos.user_id = ' . $usuario_logado['id'];
+        }
+        
+        $events = $this->Chamado->query('
+                SELECT Chamados.id, Clientes.fantasia, Historicos.datainicial, AddTime(Historicos.datafinal, "1:0:0") as datafinal 
+                FROM Chamados
+                JOIN Clientes ON cliente_id = Clientes.id
+                JOIN Historicos ON chamado_id = Chamados.id
+                Where Historicos.datainicial BETWEEN "' . $mysqlstart . '" AND "' . $mysqlend . '"' . 
+                $filtrousuario . ' order by Historicos.datainicial LIMIT 0,1;');
+
+        $this->set('events', $events);
+    }
+    
+    /**
+     * TestaPermissao method
+     *
+     * @return void
+     */
     private function TestaPermissao() {
         $usuario_logado = $this->Session->read('Auth.User');
         if (strtolower($usuario_logado['role']) == 'vendas') {

@@ -28,10 +28,7 @@ echo $this->html->css('fullcalendar');
                 if (dayDelta>=0) {
                     dayDelta = "+"+dayDelta;
                 }
-                /*if (minuteDelta>=0) {
-                    minuteDelta="+"+minuteDelta;
-                }*/
-                $.post("/sistema/visitas/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
+                $.post("/sistema/visitas/move/"+event.id+"/"+dayDelta+"/");
             },
             dayClick: function(date, jsEvent, view) {     
                 var st = date.format();
@@ -54,6 +51,41 @@ echo $this->html->css('fullcalendar');
                 document.getElementById('detalhes').focus();
             }
         });
+        $('#calendarchamado').fullCalendar({
+            events: "/Inova/chamados/feed",
+            //events: "/sistema/chamados/feed",
+            header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+            },
+            //defaultDate: '2014-06-12',
+            /*editable: true,
+            eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+                if (dayDelta>=0) {
+                    dayDelta = "+"+dayDelta;
+                }
+                $.post("/Inova/chamados/move/"+event.id+"/"+dayDelta+"/");
+                //$.post("/sistema/chamados/move/"+event.id+"/"+dayDelta+"/");
+            },
+            dayClick: function(date, jsEvent, view) {     
+                var st = date.format();
+                st = st.replace('T', '/');
+                st = st.replace('-', '/');
+                st = st.replace('-', '/');
+                st = st.replace(':', '/');
+                st = st.replace(':', '/');
+                //alert('Clicked on: ' + date.format());
+                $("#eventdatacalend").show();
+                $("#eventdatacalend").load("/Inova/chamados/add2/"+ st + "/",
+                //$("#eventdata").load("/sistema/chamados/add2/"+ st + "/",
+                function(response, status, xhr){
+                    $("#eventdatacalend").html(response);
+                });
+                $(this).css('background-color', 'red');
+                document.getElementById('detalhes').focus();
+            }*/
+        });
     });
  
 // ]]></script>
@@ -61,6 +93,7 @@ echo $this->html->css('fullcalendar');
 <script type="text/javascript">
 $(document).ready(function(){
     $("#eventdata").hide();
+    //$("#eventdatacalend").hide();
 });
 </script>
 
@@ -115,14 +148,18 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
 
     <!-------->
     <div id="content">
+
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
             <?php foreach ($tab_list as $tab): ?>
                 <li <?php echo ($tab === reset($tab_list)) ? 'class="active"' : ""; ?>>
-                    <a href="<?php echo '#tab' . $tab[$model_tabs]['id'] ?>"  data-toggle="tab"><?php echo ucwords(utf8_encode(strtolower(utf8_decode($tab[$model_tabs]['nome'])))) ?></a>
+                    <a href="<?php echo '#tab' . $tab[$model_tabs]['id'] ?>"  data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;<?php echo ucwords(utf8_encode(strtolower(utf8_decode($tab[$model_tabs]['nome'])))) ?></a>
                 </li>
             <?php endforeach; ?>
                 <li>
-                    <a href="#tabPrev" data-toggle="tab"><?php echo __('Previsão de Execução'); ?></a>
+                    <a href="#tabPrev" data-toggle="tab"><span class="glyphicon glyphicon-time"></span>&nbsp;<?php echo __('Previsão de Execução'); ?></a>
+                </li>
+                <li>
+                    <a href="#tabCalend" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span>&nbsp;<?php echo __('Agenda de Chamados'); ?></a>
                 </li>
         </ul>
         <div id="my-tab-content" class="tab-content">
@@ -360,6 +397,14 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                         <?php endforeach; ?>
                     </table>
                 </div>
+            
+                <div class="tab-pane" id="tabCalend">            
+                    <div id="calendarchamado"></div>
+                    <br>
+                    <div id="eventdatacalend"></div>
+                    <br>                    
+                </div>
+            
         </div>
     </div>
 
@@ -426,7 +471,7 @@ if ((strtolower($usuario_logado['role']) == 'admin') ||
                 <div class="tab-pane active" id="tab_1"> 
                     <div id="calendar"></div>
                     <br>
-                    <div id="eventdata"> </div>
+                    <div id="eventdata"></div>
                 </div>
                 <div class="tab-pane" id="tab_2">
                     <?php 
@@ -436,4 +481,24 @@ if ((strtolower($usuario_logado['role']) == 'admin') ||
                 </div>
             </div> <?php
 }
+
+if ((strtolower($usuario_logado['role']) == 'admin') || 
+    (strtolower($usuario_logado['role']) == 'root')) { ?>
+    <div class="recados">
+        <h4><span class="glyphicon glyphicon-stats"></span>&nbsp;Gráficos</h4>
+    </div>
+    <div class="recados-lista">
+        <table style="width:100%" border=0>
+          <tr>
+            <td><img src="/sistema/img/1.png" alt="" width="200" height="200"></td>
+            <td><img src="/sistema/img/2.png" alt="" width="200" height="200"></td>		
+            <td><img src="/sistema/img/3.png" alt="" width="200" height="200"></td>
+          </tr>
+          <tr>
+            <td colspan="3" align="center"><img src="/sistema/img/4.png" alt="" width="700" height="200"></td>
+          </tr>
+        </table>
+    </div>
+    <?php
+    }
 ?>
