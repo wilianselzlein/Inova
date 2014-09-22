@@ -294,3 +294,9 @@ msgstr "Parâmetro"
 
 msgid "Parametros"
 msgstr "Parâmetros"
+
+msgid "Modulos"
+msgstr "Módulos"
+
+msgid "Modulo"
+msgstr "Módulo"
