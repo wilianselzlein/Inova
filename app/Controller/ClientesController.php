@@ -112,8 +112,9 @@ class ClientesController extends AppController {
         $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
         $users = $this->Cliente->User->findAsCombo();
         $unidades = $this->Cliente->Unidade->findAsCombo();
-		$this->set('basico', $basico);
-        $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
+        $modulos = $this->Cliente->Modulo->findAsCombo();
+        $this->set('basico', $basico);
+        $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos'));
     }
 
     /**
@@ -145,8 +146,9 @@ class ClientesController extends AppController {
         $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
         $users = $this->Cliente->User->findAsCombo();
         $unidades = $this->Cliente->Unidade->findAsCombo();
-		$this->set('basico', $basico);
-        $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades'));
+        $modulos = $this->Cliente->Modulo->findAsCombo();
+        $this->set('basico', $basico);
+        $this->set(compact('cidades', 'sistemas', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos'));
     }
 
     /**
