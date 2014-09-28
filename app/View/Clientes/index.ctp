@@ -69,6 +69,7 @@
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
                                                         <th><?php echo $this->Paginator->sort('emailalt'); ?></th>
 							<th><?php echo $this->Paginator->sort('cep'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('contador_id'); ?></th>
 				<?php } else {?>
 							<th><?php echo $this->Paginator->sort('fantasia'); ?></th>
 							<th><?php echo $this->Paginator->sort('razaosocial'); ?></th>
@@ -79,8 +80,10 @@
 							<th><?php echo $this->Paginator->sort('complemento'); ?></th>
 							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th><?php echo $this->Paginator->sort('contato'); ?></th>
-							<th><?php echo $this->Paginator->sort('obs'); ?></th>
 							<th><?php echo $this->Paginator->sort('telefone'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('celular'); ?></th>
+							<th><?php echo $this->Paginator->sort('email'); ?></th>
+                                                        <th><?php echo $this->Paginator->sort('obs'); ?></th>
 				<?php } ?>
 							<th><?php echo $this->Paginator->sort('unidade_id'); ?></th>
 							<th class="actions"><?php echo __('Actions'); ?></th>
@@ -128,6 +131,9 @@
 		<td><?php echo h($cliente['Cliente']['email']); ?>&nbsp;</td>
                 <td><?php echo h($cliente['Cliente']['emailalt']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['cep']); ?>&nbsp;</td>
+                <td>
+			<?php echo $this->Html->link($cliente['Contador']['razaosocial'], array('controller' => 'contadors', 'action' => 'view', $cliente['Contador']['id'])); ?>
+		</td>
 	<?php } else {?>
 		<td><?php echo h($cliente['Cliente']['id']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['fantasia']); ?>&nbsp;</td>
@@ -141,8 +147,10 @@
 		<td><?php echo h($cliente['Cliente']['complemento']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['cep']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['contato']); ?>&nbsp;</td>
-		<td><?php echo h($cliente['Cliente']['obs']); ?>&nbsp;</td>
 		<td><?php echo h($cliente['Cliente']['telefone']); ?>&nbsp;</td>
+                <td><?php echo h($cliente['Cliente']['celular']); ?>&nbsp;</td>
+		<td><?php echo h($cliente['Cliente']['email']); ?>&nbsp;</td>
+                <td><?php echo h($cliente['Cliente']['obs']); ?>&nbsp;</td>
 	<?php } ?>
 		<td>
 			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id'])); ?>

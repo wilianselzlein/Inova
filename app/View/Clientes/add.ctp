@@ -128,6 +128,9 @@
                     <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
+                    <?php echo $this->Form->input('contador_id', array('class' => 'form-control')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
                     <?php echo $this->Form->input('Modulo', array('type' => 'select', 'label' => __('Modulos'), 'options' => $modulos, 'multiple' => 'checkbox')); ?>
                 </div><!-- .form-group -->
         <?php } else { ?>
@@ -157,6 +160,12 @@
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('telefone', array('class' => 'form-control mask-ddd-fone')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('celular', array('class' => 'form-control mask-ddd-celular')); ?>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                    <?php echo $this->Form->input('email', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>

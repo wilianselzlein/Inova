@@ -281,6 +281,13 @@ class Cliente extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'Contador' => array(
+            'className' => 'Contador',
+            'foreignKey' => 'contador_id',
+            'conditions' => '', //Contador.prospect = "C"
+            'fields' => '',
+            'order' => ''
         )
     );
 

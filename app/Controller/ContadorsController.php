@@ -3,13 +3,13 @@
 App::uses('AppController', 'Controller');
 
 /**
- * Clientes Controller
+ * Contadors Controller
  *
- * @property Cliente $Cliente
+ * @property Contador $Contador
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ClientesController extends AppController {
+class ContadorsController extends AppController {
 
     /**
      * Components
@@ -31,9 +31,9 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function index($basico = 'N') {
+    public function index() {
 
-        $this->TestaPermissao($basico);
+        $this->TestaPermissao();
 
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(
@@ -62,14 +62,13 @@ class ClientesController extends AppController {
                     )
                 )
         );
-        $this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+        $this->Filter->setPaginate('order', 'Contador.RazaoSocial ASC'); // optional
         //$this->Filter->setPaginate('limit', 10); // optional
         $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
         
-        $this->Cliente->recursive = 0;
+        $this->Contador->recursive = 0;
 
-        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  $basico)));
-        $this->set('basico', $basico);  
+        $this->set('contadors', $this->paginate(array('Contador.Prospect' =>  'C')));
     }
 
         /**
@@ -80,11 +79,11 @@ class ClientesController extends AppController {
      * @return void
      */
     public function view($id = null) {
-        if (!$this->Cliente->exists($id)) {
+        if (!$this->Contador->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id));
-        $this->set('cliente', $this->Cliente->find('first', $options));
+        $options = array('conditions' => array('Contador.' . $this->Contador->primaryKey => $id));
+        $this->set('cliente', $this->Contador->find('first', $options));
     }
 
     /**
@@ -92,30 +91,20 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function add($basico = 'N', $origem=null) {       
-        $this->TestaPermissao($basico);
+    public function add() {       
+        $this->TestaPermissao();
         if ($this->request->is('post')) {
-            $this->Cliente->create();
-            if ($this->Cliente->save($this->request->data)) {
+            $this->Contador->create();
+            if ($this->Contador->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-                if(isset($origem)){
-                    $this->redirect(array('controller' => $origem, 'action' => 'add', $this->Cliente->id));                   
-                }else{
-                    $this->redirect(array('action' => 'index', $basico));
-                }
+                $this->redirect(array('action' => 'index', $basico));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
-        $cidades = $this->Cliente->Cidade->findAsCombo();
-        $sistemas = $this->Cliente->Sistema->findAsCombo();
-        $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
-        $users = $this->Cliente->User->findAsCombo();
-        $unidades = $this->Cliente->Unidade->findAsCombo();
-        $modulos = $this->Cliente->Modulo->findAsCombo();
-        $contadors = $this->Cliente->Contador->findAsCombo('asc', 'Contador.prospect = "C"');
-        $this->set('basico', $basico);
-        $this->set(compact('cidades', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos', 'contadors'));
+        $cidades = $this->Contador->Cidade->findAsCombo();
+        $users = $this->Contador->User->findAsCombo();
+        $this->set(compact('cidades', 'users'));
     }
 
     /**
@@ -125,32 +114,26 @@ class ClientesController extends AppController {
      * @param string $id
      * @return void
      */
-    public function edit($id = null, $basico = 'N') {
-        $this->TestaPermissao($basico);
-        $this->Cliente->id = $id;      
-        if (!$this->Cliente->exists($id)) {
+    public function edit($id = null) {
+        $this->TestaPermissao();
+        $this->Contador->id = $id;      
+        if (!$this->Contador->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->Cliente->save($this->request->data)) {
+            if ($this->Contador->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         } else {
-            $options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id));
-            $this->request->data = $this->Cliente->find('first', $options);
+            $options = array('conditions' => array('Contador.' . $this->Contador->primaryKey => $id));
+            $this->request->data = $this->Contador->find('first', $options);
         }
-        $cidades = $this->Cliente->Cidade->findAsCombo();
-        $sistemas = $this->Cliente->Sistema->findAsCombo();
-        $subgrupos = $this->Cliente->Subgrupo->findAsCombo();
-        $users = $this->Cliente->User->findAsCombo();
-        $unidades = $this->Cliente->Unidade->findAsCombo();
-        $modulos = $this->Cliente->Modulo->findAsCombo();
-        $contadors = $this->Cliente->Contador->findAsCombo('asc', 'Contador.prospect = "C"');
-        $this->set('basico', $basico);
-        $this->set(compact('cidades', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos', 'contadors'));
+        $cidades = $this->Contador->Cidade->findAsCombo();
+        $users = $this->Contador->User->findAsCombo();
+        $this->set(compact('cidades', 'users'));
     }
 
     /**
@@ -165,11 +148,11 @@ class ClientesController extends AppController {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
-        $this->Cliente->id = $id;
-        if (!$this->Cliente->exists()) {
+        $this->Contador->id = $id;
+        if (!$this->Contador->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        if ($this->Cliente->delete()) {
+        if ($this->Contador->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
             $this->redirect(array('action' => 'index'));
         }

@@ -111,7 +111,7 @@ class VisitasController extends AppController {
 			}
 		}
                 $users = $this->Visita->User->findAsCombo();
-		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect in ("S", "C")');
                 $this->layout='';
                 $data = $dia . '/' . $mes . '/' . $ano;
                 if (! $hora == null)
@@ -137,7 +137,7 @@ class VisitasController extends AppController {
 			}
 		}
                 $users = $this->Visita->User->findAsCombo();
-		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect in ("S", "C")');
                 
                 if(isset($selected)){                       
                     $this->set(compact('selected'));
@@ -169,7 +169,7 @@ class VisitasController extends AppController {
 			$this->request->data = $this->Visita->find('first', $options);
 		}
                 $users = $this->Visita->User->findAsCombo();
-		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect = "S"');
+		$clientes = $this->Visita->Cliente->findAsCombo('asc', 'prospect in ("S", "C")');
 		$this->set(compact('clientes', 'users'));
 	}
 

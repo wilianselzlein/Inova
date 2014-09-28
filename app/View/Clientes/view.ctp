@@ -6,7 +6,7 @@
 		<div class="actions">
 			
 			<ul class="list-group">			
-						<li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Cliente'), array('action' => 'edit', $cliente['Cliente']['id']), array('class' => '')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('Edit').' '.__('Cliente'), array('action' => 'edit', $cliente['Cliente']['id']), array('class' => '')); ?> </li>
 		<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete').' '.__('Cliente'), array('action' => 'delete', $cliente['Cliente']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $cliente['Cliente']['id'])); ?> </li>
 		<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Clientes'), array('action' => 'index'), array('class' => '')); ?> </li>
 		<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Cliente'), array('action' => 'add'), array('class' => '')); ?> </li>
@@ -191,6 +191,11 @@
 </tr><tr>		<td><strong><?php echo __('Unidade'); ?></strong></td>
 		<td>
 			<?php echo $this->Html->link($cliente['Unidade']['nome'], array('controller' => 'unidades', 'action' => 'view', $cliente['Unidade']['id']), array('class' => '')); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Contador'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($cliente['Contador']['razaosocial'], array('controller' => 'contadors', 'action' => 'view', $cliente['Contador']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Criado'); ?></strong></td>
