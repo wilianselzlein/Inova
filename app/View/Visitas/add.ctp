@@ -7,9 +7,8 @@
 
             <ul class="list-group">
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Chamados'), array('action' => 'index')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S', 'visitas')); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Prospectos'), array('controller' => 'prospectos', 'action' => 'index')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Prospecto'), array('controller' => 'prospectos', 'action' => 'add')); ?> </li>
             </ul><!-- /.list-group -->
 
         </div><!-- /.actions -->
@@ -31,10 +30,10 @@
                     <?php 
                         if(isset($selected))
                         {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control', 'selected'=> $selected )); 
+                            echo $this->Form->input('cliente_id', array('label' => 'Prospecto', 'class' => 'form-control', 'selected'=> $selected )); 
                         }else
                         {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control' )); 
+                            echo $this->Form->input('cliente_id', array('label' => 'Prospecto','class' => 'form-control' )); 
                         }                    
                     ?>
                     

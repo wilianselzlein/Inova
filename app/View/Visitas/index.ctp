@@ -71,8 +71,8 @@ $(document).ready(function(){
 
             <ul class="list-group">
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Visita'), array('action' => 'add'), array('class' => '')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index'), array('class' => '')); ?></li> 
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Prospectos'), array('controller' => 'prospectos', 'action' => 'index'), array('class' => '')); ?></li> 
+                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Prospecto'), array('controller' => 'prospectos', 'action' => 'add'), array('class' => '')); ?></li> 
             </ul><!-- /.list-group -->
 
         </div><!-- /.actions -->
@@ -108,7 +108,7 @@ $(document).ready(function(){
                             <thead>
                                 <tr>
                                     <th><?php echo $this->Paginator->sort('id'); ?></th>
-                                    <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
+                                    <th><?php echo $this->Paginator->sort('cliente_id', 'Prospecto'); ?></th>
                                     <th><?php echo $this->Paginator->sort('data'); ?></th>
                                     <th><?php echo $this->Paginator->sort('nova'); ?></th>
                                     <th><?php echo $this->Paginator->sort('descricao'); ?></th>
@@ -120,7 +120,7 @@ $(document).ready(function(){
                                     <tr>
                                         <td><?php echo h($Visita['Visita']['id']); ?>&nbsp;</td>
                                         <td>
-                                            <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id'])); ?>
+                                            <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'prospectos', 'action' => 'view', $Visita['Cliente']['id'])); ?>
                                         </td>
                                         <td>
                                             <?php echo $this->Time->i18nFormat($Visita['Visita']['data'], $this->Html->__getDateTimeFormatView()); ?>&nbsp;

@@ -59,6 +59,8 @@
 		<td><?php echo h($user['User']['emailsup']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                        <?php echo $this->Html->link(__('Contadores'), array('action' => 'contadores', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                        <?php echo $this->Html->link(__('Clientes'), array('action' => 'clientes', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 		</td>

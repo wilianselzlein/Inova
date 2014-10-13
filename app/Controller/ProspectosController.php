@@ -3,13 +3,13 @@
 App::uses('AppController', 'Controller');
 
 /**
- * Contadors Controller
+ * Prospectos Controller
  *
- * @property Contador $Contador
+ * @property Prospecto $Prospecto
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ContadorsController extends AppController {
+class ProspectosController extends AppController {
 
     /**
      * Components
@@ -37,35 +37,35 @@ class ContadorsController extends AppController {
 
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(
-                        'Contador.id' => array('operator' => 'LIKE'),
-                        'Contador.RazaoSocial' => array('operator' => 'LIKE'),
-                        'Contador.Fantasia' => array('operator' => 'LIKE'),
-                        'Contador.cpfcnpj' => array('operator' => 'LIKE'),
+                        'Prospecto.id' => array('operator' => 'LIKE'),
+                        'Prospecto.RazaoSocial' => array('operator' => 'LIKE'),
+                        'Prospecto.Fantasia' => array('operator' => 'LIKE'),
+                        'Prospecto.cpfcnpj' => array('operator' => 'LIKE'),
                         'Cidade.nome' => array('operator' => 'LIKE'),
-                        'Contador.endereco' => array('operator' => 'LIKE'),
-                        'Contador.bairro' => array('operator' => 'LIKE'),
-                        'Contador.numero' => array('operator' => 'LIKE'),
-                        'Contador.complemento' => array('operator' => 'LIKE'),   
-                        'Contador.Ie' => array('operator' => 'LIKE'),   
-                        'Contador.contato' => array('operator' => 'LIKE'),   
-                        'Contador.estrutura' => array('operator' => 'LIKE'),   
-                        'Contador.build' => array('operator' => 'LIKE'),   
-                        'Contador.obs' => array('operator' => 'LIKE'),   
-                        'Contador.telefone' => array('operator' => 'LIKE'),
-                        'Contador.celular' => array('operator' => 'LIKE'),
-                        'Contador.email' => array('operator' => 'LIKE'),
-                        'Contador.cep' => array('operator' => 'LIKE')
+                        'Prospecto.endereco' => array('operator' => 'LIKE'),
+                        'Prospecto.bairro' => array('operator' => 'LIKE'),
+                        'Prospecto.numero' => array('operator' => 'LIKE'),
+                        'Prospecto.complemento' => array('operator' => 'LIKE'),   
+                        'Prospecto.Ie' => array('operator' => 'LIKE'),   
+                        'Prospecto.contato' => array('operator' => 'LIKE'),   
+                        'Prospecto.estrutura' => array('operator' => 'LIKE'),   
+                        'Prospecto.build' => array('operator' => 'LIKE'),   
+                        'Prospecto.obs' => array('operator' => 'LIKE'),   
+                        'Prospecto.telefone' => array('operator' => 'LIKE'),
+                        'Prospecto.celular' => array('operator' => 'LIKE'),
+                        'Prospecto.email' => array('operator' => 'LIKE'),
+                        'Prospecto.cep' => array('operator' => 'LIKE')
                         )
                     )
                 )
         );
-        $this->Filter->setPaginate('order', 'Contador.RazaoSocial ASC'); // optional
+        $this->Filter->setPaginate('order', 'Prospecto.RazaoSocial ASC'); // optional
         //$this->Filter->setPaginate('limit', 10); // optional
         $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
         
-        $this->Contador->recursive = 0;
+        $this->Prospecto->recursive = 0;
 
-        $this->set('contadors', $this->paginate(array('Contador.Prospect' =>  'C')));
+        $this->set('prospectos', $this->paginate(array('Prospecto.Prospect' =>  'S')));
     }
 
         /**
@@ -76,11 +76,11 @@ class ContadorsController extends AppController {
      * @return void
      */
     public function view($id = null) {
-        if (!$this->Contador->exists($id)) {
+        if (!$this->Prospecto->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Contador.' . $this->Contador->primaryKey => $id));
-        $this->set('cliente', $this->Contador->find('first', $options));
+        $options = array('conditions' => array('Prospecto.' . $this->Prospecto->primaryKey => $id));
+        $this->set('prospecto', $this->Prospecto->find('first', $options));
     }
 
     /**
@@ -91,16 +91,16 @@ class ContadorsController extends AppController {
     public function add() {       
         $this->TestaPermissao();
         if ($this->request->is('post')) {
-            $this->Contador->create();
-            if ($this->Contador->save($this->request->data)) {
+            $this->Prospecto->create();
+            if ($this->Prospecto->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
                 $this->redirect(array('action' => 'index', $basico));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
-        $cidades = $this->Contador->Cidade->findAsCombo();
-        $users = $this->Contador->User->findAsCombo();
+        $cidades = $this->Prospecto->Cidade->findAsCombo();
+        $users = $this->Prospecto->User->findAsCombo();
         $this->set(compact('cidades', 'users'));
     }
 
@@ -113,23 +113,23 @@ class ContadorsController extends AppController {
      */
     public function edit($id = null) {
         $this->TestaPermissao();
-        $this->Contador->id = $id;      
-        if (!$this->Contador->exists($id)) {
+        $this->Prospecto->id = $id;      
+        if (!$this->Prospecto->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->Contador->save($this->request->data)) {
+            if ($this->Prospecto->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), 'flash/success');
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         } else {
-            $options = array('conditions' => array('Contador.' . $this->Contador->primaryKey => $id));
-            $this->request->data = $this->Contador->find('first', $options);
+            $options = array('conditions' => array('Prospecto.' . $this->Prospecto->primaryKey => $id));
+            $this->request->data = $this->Prospecto->find('first', $options);
         }
-        $cidades = $this->Contador->Cidade->findAsCombo();
-        $users = $this->Contador->User->findAsCombo();
+        $cidades = $this->Prospecto->Cidade->findAsCombo();
+        $users = $this->Prospecto->User->findAsCombo();
         $this->set(compact('cidades', 'users'));
     }
 
@@ -145,11 +145,11 @@ class ContadorsController extends AppController {
         if (!$this->request->is('post')) {
             throw new MethodNotAllowedException();
         }
-        $this->Contador->id = $id;
-        if (!$this->Contador->exists()) {
+        $this->Prospecto->id = $id;
+        if (!$this->Prospecto->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        if ($this->Contador->delete()) {
+        if ($this->Prospecto->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
             $this->redirect(array('action' => 'index'));
         }

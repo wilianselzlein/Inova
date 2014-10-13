@@ -18,9 +18,9 @@ class ClientesController extends AppController {
      */
     public $components = array('Paginator', 'Session');
  
-    private function TestaPermissao($basico = 'N') {
+    private function TestaPermissao() {
         $usuario_logado = $this->Session->read('Auth.User');        
-        if ((strtolower($usuario_logado['role']) == 'vendas') && ($basico == 'N')) {
+        if (strtolower($usuario_logado['role']) == 'vendas') {
             //throw new NotFoundException(__('__PERMISSAO'));
             $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
             $this->redirect(array('action' => 'index', 'S'));            
@@ -31,9 +31,9 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function index($basico = 'N') {
+    public function index() {
 
-        $this->TestaPermissao($basico);
+        $this->TestaPermissao();
 
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(
@@ -68,8 +68,7 @@ class ClientesController extends AppController {
         
         $this->Cliente->recursive = 0;
 
-        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  $basico)));
-        $this->set('basico', $basico);  
+        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  'N')));
     }
 
         /**
@@ -92,8 +91,8 @@ class ClientesController extends AppController {
      *
      * @return void
      */
-    public function add($basico = 'N', $origem=null) {       
-        $this->TestaPermissao($basico);
+    public function add($origem=null) {       
+        $this->TestaPermissao();
         if ($this->request->is('post')) {
             $this->Cliente->create();
             if ($this->Cliente->save($this->request->data)) {
@@ -101,7 +100,7 @@ class ClientesController extends AppController {
                 if(isset($origem)){
                     $this->redirect(array('controller' => $origem, 'action' => 'add', $this->Cliente->id));                   
                 }else{
-                    $this->redirect(array('action' => 'index', $basico));
+                    $this->redirect(array('action' => 'index'));
                 }
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -114,7 +113,6 @@ class ClientesController extends AppController {
         $unidades = $this->Cliente->Unidade->findAsCombo();
         $modulos = $this->Cliente->Modulo->findAsCombo();
         $contadors = $this->Cliente->Contador->findAsCombo('asc', 'Contador.prospect = "C"');
-        $this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos', 'contadors'));
     }
 
@@ -125,8 +123,8 @@ class ClientesController extends AppController {
      * @param string $id
      * @return void
      */
-    public function edit($id = null, $basico = 'N') {
-        $this->TestaPermissao($basico);
+    public function edit($id = null) {
+        $this->TestaPermissao();
         $this->Cliente->id = $id;      
         if (!$this->Cliente->exists($id)) {
             throw new NotFoundException(__('The record could not be found.?>'));
@@ -149,7 +147,6 @@ class ClientesController extends AppController {
         $unidades = $this->Cliente->Unidade->findAsCombo();
         $modulos = $this->Cliente->Modulo->findAsCombo();
         $contadors = $this->Cliente->Contador->findAsCombo('asc', 'Contador.prospect = "C"');
-        $this->set('basico', $basico);
         $this->set(compact('cidades', 'sistemas', 'subgrupos', 'users', 'unidades', 'modulos', 'contadors'));
     }
 

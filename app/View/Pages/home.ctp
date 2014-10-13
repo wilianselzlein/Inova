@@ -107,7 +107,7 @@ $(document).ready(function(){
 <?php
 $LIMITE_CARACTERES_DESCRICAO = 50;
 $components = array('Paginator', 'Session');
-$usuario_logado = $this->Session->read('Auth.User');        
+$usuario_logado = $this->Session->read('Auth.User');
 $titulo = __('Recado(s)');
 ?>
 

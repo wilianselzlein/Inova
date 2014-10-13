@@ -8,8 +8,8 @@
             <ul class="list-group">
                     <!-- <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Visita.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Visita.id'))); ?></li> -->
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Visitas'), array('action' => 'index')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Prospectos'), array('controller' => 'prospectos', 'action' => 'index')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Prospecto'), array('controller' => 'prospectos', 'action' => 'add')); ?> </li>
             </ul><!-- /.list-group -->
 
         </div><!-- /.actions -->
@@ -31,7 +31,7 @@
                 </div><!-- .form-group -->
 
                 <div class="form-group">
-                    <?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('cliente_id', array('label' => 'Prospecto', 'class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('data', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>

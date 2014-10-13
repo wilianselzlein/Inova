@@ -65,8 +65,17 @@
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php 
+        /*if ($chamado_id != null)  {
+            $cliente = $this->Chamado->find('first', 
+                        array('conditions' => array('Chamado.id' => $chamado_id), 'fields' => 'cliente_id', 'recursive' => -1));
+            $user_id = $this->Chamado->Cliente->find('first',
+                        array('conditions' => array('Cliente.id' => $cliente['Chamado']['cliente_id']),
+                            'fields' => 'user_id', 'recursive' => -1));
+            $usuario = $user_id['Cliente']['user_id'];
+        } else
+    $usuario = $usuario_logado['id'];*/
                         $usuario_logado = $this->Session->read('Auth.User');
-                        echo $this->Form->input('user_id', array('class' => 'form-control', 'selected' => $usuario_logado['id'])); ?>
+                        echo $this->Form->input('user_id', array('class' => 'form-control')); //, 'selected' => $usuario ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
@@ -82,3 +91,20 @@
     </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
+<?php
+$this->Js->get('#ChamadoClienteId')->event('change', 
+	$this->Js->request(array(
+		'controller'=>'chamados',
+		'action'=>'getComboUsers'
+		), array(
+		'update'=>'#ChamadoUserId',
+		'async' => true,
+		'method' => 'post',
+		'dataExpression'=>true,
+		'data'=> $this->Js->serializeForm(array(
+			'isForm' => true,
+			'inline' => true
+			))
+		))
+	);
+?>
