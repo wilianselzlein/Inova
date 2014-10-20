@@ -179,10 +179,14 @@ class User extends AppModel {
     }
 
     public function matchPasswords($data) { 
-        if ($data['password'] == $this->data['User']['password_confirmation']) 
-            return true; 
-        $this->invalidate('password_confirmation', 'Senhas não conferem.'); 
-        return false; 
+        if (isset($this->data['User']['password_confirmation'])) {
+            if ($data['password'] == $this->data['User']['password_confirmation']) 
+                return true; 
+            $this->invalidate('password_confirmation', 'Senhas não conferem.'); 
+            return false; 
+        }
+        else
+            return TRUE;
     } 
      
     public function checkPassword($data) { 
