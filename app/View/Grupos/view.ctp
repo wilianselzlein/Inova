@@ -57,7 +57,6 @@
 								<tr>
 											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nome'); ?></th>
-		<th><?php echo __('Grupo Id'); ?></th>
 									<th class="actions"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -68,7 +67,6 @@
 		<tr>
 			<td><?php echo $subgrupo['id']; ?></td>
 			<td><?php echo $subgrupo['nome']; ?></td>
-			<td><?php echo $subgrupo['grupo_id']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'subgrupos', 'action' => 'view', $subgrupo['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'subgrupos', 'action' => 'edit', $subgrupo['id']), array('class' => 'btn btn-default btn-xs')); ?>

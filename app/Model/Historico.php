@@ -42,6 +42,8 @@ class Historico extends AppModel {
             );
         
         $emails = array('samuel@inovatechinfo.com.br');
+        if ((isset($chamado['Chamado']['User']['email'])) && ($chamado['Chamado']['User']['email'] != ''))
+          array_push($emails, $chamado['Chamado']['User']['email']);
         if ((isset($chamado['Chamado']['User']['emailsup'])) && ($chamado['Chamado']['User']['emailsup'] != ''))
           array_push($emails, $chamado['Chamado']['User']['emailsup']);
         if ((isset($chamado['Chamado']['Cliente']['email'])) && ($chamado['Chamado']['Cliente']['email'] != ''))

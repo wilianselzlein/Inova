@@ -146,5 +146,54 @@ class UsersController extends AppController {
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));
     }
+    /**
+     * clientes method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function clientes($id = null) {
+        $this->TestaPermissao();
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('The record could not be found.'));
+        }
+        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $this->set('user', $this->User->find('first', $options));
+    }
+    /**
+     * clientes method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function contadores($id = null) {
+        $this->TestaPermissao();
+        if (!$this->User->exists($id)) {
+            throw new NotFoundException(__('The record could not be found.'));
+        }
+        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $this->set('user', $this->User->find('first', $options));
+    }
+    /**
+     * changePassword method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+
+    public function changePassword($id = null) { 
+        if ($this->data) { 
+            if ($this->User->save($this->data)) 
+                $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success'); 
+            else
+                $this->Session->setFlash('Senha não alterada.', 'flash/error'); 
+            //$this->redirect(array('controller' => 'Pages', 'action' => 'display'));
+        } else { 
+            $this->data = $this->User->read(null, $id); 
+        } 
+    }
 
 }

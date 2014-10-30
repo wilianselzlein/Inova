@@ -71,10 +71,10 @@
 										<tr>
 											<td><?php echo $cliente['id']; ?></td>
 											<td><?php echo $cliente['fantasia']; ?></td>
-											<td><?php echo $cliente['cidade_id']; ?></td>
-											<td><?php echo $cliente['sistema_id']; ?></td>
+											<td><?php echo DisplayField('Cidade', $cliente['cidade_id']); ?></td>
+											<td><?php echo DisplayField('Sistema', $cliente['sistema_id']); ?></td>
 											<td><?php echo $cliente['build']; ?></td>
-											<td><?php echo $cliente['subgrupo_id']; ?></td>
+											<td><?php echo DisplayField('Subgrupo', $cliente['subgrupo_id']); ?></td>
 											<td><?php echo $cliente['telefone']; ?></td>
 											<td class="actions">
 												<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>

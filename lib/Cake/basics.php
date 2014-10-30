@@ -838,3 +838,34 @@ if (!function_exists('convertSlash')) {
 	}
 
 }
+
+if (!function_exists('DisplayField')) {
+
+/**
+ * Returns a translated string if one is found; Otherwise, the submitted message.
+ *
+ * @param string $singular Text to translate
+ * @param mixed $args Array with arguments or multiple arguments in function
+ * @return mixed translated string
+ * @link http://book.cakephp.org/2.0/en/core-libraries/global-constants-and-functions.html#__
+ */
+	function DisplayField($model, $id, $comHtml = true) {
+                $class = ClassRegistry::init($model);
+                $options = array(
+                    'conditions' => array($model.'.' . $class->primaryKey => $id),
+                    'fields' => array($class->displayfield),
+                    'recursive' => -1,
+                    );
+                $result = $class->find('first', $options);
+                if (isSet($result[$model])){
+                    if ($comHtml)
+                        $display = '<a href="/Inova/' . $model . 's/view/'. $id .'" class="">' . $result[$model][$class->displayField] . '</a>';
+                    else
+                        $display = $result[$model][$class->displayField];
+                    return $display;
+                }
+                else
+                    return '';
+	}
+
+}

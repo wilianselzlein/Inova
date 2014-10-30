@@ -281,6 +281,13 @@ class Cliente extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ),
+        'Contador' => array(
+            'className' => 'Contador',
+            'foreignKey' => 'contador_id',
+            'conditions' => '', //Contador.prospect = "C"
+            'fields' => '',
+            'order' => ''
         )
     );
 
@@ -305,4 +312,24 @@ class Cliente extends AppModel {
         )
     );
 
+    /**
+     * hasAndBelongsToMany associations
+     *
+     * @var array
+     */
+    public $hasAndBelongsToMany = array(
+        'Modulo' => array(
+            'className' => 'Modulo',
+            'joinTable' => 'clientes_modulos',
+            'foreignKey' => 'cliente_id',
+            'associationForeignKey' => 'modulo_id',
+            'unique' => 'keepExisting',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+        )
+    );
 }

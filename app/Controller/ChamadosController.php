@@ -181,6 +181,7 @@ class ChamadosController extends AppController {
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();
         $users = $this->Chamado->User->findAsCombo();
+        $usuario_logado = $this->Session->read('Auth.User');     
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
 
@@ -241,5 +242,31 @@ class ChamadosController extends AppController {
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));
     }
-
+    /**
+     * getComboUsers method
+     *
+     * @throws NotFoundException
+     * @throws MethodNotAllowedException
+     * @param void
+     * @return void
+     */
+    public function getComboUsers() {
+        $cliente_id = 0;
+        $usuario = 0;
+        if (isset($this->request->data['Chamado'])) {
+          $cliente_id = $this->request->data['Chamado']['cliente_id'];
+          $clientes = $this->Chamado->Cliente->Find('list', array(
+              'conditions' => array('Cliente.Id' => $cliente_id),
+              'fields' => array('user_id')
+              )
+           );
+          $usuario = $clientes[$cliente_id]; 
+        }
+        $users = $this->Chamado->User->find('list');
+        
+        $this->set('users', $users);
+        $this->set('usuario', $usuario);
+        $this->layout = 'ajax';
+        $this->render('combos/users');
+    }
 }

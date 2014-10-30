@@ -117,12 +117,12 @@
 										foreach ($servico['Historico'] as $historico): ?>
                         <tr>
                             <td><?php echo $historico['id']; ?></td>
-                            <td><?php echo $historico['chamado_id']; ?></td>
-                            <td><?php echo $historico['user_id']; ?></td>
-                            <td><?php echo $historico['datainicial']; ?></td>
-                            <td><?php echo $historico['datafinal']; ?></td>
-                            <td><?php echo $historico['descricao']; ?></td>
-                            <td><?php echo $historico['checklist_id']; ?></td>
+                            <td><?php echo $this->Html->wrapText('C' . $historico['id'], DisplayField('Chamado', $historico['chamado_id'], false)); ?></td>
+                            <td><?php echo DisplayField('User', $historico['user_id']); ?></td>
+                            <td><?php echo $this->Time->i18nFormat($historico['datainicial'], $this->Html->__getDateTimeFormatView()); ?></td>
+                            <td><?php echo $this->Time->i18nFormat($historico['datafinal'], $this->Html->__getDateTimeFormatView()); ?></td>
+                            <td><?php echo $this->Html->wrapText('D' . $historico['id'], $historico['descricao']); ?>&nbsp;</td>
+                            <td><?php echo DisplayField('checklist', $historico['checklist_id']); ?></td>
                             <td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>

@@ -55,7 +55,7 @@
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-											<th><?php echo __('Id'); ?></th>
+                <th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Tipo Id'); ?></th>
 		<th><?php echo __('Descricao'); ?></th>
 		<th><?php echo __('Contato'); ?></th>
@@ -72,13 +72,13 @@
 										foreach ($tipo['Chamado'] as $chamado): ?>
 		<tr>
 			<td><?php echo $chamado['id']; ?></td>
-			<td><?php echo $chamado['tipo_id']; ?></td>
-			<td><?php echo $chamado['descricao']; ?></td>
+			<td><?php echo DisplayField('Tipo', $chamado['tipo_id']); ?></td>
+			<td><?php echo $this->Html->wrapText('C' . $chamado['id'], $chamado['descricao']); ?></td>
 			<td><?php echo $chamado['contato']; ?></td>
-			<td><?php echo $chamado['cliente_id']; ?></td>
+			<td><?php echo DisplayField('Cliente', $chamado['cliente_id']); ?></td>
 			<td><?php echo $chamado['prioridade']; ?></td>
-			<td><?php echo $chamado['problema_id']; ?></td>
-			<td><?php echo $chamado['situacao_id']; ?></td>
+			<td><?php echo DisplayField('problema', $chamado['problema_id']); ?></td>
+			<td><?php echo DisplayField('Situacao', $chamado['situacao_id']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'chamados', 'action' => 'view', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'chamados', 'action' => 'edit', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>

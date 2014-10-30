@@ -10,8 +10,8 @@
 <!--<li class="list-group-item"><?php echo $this->Form->postLink(__('Delete') . ' ' . __('Visita'), array('action' => 'delete', $Visita['Visita']['id']), array('class' => ''), __('Are you sure you want to delete # %s?', $Visita['Visita']['id'])); ?> </li>-->
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Visitas'), array('action' => 'index'), array('class' => '')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Visita'), array('action' => 'add'), array('class' => '')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index'), array('class' => '')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add'), array('class' => '')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Prospectos'), array('controller' => 'prospectos', 'action' => 'index'), array('class' => '')); ?> </li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Prospecto'), array('controller' => 'prospectos', 'action' => 'add'), array('class' => '')); ?> </li>
 
             </ul><!-- /.list-group -->
 
@@ -33,9 +33,9 @@
                                 <?php echo h($Visita['Visita']['id']); ?>
                                 &nbsp;
                             </td>
-                        </tr><tr>		<td><strong><?php echo __('Cliente'); ?></strong></td>
+                        </tr><tr>		<td><strong><?php echo __('Prospecto'); ?></strong></td>
                             <td>
-                                <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')) . ' - ' . $this->Html->link($Visita['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')); ?>
+                                <?php echo $this->Html->link($Visita['Cliente']['fantasia'], array('controller' => 'prospectoss', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')) . ' - ' . $this->Html->link($Visita['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $Visita['Cliente']['id']), array('class' => '')); ?>
                                 &nbsp;
                             </td>
                         </tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>

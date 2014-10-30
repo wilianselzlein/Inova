@@ -57,7 +57,7 @@ class Modulo extends AppModel {
 var $hasAndBelongsToMany = array(
     'Cliente' => array(
         'className' => 'Cliente',
-        'joinTable' => 'Clientes_Modulos',
+        'joinTable' => 'clientes_modulos',
         'foreignKey' => 'modulo_id',
         'associationForeignKey' => 'cliente_id',
         'unique' => true,

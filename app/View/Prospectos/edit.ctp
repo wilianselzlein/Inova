@@ -6,8 +6,8 @@
         <div class="actions">
 
             <ul class="list-group">
-                <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Cliente.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Cliente.id'))); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('action' => 'index')); ?></li>
+                <li class="list-group-item"><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Prospecto.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Prospecto.id'))); ?></li>
+                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Prospectos'), array('action' => 'index')); ?></li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Cidades'), array('controller' => 'cidades', 'action' => 'index')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cidade'), array('controller' => 'cidades', 'action' => 'add')); ?> </li>
                 <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Subgrupos'), array('controller' => 'subgrupos', 'action' => 'index')); ?> </li>
@@ -26,11 +26,11 @@
 
     <div id="page-content" class="col-sm-9">
 
-        <h2><?php echo __('Edit') . ' ' . __('Cliente'); ?></h2>
+        <h2><?php echo __('Edit') . ' ' . __('Prospecto'); ?></h2>
 
-        <div class="clientes form">
+        <div class="prospectos form">
 
-            <?php echo $this->Form->create('Cliente', array('role' => 'form')); ?>
+            <?php echo $this->Form->create('Prospecto', array('role' => 'form')); ?>
 
            <fieldset>
 
@@ -38,28 +38,7 @@
                     <?php echo $this->Form->input('fantasia', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('razaosocial', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php
-                        $options = array(1 => 'CPF', 2 => 'CNPJ');                    
-                        //echo $this->Form->input('_', array('options' => $options, 'default'=>1, 'class' =>'form-control select-documento', 'label'=>false, 'div'=>array('class'=>'label-inline')));
-                        echo $this->Form->input('cpfcnpj', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
                     <?php echo $this->Form->input('cidade_id', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('sistema_id', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('build', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('subgrupo_id', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('dtvenda', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('endereco', array('class' => 'form-control')); ?>
@@ -74,40 +53,10 @@
                     <?php echo $this->Form->input('complemento', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('ie', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('senha', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('dtinstalacao', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
+                    <?php echo $this->Form->input('cep', array('class' => 'form-control mask-cep')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('caixas', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('retaguardas', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('mensalidade', array('class' => 'form-control monetario', 'type'=>'text')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('valorvenda', array('class' => 'form-control monetario', 'type'=>'text')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('estrutura', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('obs', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('telefone', array('class' => 'form-control mask-ddd-fone')); ?>
@@ -119,21 +68,12 @@
                     <?php echo $this->Form->input('email', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('emailalt', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('cep', array('class' => 'form-control mask-cep')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
                     <?php echo $this->Form->input('unidade_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('contador_id', array('class' => 'form-control', 'empty' => true)); ?>
+                    <?php echo $this->Form->input('obs', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('Modulo', array('type' => 'select', 'label' => __('Modulos'), 'options' => $modulos, 'multiple' => 'checkbox')); ?>
-                </div><!-- .form-group -->
-        <?php /*?>
+        <?php  /*?>
 
                 <div class="form-group">
                     <?php echo $this->Form->input('prospect', array('class' => 'form-control', 'options' => array('S' => 'S', 'N' => 'N'))); ?>

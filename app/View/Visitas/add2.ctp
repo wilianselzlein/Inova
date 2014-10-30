@@ -7,7 +7,7 @@
     <fieldset>                
         <?php
             echo $this->form->create('Visita', array('target' => '_parent'));
-            echo $this->Form->input('cliente_id', array('class' => 'form-control' )); 
+            echo $this->Form->input('cliente_id', array('label' => 'Prospecto', 'class' => 'form-control' )); 
             echo '<br>';
             echo $this->Form->input('detalhes', array('class' => 'form-control')); 
             //echo $data . $hora;
