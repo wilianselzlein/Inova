@@ -45,24 +45,31 @@
                 <h3 class="panel-title"><?php echo __('FILTROS_DISPONIVEIS');?></h3>
             </div>
             <div class="panel-body">
+               <?php
+
+//foreach ($relatorioFiltrosDisponiveis as $filtro){
+//   debug($filtro['RelatorioFiltro']['campo_alias']);
+//}
+//debug($relatorioFiltrosDisponiveis);
+               ?>
                 <select id="dynamic-list" class="form-control" multiple>
-                   <?php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>
-                     <?php foreach ($dataset['RelatorioFiltro'] as $filtro): ?>
+                   <!--<php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>-->
+                     <?php foreach ($relatorioFiltrosDisponiveis as $filtro): ?>
                     <!--@foreach (var filtro in Model.RelatorioFiltro.ToList())
                     {-->
                         <option value='
 <?php
    echo "{";
-   echo '"Id":'.'"'.$filtro['id'].'",'; 
-   echo '"Field":'.'"'.$filtro['campo'].'",'; 
-   echo '"Alias":'.'"'.$filtro['campo_alias'].'",'; 
-   echo '"Tipo":'.'"'.$filtro['tipo_filtro'].'"'; 
+   echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'].'",'; 
+   echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
+   echo '"Alias":'.'"'.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
+   echo '"Tipo":'.'"'.$filtro['RelatorioFiltro']['tipo_filtro'].'"'; 
 
    echo "}";
 ?>'>    
-                           <?php echo $filtro['campo_alias']; ?>
+                           <?php echo utf8_encode($filtro['RelatorioFiltro']['campo_alias']); ?>
                         </option>
-                    <?php endforeach; ?>
+                    <!--<php endforeach; ?>-->
                    <?php endforeach; ?>
                 </select>
 

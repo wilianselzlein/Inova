@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
  */
 class RelatoriosController extends AppController {
 
-    public $uses = array('RelatorioDataset', 'Relatorio');
+    public $uses = array('RelatorioDataset', 'RelatorioFiltro', 'Relatorio');
 
     /**
      * Components
@@ -40,8 +40,10 @@ class RelatoriosController extends AppController {
 		}
 
        $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
-		$this->set('relatorio', $this->Relatorio->find('first', $options));
-
+		$this->set('relatorio', $this->Relatorio->find('first', $options));       
+      $this->set('relatorioFiltrosDisponiveis', 
+                 $this->RelatorioFiltro->find('all', array('group'=>array('RelatorioFiltro.campo')))
+                );
     }
    
     public function download($id = null){
