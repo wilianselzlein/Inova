@@ -97,7 +97,7 @@
 			<td><?php echo $contador['bairro']; ?></td>
 			<td><?php echo $contador['complemento']; ?></td>
 			<td><?php echo $contador['cep']; ?></td>
-			<td><?php echo $contador['cidade_id']; ?></td>
+			<td><?php echo DisplayField('cidade', $contador['cidade_id']); ?></td>
 			<td><?php echo $contador['cpfcnpj']; ?></td>
 			<td><?php echo $contador['contato']; ?></td>
 			<td><?php echo $contador['telefone']; ?></td>

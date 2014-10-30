@@ -49,12 +49,12 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Created'); ?></strong></td>
 		<td>
-			<?php echo h($user['User']['created']); ?>
+                        <?php echo $this->Time->i18nFormat($user['User']['created'], $this->Html->__getDateTimeFormatView()); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Modified'); ?></strong></td>
 		<td>
-			<?php echo h($user['User']['modified']); ?>
+                        <?php echo $this->Time->i18nFormat($user['User']['modified'], $this->Html->__getDateTimeFormatView()); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Unidade'); ?></strong></td>
@@ -90,7 +90,7 @@
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-											<th><?php echo __('Id'); ?></th>
+                <th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Fantasia'); ?></th>
 		<th><?php echo __('Razaosocial'); ?></th>
 		<th><?php echo __('Cpfcnpj'); ?></th>
@@ -112,12 +112,11 @@
 		<th><?php echo __('Valorvenda'); ?></th>
 		<th><?php echo __('Estrutura'); ?></th>
 		<th><?php echo __('Obs'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Telefone'); ?></th>
 		<th><?php echo __('Celular'); ?></th>
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Cep'); ?></th>
-		<th><?php echo __('Unidade Id'); ?></th>
+		<th><?php echo __('Unidade'); ?></th>
 									<th class="actions"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -130,30 +129,29 @@
 			<td><?php echo $cliente['fantasia']; ?></td>
 			<td><?php echo $cliente['razaosocial']; ?></td>
 			<td><?php echo $cliente['cpfcnpj']; ?></td>
-			<td><?php echo $cliente['cidade_id']; ?></td>
-			<td><?php echo $cliente['subgrupo_id']; ?></td>
-			<td><?php echo $cliente['dtvenda']; ?></td>
+			<td><?php echo DisplayField('Cidade', $cliente['cidade_id']); ?></td>
+			<td><?php echo DisplayField('Subgrupo', $cliente['subgrupo_id']); ?></td>
+			<td><?php echo date("d/m/y", strtotime($cliente['dtvenda'])); ?>&nbsp;</td>
 			<td><?php echo $cliente['endereco']; ?></td>
 			<td><?php echo $cliente['numero']; ?></td>
 			<td><?php echo $cliente['bairro']; ?></td>
 			<td><?php echo $cliente['complemento']; ?></td>
 			<td><?php echo $cliente['ie']; ?></td>
 			<td><?php echo $cliente['senha']; ?></td>
-			<td><?php echo $cliente['dtinstalacao']; ?></td>
+                        <td><?php echo date("d/m/y", strtotime($cliente['dtinstalacao'])); ?>&nbsp;</td>
 			<td><?php echo $cliente['contato']; ?></td>
 			<td><?php echo $cliente['caixas']; ?></td>
 			<td><?php echo $cliente['retaguardas']; ?></td>
 			<td><?php echo $cliente['prioridade']; ?></td>
-			<td><?php echo $cliente['mensalidade']; ?></td>
-			<td><?php echo $cliente['valorvenda']; ?></td>
-			<td><?php echo $cliente['estrutura']; ?></td>
-			<td><?php echo $cliente['obs']; ?></td>
-			<td><?php echo $cliente['user_id']; ?></td>
+			<td><?php echo $this->Number->currency($cliente['mensalidade'], 'BRL'); ?></td>
+                        <td><?php echo $this->Number->currency($cliente['valorvenda'], 'BRL'); ?></td>
+                        <td><?php echo $this->Html->wrapText('A' . $cliente['id'], $cliente['estrutura']); ?>&nbsp;</td>
+			<td><?php echo $this->Html->wrapText('B' . $cliente['id'], $cliente['obs']); ?>&nbsp;</td>
 			<td><?php echo $cliente['telefone']; ?></td>
 			<td><?php echo $cliente['celular']; ?></td>
 			<td><?php echo $cliente['email']; ?></td>
 			<td><?php echo $cliente['cep']; ?></td>
-			<td><?php echo $cliente['unidade_id']; ?></td>
+			<td><?php echo DisplayField('Unidade', $cliente['unidade_id']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
@@ -200,12 +198,12 @@
 										foreach ($user['Historico'] as $historico): ?>
 		<tr>
 			<td><?php echo $historico['id']; ?></td>
-			<td><?php echo $historico['chamado_id']; ?></td>
-			<td><?php echo $historico['user_id']; ?></td>
-			<td><?php echo $historico['datainicial']; ?></td>
-			<td><?php echo $historico['datafinal']; ?></td>
-			<td><?php echo $historico['descricao']; ?></td>
-			<td><?php echo $historico['checklist_id']; ?></td>
+			<td><?php echo $this->Html->wrapText('C' . $historico['id'], DisplayField('Chamado', $historico['chamado_id'], false)); ?></td>
+			<td><?php echo DisplayField('User', $historico['user_id']); ?></td>
+                        <td><?php echo $this->Time->i18nFormat($historico['datainicial'], $this->Html->__getDateTimeFormatView()); ?></td>
+			<td><?php echo $this->Time->i18nFormat($historico['datafinal'], $this->Html->__getDateTimeFormatView()); ?></td>
+                        <td><?php echo $this->Html->wrapText('D' . $historico['id'], $historico['descricao']); ?>&nbsp;</td>
+			<td><?php echo DisplayField('Checklist', $historico['checklist_id']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'historicos', 'action' => 'view', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'historicos', 'action' => 'edit', $historico['id']), array('class' => 'btn btn-default btn-xs')); ?>
@@ -238,7 +236,6 @@
 								<tr>
 											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Data'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Recado'); ?></th>
 									<th class="actions"><?php echo __('Actions'); ?></th>
 								</tr>
@@ -249,9 +246,8 @@
 										foreach ($user['Mural'] as $mural): ?>
 		<tr>
 			<td><?php echo $mural['id']; ?></td>
-			<td><?php echo $mural['data']; ?></td>
-			<td><?php echo $mural['user_id']; ?></td>
-			<td><?php echo $mural['recado']; ?></td>
+                        <td><?php echo $this->Time->i18nFormat($mural['data'], $this->Html->__getDateTimeFormatView()); ?></td>
+                        <td><?php echo $this->Html->wrapText('E' . $mural['id'], $mural['recado']); ?>&nbsp;</td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'murals', 'action' => 'view', $mural['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'murals', 'action' => 'edit', $mural['id']), array('class' => 'btn btn-default btn-xs')); ?>
@@ -314,14 +310,14 @@
 			<td><?php echo $contador['bairro']; ?></td>
 			<td><?php echo $contador['complemento']; ?></td>
 			<td><?php echo $contador['cep']; ?></td>
-			<td><?php echo $contador['cidade_id']; ?></td>
+			<td><?php echo DisplayField('Cidade', $contador['cidade_id']); ?></td>
 			<td><?php echo $contador['cpfcnpj']; ?></td>
 			<td><?php echo $contador['contato']; ?></td>
 			<td><?php echo $contador['telefone']; ?></td>
 			<td><?php echo $contador['celular']; ?></td>
 			<td><?php echo $contador['email']; ?></td>
 			<td><?php echo $contador['emailalt']; ?></td>
-			<td><?php echo $contador['obs']; ?></td>
+                        <td><?php echo $this->Html->wrapText('F' . $contador['id'], $contador['obs']); ?>&nbsp;</td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $contador['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $contador['id']), array('class' => 'btn btn-default btn-xs')); ?>

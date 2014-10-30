@@ -140,12 +140,12 @@
 		<td>
 			<?php 
                         
-                        echo $this->Number->currency($cliente['Cliente']['mensalidade']/100, 'BRL'); ?>
+                        echo $this->Number->currency($cliente['Cliente']['mensalidade'], 'BRL'); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Valorvenda'); ?></strong></td>
 		<td>
-			<?php echo $this->Number->currency($cliente['Cliente']['valorvenda']/100, 'BRL'); ?>
+			<?php echo $this->Number->currency($cliente['Cliente']['valorvenda'], 'BRL'); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Estrutura'); ?></strong></td>
@@ -224,7 +224,6 @@
                                         <th><?php echo __('Tipo Id'); ?></th>
                                         <th><?php echo __('Descricao'); ?></th>
                                         <th><?php echo __('Contato'); ?></th>
-                                        <th><?php echo __('Cliente Id'); ?></th>
                                         <th><?php echo __('Prioridade'); ?></th>
                                         <th><?php echo __('Problema Id'); ?></th>
                                         <th><?php echo __('Situacao Id'); ?></th>
@@ -237,13 +236,12 @@
                                         foreach ($cliente['Chamado'] as $chamado): ?>
                                         <tr>
                                             <td><?php echo $chamado['id']; ?></td>
-                                            <td><?php echo $chamado['tipo_id']; ?></td>
-                                            <td><?php echo $chamado['descricao']; ?></td>
+                                            <td><?php echo DisplayField('Tipo', $chamado['tipo_id']); ?></td>
+                                            <td><?php echo $this->Html->wrapText('C' . $chamado['id'], $chamado['descricao']); ?></td>
                                             <td><?php echo $chamado['contato']; ?></td>
-                                            <td><?php echo $chamado['cliente_id']; ?></td>
-                                            <td><?php echo $chamado['prioridade']; ?></td>
-                                            <td><?php echo $chamado['problema_id']; ?></td>
-                                            <td><?php echo $chamado['situacao_id']; ?></td>
+                                            <td><?php echo DisplayField('Subgrupo', $chamado['prioridade']); ?></td>
+                                            <td><?php echo DisplayField('Problema', $chamado['problema_id']); ?></td>
+                                            <td><?php echo DisplayField('Situacao', $chamado['situacao_id']); ?></td>
                                             <td class="actions">
                                                 <?php echo $this->Html->link(__('View'), array('controller' => 'chamados', 'action' => 'view', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                                 <?php echo $this->Html->link(__('Edit'), array('controller' => 'chamados', 'action' => 'edit', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>

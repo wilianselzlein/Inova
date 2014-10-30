@@ -62,7 +62,7 @@
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-											<th><?php echo __('Id'); ?></th>
+                <th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Fantasia'); ?></th>
 		<th><?php echo __('Razaosocial'); ?></th>
 		<th><?php echo __('Cpfcnpj'); ?></th>
@@ -84,12 +84,11 @@
 		<th><?php echo __('Valorvenda'); ?></th>
 		<th><?php echo __('Estrutura'); ?></th>
 		<th><?php echo __('Obs'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Telefone'); ?></th>
 		<th><?php echo __('Celular'); ?></th>
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Cep'); ?></th>
-		<th><?php echo __('Unidade Id'); ?></th>
+		<th><?php echo __('Unidade'); ?></th>
 									<th class="actions"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -102,36 +101,36 @@
 			<td><?php echo $cliente['fantasia']; ?></td>
 			<td><?php echo $cliente['razaosocial']; ?></td>
 			<td><?php echo $cliente['cpfcnpj']; ?></td>
-			<td><?php echo $cliente['cidade_id']; ?></td>
-			<td><?php echo $cliente['subgrupo_id']; ?></td>
-			<td><?php echo $cliente['dtvenda']; ?></td>
+			<td><?php echo DisplayField('Cidade', $cliente['cidade_id']); ?></td>
+			<td><?php echo DisplayField('Subgrupo', $cliente['subgrupo_id']); ?></td>
+			<td><?php echo date("d/m/y", strtotime($cliente['dtvenda'])); ?>&nbsp;</td>
 			<td><?php echo $cliente['endereco']; ?></td>
 			<td><?php echo $cliente['numero']; ?></td>
 			<td><?php echo $cliente['bairro']; ?></td>
 			<td><?php echo $cliente['complemento']; ?></td>
 			<td><?php echo $cliente['ie']; ?></td>
 			<td><?php echo $cliente['senha']; ?></td>
-			<td><?php echo $cliente['dtinstalacao']; ?></td>
+                        <td><?php echo date("d/m/y", strtotime($cliente['dtinstalacao'])); ?>&nbsp;</td>
 			<td><?php echo $cliente['contato']; ?></td>
 			<td><?php echo $cliente['caixas']; ?></td>
 			<td><?php echo $cliente['retaguardas']; ?></td>
 			<td><?php echo $cliente['prioridade']; ?></td>
-			<td><?php echo $cliente['mensalidade']; ?></td>
-			<td><?php echo $cliente['valorvenda']; ?></td>
-			<td><?php echo $cliente['estrutura']; ?></td>
-			<td><?php echo $cliente['obs']; ?></td>
-			<td><?php echo $cliente['user_id']; ?></td>
+			<td><?php echo $this->Number->currency($cliente['mensalidade'], 'BRL'); ?></td>
+                        <td><?php echo $this->Number->currency($cliente['valorvenda'], 'BRL'); ?></td>
+                        <td><?php echo $this->Html->wrapText('A' . $cliente['id'], $cliente['estrutura']); ?>&nbsp;</td>
+			<td><?php echo $this->Html->wrapText('B' . $cliente['id'], $cliente['obs']); ?>&nbsp;</td>
 			<td><?php echo $cliente['telefone']; ?></td>
 			<td><?php echo $cliente['celular']; ?></td>
 			<td><?php echo $cliente['email']; ?></td>
 			<td><?php echo $cliente['cep']; ?></td>
-			<td><?php echo $cliente['unidade_id']; ?></td>
+			<td><?php echo DisplayField('Unidade', $cliente['unidade_id']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'clientes', 'action' => 'delete', $cliente['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $cliente['id'])); ?>
 			</td>
 		</tr>
+
 	<?php endforeach; ?>
 							</tbody>
 						</table><!-- /.table table-striped table-bordered -->

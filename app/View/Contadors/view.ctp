@@ -152,8 +152,8 @@
                                             <td><?php echo $visita['id']; ?></td>
                                             <td><?php echo $this->Time->i18nFormat($visita['data'], $this->Html->__getDateTimeFormatView()); ?></td>
                                             <td><?php echo $this->Time->i18nFormat($visita['nova'], $this->Html->__getDateTimeFormatView()); ?></td>
-                                            <td><?php echo $visita['user_id']; ?></td>
-                                            <td><?php echo $visita['detalhes']; ?></td>
+                                            <td><?php echo DisplayField('User', $visita['user_id']); ?></td>
+                                            <td><?php echo $this->Html->wrapText('V' . $visita['id'], $visita['detalhes']); ?>&nbsp;</td>
                                             <td class="actions">
                                                 <?php echo $this->Html->link(__('View'), array('controller' => 'visitas', 'action' => 'view', $visita['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                                 <?php echo $this->Html->link(__('Edit'), array('controller' => 'visitas', 'action' => 'edit', $visita['id']), array('class' => 'btn btn-default btn-xs')); ?>
@@ -217,30 +217,30 @@
                                             <td><?php echo $cliente['fantasia']; ?></td>
                                             <td><?php echo $cliente['razaosocial']; ?></td>
                                             <td><?php echo $cliente['cpfcnpj']; ?></td>
-                                            <td><?php echo $cliente['cidade_id']; ?></td>
-                                            <td><?php echo $cliente['subgrupo_id']; ?></td>
-                                            <td><?php echo $cliente['dtvenda']; ?></td>
+                                            <td><?php echo DisplayField('Cidade', $cliente['cidade_id']); ?></td>
+                                            <td><?php echo DisplayField('Subgrupo', $cliente['subgrupo_id']); ?></td>
+                                            <td><?php echo date("d/m/y", strtotime($cliente['dtvenda'])); ?>&nbsp;</td>
                                             <td><?php echo $cliente['endereco']; ?></td>
                                             <td><?php echo $cliente['numero']; ?></td>
                                             <td><?php echo $cliente['bairro']; ?></td>
                                             <td><?php echo $cliente['complemento']; ?></td>
                                             <td><?php echo $cliente['ie']; ?></td>
                                             <td><?php echo $cliente['senha']; ?></td>
-                                            <td><?php echo $cliente['dtinstalacao']; ?></td>
+                                            <td><?php echo date("d/m/y", strtotime($cliente['dtinstalacao'])); ?>&nbsp;</td>
                                             <td><?php echo $cliente['contato']; ?></td>
                                             <td><?php echo $cliente['caixas']; ?></td>
                                             <td><?php echo $cliente['retaguardas']; ?></td>
                                             <td><?php echo $cliente['prioridade']; ?></td>
-                                            <td><?php echo $cliente['mensalidade']; ?></td>
-                                            <td><?php echo $cliente['valorvenda']; ?></td>
-                                            <td><?php echo $cliente['estrutura']; ?></td>
-                                            <td><?php echo $cliente['obs']; ?></td>
-                                            <td><?php echo $cliente['user_id']; ?></td>
+                                            <td><?php echo $this->Number->currency($cliente['mensalidade'], 'BRL'); ?></td>
+                                            <td><?php echo $this->Number->currency($cliente['valorvenda'], 'BRL'); ?></td>
+                                            <td><?php echo $this->Html->wrapText('A' . $cliente['id'], $cliente['estrutura']); ?>&nbsp;</td>
+                                            <td><?php echo $this->Html->wrapText('B' . $cliente['id'], $cliente['obs']); ?>&nbsp;</td>
+                                            <td><?php echo DisplayField('User', $cliente['user_id']); ?></td>
                                             <td><?php echo $cliente['telefone']; ?></td>
                                             <td><?php echo $cliente['celular']; ?></td>
                                             <td><?php echo $cliente['email']; ?></td>
                                             <td><?php echo $cliente['cep']; ?></td>
-                                            <td><?php echo $cliente['unidade_id']; ?></td>
+                                            <td><?php echo DisplayField('Unidade', $cliente['unidade_id']); ?></td>
                                             <td class="actions">
                                                     <?php echo $this->Html->link(__('View'), array('controller' => 'clientes', 'action' => 'view', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                                     <?php echo $this->Html->link(__('Edit'), array('controller' => 'clientes', 'action' => 'edit', $cliente['id']), array('class' => 'btn btn-default btn-xs')); ?>
