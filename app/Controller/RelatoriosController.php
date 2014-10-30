@@ -94,10 +94,17 @@ class RelatoriosController extends AppController {
                
                if($campo == $filtro['campo']){
                   switch($tipoFiltro){
+                     case 7:
+                     {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." LIKE '%".$compositeValue[0]."%'";                                   
+                        break;
+                     }   
                      case 8:
                      {
-                        $filtros .= " AND cast(".$campo." as DATE) BETWEEN STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";           
+                        $filtros .= " 
+                        AND cast(".$campo." as DATE) BETWEEN STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";           
                         $filtros .= " AND STR_TO_DATE('".$compositeValue[1]."','%d/%m/%Y') ";
+                        break;
                      }    
                   }  
                }
