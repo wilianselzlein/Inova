@@ -20,31 +20,103 @@
         -moz-transform:scale(2); 
         -webkit-transform:scale(2);
         -o-transform:scale(2);
-    }                 
+    } 
+   .panel-primary{
+      border-color: #228B22;
+   }
+   .panel-primary .panel-heading{
+      background-color: #8FBC8F;
+      border-color: #228B22;
+      color: #fff;
+   }
 </style>
-<div id="page-content" class="col-sm-9">
+<style>
+    #dynamic-list {
+        max-width: 100%;
+    }
+</style>
 
-    <h2><?php echo __('Opções de filtro'); ?></h2>
+<h2><?php echo $relatorio['Relatorio']['nome'];  ?></h2>
 
-    <div class="Visitas form">
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo __('FILTROS_DISPONIVEIS');?></h3>
+            </div>
+            <div class="panel-body">
+                <select id="dynamic-list" class="form-control" multiple>
+                   <?php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>
+                     <?php foreach ($dataset['RelatorioFiltro'] as $filtro): ?>
+                    <!--@foreach (var filtro in Model.RelatorioFiltro.ToList())
+                    {-->
+                        <option value='
+<?php
+   echo "{";
+   echo '"Id":'.'"'.$filtro['id'].'",'; 
+   echo '"Field":'.'"'.$filtro['campo'].'",'; 
+   echo '"Alias":'.'"'.$filtro['campo_alias'].'",'; 
+   echo '"Tipo":'.'"'.$filtro['tipo_filtro'].'"'; 
 
-            <?php echo $this->Form->create('Visita', array('role' => 'form')); ?>
+   echo "}";
+?>'>    
+                           <?php echo $filtro['campo_alias']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                   <?php endforeach; ?>
+                </select>
 
-        <fieldset>
-            <legend>Período</legend>
-                <div class="form-group">
-                    <?php echo $this->Form->input('data_inicial', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('data_final', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
-                </div><!-- .form-group -->            
-                <?php echo $this->Form->submit(__('Abrir'), array('class' => 'btn btn-large btn-primary')); ?>
-                <br>
-                <br>
-        </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo __('FILTROS_SELECIONADOS');?></h3>
+            </div>
+            <div class="panel-body">
+                <form id='formulario' onsubmit='return false;' role='form'>
+                    <div id="dynamic-content">
+                    </div>
+                    <input id="btn-add" type="submit" class="btn btn-default" value="Adicionar filtro">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <?php echo $this->Form->end(); ?>
 
-    </div><!-- /.form -->
 
-</div><!-- /#page-content .col-sm-9 -->
+   <?php echo $this->Form->create('Relatorio',
+                                  array('url' => array('action' => 'download', $relatorio['Relatorio']['id'])
+                                 )); ?>
+    
+
+    <div id="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo __('FILTROS_APLICADOS');?></h3>
+            </div>
+            <div id="da-middle" class="panel-body">
+                <table class="table table-striped">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+
+
+            <button type="submit" class="btn btn-default" formtarget="_blank">
+                <i class="glyphicon glyphicon-search"></i>Visualizar
+            </button>
+
+            
+        </div>
+        <br />
+    </div>
+<?php echo $this->Form->end(); ?>
+<script src="http://pedroescobar.com/_resources/js/PeterXHtmlHelper.js"></script>
+<script src="http://pedroescobar.com/_resources/js/report-beta.js"></script>
+<script src="http://pedroescobar.com/_resources/js/cfg-datepicker.js"></script>

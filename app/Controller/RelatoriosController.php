@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
  */
 class RelatoriosController extends AppController {
 
-    var $uses = array('User');
+    public $uses = array('RelatorioDataset', 'Relatorio');
 
     /**
      * Components
@@ -25,6 +25,8 @@ class RelatoriosController extends AppController {
      *
      * @return void
      */
+    
+    
     public function index() {
         //$this->Servico->recursive = 0;
         $relatorios = array(array('id' => '1', 'name' => 'Relatório de Visitas'),);
@@ -32,65 +34,75 @@ class RelatoriosController extends AppController {
     }
 
     public function filter($id = null) {
+        $this->Relatorio->id = $id;
+		if (!$this->Relatorio->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
 
-        if ($this->request->is('post') || $this->request->is('put')) {
-            $visitas = $this->User->query($this->chooseSelect($id, $this->request->data));
-            $periodo = null;
-            if (isset($this->request->data)) {
-                $periodo = " AND"
-                        . " STR_TO_DATE(DATE_FORMAT(v.data, '%d/%m/%Y'), '%d/%m/%Y')"
-                        . " BETWEEN "
-                        . " STR_TO_DATE('" . $this->request->data['Visita']['data_inicial'] . "', '%d/%m/%Y')"
-                        . " AND "
-                        . " STR_TO_DATE('" . $this->request->data['Visita']['data_final'] . "', '%d/%m/%Y')";
+       $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+		$this->set('relatorio', $this->Relatorio->find('first', $options));
+
+    }
+   
+    public function download($id = null){
+       if ($this->request->is('post') || $this->request->is('put')) {
+          $this->Relatorio->id = $id;
+		    if (!$this->Relatorio->exists($id)) {
+			   throw new NotFoundException(__('The record could not be found.'));
+		    }
+   
+          $options = array('recursive' => '2','conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+          $relatorio = $this->Relatorio->find('first', $options);   
+          $this->set(compact('relatorio'));
+	
+          
+          foreach ($relatorio['RelatorioDataset'] as $dataset){                          
+             $sql = $dataset['sql'];
+             foreach ($dataset['RelatorioFiltro'] as $filtro){    
+               $sql .= $this->appendFilters($filtro);
+             }
+             //#debug PeterX
+             //debug($sql);
+             
+             $queryResult = $this->Relatorio->query($sql);            
+             
+             
+             $this->set($dataset['nome'], $queryResult);  
+             
+             
+             
+             
+          }
+       }
+       $this->layout = '/pdf/default';
+       $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
+    }
+       
+   function appendFilters($filtro){
+      $filtros = "";
+      
+      if (isset($this->request->data)) {             
+            foreach ($this->request->data as $key => $value){                    
+               $compositeKey = explode(",", $key);
+               $compositeValue = explode(",", $value);
+               
+               $tipoFiltro = $compositeKey[0];
+               
+               $campo = $compositeKey[1];    
+               
+               if($campo == $filtro['campo']){
+                  switch($tipoFiltro){
+                     case 8:
+                     {
+                        $filtros .= " AND cast(".$campo." as DATE) BETWEEN STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";           
+                        $filtros .= " AND STR_TO_DATE('".$compositeValue[1]."','%d/%m/%Y') ";
+                     }    
+                  }  
+               }
+               
+                                        
             }
-            $sql2 = "select 
-(select count(v.cliente_id)  from visitas v where 1=1 " . $periodo . ") 'total_clientes_periodo',
-(select count(v.cliente_id)  from visitas v where 1=1) 'total_clientes_visitados',
-(select count(c.id) from clientes c where c.prospect != 'S')'total_clientes_ativos'
-
-from DUAL ";
-            
-           
-            $totais = $this->User->query($sql2);
-
-
-            $this->set(compact('visitas', 'totais'));
-
-            $this->layout = '/pdf/default';
-            $this->render('/Relatorios/1/pdf');
-            //if ($this->Grupo->save($this->request->data)) {
-            //$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-            //$this->redirect(array('action' => 'index'));
-            // } else {
-            //$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            //  }
-        }
-    }
-
-    function chooseSelect($id, $data = null) {
-        $sql = null;
-        switch ($id) {
-            case 1:
-                $sql = 'select visita.data, usuario.username nome, cliente.fantasia, cliente.endereco, cliente.bairro, cidade.nome, cliente.telefone'
-                        . ' from visitas visita'
-                        . ' inner join clientes cliente on cliente.id = visita.cliente_id'
-                        . ' inner join cidades cidade on cidade.id = cliente.cidade_id'
-                        . ' inner join users    usuario on usuario.id = visita.user_id'
-                        . ' where 1 = 1';
-
-                if (isset($data)) {
-                    $sql .= " AND"
-                            . " STR_TO_DATE(DATE_FORMAT(data, '%d/%m/%Y'), '%d/%m/%Y') "
-                            . " BETWEEN"
-                            . " STR_TO_DATE('" . $data['Visita']['data_inicial'] . "', '%d/%m/%Y') "
-                            . " AND"
-                            . " STR_TO_DATE('" . $data['Visita']['data_final'] . "', '%d/%m/%Y')";
-                }
-                $sql .= " order by visita.data";
-                break;
-        }
-        return $sql;
-    }
-
+          }
+      return $filtros;
+   }
 }
