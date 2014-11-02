@@ -52,7 +52,7 @@
 //}
 //debug($relatorioFiltrosDisponiveis);
                ?>
-                <select id="dynamic-list" class="form-control" multiple>
+                <select id="dynamic-list" class="form-control">
                    <!--<php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>-->
                      <?php foreach ($relatorioFiltrosDisponiveis as $filtro): ?>
                     <!--@foreach (var filtro in Model.RelatorioFiltro.ToList())
@@ -124,6 +124,6 @@
         <br />
     </div>
 <?php echo $this->Form->end(); ?>
-<script src="http://pedroescobar.com/_resources/js/PeterXHtmlHelper.js"></script>
-<script src="http://pedroescobar.com/_resources/js/report-beta.js"></script>
-<script src="http://pedroescobar.com/_resources/js/cfg-datepicker.js"></script>
+<script src="/sistema/js/PeterXHtmlHelper.js"></script>
+<script src="/sistema/js/report-beta.js"></script>
+<script src="/sistema/js/cfg-datepicker.js"></script>
