@@ -45,6 +45,28 @@ class HistoricosController extends AppController {
     }
 
     /**
+     * rapido method
+     *
+     * @return void
+     */
+    public function rapido() { 
+        if ($this->request->is('post')) {
+            $usuario_logado = $this->Session->read('Auth.User');
+            $historico['Historico']['chamado_id'] = $this->request->data['Historico']['chamado_id'];
+            $historico['Historico']['user_id'] = $usuario_logado['id'];
+            $historico['Historico']['datainicial'] = Date('Y/m/d H:i:s');
+            $historico['Historico']['datafinal'] = Date('Y/m/d H:i:s');
+            $historico['Historico']['descricao'] = $this->request->data['Historico']['descricao'];
+
+            debug($this->request->data);
+            debug($historico);
+
+            $this->Historico->create();
+            $this->Historico->save($historico);
+        }
+    }
+    
+    /**
      * add method
      *
      * @return void

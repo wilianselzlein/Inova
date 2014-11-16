@@ -74,7 +74,7 @@ class ChamadosController extends AppController {
                                 $situacao = $this->Chamado->Situacao->findById($this->request->data['value']);
 				echo $situacao['Situacao']['nome'];
                                 
-								$usuario_logado = $this->Session->read('Auth.User');
+                                $usuario_logado = $this->Session->read('Auth.User');
                                 $historico['chamado_id'] = $this->request->data['id'];
                                 $historico['user_id'] = $usuario_logado['id'];
                                 $historico['datainicial'] = Date('Y.m.d H.i.s');

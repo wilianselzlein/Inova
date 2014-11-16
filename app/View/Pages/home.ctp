@@ -145,7 +145,6 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
 
 
 <div class="container">
-
     <!-------->
     <div id="content">
 
@@ -218,13 +217,15 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                     <td>
                                         <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
                                     </td>
-                                    <td>
+                                    <td align="right">
                                         <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                                        
                                         <a class="btn btn-default btn-xs">
                                             <div class="edit" id="situacao<?php echo $task['Chamado']['id']; ?>">
                                                 <?php echo $task['Situacao']['nome']; ?>
                                             </div>
                                         </a>
+                                        
                                         <?php 
                                         echo $this->Ajax->editor(
                                             'situacao' . $task['Chamado']['id'], 
@@ -241,8 +242,65 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
                                                 'data' => $situacoes,
                                                 'tooltip'   => 'Clique para alterar a situação'
                                                 )
-                                        );
+                                        ); 
                                         ?>
+                                        <a class="btn btn-default btn-xs" id="adicionar<?php echo $task['Chamado']['id']; ?>">Adicionar</a>
+                                        <script type="text/javascript">
+                                                $(document).ready(function(){
+
+                                                $('#historico<?php echo $task['Chamado']['id']; ?>').hide();
+
+                                                $('#adicionar<?php echo $task['Chamado']['id']; ?>').click(function(){
+                                                    $('#segundo<?php echo $task['Chamado']['id']; ?>').html(''); 
+                                                    $('#historico<?php echo $task['Chamado']['id']; ?>').show('slow');
+
+                                                });
+
+                                                $('#fechar<?php echo $task['Chamado']['id']; ?>').click(function(){
+
+                                                    $('#historico<?php echo $task['Chamado']['id']; ?>').hide('slow');
+                                                    
+                                                })
+
+                                                });
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr id="historico<?php echo $task['Chamado']['id']; ?>" style="padding: 0">
+                                    <td style="padding: 0; border-top: 0px">
+                                        <img id="loading<?php echo $task['Chamado']['id']; ?>" src="/sistema/img/load.gif" style="display: none"/>
+                                    </td>
+                                    <td style="padding: 0; border-top: 0px">
+                                        <div id="primeiro<?php echo $task['Chamado']['id']; ?>"></div>
+                                    </td>
+                                    <td style="padding: 0; border-top: 0px">
+                                        <p id="segundo<?php echo $task['Chamado']['id']; ?>"></p>
+                                    </td>
+                                    <td align="right" style="padding: 0; border-top: 0px">
+                                        <?php echo __('Historico'); ?>: &nbsp;
+                                    </td>
+                                    <td colspan="3" align="right" style="padding: 0">
+                                        <?php
+                                            echo $this->Form->create('Historico');
+                                            echo $this->Form->input('descricao', array('label' => '', 'type' => 'text', 'style' => 'width: 100%'));
+                                            echo $this->Form->input('chamado_id', array('label' => '', 'type' => 'hidden', 'value' => $task['Chamado']['id']));
+                                            echo $this->Ajax->submit('Incluir', array(
+                                                'url'=> array('controller'=>'historicos', 'action'=>'rapido'), 
+                                                'update' => array('primeiro' . $task['Chamado']['id'], 'segundo' . $task['Chamado']['id']),
+                                                //'condition' => '$("#texto").val() == $("#texto2").val()',
+                                                'confirm' => 'Confirma inclusao desse historico?',
+                                                'indicator' => 'loading' . $task['Chamado']['id'],
+                                                'before' => '$("#segundo' . $task['Chamado']['id'] . '").html("Aguarde...")',
+                                                'after' => 
+                                                   '$("#historico' . $task['Chamado']['id'] . '").hide("slow");' .
+                                                   '$("#loading' . $task['Chamado']['id'] . '").hide("slow");',
+                                                'class' => 'btn btn-default btn-xs' 
+                                                ));
+                                            echo $this->Form->end();
+                                        ?>
+                                    </td>
+                                    <td align="right" style="padding-top: 0px; padding-right: 8px; border-top: 0px">
+                                        <a class="btn btn-default btn-xs" id="fechar<?php echo $task['Chamado']['id']; ?>">Fechar</a>
                                     </td>
                                 </tr>
                             <?php endif; ?>
@@ -426,21 +484,21 @@ if (count($recado_mural) > 0) { ?>
 <?php 
      foreach ($recado_mural as $recado) {
         $this->Mural->desenha($recado);
-            echo $this->Ajax->editor(
-                'recado' . $recado['Mural']['id'], 
-                array( 
-                    'controller' => 'Murals', 
-                    'action' => 'Ler',
-                ), 
-                array(
-                    'indicator' => '<img src="/sistema/img/load.gif">',
-                    'submit' => '<img src="/sistema/img/bullet_disk.png">',
-                    'style' => 'inherit',
-                    'submitdata' => array('id'=> h($recado['Mural']['id'])),
-                    'data' => '',
-                    'tooltip'   => 'Clique para responder o recado'
-                    )
-            );
+                echo $this->Ajax->editor(
+                    'recado' . $recado['Mural']['id'], 
+                    array( 
+                        'controller' => 'Murals', 
+                        'action' => 'Ler',
+                    ), 
+                    array(
+                        'indicator' => '<img src="/sistema/img/load.gif">',
+                        'submit' => '<img src="/sistema/img/bullet_disk.png">',
+                        'style' => 'inherit',
+                        'submitdata' => array('id'=> h($recado['Mural']['id'])),
+                        'data' => '',
+                        'tooltip'   => 'Clique para responder o recado'
+                        )
+                );
     } ?>
     </div>
 <?php } ?>
