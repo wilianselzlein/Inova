@@ -30,6 +30,9 @@ class ArquivosController extends AppController {
                                 'Arquivo.datahora' => array('operator' => 'LIKE'),
                                 'Arquivo.descricao' => array('operator' => 'LIKE'),
                                 'Arquivo.caminho' => array('operator' => 'LIKE'),
+                                'Arquivo.tamanho' => array('operator' => 'LIKE'),
+                                'Arquivo.nome' => array('operator' => 'LIKE'),
+                                'Arquivo.tipo' => array('operator' => 'LIKE'),
                                 'Cliente.Fantasia' => array('operator' => 'LIKE'),
                                 'user.UserName' => array('operator' => 'LIKE')
                                 )

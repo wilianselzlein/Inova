@@ -53,6 +53,24 @@
                                 &nbsp;
                             </td>
                         </tr>
+                        <tr>		<td><strong><?php echo __('Nome'); ?></strong></td>
+                            <td>
+                                <?php echo h($arquivo['Arquivo']['nome']); ?>
+                                &nbsp;
+                            </td>
+                        </tr>		
+                        <tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
+                            <td>
+                                <?php echo h($arquivo['Arquivo']['tipo']); ?>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>		<td><strong><?php echo __('Tamanho'); ?></strong></td>
+                            <td>
+                                <?php echo h($arquivo['Arquivo']['tamanho']); ?> b
+                                &nbsp;
+                            </td>
+                        </tr>
                         <tr>		<td><strong><?php echo __('Caminho'); ?></strong></td>
                             <td>
                                 <?php echo h($arquivo['Arquivo']['caminho']); ?>

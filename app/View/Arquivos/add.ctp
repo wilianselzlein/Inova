@@ -21,7 +21,7 @@
 
         <div class="arquivos form">
 
-            <?php echo $this->Form->create('Arquivo', array('role' => 'form')); ?>
+            <?php echo $this->Form->create('Arquivo', array('role' => 'form', 'type' => 'file')); ?>
 
             <fieldset>
 
@@ -35,7 +35,7 @@
                     <?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('caminho', array('class' => 'form-control', 'type' => 'file')); ?>
+                    <?php echo $this->Form->file('arq', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>

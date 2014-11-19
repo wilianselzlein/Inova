@@ -29,7 +29,10 @@
                             <th><?php echo $this->Paginator->sort('datahora'); ?></th>
                             <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('user_id'); ?></th>
-                            <th><?php echo $this->Paginator->sort('caminho'); ?></th>
+                            <th><?php echo $this->Paginator->sort('nome'); ?></th>
+                            <th><?php echo $this->Paginator->sort('tipo'); ?></th>
+                            <th><?php echo $this->Paginator->sort('tamanho'); ?></th>
+                            <?php //echo $this->Paginator->sort('caminho'); ?>
                             <th><?php echo $this->Paginator->sort('descricao'); ?></th>
                             <th class="actions"><?php echo __('Actions'); ?></th>
                         </tr>
@@ -47,9 +50,12 @@
                                 <td>
                                     <?php echo $this->Html->link($arquivo['User']['username'], array('controller' => 'users', 'action' => 'view', $arquivo['User']['id'])); ?>
                                 </td>
-                                <td><?php echo h($arquivo['Arquivo']['caminho']); ?>&nbsp;</td>
+                                <td><a href="/sistema/arqs/<?php echo basename($arquivo['Arquivo']['caminho']); ?>"><?php echo h($arquivo['Arquivo']['nome']); ?></a>&nbsp;</td>
+                                <td><?php echo h($arquivo['Arquivo']['tipo']); ?>&nbsp;</td>
+                                <td><?php echo h($arquivo['Arquivo']['tamanho']); ?>b&nbsp;</td>
+                                <?php //echo h($arquivo['Arquivo']['caminho']); ?>
                                 <td><?php echo h($arquivo['Arquivo']['descricao']); ?>&nbsp;</td>
-                                
+
                                 <td class="actions">
                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $arquivo['Arquivo']['id']), array('class' => 'btn btn-default btn-xs')); ?>
                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $arquivo['Arquivo']['id']), array('class' => 'btn btn-default btn-xs')); ?>

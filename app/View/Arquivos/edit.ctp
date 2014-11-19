@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->                
-                                <div class="form-group">
+                <div class="form-group">
                     <?php echo $this->Form->input('datahora', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
@@ -37,9 +37,6 @@
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('caminho', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
