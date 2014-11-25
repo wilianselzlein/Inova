@@ -124,6 +124,8 @@
         <br />
     </div>
 <?php echo $this->Form->end(); ?>
-<script src="/sistema/js/PeterXHtmlHelper.js"></script>
-<script src="/sistema/js/report-beta.js"></script>
-<script src="/sistema/js/cfg-datepicker.js"></script>
+<?php 
+	echo $this->Html->script("PeterXHtmlHelper"); 
+	echo $this->Html->script("report-beta"); 
+	echo $this->Html->script("cfg-datepicker"); 
+?>
