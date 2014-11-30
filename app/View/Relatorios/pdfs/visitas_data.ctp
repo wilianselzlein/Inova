@@ -65,45 +65,46 @@ $html = <<<EOD
 		<table cellspacing="0" cellpadding="1" border="0">
 	        <thead>
 	    		<tr class="teste">
-                            <th class="table-header">DATA</th>
                             <th class="table-header">CLIENTE</th>
                             <th class="table-header">RUA</th>
                             <th class="table-header">BAIRRO</th>
                             <th class="table-header">CIDADE</th>        
                             <th class="table-header">FONE</th>        
 	    		</tr>
+                        <tr>
+                            <td colspan="5" class="line"></td>
+                        </tr>
 	        </thead>
 EOD;
-for ($index = 0; $index < count($visitas); $index++) {
+$data = null;   
+for ($index = 0; $index < count($visitas_data); $index++) {
+
+    if($data != $visitas_data[$index]['0']['data'])
+    {
+        $data = $visitas_data[$index]['0']['data'];
+       
+        $html.='  <tr>'
+                .   '<td colspan="5" class="group-band">'.$data.'</td>'
+                .'</tr>';
+    }
     $html .= '<tr>'
-            .   '<td>'.$visitas[$index]['visita']['data'].'</td>'
-            .   '<td>'.$visitas[$index]['cliente']['fantasia'].'</td>'
-            .   '<td>'.$visitas[$index]['cliente']['endereco'].'</td>'
-            .   '<td>'.$visitas[$index]['cliente']['bairro'].'</td>'
-            .   '<td>'.$visitas[$index]['cidade']['nome'].'</td>'            
-            .   '<td>'.$visitas[$index]['cliente']['telefone'].'</td>'
+            .   '<td>'.$visitas_data[$index]['cliente']['fantasia'].'</td>'
+            .   '<td>'.$visitas_data[$index]['cliente']['endereco'].'</td>'
+            .   '<td>'.$visitas_data[$index]['cliente']['bairro'].'</td>'
+            .   '<td>'.$visitas_data[$index]['cidade']['nome'].'</td>'            
+            .   '<td>'.$visitas_data[$index]['cliente']['telefone'].'</td>'
             . '</tr>';
     
 }
-$total_periodo=$total_clientes_periodo[0][0]['total_clientes_periodo'];
-$total_visitados=$total_clientes_visitados[0][0]['total_clientes_visitados'];
-$total_ativos=$total_clientes_ativos[0][0]['total_clientes_ativos'];
+$total_periodo= $total_visitas_periodo[0][0]['total_visitas_periodo'];
 
 $html .= '<tr><td colspan="5"></td></tr>'
         .'<tr>'
         .'<td colspan="5"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE CLIENTES NO PERÍODO:</td>'
+        .   '<td colspan="2" class="totais-label">TOTAL DE VISITAS NO PERÍODO:</td>'
         .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE CLIENTES VISITADOS:</td>'
-        .   '<td colspan="2" class="totais-label">'.$total_visitados.'</td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE CLIENTES ATIVOS:</td>'
-        .   '<td colspan="2" class="totais-label">'.$total_ativos.'</td>'
         .'</tr>'
         ;
 $html .= '</table>';

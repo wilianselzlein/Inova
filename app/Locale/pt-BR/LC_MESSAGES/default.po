@@ -300,3 +300,36 @@ msgstr "Módulos"
 
 msgid "Modulo"
 msgstr "Módulo"
+
+msgid "Relatorio"
+msgstr "Relatório"
+
+msgid "Relatorios"
+msgstr "Relatórios"
+
+msgid "RelatorioFiltro"
+msgstr "Filtro de Relatório"
+
+msgid "RelatorioFiltros"
+msgstr "Filtros de Relatório"
+
+msgid "Relatorio Dataset"
+msgstr "Conjunto de Dados"
+
+msgid "RelatorioDataset"
+msgstr "Conjunto de Dados"
+
+msgid "RelatorioDatasets"
+msgstr "Conjuntos de Dados"
+
+msgid "relatorio_dataset_id"
+msgstr "Conjunto de Dados"
+
+msgid "campo"
+msgstr "Campo"
+
+msgid "campo_alias"
+msgstr "Campo Alias"
+
+msgid "tipo_filtro"
+msgstr "Tipo Filtro"

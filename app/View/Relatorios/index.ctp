@@ -23,14 +23,29 @@
             -o-transform:scale(1.3);
         }                 
     </style>
+            <div>
+                <div>
 <?php
-
-foreach ($relatorios as $relatorio): ?>
-    <div class="dashboard-icon">
-    <?php echo $this->Html->link($this->html->image('icons/report.png', array('title'=>$relatorio['name'])), array('action' => 'filter', $relatorio['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
-
-        <span>Relatório de Visitas</spann>
-    </div>
-<?php endforeach; ?>
-    
+    $tipo = '';
+    foreach ($relatorios as $relatorio): ?>
+        <?php if (! strcmp($tipo, $relatorio['Relatorio']['tipo']) == 0) { ?>
+                </div>
+            </div>
+            <div class="panel panel-default">            
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $relatorio['Relatorio']['tipo'];?></h3>
+                </div>
+                <div class="panel-body">
+        <?php } ?>
+        <div class="dashboard-icon">
+        <?php 
+            echo $this->Html->link($this->html->image('icons/report.png', array('title'=>$relatorio['Relatorio']['nome'])), array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
+            <span><?php echo $relatorio['Relatorio']['nome'];?></span>
+        </div>           
+        <?php 
+        $tipo = $relatorio['Relatorio']['tipo'];
+    endforeach; 
+        ?>
+                </div>
+            </div>
 </div><!-- /#page-container .row-fluid -->

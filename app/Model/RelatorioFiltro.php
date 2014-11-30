@@ -2,8 +2,8 @@
 App::uses('AppModel', 'Model');
 
 class RelatorioFiltro extends AppModel {   
-   public $useDbConfig = 'inova';   
-   public $useTable = 'relatorios_filtros';
+        public $useDbConfig = 'inova';   
+        public $useTable = 'relatorios_filtros';
    
 	public $displayField = 'campo_alias';
 
@@ -13,20 +13,21 @@ class RelatorioFiltro extends AppModel {
 				'rule' => array('notEmpty')			
 			),
 		),
-      'campo_alias' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty')			
-			),
-		),
-      'tipo_filtro' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty')			
-			),
-         'numeric' => array(
-				'rule' => array('numeric')
-		))
+                'campo_alias' => array(
+                                  'notEmpty' => array(
+                                          'rule' => array('notEmpty')			
+                                  ),
+                          ),
+                'tipo_filtro' => array(
+                                  'notEmpty' => array(
+                                          'rule' => array('notEmpty')			
+                                  ),
+                'numeric' => array(
+                                          'rule' => array('numeric')
+                )
+            )
 	);
-  
+
   public $belongsTo = array(
 		'RelatorioDataset' => array(
 			'className' => 'RelatorioDataset',

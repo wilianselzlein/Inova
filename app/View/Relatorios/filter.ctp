@@ -42,7 +42,7 @@
     <div class="col-xs-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo __('FILTROS_DISPONIVEIS');?></h3>
+                <h3 class="panel-title"><?php echo __('Filtros Disponiveis:');?></h3>
             </div>
             <div class="panel-body">
                <?php
@@ -63,8 +63,7 @@
    echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'].'",'; 
    echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
    echo '"Alias":'.'"'.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
-   echo '"Tipo":'.'"'.$filtro['RelatorioFiltro']['tipo_filtro'].'"'; 
-
+   echo '"Tipo":'.'"'.$filtro['RelatorioFiltro']['tipo_filtro'].'"';
    echo "}";
 ?>'>    
                            <?php echo utf8_encode($filtro['RelatorioFiltro']['campo_alias']); ?>
@@ -79,7 +78,7 @@
     <div class="col-xs-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo __('FILTROS_SELECIONADOS');?></h3>
+                <h3 class="panel-title"><?php echo __('Filtro Selecionado:');?></h3>
             </div>
             <div class="panel-body">
                 <form id='formulario' onsubmit='return false;' role='form'>
@@ -102,7 +101,7 @@
     <div id="row">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo __('FILTROS_APLICADOS');?></h3>
+                <h3 class="panel-title"><?php echo __('Filtros Aplicados:');?></h3>
             </div>
             <div id="da-middle" class="panel-body">
                 <table class="table table-striped">
@@ -111,18 +110,19 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+
+    <button type="submit" class="btn btn-default" formtarget="_blank">
+        <i class="glyphicon glyphicon-search"></i>Visualizar
+    </button>
+    <?php /*<div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-
-
             <button type="submit" class="btn btn-default" formtarget="_blank">
                 <i class="glyphicon glyphicon-search"></i>Visualizar
-            </button>
-
-            
+            </button>            
         </div>
-        <br />
-    </div>
+        <br/>
+    </div>*/?>
+
 <?php echo $this->Form->end(); ?>
 <?php 
 	echo $this->Html->script("PeterXHtmlHelper"); 

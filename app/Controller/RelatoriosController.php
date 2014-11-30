@@ -26,24 +26,41 @@ class RelatoriosController extends AppController {
      * @return void
      */
     
-    
     public function index() {
-        //$this->Servico->recursive = 0;
-        $relatorios = array(array('id' => '1', 'name' => 'Relatório de Visitas'),);
+        $options = array('order' => array('Relatorio.Tipo', 'Relatorio.Id'));
+        $relatorios = $this->Relatorio->find('all', $options);
         $this->set(compact('relatorios'));
     }
 
+/**
+ * configurar method
+ *
+ * @return void
+ */
+	public function configurar() {
+                $this->Filter->addFilters(
+                        array('filter1' => array('OR' => array(                           
+                                'Relatorio.id' => array('operator' => 'LIKE'),
+                                'Relatorio.nome' => array('operator' => 'LIKE')
+                                )
+                            )
+                        )
+                );
+                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+                $this->Relatorio->recursive = 0;
+		$this->set('relatorios', $this->paginate());
+	}
+
     public function filter($id = null) {
         $this->Relatorio->id = $id;
-		if (!$this->Relatorio->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.'));
-		}
-
-       $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
-		$this->set('relatorio', $this->Relatorio->find('first', $options));       
-      $this->set('relatorioFiltrosDisponiveis', 
-                 $this->RelatorioFiltro->find('all', array('group'=>array('RelatorioFiltro.campo')))
-                );
+            if (!$this->Relatorio->exists($id)) {
+                throw new NotFoundException(__('The record could not be found.'));
+            }
+                $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+		$this->set('relatorio', $this->Relatorio->find('first', $options));
+                $this->set('relatorioFiltrosDisponiveis', 
+                    $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 'group'=>array('RelatorioFiltro.campo')))
+            );
     }
    
     public function download($id = null){
@@ -63,16 +80,12 @@ class RelatoriosController extends AppController {
              foreach ($dataset['RelatorioFiltro'] as $filtro){    
                $sql .= $this->appendFilters($filtro);
              }
-             //#debug PeterX
-             //debug($sql);
+             
+             $sql .= ' ' . $dataset['order'];
              
              $queryResult = $this->Relatorio->query($sql);            
              
-             
              $this->set($dataset['nome'], $queryResult);  
-             
-             
-             
              
           }
        }
@@ -114,4 +127,47 @@ class RelatoriosController extends AppController {
           }
       return $filtros;
    }
+   
+    /**
+     * add method
+     *
+     * @return void
+     */
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->Relatorio->create();
+            if ($this->Relatorio->save($this->request->data)) {
+                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->redirect(array('action' => 'configurar'));
+            } else {
+                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+            }
+        }
+    }  
+    
+    /**
+     * edit method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function edit($id = null) {
+        $this->Relatorio->id = $id;
+        if (!$this->Relatorio->exists($id)) {
+            throw new NotFoundException(__('The record could not be found.?>'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Relatorio->save($this->request->data)) {
+                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->redirect(array('action' => 'configurar'));
+            } else {
+                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+            }
+        } else {
+            $options = array('conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+            $this->request->data = $this->Relatorio->find('first', $options);
+        }
+    }
+
 }
