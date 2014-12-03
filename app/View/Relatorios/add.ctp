@@ -6,7 +6,7 @@
 		<div class="actions">
 		
 			<ul class="list-group">
-				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Relatorios'), array('action' => 'index')); ?></li>
+				<li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Relatorios'), array('action' => 'configurar')); ?></li>
 			</ul><!-- /.list-group -->
 		
 		</div><!-- /.actions -->

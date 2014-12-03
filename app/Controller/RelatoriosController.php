@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
  */
 class RelatoriosController extends AppController {
 
-    public $uses = array('RelatorioDataset', 'RelatorioFiltro', 'Relatorio');
+    public $uses = array('Relatorio', 'RelatorioDataset', 'RelatorioFiltro');
 
     /**
      * Components
@@ -41,7 +41,9 @@ class RelatoriosController extends AppController {
                 $this->Filter->addFilters(
                         array('filter1' => array('OR' => array(                           
                                 'Relatorio.id' => array('operator' => 'LIKE'),
-                                'Relatorio.nome' => array('operator' => 'LIKE')
+                                'Relatorio.nome' => array('operator' => 'LIKE'),
+                                'Relatorio.tipo' => array('operator' => 'LIKE'),
+                                'Relatorio.arquivo' => array('operator' => 'LIKE')
                                 )
                             )
                         )
@@ -169,5 +171,45 @@ class RelatoriosController extends AppController {
             $this->request->data = $this->Relatorio->find('first', $options);
         }
     }
+    
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Relatorio->id = $id;
+		if (!$this->Relatorio->exists()) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		if ($this->Relatorio->delete()) {
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'configurar'));
+		}
+		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+		$this->redirect(array('action' => 'configurar'));
+	}
+        
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Relatorio->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$options = array('conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+		$this->set('relatorio', $this->Relatorio->find('first', $options));
+	}
 
 }

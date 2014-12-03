@@ -7,6 +7,8 @@
 		
 			<ul class="list-group">
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('RelatorioDataset'), array('action' => 'add'), array('class' => '')); ?></li>
+                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Relatorios'), array('action' => 'configurar', 'controller' => 'Relatorios'), array('class' => '')); ?></li>
+                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('RelatorioFiltros'), array('action' => 'index', 'controller' => 'RelatorioFiltros'), array('class' => '')); ?></li>
 			</ul><!-- /.list-group -->
 			
 		</div><!-- /.actions -->
@@ -35,7 +37,9 @@
 <?php foreach ($relatoriodatasets as $dataset): ?>
 	<tr>
 		<td><?php echo h($dataset['RelatorioDataset']['id']); ?>&nbsp;</td>
-		<td><?php echo h($dataset['RelatorioDataset']['relatorio_id']); ?>&nbsp;</td>
+		<td>
+                    <?php echo $this->Html->link($dataset['Relatorio']['nome'], array('controller' => 'RelatorioDatasets', 'action' => 'view', $dataset['Relatorio']['id'])); ?>
+		</td>
                 <td><?php echo h($dataset['RelatorioDataset']['nome']); ?>&nbsp;</td>
                 <td><?php echo h($dataset['RelatorioDataset']['sql']); ?>&nbsp;</td>
                 <td><?php echo h($dataset['RelatorioDataset']['order']); ?>&nbsp;</td>

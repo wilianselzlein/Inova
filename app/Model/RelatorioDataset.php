@@ -13,7 +13,7 @@ class RelatorioDataset extends AppModel {
 				'rule' => array('notEmpty')			
 			),
 		),
-      'sql' => array(
+                'sql' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty')			
 			),

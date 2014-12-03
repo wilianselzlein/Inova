@@ -2,8 +2,21 @@
 App::uses('AppModel', 'Model');
 
 class Relatorio extends AppModel {   
-   public $useDbConfig = 'inova';   
+
+    public $useTable = 'relatorios';
+/**
+ * Use database config
+ *
+ * @var string
+ */
+	public $useDbConfig = 'inova';
+ 
    
+/**
+ * Display field
+ *
+ * @var string
+ */
 	public $displayField = 'nome';
 
 	public $validate = array(
@@ -24,11 +37,11 @@ class Relatorio extends AppModel {
                       ),
 	);
 	
-	public $hasMany = array(		
+        public $hasMany = array(		
               'RelatorioDataset' => array(
 			'className' => 'RelatorioDataset',
 			'foreignKey' => 'relatorio_id',
-			'dependent' => true			
+			'dependent' => true
 		)
 	);
 

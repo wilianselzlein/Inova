@@ -24,7 +24,7 @@
 				<fieldset>
 
 					<div class="form-group">
-						<?php echo $this->Form->input('relatorio_dataset_id', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('relatorio_dataset_id', array('class' => 'form-control', 'options' => $relatoriodatasets)); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('campo', array('class' => 'form-control')); ?>

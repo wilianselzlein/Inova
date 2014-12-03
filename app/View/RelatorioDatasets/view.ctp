@@ -33,7 +33,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('relatorio_id'); ?></strong></td>
 		<td>
-			<?php echo h($relatoriodataset['RelatorioDataset']['relatorio_id']); ?>
+			<?php echo $this->Html->link($relatoriodataset['Relatorio']['nome'], array('controller' => 'relatorios', 'action' => 'view', $relatoriodataset['Relatorio']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('nome'); ?></strong></td>

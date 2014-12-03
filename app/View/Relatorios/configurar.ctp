@@ -6,10 +6,10 @@
 		
 			<ul class="list-group">
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('Relatorio'), array('action' => 'add'), array('class' => '')); ?></li>
-                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('RelatorioFiltro'), array('action' => 'index', 'controller' => 'RelatorioFiltros'), array('class' => '')); ?></li>
+                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('RelatorioFiltros'), array('action' => 'index', 'controller' => 'RelatorioFiltros'), array('class' => '')); ?></li>
                                 <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('RelatorioDatasets'), array('action' => 'index', 'controller' => 'RelatorioDatasets'), array('class' => '')); ?></li>
 			</ul><!-- /.list-group -->
-			
+
 		</div><!-- /.actions -->
 		
 	</div><!-- /#sidebar .col-sm-3 -->

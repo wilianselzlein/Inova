@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Model', 'RelatorioDataSet');
+
 /**
  * RelatorioFiltros Controller
  *
@@ -56,6 +58,9 @@ class RelatorioFiltrosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
+                $model = new RelatorioDataset();
+                $relatoriodatasets = $model->findAsCombo();
+		$this->set(compact('relatoriodatasets'));
 	}
 
 /**
@@ -81,6 +86,10 @@ class RelatorioFiltrosController extends AppController {
 			$options = array('conditions' => array('RelatorioFiltro.' . $this->RelatorioFiltro->primaryKey => $id));
 			$this->request->data = $this->RelatorioFiltro->find('first', $options);
 		}
+                
+                $RelatorioDatasets = new RelatorioDataset();
+                $relatoriodatasets = $RelatorioDatasets->findAsCombo();
+		$this->set(compact('relatoriodatasets'));
 	}
 
 /**

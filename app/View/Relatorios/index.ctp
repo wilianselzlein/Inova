@@ -48,4 +48,12 @@
         ?>
                 </div>
             </div>
+    <div class="col-sm-3" style="padding-left: 0px">
+    <div class="actions">
+        <ul class="list-group">
+                <li class="list-group-item"><?php echo $this->Html->link(__('Configurar').' '.__('Relatorios'), array('action' => 'configurar')); ?></li>
+        </ul><!-- /.list-group -->
+    </div><!-- /.actions -->
+</div>
+
 </div><!-- /#page-container .row-fluid -->

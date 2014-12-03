@@ -33,7 +33,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('relatorio_dataset_id'); ?></strong></td>
 		<td>
-			<?php echo h($relatoriofiltro['RelatorioFiltro']['relatorio_dataset_id']); ?>
+			<?php echo $this->Html->link($relatoriofiltro['RelatorioDataset']['nome'], array('controller' => 'RelatorioDatasets', 'action' => 'view', $relatoriofiltro['RelatorioDataset']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('campo'); ?></strong></td>
@@ -47,7 +47,7 @@
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('tipo_filtro'); ?></strong></td>
-		<td>
+		<td>    
 			<?php echo h($relatoriofiltro['RelatorioFiltro']['tipo_filtro']); ?>
 			&nbsp;
 		</td>

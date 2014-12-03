@@ -7,6 +7,8 @@
 		
 			<ul class="list-group">
 				<li class="list-group-item"><?php echo $this->Html->link(__('New').' '.__('RelatorioFiltro'), array('action' => 'add'), array('class' => '')); ?></li>
+                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('Relatorios'), array('action' => 'configurar', 'controller' => 'Relatorios'), array('class' => '')); ?></li>
+                                <li class="list-group-item"><?php echo $this->Html->link(__('List').' '.__('RelatorioDatasets'), array('action' => 'index', 'controller' => 'RelatorioDatasets'), array('class' => '')); ?></li>
 			</ul><!-- /.list-group -->
 			
 		</div><!-- /.actions -->
@@ -35,7 +37,9 @@
 <?php foreach ($relatoriofiltros as $filtro): ?>
 	<tr>
 		<td><?php echo h($filtro['RelatorioFiltro']['id']); ?>&nbsp;</td>
-		<td><?php echo h($filtro['RelatorioFiltro']['relatorio_dataset_id']); ?>&nbsp;</td>
+		<td>
+                    <?php echo $this->Html->link($filtro['RelatorioDataset']['nome'], array('controller' => 'RelatorioDatasets', 'action' => 'view', $filtro['RelatorioDataset']['id'])); ?>
+		</td>
                 <td><?php echo h($filtro['RelatorioFiltro']['campo']); ?>&nbsp;</td>
                 <td><?php echo h($filtro['RelatorioFiltro']['campo_alias']); ?>&nbsp;</td>
                 <td><?php echo h($filtro['RelatorioFiltro']['tipo_filtro']); ?>&nbsp;</td>
