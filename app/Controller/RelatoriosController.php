@@ -208,7 +208,7 @@ class RelatoriosController extends AppController {
 		if (!$this->Relatorio->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
 		$this->set('relatorio', $this->Relatorio->find('first', $options));
 	}
 

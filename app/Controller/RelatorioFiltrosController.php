@@ -58,8 +58,8 @@ class RelatorioFiltrosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-                $model = new RelatorioDataset();
-                $relatoriodatasets = $model->findAsCombo();
+                $RelatorioDatasets = ClassRegistry::init('RelatorioDataset');
+                $relatoriodatasets = $RelatorioDatasets->findAsCombo();
 		$this->set(compact('relatoriodatasets'));
 	}
 

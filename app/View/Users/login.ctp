@@ -1,13 +1,9 @@
 <div class="users form">
 <?php echo $this->Session->flash(__('auth'), array('element' => 'flash/warning')); ?>
-
 <?php echo $this->Form->create('User', array('role' => 'form'));?>
 <div id="geral">
-   
-    <div class="login-box">
- 
+    <div class="login-box"> 
         <?php echo $this->Html->image('logo.png', array('class' =>'logo'));?><br>
-        <br>
         <br>
         <fieldset>
             <legend>
@@ -24,6 +20,5 @@
             <br>
     </div>
     </div>
-    <br>
     <br>
 </div>
