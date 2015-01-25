@@ -43,6 +43,7 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Cadastros')?><b class="caret"></b></a>
 				<ul class="dropdown-menu">
+					<li><?php echo $this->Html->link(__('Ações'), 	array('controller' => 'acaos',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Checklists'), 	array('controller' => 'checklists',     'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Cidades'), 	array('controller' => 'cidades', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
@@ -62,8 +63,9 @@
                         <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Administrativa')?><b class="caret"></b></a>
 				<ul class="dropdown-menu">
-                                        <li><?php echo $this->Html->link(__('Arquivos'), 	array('controller' => 'arquivos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
-                            		<li><?php echo $this->Html->link(__('Relatórios'), 	array('controller' => 'relatorios', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+                    <li><?php echo $this->Html->link(__('Arquivos'), 	array('controller' => 'arquivos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+                    <li><?php echo $this->Html->link(__('Equipamentos'), 	array('controller' => 'equipamentos', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
+             		<li><?php echo $this->Html->link(__('Relatórios'), 	array('controller' => 'relatorios', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 					<li><?php echo $this->Html->link(__('Users'), 	array('controller' => 'users', 	'action' => 'index'), array('onclick' =>"__loading();",'escape' => false)) ?></li>
 				</ul>
                         </li>		

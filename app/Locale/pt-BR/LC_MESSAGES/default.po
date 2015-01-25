@@ -333,3 +333,12 @@ msgstr "Campo Alias"
 
 msgid "tipo_filtro"
 msgstr "Tipo Filtro"
+
+msgid "Acaos"
+msgstr "Ações"
+
+msgid "Acao"
+msgstr "Ação"
+
+msgid "Observacao"
+msgstr "Observação"
