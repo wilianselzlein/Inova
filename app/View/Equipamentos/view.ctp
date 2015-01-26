@@ -33,6 +33,11 @@
 			<?php echo h($equipamento['Equipamento']['id']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Nome'); ?></strong></td>
+		<td>
+			<?php echo h($equipamento['Equipamento']['nome']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Acao'); ?></strong></td>
 		<td>
 			<?php echo h($equipamento['Acao']['nome']); ?>

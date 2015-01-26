@@ -24,7 +24,9 @@
 			<?php echo $this->Form->create('Equipamento', array('role' => 'form')); ?>
 
 				<fieldset>
-
+					<div class="form-group">
+						<?php echo $this->Form->input('nome', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('acao_id', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->

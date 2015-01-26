@@ -27,7 +27,7 @@ class Equipamento extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'cliente_id' => array(
+		'nome' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',

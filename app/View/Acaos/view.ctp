@@ -56,6 +56,7 @@
 							<thead>
 								<tr>
 											<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('nome'); ?></th>
 		<th><?php echo __('Cliente'); ?></th>
 		<th><?php echo __('Contato'); ?></th>
 		<th><?php echo __('Telefone'); ?></th>
@@ -71,6 +72,7 @@
 									<?php foreach ($acao['Equipamento'] as $equipamento): ?>
 		<tr>
 			<td><?php echo $equipamento['id']; ?></td>
+			<td><?php echo $equipamento['nome']; ?></td>
 			<td><?php echo $this->Html->link($equipamento['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $equipamento['cliente_id']), array('class' => '')); ?></td>
 			<td><?php echo $equipamento['contato']; ?></td>
 			<td><?php echo $equipamento['telefone']; ?></td>

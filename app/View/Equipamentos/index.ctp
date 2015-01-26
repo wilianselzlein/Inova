@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th><?php echo $this->Paginator->sort('id'); ?></th>
+                            <th><?php echo $this->Paginator->sort('nome'); ?></th>
                             <th><?php echo $this->Paginator->sort('acao_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('contato'); ?></th>
@@ -42,6 +43,7 @@
 <?php foreach ($equipamentos as $equipamento): ?>
     <tr>
         <td><?php echo h($equipamento['Equipamento']['id']); ?>&nbsp;</td>
+        <td><?php echo h($equipamento['Equipamento']['nome']); ?>&nbsp;</td>
         <td><?php echo $this->Html->link($equipamento['Acao']['nome'], array('controller' => 'acaos', 'action' => 'view', $equipamento['Equipamento']['acao_id']), array('class' => '')); ?></td>
         <td><?php echo $this->Html->link($equipamento['Cliente']['razaosocial'], array('controller' => 'clientes', 'action' => 'view', $equipamento['Equipamento']['cliente_id']), array('class' => '')); ?></td>
         <td><?php echo h($equipamento['Equipamento']['contato']); ?>&nbsp;</td>

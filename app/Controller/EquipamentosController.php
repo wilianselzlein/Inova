@@ -27,7 +27,7 @@ class EquipamentosController extends AppController {
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(                           
                         'Equipamento.id' => array('operator' => 'LIKE'),
-                        'Equipamento.descricao' => array('operator' => 'LIKE'),
+                        'Equipamento.nome' => array('operator' => 'LIKE'),
                         'Equipamento.contato' => array('operator' => 'LIKE'),
                         'Equipamento.fornecedor' => array('operator' => 'LIKE'),
                         'Equipamento.observacao' => array('operator' => 'LIKE'),
