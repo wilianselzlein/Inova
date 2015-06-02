@@ -1,9 +1,11 @@
 <?php 
-echo $this->Javascript->link('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+echo $this->Javascript->link('ui.core.js');
+echo $this->Javascript->link('ui.resizable.js');
 echo $this->Javascript->link('fullcalendar.min.js');
+echo $this->Javascript->link('ui.draggable.js');
 
 echo $this->Javascript->link('moment.min.js');
-echo $this->Javascript->link('http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
+echo $this->Javascript->link('jquery.min.js');
 echo $this->Javascript->link('jquery-ui.custom.min.js');
 echo $this->Javascript->link('fullcalendar.min.js');
 
@@ -13,7 +15,7 @@ echo $this->html->css('fullcalendar');
 
    $(document).ready(function() {
       $('#calendar').fullCalendar({
-         events: "/visitas/feed",
+         events: "/sistema/visitas/feed",
          //theme: true,
          header: {
             left: 'prev,next today',
@@ -26,7 +28,7 @@ echo $this->html->css('fullcalendar');
             if (dayDelta>=0) {
                dayDelta = "+"+dayDelta;
             }
-            $.post("/visitas/move/"+event.id+"/"+dayDelta+"/");
+            $.post("/sistema/visitas/move/"+event.id+"/"+dayDelta+"/");
          },
          dayClick: function(date, jsEvent, view) {     
             var st = date.format();
@@ -38,7 +40,7 @@ echo $this->html->css('fullcalendar');
             //alert('Clicked on: ' + st);
             $("#eventdata").show();
             //$("#eventdata").load("/Inova/visitas/add2/"+ date.format());
-            $("#eventdata").load("/visitas/add2/"+ st + "/",
+            $("#eventdata").load("/sistema/visitas/add2/"+ st + "/",
                                  function(response, status, xhr){
                $("#eventdata").html(response);
             });
@@ -96,7 +98,7 @@ echo $this->html->css('fullcalendar');
 </script>
 
 <?php 
-//echo $this->Html->script("libs/jquery-2.1.3.min", array('inline'=>false)); 
+echo $this->html->script("libs/jquery-latest", array('inline'=>false)); 
 echo $this->Javascript->link('jquery.jeditable.mini'); 
 echo $this->Html->script('libs/jquery.bpopup.min');  
 echo $this->Html->script('wrapped-text-popup-1.0'); 
@@ -237,8 +239,8 @@ echo $this->Ajax->editor(
       'action' => 'situacao',
    ), 
    array(
-      'indicator' => '<img src="/img/load.gif">',
-      'submit' => '<img src="/img/bullet_disk.png">',
+      'indicator' => '<img src="/sistema/img/load.gif">',
+      'submit' => '<img src="/sistema/img/bullet_disk.png">',
       'type' => 'select',
       'style' => 'inherit',
       'submitdata' => array('id'=> h($task['Chamado']['id'])),
@@ -271,7 +273,7 @@ echo $this->Ajax->editor(
                </tr>
                <tr id="historico<?php echo $task['Chamado']['id']; ?>" style="padding: 0">
                   <td style="padding: 0; border-top: 0px">
-                     <img id="loading<?php echo $task['Chamado']['id']; ?>" src="/img/load.gif" style="display: none"/>
+                     <img id="loading<?php echo $task['Chamado']['id']; ?>" src="/sistema/img/load.gif" style="display: none"/>
                   </td>
                   <td style="padding: 0; border-top: 0px">
                      <div id="primeiro<?php echo $task['Chamado']['id']; ?>"></div>
@@ -494,8 +496,8 @@ if (count($recado_mural) > 0) { ?>
                                         'action' => 'Ler',
                                      ), 
                                      array(
-                                        'indicator' => '<img src="/img/load.gif">',
-                                        'submit' => '<img src="/img/bullet_disk.png">',
+                                        'indicator' => '<img src="/sistema/img/load.gif">',
+                                        'submit' => '<img src="/sistema/img/bullet_disk.png">',
                                         'style' => 'inherit',
                                         'submitdata' => array('id'=> h($recado['Mural']['id'])),
                                         'data' => '',

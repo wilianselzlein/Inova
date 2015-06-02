@@ -62,25 +62,14 @@ echo $this->fetch('script');
 echo $this->Js->writeBuffer(); // note: write cached scripts 
       ?>
    </head>
-   <body>
-
-      <div id="wrapper">
-
-
-              
-         <?php echo $this->element('menu/top_menu');?>
-         <div id="page-wrapper">
-            <div  class="container-fluid">
-               <?php echo $this->Session->flash(); ?>
-               <?php echo $this->fetch('content'); ?>
-            </div><!-- /#content .container -->
-         </div>
-         <div id="footer" class="container">
-            <?php //Silence is golden ?>
-         </div><!-- /#footer .container -->
-
-      </div><!-- /#main-container -->		
-      <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
-   </body>
-
+<body>
+	<div id="container">
+		
+		<div class="container-fluid">                
+				<?php echo $this->fetch('content'); ?>
+            </div>
+		
+	</div>
+	
+</body>
 </html>
