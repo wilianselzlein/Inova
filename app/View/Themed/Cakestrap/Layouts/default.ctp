@@ -38,6 +38,7 @@ echo $this->Html->css('datepicker');
 echo $this->Html->css('bootstrap-datetimepicker');
 echo $this->Html->css('inova');
 echo $this->Html->css('cores');
+echo $this->Html->css('font-awesome.min');
 
 
 echo $this->fetch('css');

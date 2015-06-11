@@ -38,49 +38,51 @@
       <?php echo $this->element('filtros'); ?>
       <div class="table-responsive">         
          <table class="table table-bordered table-hover table-condensed">
-               <thead>
-                  <tr>
-                     <th><?php echo $this->Paginator->sort('id'); ?></th>
-                     <th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
-                     <th><?php echo $this->Paginator->sort('descricao'); ?></th>
-                     <th><?php echo $this->Paginator->sort('contato'); ?></th>
-                     <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
-                     <th><?php echo $this->Paginator->sort('prioridade'); ?></th>
-                     <th><?php echo $this->Paginator->sort('problema_id'); ?></th>
-                     <th colspan="2"><?php echo $this->Paginator->sort('situacao_id'); ?></th>
-                     <th><?php echo $this->Paginator->sort('user_id'); ?></th>
-                     <th><?php echo $this->Paginator->sort('previsaoexecucao'); ?></th>
-                     <th class="actions"><?php echo __('Actions'); ?></th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <?php foreach ($chamados as $chamado): ?>
-                  <tr>
-                     <td><?php echo h($chamado['Chamado']['id']); ?>&nbsp;</td>
-                     <td>
-                        <?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
-                     </td>
-                     <td><?php echo $this->Html->wrapText($chamado['Chamado']['id'], $chamado['Chamado']['descricao']); ?>&nbsp;</td>
-                     <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
-                     <td>
-                        <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
-                     </td>
-                     <td><?php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id'])); ?></td>
-                     <td>
-                        <?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id'])); ?>
-                     </td>
-                     <td>
+            <thead>
+               <tr>
+                  <th><?php echo $this->Paginator->sort('id'); ?></th>
+                  <th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
+                  <th><?php echo $this->Paginator->sort('descricao'); ?></th>
+                  <th><?php echo $this->Paginator->sort('contato'); ?></th>
+                  <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
+                  <th><?php echo $this->Paginator->sort('prioridade'); ?></th>
+                  <th><?php echo $this->Paginator->sort('problema_id'); ?></th>
+                  <th colspan="2"><?php echo $this->Paginator->sort('situacao_id'); ?></th>
+                  <th><?php echo $this->Paginator->sort('user_id'); ?></th>
+                  <th><?php echo $this->Paginator->sort('previsaoexecucao'); ?></th>
+                  <th class="actions"><?php echo __('Actions'); ?></th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php foreach ($chamados as $chamado): ?>
+               <tr>
+                  <td><?php echo h($chamado['Chamado']['id']); ?>&nbsp;</td>
+                  <td>
+                     <?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
+                  </td>
+                  <td title="<?php echo h($chamado['Chamado']['descricao']);?>"><?php echo $this->Text->excerpt($chamado['Chamado']['descricao'], 'method', 30, '...'); ?></td>
+                  <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
+                  <td>
+                     <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
+                  </td>
+                  <td><nobr><?php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id'])); ?></nobr></td>
+                  <td>
+                     <?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id'])); ?>
+                  </td>
+                  <td>
+                     <nobr>
                         <div class="edit" id="situacao<?php echo $chamado['Chamado']['id']; ?>">
                            <?php echo $chamado['Situacao']['nome']; ?>
                         </div>
+
                         <?php
 echo $this->Ajax->editor(
    'situacao' . $chamado['Chamado']['id'], array(
       'controller' => 'Chamados',
       'action' => 'situacao',
    ), array(
-      'indicator' => '<img src="/sistema/img/load.gif">',
-      'submit' => '<img src="/sistema/img/bullet_disk.png">',
+      'indicator' => '<i class="fa fa-spinner"></i>',
+      'submit' => '<i class="fa fa-save"></i>',
       'type' => 'select',
       'style' => 'inherit',
       'submitdata' => array('id' => h($chamado['Chamado']['id'])),
@@ -89,34 +91,37 @@ echo $this->Ajax->editor(
    )
 );
                         ?>
-                     </td>
-                     <td>
-                        <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs')); ?> 
-                     </td>
-                     <td>
-                        <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
-                     </td>
-                     <td><?php
+                     </nobr>
+                  </td>
+                  <td>
+                     <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs', 'title'=>__('Situação'))); ?> 
+                  </td>
+                  <td>
+                     <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
+                  </td>
+                  <td><?php
 if (isset($chamado['Chamado']['previsaoexecucao'])) {
    echo $this->Time->i18nFormat($chamado['Chamado']['previsaoexecucao'], $this->Html->__getDateTimeFormatView());
 }
-                        ?>&nbsp;</td>
+                     ?>&nbsp;</td>
 
-                     <td class="actions">
-                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                  <td class="actions">
+                     <nobr>
+                        <?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('View'), 'escape'=>false)); ?>
+                        <?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('Edit'), 'escape'=>false)); ?>
                         <?php
 $user = $this->Session->read('Auth.User');
 if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) {
                         ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
+                        <?php echo $this->Form->postLink('<i class="fa fa-delete"></i>', array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape'=>false), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
                         <?php } ?>                                    
-                        <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
-                     </td>
-                  </tr>
-                  <?php endforeach; ?>
-               </tbody>
-            </table>
+                        <?php echo $this->Html->link('<i class="fa fa-history"></i>', array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('Histórico'), 'escape'=>false)); ?>
+                     </nobr>
+                  </td>
+               </tr>
+               <?php endforeach; ?>
+            </tbody>
+         </table>
       </div><!-- /.table-responsive -->
 
    </div>
