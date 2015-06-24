@@ -14,7 +14,7 @@ $user_id = $usuario_logado['id'];
    </div>
    <ul class="nav navbar-nav navbar-left">
       <li>
-      <?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '. __('Chamado'),      array('action' => 'add'), array('escape'=>false)); ?>
+      <?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '. __('Chamado'),      array('controller'=>'chamados','action' => 'add'), array('escape'=>false)); ?>
       </li>
    </ul>
    <ul class="nav navbar-nav navbar-right">
