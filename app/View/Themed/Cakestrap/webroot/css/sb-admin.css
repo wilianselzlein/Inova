@@ -45,3 +45,8 @@ margin-right: 15px !important;
 padding: 0px;
 overflow: hidden;
 }
+
+.table td.actions{
+   white-space: nowrap;
+   vertical-align: middle;
+}

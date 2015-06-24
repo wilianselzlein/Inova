@@ -34,6 +34,9 @@
 					<div class="form-group">
 						<?php echo $this->Form->input('password', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
+               <div class="form-group">
+						<?php echo $this->Form->input('nickname', array('class' => 'form-control')); ?>
+					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('role', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->

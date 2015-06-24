@@ -109,8 +109,19 @@ class AppModel extends Model {
         return true;
     }
 
-    public function findAsCombo($order = 'asc', $conditions = array()) {
-        $list = $this->find('list', array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
+    public function findAsCombo($order = 'asc', $conditions = array(), $fields=array()) {
+         if(!isset($fields)){
+            $fields = $this->displayField;
+         }
+       if(!isset($order) || ($order=='asc' || $order=='desc')){
+          $order = $this->displayField . ' ' . $order;
+       }
+          
+        $list = $this->find('list', array(
+                                          'fields' => $fields,
+                                          'order' => $order, 
+                                          'conditions' => $conditions)
+                           );
         return $list;
     }
 

@@ -39,6 +39,7 @@ echo $this->Html->css('bootstrap-datetimepicker');
 echo $this->Html->css('inova');
 echo $this->Html->css('cores');
 echo $this->Html->css('font-awesome.min');
+echo $this->Html->css('bootstrap-combobox');
 
 
 echo $this->fetch('css');
@@ -58,6 +59,8 @@ echo $this->Html->script('datepicker');
 echo $this->Html->script('datetimepicker');
 echo $this->Html->script('mascaras');
 echo $this->Html->script('wrapped-text-popup-1.0');
+echo $this->Html->script('bootstrap-combobox');
+
 
 echo $this->fetch('script');
 echo $this->Js->writeBuffer(); // note: write cached scripts 
@@ -68,7 +71,7 @@ echo $this->Js->writeBuffer(); // note: write cached scripts
       <div id="wrapper">
 
 
-              
+
          <?php echo $this->element('menu/top_menu');?>
          <div id="page-wrapper">
             <div  class="container-fluid">
@@ -81,7 +84,10 @@ echo $this->Js->writeBuffer(); // note: write cached scripts
          </div><!-- /#footer .container -->
 
       </div><!-- /#main-container -->		
-      <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
+      <script>
+         $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});
+         $(document).ready(function(){ $('.combobox').combobox(); });
+      </script>
    </body>
 
 </html>

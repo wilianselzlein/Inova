@@ -115,7 +115,7 @@ class ChamadosController extends AppController {
                 )
                 )
         );
-        //$this->Filter->setPaginate('order', 'Cliente.RazaoSocial ASC'); // optional
+        $this->Filter->setPaginate('order', 'Chamado.id Desc'); // optional
         //$this->Filter->setPaginate('limit', 10); // optional
         $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
@@ -176,11 +176,11 @@ class ChamadosController extends AppController {
             $this->set(compact('selected'));
         }
         $tipos = $this->Chamado->Tipo->findAsCombo();
-        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"');
+        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"', 'fantasiarazaosocial');
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();
-        $users = $this->Chamado->User->findAsCombo();
+        $users = $this->Chamado->User->findAsCombo('asc', 'ativo=1', 'nickname');
         $usuario_logado = $this->Session->read('Auth.User');     
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
@@ -210,11 +210,11 @@ class ChamadosController extends AppController {
             $this->request->data = $this->Chamado->find('first', $options);
         }
         $tipos = $this->Chamado->Tipo->findAsCombo();
-        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"');
+        $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"', 'fantasiarazaosocial');
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();
-        $users = $this->Chamado->User->findAsCombo();
+        $users = $this->Chamado->User->findAsCombo('asc', 'ativo=1', 'nickname');
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
 

@@ -37,31 +37,31 @@
                      <?php 
                         if(isset($selected))
                         {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control', 'selected'=> $selected )); 
+                            echo $this->Form->input('cliente_id', array('class' => 'form-control combobox', 'selected'=> $selected)); 
                         }else
                         {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control' )); 
+                            echo $this->Form->input('cliente_id', array('class' => 'form-control combobox','empty'=>true)); 
                         }                    
                     ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('tipo_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('tipo_id', array('class' => 'form-control combobox','empty'=>true)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('descricao', array('class' => 'form-control' )); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 
                 <div class="form-group">
-                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control combobox','empty'=>true)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('problema_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('problema_id', array('class' => 'form-control combobox','empty'=>true)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('situacao_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('situacao_id', array('class' => 'form-control combobox','empty'=>true)); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php 
@@ -75,7 +75,7 @@
         } else
     $usuario = $usuario_logado['id'];*/
                         $usuario_logado = $this->Session->read('Auth.User');
-                        echo $this->Form->input('user_id', array('class' => 'form-control')); //, 'selected' => $usuario ?>
+                        echo $this->Form->input('user_id', array('class' => 'form-control combobox','empty'=>true)); //, 'selected' => $usuario ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
@@ -91,6 +91,7 @@
     </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
+
 <?php
 $this->Js->get('#ChamadoClienteId')->event('change', 
 	$this->Js->request(array(
@@ -108,3 +109,15 @@ $this->Js->get('#ChamadoClienteId')->event('change',
 		))
 	);
 ?>
+<?php $this->Html->scriptStart();?>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+   
+   
+ 
+   alert('Teste');
+   
+});
+</script>
+<?php $this->Html->scriptEnd();?>

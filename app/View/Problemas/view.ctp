@@ -77,7 +77,7 @@
 			<td><?php echo $chamado['contato']; ?></td>
 			<td><?php echo DisplayField('Cliente', $chamado['cliente_id']); ?></td>
 			<td><?php echo $chamado['prioridade']; ?></td>
-			<td><?php echo DisplayField('problema', $chamado['problema_id']); ?></td>
+			<td><?php echo DisplayField('Problema', $chamado['problema_id']); ?></td>
 			<td><?php echo DisplayField('Situacao', $chamado['situacao_id']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'chamados', 'action' => 'view', $chamado['id']), array('class' => 'btn btn-default btn-xs')); ?>

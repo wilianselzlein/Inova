@@ -1,9 +1,11 @@
 <?php 
+//echo $this->Html->script('libs/jquery-2.1.3.min');
 echo $this->Javascript->link('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+echo $this->Javascript->link('moment.min.js');
 echo $this->Javascript->link('fullcalendar.min.js');
 
-echo $this->Javascript->link('moment.min.js');
-echo $this->Javascript->link('http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js');
+
+
 echo $this->Javascript->link('jquery-ui.custom.min.js');
 echo $this->Javascript->link('fullcalendar.min.js');
 
@@ -128,13 +130,23 @@ $model = ClassRegistry::init('Situacao');
 
 if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_logado['role']) == 'root')) {
    $conditions = array('order' => array('Chamado.id DESC'),                        
-                       'limit' => 50,
+                       //'limit' => 100,
+                       'conditions'=>array(
+                         'not' => array( 'Chamado.situacao_id' => '3')
+                          //'or' => array(
+                          //                                'Chamado.status' => $status,
+                          //                                'Chamado.status' => 0
+                       )//)
                       );
 } else {
-   $conditions = array('conditions' => array('Chamado.user_id' => $usuario_logado['id']), 
-                       'order' => array('Chamado.id DESC'),                        
-                       'limit' => 50,
-                      );
+   $conditions = array( 
+      'order' => array('Chamado.id DESC'),                        
+      //'limit' => 100,
+      'conditions' => 
+      array('Chamado.user_id' => $usuario_logado['id'],
+            'not' => array( 'Chamado.situacao_id' => '3')
+           ),
+   );
 }
 
 $situacoes_data = ClassRegistry::init($model_tabs)->find('all', array('recursive' => 0));
@@ -144,13 +156,19 @@ for ($i = 0; $i < count($situacoes_data); $i++){
 
 $tab_list = ClassRegistry::init($model_tabs)->find('all');
 $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions);
+//debug($tab_content);
 ?>
 
 
-<div class="container">
-   <!-------->
-   <div id="content">
 
+
+
+
+
+<!--- TAREFAS  ----->
+
+<div class="container">   
+   <div id="content">
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
          <?php foreach ($tab_list as $tab): ?>
          <li <?php echo ($tab === reset($tab_list)) ? 'class="active"' : ""; ?>>
@@ -167,7 +185,7 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
       <div id="my-tab-content" class="tab-content">
          <?php foreach ($tab_list as $tab): ?>
          <div class="tab-pane <?php echo ($tab === reset($tab_list)) ? 'active' : ''; ?>" id="<?php echo 'tab' . $tab[$model_tabs]['id'] ?>">            
-            <table class="table">  
+            <table class="table table-bordered table-hover table-condensed">  
                <thead>
                   <tr>
                      <th>ID</th>
@@ -218,14 +236,16 @@ if (count($hist) > 0)
                      <?php echo $this->Html->link($task['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $task['Problema']['id'])) ?>
                   </td>
                   <td>
-                     <?php echo $this->Html->link($task['User']['username'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
+                     <nowrap>
+                        <?php echo $this->Html->link($task['User']['nickname'], array('controller' => 'users', 'action' => 'view', $task['User']['id'])) ?>
+                     </nowrap>
                   </td>
-                  <td align="right">
-                     <?php echo $this->Html->link(__('Histórico'), array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs')); ?>
+                  <td class="actions" align="right">
+                     <?php echo $this->Html->link('<i class="fa fa-history"></i>', array('controller' => 'historicos', 'action' => 'add', $task['Chamado']['id']), array('class' => 'btn btn-default btn-xs', 'title'=>__('Histórico'), 'escape'=>false)); ?>
 
-                     <a class="btn btn-default btn-xs">
+                     <a class="btn btn-default btn-xs" >
                         <div class="edit" id="situacao<?php echo $task['Chamado']['id']; ?>">
-                           <?php echo $task['Situacao']['nome']; ?>
+                           <i class="fa fa-flag"></i><?php echo " ".$task['Situacao']['nome']; ?>
                         </div>
                      </a>
 
@@ -247,7 +267,7 @@ echo $this->Ajax->editor(
    )
 ); 
                      ?>
-                     <a class="btn btn-default btn-xs" id="adicionar<?php echo $task['Chamado']['id']; ?>">Adicionar</a>
+                     <a class="btn btn-default btn-xs" title="Adicionar" id="adicionar<?php echo $task['Chamado']['id']; ?>"><i class="fa fa-plus-circle"></i></a>
                      <script type="text/javascript">
                         $(document).ready(function(){
 
@@ -470,12 +490,18 @@ if (count($hist) > 0)
    </div>
 
 
-   <script type="text/javascript">
-      jQuery(document).ready(function($) {
-         $('#tabs').tab();
-      });
-   </script>    
+   
 </div> <!-- container -->
+
+
+
+
+
+
+
+
+
+
 
 <?php
 $recado_mural = ClassRegistry::init('Mural')->find('all', array('limit' => 5, 'conditions' => array('Mural.user_id = ' => $usuario_logado['id'], 'Mural.Lido' => false), 'order' => 'Mural.data desc'));
@@ -540,11 +566,12 @@ if ((strtolower($usuario_logado['role']) == 'admin') ||
    echo '</div>';
       ?>
    </div>
-</div> <?php
-}
+</div> <?php } ?>
 
-if ((strtolower($usuario_logado['role']) == 'admin') || 
-    (strtolower($usuario_logado['role']) == 'root')) { ?>
+<!--
+// IMPLEMENTACAO FUTURA
+
+
 <div class="recados">
    <h4><span class="glyphicon glyphicon-stats"></span>&nbsp;Gráficos</h4>
 </div>
@@ -560,6 +587,11 @@ if ((strtolower($usuario_logado['role']) == 'admin') ||
       </tr>
    </table>
 </div>
-<?php
-}
-?>
+
+-->
+<script type="text/javascript">
+      jQuery(document).ready(function($) {
+         $('#tabs').tab();
+      });
+   </script>    
+

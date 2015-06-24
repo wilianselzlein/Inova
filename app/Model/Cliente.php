@@ -14,120 +14,124 @@ App::uses('AppModel', 'Model');
  */
 class Cliente extends AppModel {
 
-    /**
+   /**
      * Use database config
      *
      * @var string
      */
-    public $useDbConfig = 'inova';
+   public $useDbConfig = 'inova';
 
-    /**
+   /**
      * Display field
      *
      * @var string
      */
-    public $displayField = 'fantasia';
-    
-    public $dateFields = array('dtvenda','dtinstalacao' );
-    
-    public $monetaryFields = array('valorvenda', 'mensalidade');
-    /**
+   public $displayField = 'fantasia';
+
+   public $dateFields = array('dtvenda','dtinstalacao' );
+
+   public $monetaryFields = array('valorvenda', 'mensalidade');
+
+   public $virtualFields = array(
+      'fantasiarazaosocial' => "CONCAT(Cliente.fantasia, ' -- [', Cliente.razaosocial, '] ')"
+   );
+   /**
      * Validation rules
      *
      * @var array
      */
-    public $validate = array(
-        'fantasia' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+   public $validate = array(
+      'fantasia' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'razaosocial' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+         ),
+      ),
+      'razaosocial' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'cpfcnpj' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+         ),
+      ),
+      'cpfcnpj' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'cidade_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
+         ),
+      ),
+      'cidade_id' => array(
+         'numeric' => array(
+            'rule' => array('numeric'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'subgrupo_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
+         ),
+      ),
+      'subgrupo_id' => array(
+         'numeric' => array(
+            'rule' => array('numeric'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        //'dtvenda' => array(
-        //    'date' => array(
-         //       'rule' => array('date'),
-            //'message' => 'Your custom message here',
-            //'allowEmpty' => false,
-            //'required' => false,
-            //'last' => false, // Stop validation after this rule
-            //'on' => 'create', // Limit validation to 'create' or 'update' operations
+         ),
+      ),
+      //'dtvenda' => array(
+      //    'date' => array(
+      //       'rule' => array('date'),
+      //'message' => 'Your custom message here',
+      //'allowEmpty' => false,
+      //'required' => false,
+      //'last' => false, // Stop validation after this rule
+      //'on' => 'create', // Limit validation to 'create' or 'update' operations
       //      ),
       //  ),
-        'endereco' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+      'endereco' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => true
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'numero' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+         ),
+      ),
+      'numero' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-        'bairro' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
+         ),
+      ),
+      'bairro' => array(
+         'notEmpty' => array(
+            'rule' => array('notEmpty'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ), 
-        /*'dtinstalacao' => array(
+         ),
+      ), 
+      /*'dtinstalacao' => array(
             'date' => array(
                 'rule' => array('date'),
             //'message' => 'Your custom message here',
@@ -207,16 +211,16 @@ class Cliente extends AppModel {
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
         ), */
-        'user_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
+      'user_id' => array(
+         'numeric' => array(
+            'rule' => array('numeric'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),/*
+         ),
+      ),/*
         'telefone' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),
@@ -227,109 +231,109 @@ class Cliente extends AppModel {
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
             ),
         ), */
-        'unidade_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
+      'unidade_id' => array(
+         'numeric' => array(
+            'rule' => array('numeric'),
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
-    );
+         ),
+      ),
+   );
 
-    //The Associations below have been created with all possible keys, those that are not needed can be removed
+   //The Associations below have been created with all possible keys, those that are not needed can be removed
 
-    /**
+   /**
      * belongsTo associations
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Cidade' => array(
-            'className' => 'Cidade',
-            'foreignKey' => 'cidade_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        'Sistema' => array(
-            'className' => 'Sistema',
-            'foreignKey' => 'sistema_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        'Subgrupo' => array(
-            'className' => 'Subgrupo',
-            'foreignKey' => 'subgrupo_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'user_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        'Unidade' => array(
-            'className' => 'Unidade',
-            'foreignKey' => 'unidade_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        'Contador' => array(
-            'className' => 'Contador',
-            'foreignKey' => 'contador_id',
-            'conditions' => '', //Contador.prospect = "C"
-            'fields' => '',
-            'order' => ''
-        )
-    );
+   public $belongsTo = array(
+      'Cidade' => array(
+         'className' => 'Cidade',
+         'foreignKey' => 'cidade_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+      'Sistema' => array(
+         'className' => 'Sistema',
+         'foreignKey' => 'sistema_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+      'Subgrupo' => array(
+         'className' => 'Subgrupo',
+         'foreignKey' => 'subgrupo_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+      'User' => array(
+         'className' => 'User',
+         'foreignKey' => 'user_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+      'Unidade' => array(
+         'className' => 'Unidade',
+         'foreignKey' => 'unidade_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+      'Contador' => array(
+         'className' => 'Contador',
+         'foreignKey' => 'contador_id',
+         'conditions' => '', //Contador.prospect = "C"
+         'fields' => '',
+         'order' => ''
+      )
+   );
 
-    /**
+   /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Chamado' => array(
-            'className' => 'Chamado',
-            'foreignKey' => 'cliente_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
-    );
+   public $hasMany = array(
+      'Chamado' => array(
+         'className' => 'Chamado',
+         'foreignKey' => 'cliente_id',
+         'dependent' => false,
+         'conditions' => '',
+         'fields' => '',
+         'order' => 'id desc',
+         'limit' => '',
+         'offset' => '',
+         'exclusive' => '',
+         'finderQuery' => '',
+         'counterQuery' => ''
+      )
+   );
 
-    /**
+   /**
      * hasAndBelongsToMany associations
      *
      * @var array
      */
-    public $hasAndBelongsToMany = array(
-        'Modulo' => array(
-            'className' => 'Modulo',
-            'joinTable' => 'clientes_modulos',
-            'foreignKey' => 'cliente_id',
-            'associationForeignKey' => 'modulo_id',
-            'unique' => 'keepExisting',
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'finderQuery' => '',
-        )
-    );
+   public $hasAndBelongsToMany = array(
+      'Modulo' => array(
+         'className' => 'Modulo',
+         'joinTable' => 'clientes_modulos',
+         'foreignKey' => 'cliente_id',
+         'associationForeignKey' => 'modulo_id',
+         'unique' => 'keepExisting',
+         'conditions' => '',
+         'fields' => '',
+         'order' => '',
+         'limit' => '',
+         'offset' => '',
+         'finderQuery' => '',
+      )
+   );
 }

@@ -12,7 +12,11 @@ $user_id = $usuario_logado['id'];
       </button>
       <?php echo $this->Html->Link($this->Html->Image('300-logo_white.png', array('height'=>'30px')), array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand', 'escape'=>false)); ?>
    </div>
-
+   <ul class="nav navbar-nav navbar-left">
+      <li>
+      <?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '. __('Chamado'),      array('action' => 'add'), array('escape'=>false)); ?>
+      </li>
+   </ul>
    <ul class="nav navbar-nav navbar-right">
       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
          <img id="gravatar-img" src="//www.gravatar.com/avatar/<?php echo md5( strtolower( trim( $this->Session->read('Auth.User.email') ) ) ) ?>?s=30" >

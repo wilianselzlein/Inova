@@ -38,7 +38,7 @@
                     <?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('tipo_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('tipo_id', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('descricao', array('class' => 'form-control')); ?>
@@ -47,19 +47,19 @@
                     <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('cliente_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('cliente_id', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('problema_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('problema_id', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('situacao_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('situacao_id', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('user_id', array('class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('user_id', array('class' => 'form-control combobox')); ?>
                 </div><!-- .form-group -->
                 <div class="form-group">
                     <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>

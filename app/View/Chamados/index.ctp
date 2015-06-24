@@ -1,4 +1,16 @@
 
+<style>
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd;
+    -webkit-overflow-scrolling: touch;
+}
+
+</style>
 <?php echo $this->Javascript->link('jquery.jeditable.mini'); ?>
 
 
@@ -7,7 +19,7 @@
 
    <div class="panel-heading">
       <h3>
-         <span class="fa fa-map-marker"></span> <?php echo __('Chamados'); ?>                
+         <span class="fa fa-life-ring"></span> <?php echo __('Chamados'); ?>                
          <div class="btn-group pull-right">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions');?><span class="caret"></span>
@@ -35,17 +47,17 @@
    </div>
 
    <div class="panel-body">
-      <?php echo $this->element('filtros'); ?>
+      <?php echo $this->element('pesquisa/simples'); ?>
       <div class="table-responsive">         
          <table class="table table-bordered table-hover table-condensed">
             <thead>
                <tr>
                   <th><?php echo $this->Paginator->sort('id'); ?></th>
-                  <th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
+                  <!--<th><php echo $this->Paginator->sort('tipo_id'); ></th>-->
                   <th><?php echo $this->Paginator->sort('descricao'); ?></th>
                   <th><?php echo $this->Paginator->sort('contato'); ?></th>
                   <th><?php echo $this->Paginator->sort('cliente_id'); ?></th>
-                  <th><?php echo $this->Paginator->sort('prioridade'); ?></th>
+                  <!--<th><php echo $this->Paginator->sort('prioridade'); ></th>-->
                   <th><?php echo $this->Paginator->sort('problema_id'); ?></th>
                   <th colspan="2"><?php echo $this->Paginator->sort('situacao_id'); ?></th>
                   <th><?php echo $this->Paginator->sort('user_id'); ?></th>
@@ -57,15 +69,18 @@
                <?php foreach ($chamados as $chamado): ?>
                <tr>
                   <td><?php echo h($chamado['Chamado']['id']); ?>&nbsp;</td>
+                 <!--
                   <td>
-                     <?php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
+                     <php echo $this->Html->link($chamado['Tipo']['nome'], array('controller' => 'tipos', 'action' => 'view', $chamado['Tipo']['id'])); ?>
                   </td>
+-->
                   <td title="<?php echo h($chamado['Chamado']['descricao']);?>"><?php echo $this->Text->excerpt($chamado['Chamado']['descricao'], 'method', 30, '...'); ?></td>
                   <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
                   <td>
                      <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
                   </td>
-                  <td><nobr><?php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id'])); ?></nobr></td>
+                  <!--
+                  <td><nobr><php echo $this->Html->link($chamado['Prioridade']['nome'], array('controller' => 'subgrupos', 'action' => 'view', $chamado['Prioridade']['id'])); ?></nobr></td>-->
                   <td>
                      <?php echo $this->Html->link($chamado['Problema']['nome'], array('controller' => 'problemas', 'action' => 'view', $chamado['Problema']['id'])); ?>
                   </td>
@@ -97,7 +112,7 @@ echo $this->Ajax->editor(
                      <?php echo $this->Html->link('Sit.', array('controller' => 'situacaos', 'action' => 'view', $chamado['Situacao']['id']), array('class' => 'btn btn-default btn-xs', 'title'=>__('Situação'))); ?> 
                   </td>
                   <td>
-                     <?php echo $this->Html->link($chamado['User']['username'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
+                     <?php echo $this->Html->link($chamado['User']['nickname'], array('controller' => 'users', 'action' => 'view', $chamado['User']['id'])); ?>
                   </td>
                   <td><?php
 if (isset($chamado['Chamado']['previsaoexecucao'])) {
@@ -113,7 +128,7 @@ if (isset($chamado['Chamado']['previsaoexecucao'])) {
 $user = $this->Session->read('Auth.User');
 if ((strtolower($user['role']) == 'root') || (strtolower($user['role']) == 'admin')) {
                         ?>
-                        <?php echo $this->Form->postLink('<i class="fa fa-delete"></i>', array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), 'escape'=>false), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id'])); ?>
+                        <?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs', 'title' => __('Delete'), __('Are you sure you want to delete # %s?', $chamado['Chamado']['id']),'escape'=>false)); ?>
                         <?php } ?>                                    
                         <?php echo $this->Html->link('<i class="fa fa-history"></i>', array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('Histórico'), 'escape'=>false)); ?>
                      </nobr>

@@ -68,7 +68,7 @@ class ProblemasController extends AppController {
 	public function edit($id = null) {
         $this->Problema->id = $id;
 		if (!$this->Problema->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.?>'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Problema->save($this->request->data)) {
