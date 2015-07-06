@@ -59,7 +59,7 @@ echo $this->Html->script('datepicker');
 echo $this->Html->script('datetimepicker');
 echo $this->Html->script('mascaras');
 echo $this->Html->script('wrapped-text-popup-1.0');
-echo $this->Html->script('bootstrap-combobox');
+echo $this->Html->script('libs/bootstrap-combobox');
 
 
 echo $this->fetch('script');

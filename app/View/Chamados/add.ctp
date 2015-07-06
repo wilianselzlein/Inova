@@ -1,71 +1,71 @@
 
 <div id="page-container" class="row">
 
-    <div id="sidebar" class="col-sm-3">
+   <div id="sidebar" class="col-sm-3">
 
-        <div class="actions">
+      <div class="actions">
 
-            <ul class="list-group">
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Chamados'), array('action' => 'index')); ?></li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Problemas'), array('controller' => 'problemas', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Problema'), array('controller' => 'problemas', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Situacaos'), array('controller' => 'situacaos', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
-                <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S', 'chamados')); ?></li>
-            </ul><!-- /.list-group -->
+         <ul class="list-group">
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Chamados'), array('action' => 'index')); ?></li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Tipos'), array('controller' => 'tipos', 'action' => 'index')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Tipo'), array('controller' => 'tipos', 'action' => 'add')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Problemas'), array('controller' => 'problemas', 'action' => 'index')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Problema'), array('controller' => 'problemas', 'action' => 'add')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Situacaos'), array('controller' => 'situacaos', 'action' => 'index')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Situacao'), array('controller' => 'situacaos', 'action' => 'add')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('List') . ' ' . __('Historicos'), array('controller' => 'historicos', 'action' => 'index')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('New') . ' ' . __('Historico'), array('controller' => 'historicos', 'action' => 'add')); ?> </li>
+            <li class="list-group-item"><?php echo $this->Html->link(__('Cadastro').' '.__('Rápido'), array('controller' => 'clientes','action'=>'add', 'S', 'chamados')); ?></li>
+         </ul><!-- /.list-group -->
 
-        </div><!-- /.actions -->
+      </div><!-- /.actions -->
 
-    </div><!-- /#sidebar .col-sm-3 -->
+   </div><!-- /#sidebar .col-sm-3 -->
 
-    <div id="page-content" class="col-sm-9">
+   <div id="page-content" class="col-sm-9">
 
-        <h2><?php echo __('Add') . ' ' . __('Chamado'); ?></h2>
+      <h2><?php echo __('Add') . ' ' . __('Chamado'); ?></h2>
 
-        <div class="chamados form">
+      <div class="chamados form">
 
-            <?php echo $this->Form->create('Chamado', array('role' => 'form')); ?>
+         <?php echo $this->Form->create('Chamado', array('role' => 'form')); ?>
 
-            <fieldset>
-                <div class="form-group">
-                     <?php 
-                        if(isset($selected))
-                        {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control combobox', 'selected'=> $selected)); 
-                        }else
-                        {
-                            echo $this->Form->input('cliente_id', array('class' => 'form-control combobox','empty'=>true)); 
-                        }                    
-                    ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('tipo_id', array('class' => 'form-control combobox','empty'=>true)); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('descricao', array('class' => 'form-control' )); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
-                </div><!-- .form-group -->
-                
-                <div class="form-group">
-                    <?php echo $this->Form->input('prioridade', array('class' => 'form-control combobox','empty'=>true)); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('problema_id', array('class' => 'form-control combobox','empty'=>true)); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('situacao_id', array('class' => 'form-control combobox','empty'=>true)); ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php 
-        /*if ($chamado_id != null)  {
+         <fieldset>
+            <div class="form-group">
+               <?php 
+if(isset($selected))
+{
+   echo $this->Form->input('cliente_id', array('class' => 'form-control combobox', 'selected'=> $selected)); 
+}else
+{
+   echo $this->Form->input('cliente_id', array('class' => 'form-control combobox','empty'=>true)); 
+}                    
+               ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('tipo_id', array('class' => 'form-control combobox','empty'=>true)); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('descricao', array('class' => 'form-control' )); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
+            </div><!-- .form-group -->
+
+            <div class="form-group">
+               <?php echo $this->Form->input('prioridade', array('class' => 'form-control combobox','empty'=>true)); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('problema_id', array('class' => 'form-control combobox','empty'=>true)); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('situacao_id', array('class' => 'form-control combobox','empty'=>true)); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php 
+/*if ($chamado_id != null)  {
             $cliente = $this->Chamado->find('first', 
                         array('conditions' => array('Chamado.id' => $chamado_id), 'fields' => 'cliente_id', 'recursive' => -1));
             $user_id = $this->Chamado->Cliente->find('first',
@@ -74,50 +74,78 @@
             $usuario = $user_id['Cliente']['user_id'];
         } else
     $usuario = $usuario_logado['id'];*/
-                        $usuario_logado = $this->Session->read('Auth.User');
-                        echo $this->Form->input('user_id', array('class' => 'form-control combobox','empty'=>true)); //, 'selected' => $usuario ?>
-                </div><!-- .form-group -->
-                <div class="form-group">
-                    <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
-                </div><!-- .form-group -->
-                <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
+$usuario_logado = $this->Session->read('Auth.User');
+echo $this->Form->input('user_id', array('class' => 'form-control','empty'=>true)); //, 'selected' => $usuario ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('previsaoexecucao', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
+            </div><!-- .form-group -->
+            <?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
-            </fieldset>
+         </fieldset>
 
-            <?php echo $this->Form->end(); ?>
+         <?php echo $this->Form->end(); ?>
 
-        </div><!-- /.form -->
+      </div><!-- /.form -->
 
-    </div><!-- /#page-content .col-sm-9 -->
+   </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
 
-<?php
+<!--php
 $this->Js->get('#ChamadoClienteId')->event('change', 
-	$this->Js->request(array(
-		'controller'=>'chamados',
-		'action'=>'getComboUsers'
-		), array(
-		'update'=>'#ChamadoUserId',
-		'async' => true,
-		'method' => 'post',
-		'dataExpression'=>true,
-		'data'=> $this->Js->serializeForm(array(
-			'isForm' => true,
-			'inline' => true
-			))
-		))
-	);
+$this->Js->request(array(
+'controller'=>'chamados',
+'action'=>'getComboUsers'
+), array(
+'update'=>'#ChamadoUserId',
+'async' => true,
+'method' => 'post',
+'dataExpression'=>true,
+'data'=> $this->Js->serializeForm(array(
+'isForm' => true,
+'inline' => true
+))
+))
+);
 ?>
-<?php $this->Html->scriptStart();?>
+-->
+
+
 
 <script type="text/javascript">
-$( document ).ready(function() {
+   $( document ).ready(function() {
+      var clienteInput = $('#ChamadoClienteId').parent().find("input[type='hidden'].combobox");
+      //alert($(clienteInput).attr('name'));
+      $('#ChamadoClienteId').on("change", function () {
+          //alert($(this).val());
+         formData = $("#ChamadoAddForm").serialize();
+         $.ajax({
+            type: 'POST',
+            url: '/chamados/getClienteUser',
+            data: formData,
+            cache: false,
+            //dataType: 'HTML',
+            //beforeSend: function(){
+            //                $('#na').html('Checking...');
+            //            },
+            //success: function (html){
+           //    $('#ChamadoUserId').val(data);
+           // }
+            success: function(data,textStatus,xhr)
+            {
+               $("#ChamadoUserId").val(parseInt(data) );
+            },
+         });
+         
+         
+      });
+      $(clienteInput).on("change", function () {
+          alert('hidden');
+      });
+
+   });
    
    
- 
-   alert('Teste');
    
-});
 </script>
-<?php $this->Html->scriptEnd();?>

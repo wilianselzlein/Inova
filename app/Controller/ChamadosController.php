@@ -251,10 +251,13 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function getComboUsers() {
+       
         $cliente_id = 0;
         $usuario = 0;
         if (isset($this->request->data['Chamado'])) {
+           
           $cliente_id = $this->request->data['Chamado']['cliente_id'];
+           //debug($cliente_id);die;
           $clientes = $this->Chamado->Cliente->Find('list', array(
               'conditions' => array('Cliente.Id' => $cliente_id),
               'fields' => array('user_id')
@@ -268,5 +271,27 @@ class ChamadosController extends AppController {
         $this->set('usuario', $usuario);
         $this->layout = 'ajax';
         $this->render('combos/users');
+    }
+   public function getClienteUser() {
+       
+        $cliente_id = 0;
+        $usuario = 0;
+        if (isset($this->request->data['Chamado'])) {
+           
+          $cliente_id = $this->request->data['Chamado']['cliente_id'];
+           //debug($cliente_id);die;
+          $clientes = $this->Chamado->Cliente->Find('list', array(
+              'conditions' => array('Cliente.Id' => $cliente_id),
+              'fields' => array('user_id')
+              )
+           );
+          $usuario = $clientes[$cliente_id]; 
+        }
+        //$users = $this->Chamado->User->find('list');
+        
+        //$this->set('users', $users);
+        $this->set('usuario', $usuario);
+        $this->layout = 'ajax';
+        $this->render('combos/clienteUser');
     }
 }
