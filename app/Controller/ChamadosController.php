@@ -179,7 +179,8 @@ class ChamadosController extends AppController {
         $clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"', 'fantasiarazaosocial');
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
-        $situacaos = $this->Chamado->Situacao->findAsCombo();
+        //$situacaos = $this->Chamado->Situacao->findAsCombo();
+        $situacaos = $this->getSituacoesByLoggedUser();
         $users = $this->Chamado->User->findAsCombo('asc', 'ativo=1', 'nickname');
         $usuario_logado = $this->Session->read('Auth.User');     
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
@@ -214,6 +215,7 @@ class ChamadosController extends AppController {
         $prioridades = $this->Chamado->Prioridade->findAsCombo();
         $problemas = $this->Chamado->Problema->findAsCombo();
         $situacaos = $this->Chamado->Situacao->findAsCombo();
+        //$situacaos = $this->getSituacoesByLoggedUser();
         $users = $this->Chamado->User->findAsCombo('asc', 'ativo=1', 'nickname');
         $this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
     }
@@ -294,4 +296,13 @@ class ChamadosController extends AppController {
         $this->layout = 'ajax';
         $this->render('combos/clienteUser');
     }
+   
+   public function getSituacoesByLoggedUser(){
+      $usuario_logado = $this->Session->read('Auth.User');
+      if(strtolower($usuario_logado['role']) == 'operador'){
+         return $this->Chamado->Situacao->findAsCombo();
+      }else{
+         return $this->Chamado->Situacao->findAsCombo('asc', 'id != 3');
+      }
+   }
 }

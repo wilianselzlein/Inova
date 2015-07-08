@@ -179,8 +179,8 @@ class User extends AppModel {
     }
 
     public function matchPasswords($data) { 
-        if (isset($this->data['User']['password_confirmation'])) {
-            if ($data['password'] == $this->data['User']['password_confirmation']) 
+        if (isset($data['User']['password_confirmation'])) {
+            if ($data['User']['password_new'] == $data['User']['password_confirmation']) 
                 return true; 
             $this->invalidate('password_confirmation', 'Senhas não conferem.'); 
             return false; 
@@ -190,10 +190,16 @@ class User extends AppModel {
     } 
      
     public function checkPassword($data) { 
-        $user1=new User(); 
-        $user=$user1->read(null, $this->data['User']['id']); 
-        $current_password=AuthComponent::password($data['current_password']); 
-        if($current_password==$user['User']['password'])
+       debug($data);
+        //$user1=new User(); 
+        $user=$this->read(null, $data['User']['id']); 
+        $current_password=AuthComponent::password($data['User']['password_current']); 
+       //debug($data['User']['password_current']);
+       //debug($current_password);
+       //debug($user['User']['password']);
+       //debug(strcmp($current_password,$user['User']['password']));
+       //debug(strcmp($current_password,$user['User']['password']) == 0);
+        if($current_password == $user['User']['password'])
            return true; 
 
         return false; 

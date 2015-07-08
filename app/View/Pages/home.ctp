@@ -132,7 +132,7 @@ if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_log
    $conditions = array('order' => array('Chamado.id DESC'),                        
                        //'limit' => 100,
                        'conditions'=>array(
-                         'not' => array( 'Chamado.situacao_id' => '3')
+                          'not' => array( 'Chamado.situacao_id' => '3')
                           //'or' => array(
                           //                                'Chamado.status' => $status,
                           //                                'Chamado.status' => 0
@@ -150,9 +150,19 @@ if ((strtolower($usuario_logado['role']) == 'admin') || (strtolower($usuario_log
 }
 
 $situacoes_data = ClassRegistry::init($model_tabs)->find('all', array('recursive' => 0));
-for ($i = 0; $i < count($situacoes_data); $i++){
-   $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; 
+if(strtolower($usuario_logado['role']) == 'operador'){
+   for ($i = 0; $i < count($situacoes_data); $i++){
+      $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; 
+   }
+}else{
+   for ($i = 0; $i < count($situacoes_data); $i++){
+      if($situacoes_data[$i]['Situacao']['id']!=3)//concluido
+      {
+         $situacoes[$situacoes_data[$i]['Situacao']['id']] = $situacoes_data[$i]['Situacao']['nome']; 
+      }
+   }
 }
+
 
 $tab_list = ClassRegistry::init($model_tabs)->find('all');
 $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions);
@@ -490,7 +500,7 @@ if (count($hist) > 0)
    </div>
 
 
-   
+
 </div> <!-- container -->
 
 
@@ -573,25 +583,25 @@ if ((strtolower($usuario_logado['role']) == 'admin') ||
 
 
 <div class="recados">
-   <h4><span class="glyphicon glyphicon-stats"></span>&nbsp;Gráficos</h4>
+<h4><span class="glyphicon glyphicon-stats"></span>&nbsp;Gráficos</h4>
 </div>
 <div class="recados-lista">
-   <table style="width:100%" border=0>
-      <tr>
-         <td><img src="/img/1.png" alt="" width="200" height="200"></td>
-         <td><img src="/img/2.png" alt="" width="200" height="200"></td>		
-         <td><img src="/img/3.png" alt="" width="200" height="200"></td>
-      </tr>
-      <tr>
-         <td colspan="3" align="center"><img src="/img/4.png" alt="" width="700" height="200"></td>
-      </tr>
-   </table>
+<table style="width:100%" border=0>
+<tr>
+<td><img src="/img/1.png" alt="" width="200" height="200"></td>
+<td><img src="/img/2.png" alt="" width="200" height="200"></td>		
+<td><img src="/img/3.png" alt="" width="200" height="200"></td>
+</tr>
+<tr>
+<td colspan="3" align="center"><img src="/img/4.png" alt="" width="700" height="200"></td>
+</tr>
+</table>
 </div>
 
 -->
 <script type="text/javascript">
-      jQuery(document).ready(function($) {
-         $('#tabs').tab();
-      });
-   </script>    
+   jQuery(document).ready(function($) {
+      $('#tabs').tab();
+   });
+</script>    
 

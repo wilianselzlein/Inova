@@ -187,15 +187,29 @@ class UsersController extends AppController {
      * @return void
      */
 
-   public function changePassword($id = null) { 
-      if ($this->data) { 
-         if ($this->User->save($this->data)) 
-            $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success'); 
+   public function changePassword() { 
+
+      if (($this->request->is('post') || $this->request->is('put')) && $this->request->data) 
+      {         
+
+         $this->User->id = $this->request->data['User']['id'];
+
+         if (!$this->User->exists($this->request->data['User']['id'])) {
+            throw new NotFoundException(__('The record could not be found.?>'));
+         }
+
+         if($this->User->checkPassword($this->request->data))
+         {
+            if($this->User->matchPasswords($this->request->data))
+            {
+               if($this->User->saveField('password', $this->request->data['User']['password_new']))
+                  $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success');   
+            }
+            else
+               $this->Session->setFlash('Senhas divergentes.', 'flash/error');
+         }
          else
-            $this->Session->setFlash('Senha não alterada.', 'flash/error'); 
-         //$this->redirect(array('controller' => 'Pages', 'action' => 'display'));
-      } else { 
-         $this->data = $this->User->read(null, $id); 
+            $this->Session->setFlash('Senha não alterada.', 'flash/error');
       } 
    }
 
