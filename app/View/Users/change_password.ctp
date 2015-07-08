@@ -16,8 +16,9 @@
                 <div class="form-group">
                     <?php echo $this->Form->input('password_confirmation',array('label'=>'Confirme sua Senha','type'=>'password', 'value'=>'', 'class' => 'form-control')); ?>
                 </div>
-            <?php echo $this->Form->end('Alterar'); ?>
+               <?php echo $this->Form->submit(__('Alterar'), array('class' => 'btn btn-large btn-primary')); ?>            
             </fieldset>
+           <?php echo $this->Form->end(); ?>
         </div>
     </div>
 </div>
