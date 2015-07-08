@@ -190,15 +190,8 @@ class User extends AppModel {
     } 
      
     public function checkPassword($data) { 
-       debug($data);
-        //$user1=new User(); 
         $user=$this->read(null, $data['User']['id']); 
         $current_password=AuthComponent::password($data['User']['password_current']); 
-       //debug($data['User']['password_current']);
-       //debug($current_password);
-       //debug($user['User']['password']);
-       //debug(strcmp($current_password,$user['User']['password']));
-       //debug(strcmp($current_password,$user['User']['password']) == 0);
         if($current_password == $user['User']['password'])
            return true; 
 
