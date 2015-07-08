@@ -203,7 +203,8 @@ class UsersController extends AppController {
             if($this->User->matchPasswords($this->request->data))
             {
                if($this->User->saveField('password', $this->request->data['User']['password_new']))
-                  $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success');   
+                  $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success');
+                  $this->redirect($this->Auth->redirect());
             }
             else
                $this->Session->setFlash('Senhas divergentes.', 'flash/error');

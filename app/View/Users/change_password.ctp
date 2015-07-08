@@ -11,7 +11,7 @@
                     <?php echo $this->Form->input('password_current',array('label'=>'Senha Atual', 'type'=>'password', 'class' => 'form-control')); ?>
                 </div>
                 <div class="form-group">
-                    <?php echo $this->Form->input('password_new',array('label'=>'Nova Senha','value'=>'', 'class' => 'form-control')); ?>
+                    <?php echo $this->Form->input('password_new',array('label'=>'Nova Senha','type'=>'password','value'=>'', 'class' => 'form-control')); ?>
                 </div>
                 <div class="form-group">
                     <?php echo $this->Form->input('password_confirmation',array('label'=>'Confirme sua Senha','type'=>'password', 'value'=>'', 'class' => 'form-control')); ?>
