@@ -59,6 +59,12 @@ $user_id = $usuario_logado['id'];
    <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
       <ul class="nav navbar-nav">
          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Financeiro')?><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><?php echo $this->Html->link(__('Cobrancas'), 	   array('controller' => 'cobrancas', 	   'action' => 'index'), array('escape' => false)) ?></li>               
+            </ul>
+         </li><!-- /. Financeiro  -->         
+         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Técnica')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
                <li><?php echo $this->Html->link(__('Chamados'), 	   array('controller' => 'chamados', 	   'action' => 'index'), array('escape' => false)) ?></li>

@@ -313,7 +313,21 @@ class Cliente extends AppModel {
          'exclusive' => '',
          'finderQuery' => '',
          'counterQuery' => ''
+      ),
+      'Cobranca' => array(
+         'className' => 'Cobranca',
+         'foreignKey' => 'cliente_id',
+         'dependent' => false,
+         'conditions' => '',
+         'fields' => '',
+         'order' => 'id desc',
+         'limit' => '',
+         'offset' => '',
+         'exclusive' => '',
+         'finderQuery' => '',
+         'counterQuery' => ''
       )
+      
    );
 
    /**
