@@ -5,11 +5,13 @@
  */
 $(document).ready(function() {
     $('.datepickerStart').datepicker({
+        todayHighlight: true,
         format: 'dd/mm/yyyy',
         language: 'pt-BR'
     });
     
     $('.datepickerEnd').datepicker({
+        todayHighlight: true,
         format: 'dd/mm/yyyy',
         language: 'pt-BR'
     });

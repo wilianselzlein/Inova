@@ -28,7 +28,7 @@ class Cobranca extends AppModel {
  */
    public $displayField = 'data';
    
-   public $datetimeFields = array('data');
+   public $dateFields = array('data');
 
   /**
      * belongsTo associations

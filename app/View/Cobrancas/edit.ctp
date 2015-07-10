@@ -23,7 +23,7 @@
             <?php echo $this->Form->input('cliente_id', array('class' => 'form-control combobox','empty'=>true)); ?>
          </div><!-- .form-group -->
          <div class="form-group">
-            <?php echo $this->Form->input('data', array('type' => 'text', 'class' => 'form-control datetimepickerStart')); ?>
+            <?php echo $this->Form->input('data', array('type' => 'text', 'class' => 'form-control datepickerStart')); ?>
          </div><!-- .form-group -->
          <div class="form-group">
             <?php echo $this->Form->input('contato', array('class' => 'form-control')); ?>
