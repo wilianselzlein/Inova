@@ -68,7 +68,7 @@ class ClientesController extends AppController {
         
         $this->Cliente->recursive = 0;
 
-        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  'N')));
+        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  'N', 'Cliente.is_ativo'=> '1')));
     }
 
         /**

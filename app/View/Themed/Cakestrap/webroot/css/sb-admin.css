@@ -50,3 +50,7 @@ overflow: hidden;
    white-space: nowrap;
    vertical-align: middle;
 }
+.checkbox2 {
+   width: 24px;
+   height: 24px;
+}

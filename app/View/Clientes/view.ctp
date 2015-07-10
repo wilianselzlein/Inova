@@ -36,16 +36,24 @@
          <div class="table-responsive">
             <table class="table table-striped table-bordered">
                <tbody>
-                  <tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+                  <tr>		
+                     <td><strong><?php echo __('Id'); ?></strong></td>
                      <td>
                         <?php echo h($cliente['Cliente']['id']); ?>
                         &nbsp;
                      </td>
-                  </tr><tr>		<td><strong><?php echo __('Fantasia'); ?></strong></td>
-                  <td>
-                     <?php echo h($cliente['Cliente']['fantasia']); ?>
-                     &nbsp;
-                  </td>
+                  </tr>
+                  <tr>		
+                     <td><strong><?php echo __('Ativo'); ?></strong></td>
+                     <td>
+                        <i class="fa <?php echo ($cliente['Cliente']['is_ativo'] == true ? 'fa-check-square-o' : 'fa-square-o'); ?>"></i> 
+                     </td>
+                  </tr>
+                  <tr>		<td><strong><?php echo __('Fantasia'); ?></strong></td>
+                     <td>
+                        <?php echo h($cliente['Cliente']['fantasia']); ?>
+                        &nbsp;
+                     </td>
                   </tr><tr>		<td><strong><?php echo __('Razaosocial'); ?></strong></td>
                   <td>
                      <?php echo h($cliente['Cliente']['razaosocial']); ?>
