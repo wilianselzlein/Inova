@@ -77,8 +77,8 @@ class ChamadosController extends AppController {
                                 $usuario_logado = $this->Session->read('Auth.User');
                                 $historico['chamado_id'] = $this->request->data['id'];
                                 $historico['user_id'] = $usuario_logado['id'];
-                                $historico['datainicial'] = Date('Y.m.d H.i.s');
-                                $historico['datafinal'] = Date('Y.m.d H.i.s');
+                                $historico['datainicial'] = Date('Y/m/d H:i:s');
+                                $historico['datafinal'] = Date('Y/m/d H:i:s');
                                 $historico['descricao'] = 'Trocou a situação do chamado para ' . $situacao['Situacao']['nome'];
 
                                 $this->Chamado->Historico->create();
