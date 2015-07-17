@@ -171,16 +171,24 @@ echo $this->Number->currency($cliente['Cliente']['mensalidade'], 'BRL'); ?>
                      <?php echo $this->Html->link($cliente['User']['username'], array('controller' => 'users', 'action' => 'view', $cliente['User']['id']), array('class' => '')); ?>
                      &nbsp;
                   </td>
-                  </tr><tr>		<td><strong><?php echo __('Telefone'); ?></strong></td>
-                  <td>
-                     <?php echo h($cliente['Cliente']['telefone']); ?>
-                     &nbsp;
-                  </td>
-                  </tr><tr>		<td><strong><?php echo __('Celular'); ?></strong></td>
-                  <td>
-                     <?php echo h($cliente['Cliente']['celular']); ?>
-                     &nbsp;
-                  </td>
+                  </tr>
+                  <tr><td><strong><?php echo __('Telefone'); ?></strong></td>
+                     <td>
+                        <?php echo h($cliente['Cliente']['telefone']); ?>
+                        &nbsp;
+                     </td>
+                  </tr>
+                  <tr><td><strong><?php echo __('Telefone 2'); ?></strong></td>
+                     <td>
+                        <?php echo h($cliente['Cliente']['telefone2']); ?>
+                        &nbsp;
+                     </td>
+                  </tr>
+                  <tr>		<td><strong><?php echo __('Celular'); ?></strong></td>
+                     <td>
+                        <?php echo h($cliente['Cliente']['celular']); ?>
+                        &nbsp;
+                     </td>
                   </tr><tr>		<td><strong><?php echo __('Email'); ?></strong></td>
                   <td>
                      <?php echo h($cliente['Cliente']['email']); ?>

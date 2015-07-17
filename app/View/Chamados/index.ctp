@@ -76,7 +76,7 @@
 -->
                   <td title="<?php echo h($chamado['Chamado']['descricao']);?>"><?php echo $this->Text->excerpt($chamado['Chamado']['descricao'], 'method', 30, '...'); ?></td>
                   <td><?php echo h($chamado['Chamado']['contato']); ?>&nbsp;</td>
-                  <td>
+                  <td title="<?php echo h($chamado['Cliente']['celular']."\n".$chamado['Cliente']['telefone']."\n".$chamado['Cliente']['telefone2']."\n");?>">
                      <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])); ?>
                   </td>
                   <!--

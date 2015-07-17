@@ -114,6 +114,9 @@
                <?php echo $this->Form->input('telefone', array('class' => 'form-control mask-ddd-fone')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
+               <?php echo $this->Form->input('telefone2', array('class' => 'form-control mask-ddd-fone')); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
                <?php echo $this->Form->input('celular', array('class' => 'form-control mask-ddd-celular')); ?>
             </div><!-- .form-group -->
             <div class="form-group">

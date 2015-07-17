@@ -230,7 +230,7 @@ if (count($hist) > 0)
    array('controller' => 'historicos', 'action' => 'view', $hist['Historico']['id']));
                      ?> &nbsp;
                   </td>
-                  <td>
+                  <td title="<?php echo h($task['Cliente']['celular']."\n".$task['Cliente']['telefone']."\n".$task['Cliente']['telefone2']."\n");?>">
                      <?php echo $this->Html->link($task['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $task['Cliente']['id'])) ?>
                   </td>
                   <td>
