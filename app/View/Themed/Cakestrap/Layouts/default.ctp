@@ -32,7 +32,7 @@ echo $this->Html->meta('icon');
 echo $this->fetch('meta');
 
 
-echo $this->Html->css('bootstrap');       
+echo $this->Html->css('bootstrap.min');       
 echo $this->Html->css('sb-admin');
 echo $this->Html->css('datepicker');
 echo $this->Html->css('bootstrap-datetimepicker');
