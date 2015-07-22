@@ -54,3 +54,5 @@ overflow: hidden;
    width: 24px;
    height: 24px;
 }
+
+.pagination>li>a, .pagination>li>span {color:#2E8B57;}
