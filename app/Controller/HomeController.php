@@ -60,7 +60,7 @@ class HomeController extends AppController {
    public function getChamadosBySituacao($id=1){
       $this->layout = "iframe";
       $this->Paginator->settings = array(
-         'conditions' => array('Chamado.situacao_id' => $id, 'Chamado.user_id'=>$this->Auth->User('id')),
+         'conditions' => array('Chamado.situacao_id' => $id, ),//'Chamado.user_id'=>$this->Auth->User('id')
          'limit' => 10
       );
       $chamados = $this->Paginator->paginate('Chamado');

@@ -75,7 +75,7 @@
       </li>
    </ul>
    <div id="tab-content" class="tab-content ">         
-      <iframe id="frametab" name="tab-frame" src="/home/getChamadosBySituacao/1" onload="h();"  scrolling="no" noresize frameborder="0"></iframe>
+      <iframe id="frametab" name="tab-frame" src="/home/getChamadosBySituacao/1" onload="hideLoading();"  scrolling="no" noresize frameborder="0"></iframe>
    </div>
 
 </div>
@@ -84,7 +84,7 @@
 
 
 
-   function teste(){
+   function hideLoading(){
       $body = $("body");
       $body.removeClass("loading"); 
 
