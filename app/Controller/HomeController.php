@@ -70,7 +70,7 @@ class HomeController extends AppController {
 
 
       $this->set(compact('chamados'));
-      $this->render('ajax/chamados');
+      $this->render('iframe/chamados');
    } 
 }
 

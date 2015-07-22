@@ -40,7 +40,9 @@
       <td class="actions" align="right">
          <?php echo $this->Html->link('<i class="fa fa-history"></i>', 
                                       array('controller' => 'historicos', 'action' => 'add', $chamado['Chamado']['id']), 
-                                      array('class' => 'btn btn-default btn-xs', 'title'=>__('Histórico'), 'escape'=>false)); ?>
+                                      array('class' => 'btn btn-default btn-xs', 
+                                            'target' =>'_parent',
+                                            'title'=>__('Histórico'), 'escape'=>false)); ?>
 
          <a class="btn btn-default btn-xs" >
             <div class="edit" id="situacao<?php echo $chamado['Chamado']['id']; ?>">

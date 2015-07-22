@@ -68,10 +68,10 @@
          <a href="/home/getChamadosBySituacao/4" data-toggle="tab" data-target="tab-frame"><span class=" "></span>&nbsp;<?php echo __('Aguardando Controle de Qualidade'); ?></a>
       </li>
       <li>
-         <a href="#tabPrev" data-toggle="ttab"><span class=""></span>&nbsp;<?php echo __('Previsão de Execução'); ?></a>
+         <a href="#tabPrev" data-toggle="tab-"><span class=""></span>&nbsp;<?php echo __('Previsão de Execução'); ?></a>
       </li>
       <li>
-         <a href="#tabCalend" data-toggle="ttab"><span class=" "></span>&nbsp;<?php echo __('Agenda de Chamados'); ?></a>
+         <a href="#tabCalend" data-toggle="tab"><span class=" "></span>&nbsp;<?php echo __('Agenda de Chamados'); ?></a>
       </li>
    </ul>
    <div id="tab-content" class="tab-content ">         
