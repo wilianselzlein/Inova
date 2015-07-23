@@ -13,7 +13,7 @@ App::uses('AppModel', 'Model');
  * @property Chamado $Chamado
  */
 class Cliente extends AppModel {
-
+   var $actsAs = array('NumberFormat');
    /**
      * Use database config
      *
@@ -30,7 +30,7 @@ class Cliente extends AppModel {
 
    public $dateFields = array('dtvenda','dtinstalacao' );
 
-   public $monetaryFields = array('valorvenda', 'mensalidade');
+   //public $monetaryFields = array('valorvenda', 'mensalidade');
 
    public $virtualFields = array(
       'fantasiarazaosocial' => "CONCAT(Cliente.fantasia, ' -- [', Cliente.razaosocial, '] ')"

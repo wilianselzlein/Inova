@@ -57,7 +57,7 @@ echo $this->Html->script('libs/jquery.bpopup.min');
 
 echo $this->Html->script('datepicker');
 echo $this->Html->script('datetimepicker');
-echo $this->Html->script('mascaras');
+//echo $this->Html->script('mascaras');
 echo $this->Html->script('wrapped-text-popup-1.0');
 echo $this->Html->script('libs/bootstrap-combobox');
 
@@ -67,11 +67,7 @@ echo $this->Js->writeBuffer(); // note: write cached scripts
       ?>
    </head>
    <body>
-
       <div id="wrapper">
-
-
-
          <?php echo $this->element('menu/top_menu');?>
          <div id="page-wrapper">
             <div  class="container-fluid">
@@ -88,6 +84,7 @@ echo $this->Js->writeBuffer(); // note: write cached scripts
          $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});
          $(document).ready(function(){ $('.combobox').combobox(); });
       </script>
+      <?php echo $this->Html->script('cfg-currency');?>
    </body>
 
 </html>

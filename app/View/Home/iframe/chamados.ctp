@@ -2,6 +2,7 @@
    <thead>
       <tr>
          <th><?php echo $this->Paginator->sort('id');?></th>
+         <th><?php echo $this->Paginator->sort('historico_id', __('Lançamento'));?></th>
          <th><?php echo $this->Paginator->sort('cliente_id');?></th>
          <th><?php echo $this->Paginator->sort('contato');?></th>
          <th><?php echo $this->Paginator->sort('descricao');?></th>
@@ -11,12 +12,16 @@
          <th><?php echo __('Actions'); ?></th>
       </tr>
    </thead>
-   <?php foreach ($chamados as $chamado): ?>                        
+   <?php foreach ($chamados as $chamado): ?>       
    <tr>
       <td>
          <?php echo $this->Html->link($chamado['Chamado']['id'], array('controller' => 'chamados', 'action' => 'view', $chamado['Chamado']['id'])) ?>
       </td>
-
+      <td>
+         <?php if(isset($chamado['Historico'][0])){
+   echo $this->Html->link($this->Time->i18nFormat($chamado['Historico'][0]['datainicial'], $this->Html->__getDateTimeFormatView()), array('controller' => 'historicos', 'action' => 'view',$chamado['Historico'][0]['id']));
+}?>
+      </td>
       <td title="<?php echo h($chamado['Cliente']['celular']."\n".$chamado['Cliente']['telefone']."\n".$chamado['Cliente']['telefone2']."\n".$chamado['Cliente']['email']);?>">
          <?php echo $this->Html->link($chamado['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $chamado['Cliente']['id'])) ?>
       </td>
