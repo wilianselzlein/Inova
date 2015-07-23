@@ -39,7 +39,7 @@
                      <?php echo $this->Html->link($cobranca['Cliente']['fantasia'], array('controller' => 'clientes', 'action' => 'view', $cobranca['Cliente']['id'])); ?>
                   </td>
                   <td>
-                     <?php if (isset($cobranca['Cobranca']['data'])) { echo $this->Time->i18nFormat($cobranca['Cobranca']['data'], $this->Html->__getDateTimeFormatView());} ?>
+                     <?php echo $cobranca['Cobranca']['data']?>
                   </td>
                   <td><?php echo h($cobranca['Cobranca']['contato']); ?>&nbsp;</td>
                   <td><?php echo h($cobranca['Cobranca']['observacao']); ?>&nbsp;</td>

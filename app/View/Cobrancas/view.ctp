@@ -32,7 +32,7 @@
             <tr>
                <td><strong><?php echo __('Data'); ?></strong></td>
                <td>
-                  <?php echo $this->Time->i18nFormat($cobranca['Cobranca']['data'], $this->Html->__getDateTimeFormatView());  ?>                  
+                  <?php echo $cobranca['Cobranca']['data'];  ?>                  
                </td>
             </tr>
             <tr>

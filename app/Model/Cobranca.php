@@ -13,7 +13,7 @@ App::uses('AppModel', 'Model');
  * @property Submodulo $Submodulo
  */
 class Cobranca extends AppModel {
-
+   var $actsAs = array('DateFormat');
    /**
  * Use database config
  *
@@ -27,29 +27,29 @@ class Cobranca extends AppModel {
  * @var string
  */
    public $displayField = 'data';
-   
-   public $dateFields = array('data');
 
-  /**
+   //public $dateFields = array('data');
+
+   /**
      * belongsTo associations
      *
      * @var array
      */
    public $belongsTo = array(        
-        'Cliente' => array(
-            'className' => 'Cliente',
-            'foreignKey' => 'cliente_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),               
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'user_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        ),
-        
-    );
+      'Cliente' => array(
+         'className' => 'Cliente',
+         'foreignKey' => 'cliente_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),               
+      'User' => array(
+         'className' => 'User',
+         'foreignKey' => 'user_id',
+         'conditions' => '',
+         'fields' => '',
+         'order' => ''
+      ),
+
+   );
 }
