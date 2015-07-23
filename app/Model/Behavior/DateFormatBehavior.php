@@ -35,7 +35,7 @@ class DateFormatBehavior extends ModelBehavior {
                foreach($columns as $column => $type){
                   if(strstr($key,$column)){
                      if($type == 'datetime') {
-                        $queryDataConditions[$key] = $this->_changeDateFormat($value,$dateFormat.' H:i ');                     
+                        $queryDataConditions[$key] = $this->_changeDateFormat($value,$dateFormat.' H:i');                     
                      }
                      if($type == 'date'){
                         //debug($queryDataConditions[$key]);
