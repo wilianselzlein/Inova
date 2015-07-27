@@ -54,6 +54,9 @@
 					<div class="form-group">
 						<?php echo $this->Form->input('emailsup', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
+                <div class="form-group">
+               <?php echo $this->Form->input('ativo', array('type' => 'checkbox', 'class' => 'form-control checkbox2','before'=>'<div class="input"><label>Ativo</label>','after'=>'</div>', 'div'=>false, 'label'=>false)); ?>
+            </div><!-- .form-group -->
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
 				</fieldset>
