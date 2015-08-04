@@ -176,8 +176,6 @@ $tab_content = ClassRegistry::init($model_tabs_content)->find('all', $conditions
 
 
 <!--- TAREFAS  ----->
-
-<div class="container">   
    <div id="content">
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
          <?php foreach ($tab_list as $tab): ?>
@@ -498,13 +496,6 @@ if (count($hist) > 0)
 
       </div>
    </div>
-
-
-
-</div> <!-- container -->
-
-
-
 
 
 
