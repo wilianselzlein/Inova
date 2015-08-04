@@ -1,6 +1,6 @@
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 #page-wrapper{
-padding-top: 50px;
+padding-top: 70px;
 }
 .navbar-wrapper {
   position: absolute;
