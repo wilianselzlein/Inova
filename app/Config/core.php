@@ -133,7 +133,7 @@ Configure::write('Config.language', 'pt-BR');
  * If not set defaults to 'js/'
  */
 //Configure::write('App.jsBaseUrl', 'js/');
-
+Configure::write('Routing.prefixes', array('web'));
 /**
  * Uncomment the define below to use CakePHP prefix routes.
  *
