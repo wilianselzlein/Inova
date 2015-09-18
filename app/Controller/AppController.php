@@ -42,7 +42,8 @@ class AppController extends Controller {
     public $components = array(
         'Session',
         'Auth' => array(
-            'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'),
+            'loginAction' => array('controller' => 'users', 'action' => 'login', 'web' => false),
+            'loginRedirect' => array('controller' => 'pages', 'action' => 'display', 'home', ),
             'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
         ),
         'FilterResults.Filter' => array(
