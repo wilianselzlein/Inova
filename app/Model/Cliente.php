@@ -326,8 +326,33 @@ class Cliente extends AppModel {
          'exclusive' => '',
          'finderQuery' => '',
          'counterQuery' => ''
-      )
-      
+      ),
+      'Domain' => array(
+         'className' => 'Domain',
+         'foreignKey' => 'customer_id',
+         'dependent' => false,
+         'conditions' => '',
+         'fields' => '',
+         'order' => '',
+         'limit' => '',
+         'offset' => '',
+         'exclusive' => '',
+         'finderQuery' => '',
+         'counterQuery' => ''
+      ),
+      'SocialMedia' => array(
+         'className' => 'SocialMedia',
+         'foreignKey' => 'customer_id',
+         'dependent' => false,
+         'conditions' => '',
+         'fields' => '',
+         'order' => '',
+         'limit' => '',
+         'offset' => '',
+         'exclusive' => '',
+         'finderQuery' => '',
+         'counterQuery' => ''
+      ),
    );
 
    /**

@@ -32,7 +32,7 @@ App::uses('AppController', 'Controller');
         if (!$this->Domain->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Servico.' . $this->Domain->primaryKey => $id));
+        $options = array('conditions' => array('Domain.' . $this->Domain->primaryKey => $id));
         $this->set('domain', $this->Domain->find('first', $options));
     }
 
@@ -45,7 +45,13 @@ App::uses('AppController', 'Controller');
         if ($this->request->is('post')) {
             $this->Domain->create();
             if ($this->Domain->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Domain->id
+                      )
+                   ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -67,22 +73,28 @@ App::uses('AppController', 'Controller');
     public function web_edit($id = null) {
         $this->Domain->id = $id;
         if (!$this->Domain->exists($id)) {
-            throw new NotFoundException(__('The record could not be found.?>'));
+            throw new NotFoundException(__('The record could not be found.'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Domain->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Domain->id
+                  )
+                 ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         } else {
-            $options = array('conditions' => array('Servico.' . $this->Domain->primaryKey => $id));
+            $options = array('conditions' => array('Domain.' . $this->Domain->primaryKey => $id));
             $this->request->data = $this->Domain->find('first', $options);
         }
-        $checklists = $this->Domain->Checklist->findAsCombo();
-        $historicos = $this->Domain->Historico->findAsCombo();
-        $this->set(compact('checklists', 'historicos'));
+        $customers = $this->Domain->Cliente->findAsCombo();
+        $payPlans = $this->Domain->PayPlan->findAsCombo();
+        $this->set(compact('customers', 'payPlans'));
     }
 
     /**

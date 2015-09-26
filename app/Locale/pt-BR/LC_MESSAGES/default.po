@@ -86,7 +86,7 @@ msgid "User"
 msgstr "Usuário"
 
 msgid "The record has been saved"
-msgstr "O registro foi salvo"
+msgstr "O registro foi salvo. "
 
 msgid "The record could not be saved. Please, try again."
 msgstr "O registro não pôde ser salvo. Por favor, tente novamente."
@@ -342,3 +342,6 @@ msgstr "Ação"
 
 msgid "Observacao"
 msgstr "Observação"
+
+msgid "GO_TO"
+msgstr "Ir para &raquo;"

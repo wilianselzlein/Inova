@@ -1,110 +1,90 @@
 <?php
 App::uses('AppController', 'Controller');
- /**
- * Document   : app/Controller/ServicosWeb.php
+
+/**
+ * Document   : app/Controller/ClientesWeb.php
  * Created on : 2015-08-10 05:38 PM
  *
  * @author Pedro Escobar
  */
- 
- class ServicesController extends AppController {
-    public $uses = array('Servico'); 
+class ServicesController extends AppController
+{
+    public $uses = array('Cliente', 'Domain', 'Hosting', 'Webmail', 'SocialMedia', 'Income', 'Website', 'Webpage');
     public $components = array('Paginator', 'Session');
+    
 
+    private function TestaPermissao() {
+      $usuario_logado = $this->Session->read('Auth.User');
+      if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
+         //throw new NotFoundException(__('__PERMISSAO'));
+       $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+       $this->redirect(array('controller' => 'Pages', 'action' => 'display', 'web' => false));
+   }
+}
     /**
      * index method
      *
      * @return void
      */
-    public function web_index() {
-        $this->Servico->recursive = 0;
-        $this->set('servicos', $this->paginate());
-    }
+    public function web_index($id = null) {
+        $this->TestaPermissao();
 
-    /**
-     * view method
-     *
-     * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
-    public function web_view($id = null) {
-        if (!$this->Servico->exists($id)) {
+        if (!$this->Cliente->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Servico.' . $this->Servico->primaryKey => $id));
-        $this->set('servico', $this->Servico->find('first', $options));
+        $this->Cliente->recursive = 0;
+        
+        //$this->Domain->recursive = 0;
+        //$this->Hosting->recursive = 0;
+        //$this->Domain->recursive = 1;
+        //$this->set('domains', $this->paginate());
+        
+        $options = array('conditions' => array('Cliente.' . $this->Cliente->primaryKey => $id), 'fields' => array('id', 'fantasiarazaosocial'));
+        $cliente = $this->Cliente->find('first', $options);
+        $socialMedias = $this->SocialMedia->find('all', array('conditions' => array('SocialMedia.customer_id' => $id)));
+        $socialmedias_id = Hash::extract($socialMedias, '{n}.SocialMedia.id');
+        
+        $domains = $this->Domain->find('all', array('conditions' => array('Domain.customer_id' => $id)));
+        $domains_id = Hash::extract($domains, '{n}.Domain.id');
+        
+        $hostings = $this->Hosting->find('all', array('conditions' => array('Hosting.domain_id' => $domains_id)));
+        $hostings_id = Hash::extract($hostings, '{n}.Hosting.id');
+        
+        $webmails = $this->Webmail->find('all', array('conditions' => array('Webmail.hosting_id' => $hostings_id)));
+        
+        $websites = $this->Website->find('all', array('conditions' => array('Website.hosting_id' => $hostings_id)));
+        $websites_id = Hash::extract($websites, '{n}.Website.id');
+        
+        $webpages = $this->Webpage->find('all', array('conditions' => array('Webpage.website_id' => $websites_id)));
+        
+        $incomes = array();
+        if (!empty($domains_id) || !empty($socialmedias_id) || !empty($hosting_id)) {
+            $incomes = $this->Income->find('all', $this->getIncomeOptions($domains_id, $hostings_id, $socialmedias_id));
+        }
+        
+        $this->set(compact('cliente', 'domains', 'hostings', 'webmails', 'socialMedias', 'incomes', 'websites', 'webpages'));
     }
 
-    /**
-     * add method
-     *
-     * @return void
-     */
-    public function web_add() {
-        if ($this->request->is('post')) {
-            $this->Servico->create();
-            if ($this->Servico->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+    
+    private function getIncomeOptions($domains_id = null, $hostings_id = null, $socialmedias_id = null) {
+        $domainsOptions = array();
+        $hostingsOptions = array();
+        $socialMediasOptions = array();
+        $incomeOptions = array();
+        
+        if (!empty($domains_id)) {
+            $domainsOptions = array('Income.domain_id' => $domains_id);
         }
-        $checklists = $this->Servico->Checklist->findAsCombo();
-        $historicos = $this->Servico->Historico->findAsCombo();
-        $this->set(compact('checklists', 'historicos'));
-    }
-
-    /**
-     * edit method
-     *
-     * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
-    public function web_edit($id = null) {
-        $this->Servico->id = $id;
-        if (!$this->Servico->exists($id)) {
-            throw new NotFoundException(__('The record could not be found.?>'));
+        if (!empty($hostings_id)) {
+            $hostingsOptions = array('Income.hosting_id' => $hostings_id);
         }
-        if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->Servico->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
-        } else {
-            $options = array('conditions' => array('Servico.' . $this->Servico->primaryKey => $id));
-            $this->request->data = $this->Servico->find('first', $options);
+        
+        if (!empty($socialmedias_id)) {
+            $socialMediasOptions = array('Income.social_media_id' => $socialmedias_id);
         }
-        $checklists = $this->Servico->Checklist->findAsCombo();
-        $historicos = $this->Servico->Historico->findAsCombo();
-        $this->set(compact('checklists', 'historicos'));
-    }
-
-    /**
-     * delete method
-     *
-     * @throws NotFoundException
-     * @throws MethodNotAllowedException
-     * @param string $id
-     * @return void
-     */
-    public function web_delete($id = null) {
-        if (!$this->request->is('post')) {
-            throw new MethodNotAllowedException();
-        }
-        $this->Servico->id = $id;
-        if (!$this->Servico->exists()) {
-            throw new NotFoundException(__('The record could not be found.'));
-        }
-        if ($this->Servico->delete()) {
-            $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
-        }
-        $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        
+        $incomeOptions = array('conditions' => array('OR' => array($domainsOptions, $hostingsOptions, $socialMediasOptions)));
+        
+        return $incomeOptions;
     }
 }

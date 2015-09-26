@@ -36,6 +36,7 @@ class AppController extends Controller {
     var $helpers = array('Js'   => array('Jquery'),
                          'Mural' => array('className' => 'Mural'),
                          'Visita' => array('className' => 'Visita'),
+                         'CustomHtml' => array('className' => 'CustomHtml'),
 			 'FilterResults.Search'
     );
 

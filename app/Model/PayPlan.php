@@ -1,9 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Domain Model
- *
- */
+
 class PayPlan extends AppModel {
    /**
  * Use database config
@@ -19,18 +16,33 @@ class PayPlan extends AppModel {
  */
    public $displayField = 'name';
 
+
    /**
      * belongsTo associations
      *
      * @var array
      */
-   /*public $belongsTo = array(        
-      'Cliente' => array(
-         'className' => 'Cliente',
-         'foreignKey' => 'customer_id',
-         'conditions' => '',
-         'fields' => '',
-         'order' => ''
-      )
-   );*/
-}
+   public $hasMany = array(        
+    'Domain' => array(
+     'className' => 'Domain',
+     'foreignKey' => 'pay_plan_id',
+     'conditions' => '',
+     'fields' => '',
+     'order' => ''
+     ),
+    'Hosting' => array(
+     'className' => 'Hosting',
+     'foreignKey' => 'pay_plan_id',
+     'conditions' => '',
+     'fields' => '',
+     'order' => ''
+     ),
+    'SocialMedia' => array(
+     'className' => 'SocialMedia',
+     'foreignKey' => 'pay_plan_id',
+     'conditions' => '',
+     'fields' => '',
+     'order' => ''
+     ),
+    );
+ }

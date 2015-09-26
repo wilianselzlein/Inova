@@ -1,14 +1,13 @@
 <?php
 App::uses('AppController', 'Controller');
  /**
- * Document   : app/Controller/ServicosWeb.php
+ * Document   : app/Controller/HostingsWeb.php
  * Created on : 2015-08-10 05:38 PM
  *
  * @author Pedro Escobar
  */
  
  class HostingsController extends AppController {
-    public $uses = array('Hostings'); 
     public $components = array('Paginator', 'Session');
 
     /**
@@ -32,7 +31,7 @@ App::uses('AppController', 'Controller');
         if (!$this->Hosting->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('conditions' => array('Servico.' . $this->Hosting->primaryKey => $id));
+        $options = array('conditions' => array('Hosting.' . $this->Hosting->primaryKey => $id));
         $this->set('hosting', $this->Hosting->find('first', $options));
     }
 
@@ -45,16 +44,22 @@ App::uses('AppController', 'Controller');
         if ($this->request->is('post')) {
             $this->Hosting->create();
             if ($this->Hosting->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+               $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Hosting->id
+                  )
+                 ));
+               $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
-        $checklists = $this->Hosting->Checklist->findAsCombo();
-        $historicos = $this->Hosting->Historico->findAsCombo();
-        $this->set(compact('checklists', 'historicos'));
     }
+    $domains = $this->Hosting->Domain->findAsCombo();
+    $payPlans = $this->Hosting->PayPlan->findAsCombo();
+    $this->set(compact('domains', 'payPlans'));
+}
 
     /**
      * edit method
@@ -70,18 +75,24 @@ App::uses('AppController', 'Controller');
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Hosting->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Hosting->id
+                  )
+                 ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         } else {
-            $options = array('conditions' => array('Servico.' . $this->Hosting->primaryKey => $id));
+            $options = array('conditions' => array('Hosting.' . $this->Hosting->primaryKey => $id));
             $this->request->data = $this->Hosting->find('first', $options);
         }
-        $checklists = $this->Hosting->Checklist->findAsCombo();
-        $historicos = $this->Hosting->Historico->findAsCombo();
-        $this->set(compact('checklists', 'historicos'));
+        $domains = $this->Hosting->Domain->findAsCombo();
+        $payPlans = $this->Hosting->PayPlan->findAsCombo();
+        $this->set(compact('domains', 'payPlans'));
     }
 
     /**

@@ -29,6 +29,7 @@
                <td>
                   <?php echo $this->Html->link($cobranca['Cliente']['fantasiarazaosocial'], array('controller' => 'clientes', 'action' => 'view', $cobranca['Cliente']['id']), array('class' => '')); ?>      
                </td>
+            </tr>
             <tr>
                <td><strong><?php echo __('Data'); ?></strong></td>
                <td>

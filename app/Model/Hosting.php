@@ -1,17 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
 
-/**
- * Document   : app/Model/Cobranca.php
- * Created on : 2015-07-09 07:07 PM
- *
- * @author Pedro Escobar
- */
-/**
- * Cobranca Model
- *
- * @property Submodulo $Submodulo
- */
 class Hosting extends AppModel {
    /**
  * Use database config
@@ -25,9 +14,7 @@ class Hosting extends AppModel {
  *
  * @var string
  */
-   public $displayField = 'domain_id';
-
-   //public $dateFields = array('data');
+   public $displayField = 'ftp_url';
 
    /**
      * belongsTo associations
@@ -35,20 +22,34 @@ class Hosting extends AppModel {
      * @var array
      */
    public $belongsTo = array(        
-      'Cliente' => array(
-         'className' => 'Cliente',
-         'foreignKey' => 'cliente_id',
-         'conditions' => '',
-         'fields' => '',
-         'order' => ''
-      ),               
-      'User' => array(
-         'className' => 'User',
-         'foreignKey' => 'user_id',
-         'conditions' => '',
-         'fields' => '',
-         'order' => ''
-      ),
+    'Domain' => array(
+     'className' => 'Domain',
+     'foreignKey' => 'domain_id',
+     'conditions' => '',
+     'fields' => '',
+     'order' => ''
+     ),
+    'PayPlan' => array(
+     'className' => 'PayPlan',
+     'foreignKey' => 'pay_plan_id',
+     'conditions' => '',
+     'fields' => '',
+     'order' => ''
+     ),
+    );
 
-   );
-}
+   public $hasMany = array(
+    'Webmail' => array(
+      'className' => 'Webmail',
+      'foreignKey' => 'hosting_id',
+      ),
+    'Website' => array(
+      'className' => 'Website',
+      'foreignKey' => 'hosting_id',
+      ),
+    'Income' => array(
+      'className' => 'Income',
+      'foreignKey' => 'hosting_id',
+      )
+    );     
+ }

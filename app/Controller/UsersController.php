@@ -19,33 +19,34 @@ class UsersController extends AppController {
    public $components = array('Paginator', 'Session');
 
    private function TestaPermissao() {
-      $usuario_logado = $this->Session->read('Auth.User');
-      if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
+   	$usuario_logado = $this->Session->read('Auth.User');
+   	if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')
+   		&& (strtolower($usuario_logado['role']) != 'webmaster')) {
          //throw new NotFoundException(__('__PERMISSAO'));
-         $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
-         $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
-      }
+   		$this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+   	$this->redirect(array('controller' => 'Pages', 'action' => 'display'));
    }
+}
 
-   public function beforeFilter() {
-      parent::beforeFilter();
-      $this->Auth->allow('add', 'logout');
-   }
+public function beforeFilter() {
+	parent::beforeFilter();
+	$this->Auth->allow('add', 'logout');
+}
 
-   public function login() {
-      $this->layout = 'login';
-      if($this->request->is('post')){
-         if ($this->Auth->login()) {
-            $this->redirect($this->Auth->redirect());
-         } else {
-            $this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
-         }
-      }
-   }
+public function login() {
+	$this->layout = 'login';
+	if($this->request->is('post')){
+		if ($this->Auth->login()) {
+			$this->redirect($this->Auth->redirect());
+		} else {
+			$this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
+		}
+	}
+}
 
-   public function logout() {
-      $this->redirect($this->Auth->logout());
-   }
+public function logout() {
+	$this->redirect($this->Auth->logout());
+}
 
    /**
      * index method
@@ -53,9 +54,9 @@ class UsersController extends AppController {
      * @return void
      */
    public function index() {
-      $this->TestaPermissao();
-      $this->User->recursive = 0;
-      $this->set('users', $this->paginate());
+   	$this->TestaPermissao();
+   	$this->User->recursive = 0;
+   	$this->set('users', $this->paginate());
    }
 
    /**
@@ -66,12 +67,12 @@ class UsersController extends AppController {
      * @return void
      */
    public function view($id = null) {
-      $this->TestaPermissao();
-      if (!$this->User->exists($id)) {
-         throw new NotFoundException(__('The record could not be found.'));
-      }
-      $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-      $this->set('user', $this->User->find('first', $options));
+   	$this->TestaPermissao();
+   	if (!$this->User->exists($id)) {
+   		throw new NotFoundException(__('The record could not be found.'));
+   	}
+   	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+   	$this->set('user', $this->User->find('first', $options));
    }
 
    /**
@@ -80,20 +81,20 @@ class UsersController extends AppController {
      * @return void
      */
    public function add() {
-      $this->TestaPermissao();
-      if ($this->request->is('post')) {
-         $this->User->create();
-         if ($this->User->save($this->request->data)) {
-            $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
-         } else {
-            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-         }
-      }
+   	$this->TestaPermissao();
+   	if ($this->request->is('post')) {
+   		$this->User->create();
+   		if ($this->User->save($this->request->data)) {
+   			$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+   			$this->redirect(array('action' => 'index'));
+   		} else {
+   			$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+   		}
+   	}
 
-      $roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
-      $unidades = $this->User->Unidade->findAsCombo();
-      $this->set(compact('roles', 'unidades'));
+   	$roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
+   	$unidades = $this->User->Unidade->findAsCombo();
+   	$this->set(compact('roles', 'unidades'));
    }
 
    /**
@@ -104,25 +105,25 @@ class UsersController extends AppController {
      * @return void
      */
    public function edit($id = null) {
-      $this->TestaPermissao();
-      $this->User->id = $id;
-      if (!$this->User->exists($id)) {
-         throw new NotFoundException(__('The record could not be found.?>'));
-      }
-      if ($this->request->is('post') || $this->request->is('put')) {
-         if ($this->User->save($this->request->data)) {
-            $this->Session->setFlash(__('The record has been saved'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
-         } else {
-            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-         }
-      } else {
-         $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-         $this->request->data = $this->User->find('first', $options);
-      }
-      $roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
-      $unidades = $this->User->Unidade->findAsCombo();
-      $this->set(compact('roles', 'unidades'));
+   	$this->TestaPermissao();
+   	$this->User->id = $id;
+   	if (!$this->User->exists($id)) {
+   		throw new NotFoundException(__('The record could not be found.?>'));
+   	}
+   	if ($this->request->is('post') || $this->request->is('put')) {
+   		if ($this->User->save($this->request->data)) {
+   			$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+   			$this->redirect(array('action' => 'index'));
+   		} else {
+   			$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+   		}
+   	} else {
+   		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+   		$this->request->data = $this->User->find('first', $options);
+   	}
+   	$roles = $this->User->Role->find('list', array('fields' => 'Role.role, Role.role'));
+   	$unidades = $this->User->Unidade->findAsCombo();
+   	$this->set(compact('roles', 'unidades'));
    }
 
    /**
@@ -134,20 +135,20 @@ class UsersController extends AppController {
      * @return void
      */
    public function delete($id = null) {
-      $this->TestaPermissao();
-      if (!$this->request->is('post')) {
-         throw new MethodNotAllowedException();
-      }
-      $this->User->id = $id;
-      if (!$this->User->exists()) {
-         throw new NotFoundException(__('The record could not be found.'));
-      }
-      if ($this->User->delete()) {
-         $this->Session->setFlash(__('Record deleted'), 'flash/success');
-         $this->redirect(array('action' => 'index'));
-      }
-      $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-      $this->redirect(array('action' => 'index'));
+   	$this->TestaPermissao();
+   	if (!$this->request->is('post')) {
+   		throw new MethodNotAllowedException();
+   	}
+   	$this->User->id = $id;
+   	if (!$this->User->exists()) {
+   		throw new NotFoundException(__('The record could not be found.'));
+   	}
+   	if ($this->User->delete()) {
+   		$this->Session->setFlash(__('Record deleted'), 'flash/success');
+   		$this->redirect(array('action' => 'index'));
+   	}
+   	$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
+   	$this->redirect(array('action' => 'index'));
    }
    /**
      * clientes method
@@ -157,12 +158,12 @@ class UsersController extends AppController {
      * @return void
      */
    public function clientes($id = null) {
-      $this->TestaPermissao();
-      if (!$this->User->exists($id)) {
-         throw new NotFoundException(__('The record could not be found.'));
-      }
-      $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-      $this->set('user', $this->User->find('first', $options));
+   	$this->TestaPermissao();
+   	if (!$this->User->exists($id)) {
+   		throw new NotFoundException(__('The record could not be found.'));
+   	}
+   	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+   	$this->set('user', $this->User->find('first', $options));
    }
    /**
      * clientes method
@@ -172,12 +173,12 @@ class UsersController extends AppController {
      * @return void
      */
    public function contadores($id = null) {
-      $this->TestaPermissao();
-      if (!$this->User->exists($id)) {
-         throw new NotFoundException(__('The record could not be found.'));
-      }
-      $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-      $this->set('user', $this->User->find('first', $options));
+   	$this->TestaPermissao();
+   	if (!$this->User->exists($id)) {
+   		throw new NotFoundException(__('The record could not be found.'));
+   	}
+   	$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+   	$this->set('user', $this->User->find('first', $options));
    }
    /**
      * changePassword method
@@ -189,29 +190,29 @@ class UsersController extends AppController {
 
    public function changePassword() { 
 
-      if (($this->request->is('post') || $this->request->is('put')) && $this->request->data) 
-      {         
+   	if (($this->request->is('post') || $this->request->is('put')) && $this->request->data) 
+   	{         
 
-         $this->User->id = $this->request->data['User']['id'];
+   		$this->User->id = $this->request->data['User']['id'];
 
-         if (!$this->User->exists($this->request->data['User']['id'])) {
-            throw new NotFoundException(__('The record could not be found.?>'));
-         }
+   		if (!$this->User->exists($this->request->data['User']['id'])) {
+   			throw new NotFoundException(__('The record could not be found.?>'));
+   		}
 
-         if($this->User->checkPassword($this->request->data))
-         {
-            if($this->User->matchPasswords($this->request->data))
-            {
-               if($this->User->saveField('password', $this->request->data['User']['password_new']))
-                  $this->Session->setFlash('Senha alterada com sucesso.', 'flash/success');
-                  $this->redirect($this->Auth->redirect());
-            }
-            else
-               $this->Session->setFlash('Senhas divergentes.', 'flash/error');
-         }
-         else
-            $this->Session->setFlash('Senha não alterada.', 'flash/error');
-      } 
+   		if($this->User->checkPassword($this->request->data))
+   		{
+   			if($this->User->matchPasswords($this->request->data))
+   			{
+   				if($this->User->saveField('password', $this->request->data['User']['password_new']))
+   					$this->Session->setFlash('Senha alterada com sucesso.', 'flash/success');
+   				$this->redirect($this->Auth->redirect());
+   			}
+   			else
+   				$this->Session->setFlash('Senhas divergentes.', 'flash/error');
+   		}
+   		else
+   			$this->Session->setFlash('Senha não alterada.', 'flash/error');
+   	} 
    }
 
 }

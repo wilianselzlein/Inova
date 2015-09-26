@@ -34,7 +34,7 @@ $user_id = $usuario_logado['id'];
                         <span><?php echo $usuario_logado['username']; ?></span>
                         <p class="text-muted small"><?php echo $usuario_logado['email']; ?></p>
                         <div class="divider"></div>                                                                  
-                        <?php echo $this->Html->link(__('Ver mural'), array('controller' => 'murals', 	'action' => 'index'), array('class'=>'btn btn-primary btn-sm active'))?>
+                        <?php echo $this->Html->link(__('Ver mural'), array('controller' => 'murals', 	'action' => 'index', 'web' => false), array('class'=>'btn btn-primary btn-sm active'))?>
                         <div class="divider"></div>  
                      </div>
                   </div>
@@ -43,10 +43,10 @@ $user_id = $usuario_logado['id'];
                   <div class="navbar-footer-content">
                      <div class="row">
                         <div class="col-md-6">
-                           <?php echo $this->Html->link(__('Alterar senha'), 	array('controller' => 'users','action' => 'changePassword'), array('class'=>'btn btn-default btn-sm'));?>
+                           <?php echo $this->Html->link(__('Alterar senha'), 	array('controller' => 'users','action' => 'changePassword', 'web' => false), array('class'=>'btn btn-default btn-sm'));?>
                         </div>
                         <div class="col-md-6">
-                           <?php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout'), array('class'=>'btn btn-default btn-sm pull-right'));?>
+                           <?php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout', 'web' => false), array('class'=>'btn btn-default btn-sm pull-right'));?>
                         </div>
                      </div>
                   </div>
@@ -61,57 +61,57 @@ $user_id = $usuario_logado['id'];
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Financeiro')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Cobrancas'), 	   array('controller' => 'cobrancas', 	   'action' => 'index'), array('escape' => false)) ?></li>               
+               <li><?php echo $this->Html->link(__('Cobrancas'), 	   array('controller' => 'cobrancas', 	   'action' => 'index', 'web' => false), array('escape' => false)) ?></li>               
             </ul>
          </li><!-- /. Financeiro  -->         
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Técnica')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Chamados'), 	   array('controller' => 'chamados', 	   'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Implantações'), 	array('controller' => 'implantacaos', 	'action' => 'index'), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Chamados'), 	   array('controller' => 'chamados', 	   'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Implantações'), 	array('controller' => 'implantacaos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
             </ul>
          </li><!-- /. Técnica  -->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Comercial')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Visitas'), 	   array('controller' => 'visitas', 	   'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Prospectos'), 	array('controller' => 'prospectos', 	'action' => 'index'), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Visitas'), 	   array('controller' => 'visitas', 	   'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Prospectos'), 	array('controller' => 'prospectos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
             </ul>
          </li><!-- /. Comercial  -->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Usuário')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Alterar Senha  '), 	         array('controller' => 'users', 	'action' => 'changePassword'), array('escape' => false)) ?></li>    
-               <li><?php echo $this->Html->link(__('Clientes da Carteira'), 	   array('controller' => 'users', 	'action' => 'clientes', $user_id), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Contadores da Carteira'), 	array('controller' => 'users', 	'action' => 'contadores', $user_id), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Mural'),                     array('controller' => 'murals', 	'action' => 'index'), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Alterar Senha  '), 	         array('controller' => 'users', 	'action' => 'changePassword', 'web' => false), array('escape' => false)) ?></li>    
+               <li><?php echo $this->Html->link(__('Clientes da Carteira'), 	   array('controller' => 'users', 	'action' => 'clientes', $user_id, 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Contadores da Carteira'), 	array('controller' => 'users', 	'action' => 'contadores', $user_id, 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Mural'),                     array('controller' => 'murals', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
             </ul>
          </li><!-- /. Usuário  -->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Cadastros')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Checklists'), array('controller' => 'checklists', 'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Cidades'), 	array('controller' => 'cidades', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Contadores'), array('controller' => 'contadors', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Grupos'), 		array('controller' => 'grupos', 	   'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Históricos'), array('controller' => 'historicos', 'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Módulos'), 	array('controller' => 'modulos', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Problemas'), 	array('controller' => 'problemas', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Serviços'), 	array('controller' => 'servicos', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Sistemas'), 	array('controller' => 'sistemas', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Situações'), 	array('controller' => 'situacaos', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Subgrupos'), 	array('controller' => 'subgrupos', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Tipos'), 		array('controller' => 'tipos', 		'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Unidades'), 	array('controller' => 'unidades', 	'action' => 'index'), array('escape' => false)) ?></li>                                        
+               <li><?php echo $this->Html->link(__('Checklists'), array('controller' => 'checklists', 'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Cidades'), 	array('controller' => 'cidades', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Clientes'), 	array('controller' => 'clientes', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Contadores'), array('controller' => 'contadors', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Grupos'), 		array('controller' => 'grupos', 	   'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Históricos'), array('controller' => 'historicos', 'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Módulos'), 	array('controller' => 'modulos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Problemas'), 	array('controller' => 'problemas', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Serviços'), 	array('controller' => 'servicos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Sistemas'), 	array('controller' => 'sistemas', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Situações'), 	array('controller' => 'situacaos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Subgrupos'), 	array('controller' => 'subgrupos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Tipos'), 		array('controller' => 'tipos', 		'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Unidades'), 	array('controller' => 'unidades', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>                                        
             </ul>
          </li><!-- /. Cadastros  -->
          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('Administrativa')?><b class="caret"></b></a>
             <ul class="dropdown-menu">
-               <li><?php echo $this->Html->link(__('Arquivos'), 	array('controller' => 'arquivos', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Relatórios'), 	array('controller' => 'relatorios', 	'action' => 'index'), array('escape' => false)) ?></li>
-               <li><?php echo $this->Html->link(__('Users'), 	array('controller' => 'users', 	'action' => 'index'), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Arquivos'), 	array('controller' => 'arquivos', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Relatórios'), 	array('controller' => 'relatorios', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
+               <li><?php echo $this->Html->link(__('Users'), 	array('controller' => 'users', 	'action' => 'index', 'web' => false), array('escape' => false)) ?></li>
             </ul>
          </li><!-- /. Administrativa  -->		
          <!--<li style="font-style:italic"><php echo $this->Html->link(__('Logout'), 	array('controller' => 'users', 	'action' => 'logout')) ?></li /. Sair  -->

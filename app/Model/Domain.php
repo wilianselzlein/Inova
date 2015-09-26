@@ -31,14 +31,7 @@ class Domain extends AppModel {
          'conditions' => '',
          'fields' => '',
          'order' => ''
-      )
-   );
-   /**
-     * belongsTo associations
-     *
-     * @var array
-     */
-   public $hasOne = array(        
+      ),
       'PayPlan' => array(
          'className' => 'PayPlan',
          'foreignKey' => 'pay_plan_id',
@@ -46,5 +39,18 @@ class Domain extends AppModel {
          'fields' => '',
          'order' => ''
       )
-   );   
+   );
+
+   public $hasMany = array(
+        'Hosting' => array(
+            'className' => 'Hosting',
+            'foreignKey' => 'domain_id',
+        ),
+        'Income' => array(
+            'className' => 'Income',
+            'foreignKey' => 'domain_id',
+        )
+    );     
+
+   
 }
