@@ -15,12 +15,12 @@ class ServicesController extends AppController
 
     private function TestaPermissao() {
       $usuario_logado = $this->Session->read('Auth.User');
-      if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin')) {
+      if ((strtolower($usuario_logado['role']) != 'root') && (strtolower($usuario_logado['role']) != 'admin') && (strtolower($usuario_logado['role']) != 'webmaster')) {
          //throw new NotFoundException(__('__PERMISSAO'));
-       $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
-       $this->redirect(array('controller' => 'Pages', 'action' => 'display', 'web' => false));
-   }
-}
+         $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+         $this->redirect(array('controller' => 'Pages', 'action' => 'display', 'web' => false));
+     }
+ }
     /**
      * index method
      *
