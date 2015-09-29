@@ -25,7 +25,7 @@
 		<?php echo $this->Form->create('SocialMedia', array('role' => 'form', 'class'=>'form-horizontal')); ?>
 		<fieldset>
 			<div class="form-group">            
-				<?php echo $this->Form->input('customer_id', array('class' => 'form-control combobox', 'div'=> array('class'=>'col-sm-12'))); ?>         
+				<?php echo $this->Form->input('customer_id', array('class' => 'form-control combobox','empty'=>true, 'div'=> array('class'=>'col-sm-12'))); ?>         
 			</div><!-- .form-group -->       
 			<div class="form-group">            
 				<?php echo $this->Form->input('type_id', array('options' => array('1'=> 'Facebook', '2' => 'Instagram', '3' => 'Twitter'),'class' => 'form-control', 'div'=> array('class'=>'col-sm-4'))); ?>

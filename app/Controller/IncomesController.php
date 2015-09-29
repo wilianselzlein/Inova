@@ -52,8 +52,8 @@ class IncomesController extends AppController {
         }
         $domains = $this->Income->Domain->findAsCombo();
         $hostings = $this->Income->Hosting->findAsCombo();
-        $socialMedias = $this->Income->SocialMedia->findAsCombo();
-        $this->set(compact('domains', 'hostings', 'socialMedias'));
+        $socialMedia = $this->Income->SocialMedia->findAsCombo();
+        $this->set(compact('domains', 'hostings', 'socialMedia'));
     }
 
     /**
@@ -87,8 +87,8 @@ class IncomesController extends AppController {
         }
         $domains = $this->Income->Domain->findAsCombo();
         $hostings = $this->Income->Hosting->findAsCombo();
-        $socialMedias = $this->Income->SocialMedia->findAsCombo();
-        $this->set(compact('domains', 'hostings', 'socialMedias'));
+        $socialMedia = $this->Income->SocialMedia->findAsCombo();
+        $this->set(compact('domains', 'hostings', 'socialMedia'));
     }
 
     /**

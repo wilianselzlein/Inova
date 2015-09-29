@@ -31,7 +31,7 @@
 			<div class="form-group">    
 				<?php echo $this->Form->input('domain_id', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'), 'empty' => true)); ?>
 				<?php echo $this->Form->input('hosting_id', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'), 'empty' => true)); ?>
-				<?php echo $this->Form->input('socialMedia_id', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'), 'empty' => true)); ?>
+				<?php echo $this->Form->input('social_media_id', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'), 'empty' => true)); ?>
 			</div><!-- .form-group -->
 			<div class="form-group">  
 				<?php echo $this->Form->input('is_paid', array('class' => 'form-control checkbox2', 'div'=> array('class'=>'col-sm-12'), 'before'=>'<label>Pago</label>', 'label'=>false, 'checked'=>true)); ?>
