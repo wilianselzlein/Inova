@@ -57,7 +57,7 @@ echo $this->Html->script('libs/jquery.bpopup.min');
 
 echo $this->Html->script('datepicker');
 echo $this->Html->script('datetimepicker');
-//echo $this->Html->script('mascaras');
+echo $this->Html->script('mascaras');
 echo $this->Html->script('wrapped-text-popup-1.0');
 echo $this->Html->script('libs/bootstrap-combobox');
 
@@ -85,6 +85,7 @@ echo $this->Js->writeBuffer(); // note: write cached scripts
          $(document).ready(function(){ $('.combobox').combobox(); });
       </script>
       <?php echo $this->Html->script('cfg-currency');?>
+      <?php echo $this->Html->script('cfg-fone');?>
    </body>
 
 </html>
