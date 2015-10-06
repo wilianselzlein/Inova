@@ -164,7 +164,7 @@
 	</div>
 	<div class="panel-footer">
 		<?php if (!empty($prospecto['Visita'])): ?>
-			<h3><?php echo __('Visitas'); ?></h3>
+			<h3><span class="fa fa-calendar"></span> <?php echo __('Visitas'); ?>   /h3>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered">
 					<thead>
