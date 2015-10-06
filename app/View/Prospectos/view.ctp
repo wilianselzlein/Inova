@@ -164,7 +164,11 @@
 	</div>
 	<div class="panel-footer">
 		<?php if (!empty($prospecto['Visita'])): ?>
-			<h3><span class="fa fa-calendar"></span> <?php echo __('Visitas'); ?>   </h3>
+			<h3><span class="fa fa-calendar"></span> <?php echo __('Visitas'); ?>   
+				<div class="btn-group pull-right">
+					<?php echo $this->Html->link('<i class="fa fa-plus"></i> '.__('New').' '.__('Visita'), array('controller' => 'visitas', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+				</div>
+			</h3>
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered">
 					<thead>
@@ -195,9 +199,6 @@
 				</tbody>
 			</table><!-- /.table table-striped table-bordered -->
 		</div><!-- /.table-responsive -->
-		<div class="actions">
-			<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Visita'), array('controller' => 'visitas', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
-		</div><!-- /.actions -->
 	<?php endif; ?>
 </div><!-- /.related -->   
 </div>
