@@ -7,6 +7,7 @@ $(document).ready(function() {
     $('.datetimepickerStart').datetimepicker({
     	format: 'dd/mm/yyyy hh:ii',
         todayBtn: true,
+        pickerPosition: 'top-right',
         autoclose: true,
         empty:true,
         language: 'pt-BR'
@@ -15,6 +16,7 @@ $(document).ready(function() {
 	$('.datetimepickerEnd').datetimepicker({
     	format: 'dd/mm/yyyy hh:ii',
         todayBtn: true,
+        pickerPosition: 'top-right',
         autoclose: true,
         language: 'pt-BR'
 	});
