@@ -345,3 +345,12 @@ msgstr "Observação"
 
 msgid "GO_TO"
 msgstr "Ir para &raquo;"
+
+msgid "addOs"
+msgstr "Adicionar OS"
+
+msgid "Os Numero"
+msgstr "Número"
+
+msgid "Os Valor"
+msgstr "Valor (R$)"

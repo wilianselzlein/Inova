@@ -20,9 +20,9 @@ class CustomHtmlHelper extends HtmlHelper
     public function linkIndex($label, $options = array(), $optionsHtml = array())
     {        
         if(!empty($label))
-            $label = $this->iconList.' '.__('List').' '.$label;
+            $label = $this->iconIndex.' '.__('List').' '.$label;
         else
-            $label = $this->iconList;
+            $label = $this->iconIndex;
         $defaults = array('action'=> 'index');
         $options = Set::merge($defaults, $options);
         $defaultsHtml = array('escape' => false);

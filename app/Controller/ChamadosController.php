@@ -31,20 +31,20 @@ class ChamadosController extends AppController {
         $filtrousuario = '';
         $usuario_logado = $this->Session->read('Auth.User');
         if ((strtolower($usuario_logado['role']) !== 'admin') && (strtolower($usuario_logado['role']) !== 'admin')) {
-           $filtrousuario = 'and Historicos.user_id = ' . $usuario_logado['id'];
-        }
-        
-        $events = $this->Chamado->query('
-                SELECT Chamados.id, Clientes.fantasia, Historicos.datainicial, AddTime(Historicos.datafinal, "1:0:0") as datafinal 
-                FROM Chamados
-                JOIN Clientes ON cliente_id = Clientes.id
-                JOIN Historicos ON chamado_id = Chamados.id
-                Where Historicos.datainicial BETWEEN "' . $mysqlstart . '" AND "' . $mysqlend . '"' . 
-                $filtrousuario . ' order by Historicos.datainicial LIMIT 0,1;');
+         $filtrousuario = 'and Historicos.user_id = ' . $usuario_logado['id'];
+     }
 
-        $this->set('events', $events);
-    }
-    
+     $events = $this->Chamado->query('
+        SELECT Chamados.id, Clientes.fantasia, Historicos.datainicial, AddTime(Historicos.datafinal, "1:0:0") as datafinal 
+        FROM Chamados
+        JOIN Clientes ON cliente_id = Clientes.id
+        JOIN Historicos ON chamado_id = Chamados.id
+        Where Historicos.datainicial BETWEEN "' . $mysqlstart . '" AND "' . $mysqlend . '"' . 
+        $filtrousuario . ' order by Historicos.datainicial LIMIT 0,1;');
+
+     $this->set('events', $events);
+ }
+
     /**
      * TestaPermissao method
      *
@@ -64,34 +64,34 @@ class ChamadosController extends AppController {
      *
      * @return void
      */
-	function situacao() {
+    function situacao() {
 
-		if (!empty($this->request->data)) {
-                        $this->request->data['situacao_id'] = $this->request->data['value'];
-            		if ($this->Chamado->save($this->request->data)) {
-				$thisId=$this->Chamado->id;
-				$this->header("Content-Type: application/json");
-                                $situacao = $this->Chamado->Situacao->findById($this->request->data['value']);
-				echo $situacao['Situacao']['nome'];
-                                
-                                $usuario_logado = $this->Session->read('Auth.User');
-                                $historico['chamado_id'] = $this->request->data['id'];
-                                $historico['user_id'] = $usuario_logado['id'];
-                                $historico['datainicial'] = Date('Y/m/d H:i:s');
-                                $historico['datafinal'] = Date('Y/m/d H:i:s');
-                                $historico['descricao'] = 'Trocou a situação do chamado para ' . $situacao['Situacao']['nome'];
+      if (!empty($this->request->data)) {
+        $this->request->data['situacao_id'] = $this->request->data['value'];
+        if ($this->Chamado->save($this->request->data)) {
+            $thisId=$this->Chamado->id;
+            $this->header("Content-Type: application/json");
+            $situacao = $this->Chamado->Situacao->findById($this->request->data['value']);
+            echo $situacao['Situacao']['nome'];
 
-                                $this->Chamado->Historico->create();
-                                $this->Chamado->Historico->save($historico);
-                                                                
-				exit;
-			} else {
-				return 'Fail';
-			}
-		}
-		$this->Autorender = false;
-		exit;
+            $usuario_logado = $this->Session->read('Auth.User');
+            $historico['chamado_id'] = $this->request->data['id'];
+            $historico['user_id'] = $usuario_logado['id'];
+            $historico['datainicial'] = Date('Y/m/d H:i:s');
+            $historico['datafinal'] = Date('Y/m/d H:i:s');
+            $historico['descricao'] = 'Trocou a situação do chamado para ' . $situacao['Situacao']['nome'];
+
+            $this->Chamado->Historico->create();
+            $this->Chamado->Historico->save($historico);
+
+            exit;
+        } else {
+            return 'Fail';
         }
+    }
+    $this->Autorender = false;
+    exit;
+}
     /**
      * index method
      *
@@ -100,21 +100,21 @@ class ChamadosController extends AppController {
     public function index() {         
         $this->TestaPermissao();
         $this->Filter->addFilters(
-                array('filter1' => array('OR' => array(                           
-                        'Chamado.id' => array('operator' => 'LIKE'),
-                        'Chamado.descricao' => array('operator' => 'LIKE'),
-                        'Chamado.contato' => array('operator' => 'LIKE'),
-                        'Tipo.nome' => array('operator' => 'LIKE'),
-                        'Cliente.fantasia' => array('operator' => 'LIKE'),
-                        'Cliente.razaosocial' => array('operator' => 'LIKE'),
-                        'Prioridade.nome' => array('operator' => 'LIKE'),
-                        'User.username' => array('operator' => 'LIKE'),
-                        'Problema.nome' => array('operator' => 'LIKE'),
-                        'Situacao.nome' => array('operator' => 'LIKE')
-                        )
+            array('filter1' => array('OR' => array(                           
+                'Chamado.id' => array('operator' => 'LIKE'),
+                'Chamado.descricao' => array('operator' => 'LIKE'),
+                'Chamado.contato' => array('operator' => 'LIKE'),
+                'Tipo.nome' => array('operator' => 'LIKE'),
+                'Cliente.fantasia' => array('operator' => 'LIKE'),
+                'Cliente.razaosocial' => array('operator' => 'LIKE'),
+                'Prioridade.nome' => array('operator' => 'LIKE'),
+                'User.username' => array('operator' => 'LIKE'),
+                'Problema.nome' => array('operator' => 'LIKE'),
+                'Situacao.nome' => array('operator' => 'LIKE')
                 )
-                )
-        );
+            )
+            )
+            );
         $this->Filter->setPaginate('order', 'Chamado.id Desc'); // optional
         //$this->Filter->setPaginate('limit', 10); // optional
         $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
@@ -155,7 +155,7 @@ class ChamadosController extends AppController {
         if ($this->request->is('post')) {
             $this->Chamado->create();
             if ($this->Chamado->save($this->request->data)) {
-                 
+
                 $usuario_logado = $this->Session->read('Auth.User');
                 $historico['chamado_id'] = $this->Chamado->getLastInsertID();
                 $historico['user_id'] = $usuario_logado['id'];
@@ -166,7 +166,13 @@ class ChamadosController extends AppController {
                 $this->Chamado->Historico->create();
                 $this->Chamado->Historico->save($historico);
 
-                $this->Session->setFlash(__('The record has been saved') . ' ' . $this->Chamado->getLastInsertID(), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Chamado->id
+                  )
+                 ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -193,6 +199,46 @@ class ChamadosController extends AppController {
      * @param string $id
      * @return void
      */
+    public function addOS($id = null) {
+        $this->TestaPermissao();
+        $this->Chamado->id = $id;
+        if (!$this->Chamado->exists($id)) {
+            throw new NotFoundException(__('The record could not be found.?>'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Chamado->save($this->request->data)) {
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Chamado->id
+                      )
+                   ));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+            }
+        } else {
+            $options = array('conditions' => array('Chamado.' . $this->Chamado->primaryKey => $id));
+            $this->request->data = $this->Chamado->find('first', $options);
+        }
+        //$tipos = $this->Chamado->Tipo->findAsCombo();
+        //$clientes = $this->Chamado->Cliente->findAsCombo('asc', 'prospect = "N"', 'fantasiarazaosocial');
+        //$prioridades = $this->Chamado->Prioridade->findAsCombo();
+        //$problemas = $this->Chamado->Problema->findAsCombo();
+        //$situacaos = $this->Chamado->Situacao->findAsCombo();
+        //$situacaos = $this->getSituacoesByLoggedUser();
+        //$users = $this->Chamado->User->findAsCombo('asc', 'ativo=1', 'nickname');
+        //$this->set(compact('tipos', 'clientes', 'problemas', 'situacaos', 'prioridades', 'users'));
+    }
+
+    /**
+     * edit method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
     public function edit($id = null) {
         $this->TestaPermissao();
         $this->Chamado->id = $id;
@@ -201,7 +247,13 @@ class ChamadosController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Chamado->save($this->request->data)) {
-                $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+                $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Chamado->id
+                      )
+                   ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -253,56 +305,56 @@ class ChamadosController extends AppController {
      * @return void
      */
     public function getComboUsers() {
-       
+
         $cliente_id = 0;
         $usuario = 0;
         if (isset($this->request->data['Chamado'])) {
-           
+
           $cliente_id = $this->request->data['Chamado']['cliente_id'];
            //debug($cliente_id);die;
           $clientes = $this->Chamado->Cliente->Find('list', array(
               'conditions' => array('Cliente.Id' => $cliente_id),
               'fields' => array('user_id')
               )
-           );
+          );
           $usuario = $clientes[$cliente_id]; 
-        }
-        $users = $this->Chamado->User->find('list');
-        
-        $this->set('users', $users);
-        $this->set('usuario', $usuario);
-        $this->layout = 'ajax';
-        $this->render('combos/users');
-    }
-   public function getClienteUser() {
-       
-        $cliente_id = 0;
-        $usuario = 0;
-        if (isset($this->request->data['Chamado'])) {
-           
-          $cliente_id = $this->request->data['Chamado']['cliente_id'];
-           //debug($cliente_id);die;
-          $clientes = $this->Chamado->Cliente->Find('list', array(
-              'conditions' => array('Cliente.Id' => $cliente_id),
-              'fields' => array('user_id')
-              )
-           );
-          $usuario = $clientes[$cliente_id]; 
-        }
-        //$users = $this->Chamado->User->find('list');
-        
-        //$this->set('users', $users);
-        $this->set('usuario', $usuario);
-        $this->layout = 'ajax';
-        $this->render('combos/clienteUser');
-    }
-   
-   public function getSituacoesByLoggedUser(){
-      $usuario_logado = $this->Session->read('Auth.User');
-      if(strtolower($usuario_logado['role']) == 'operador'){
-         return $this->Chamado->Situacao->findAsCombo();
-      }else{
-         return $this->Chamado->Situacao->findAsCombo('asc', 'id != 3');
       }
-   }
+      $users = $this->Chamado->User->find('list');
+
+      $this->set('users', $users);
+      $this->set('usuario', $usuario);
+      $this->layout = 'ajax';
+      $this->render('combos/users');
+  }
+  public function getClienteUser() {
+
+    $cliente_id = 0;
+    $usuario = 0;
+    if (isset($this->request->data['Chamado'])) {
+
+      $cliente_id = $this->request->data['Chamado']['cliente_id'];
+           //debug($cliente_id);die;
+      $clientes = $this->Chamado->Cliente->Find('list', array(
+          'conditions' => array('Cliente.Id' => $cliente_id),
+          'fields' => array('user_id')
+          )
+      );
+      $usuario = $clientes[$cliente_id]; 
+  }
+        //$users = $this->Chamado->User->find('list');
+
+        //$this->set('users', $users);
+  $this->set('usuario', $usuario);
+  $this->layout = 'ajax';
+  $this->render('combos/clienteUser');
+}
+
+public function getSituacoesByLoggedUser(){
+  $usuario_logado = $this->Session->read('Auth.User');
+  if(strtolower($usuario_logado['role']) == 'operador'){
+   return $this->Chamado->Situacao->findAsCombo();
+}else{
+   return $this->Chamado->Situacao->findAsCombo('asc', 'id != 3');
+}
+}
 }

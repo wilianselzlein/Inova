@@ -12,7 +12,7 @@ App::uses('AppModel', 'Model');
  * @property Historico $Historico
  */
 class Chamado extends AppModel {
-
+    var $actsAs = array('NumberFormat');
     /**
      * Use database config
      *
@@ -43,8 +43,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'descricao' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),
@@ -53,8 +53,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'contato' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),
@@ -63,8 +63,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'cliente_id' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
@@ -73,8 +73,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'prioridade' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
@@ -83,8 +83,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'problema_id' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
@@ -93,8 +93,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'user_id' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
@@ -103,8 +103,8 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
         'situacao_id' => array(
             'numeric' => array(
                 'rule' => array('numeric'),
@@ -113,9 +113,9 @@ class Chamado extends AppModel {
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
+                ),
             ),
-        ),
-    );
+        );
 
     //The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -131,43 +131,43 @@ class Chamado extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+            ),
         'Cliente' => array(
             'className' => 'Cliente',
             'foreignKey' => 'cliente_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+            ),
         'Prioridade' => array(
             'className' => 'Subgrupo',
             'foreignKey' => 'prioridade',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+            ),
         'Problema' => array(
             'className' => 'Problema',
             'foreignKey' => 'problema_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+            ),
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+            ),
         'Situacao' => array(
             'className' => 'Situacao',
             'foreignKey' => 'situacao_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+            )
+        );
 
     /**
      * hasMany associations
@@ -187,7 +187,7 @@ class Chamado extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+            )
+        );
 
 }

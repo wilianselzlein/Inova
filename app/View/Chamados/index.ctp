@@ -19,7 +19,7 @@
 
    <div class="panel-heading">
       <h3>
-         <span class="fa fa-life-ring"></span> <?php echo __('Chamados'); ?>                
+         <span class="fa fa-ambulance"></span> <?php echo __('Chamados'); ?>                
          <div class="btn-group pull-right">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions');?><span class="caret"></span>
@@ -122,6 +122,7 @@ if (isset($chamado['Chamado']['previsaoexecucao'])) {
 
                   <td class="actions">
                      <nobr>
+                     <?php echo $this->Html->link('<i class="fa fa-file-text-o"></i>', array('action' => 'addOs', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('addOs'), 'escape'=>false)); ?>
                         <?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('View'), 'escape'=>false)); ?>
                         <?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $chamado['Chamado']['id']), array('class' => 'btn btn-default btn-xs','title' => __('Edit'), 'escape'=>false)); ?>
                         <?php

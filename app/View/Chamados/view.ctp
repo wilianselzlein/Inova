@@ -1,7 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-			<span class="fa fa-ambulance"></span> <?php echo __('View').' '.__('Chamado'); ?>               
+			<span class="fa fa-ambulance"></span> 
+
+			<?php echo (!empty($chamado['Chamado']['os_numero'])) ? __('View').' '.__('Chamado') ." <i class='fa fa-angle-double-right' ></i> ".__('OS').' ['.$chamado['Chamado']['os_numero'].']' : __('View').' '.__('Chamado') ; ?>               
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<?php echo __('Actions');?><span class="caret"></span>
