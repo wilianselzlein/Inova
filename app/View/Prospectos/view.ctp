@@ -100,7 +100,7 @@
 					<td><strong><?php echo __('User'); ?></strong>
 					</td>
 					<td>
-						<?php echo $this->Html->link($prospecto['User']['username'], array('controller' => 'users', 'action' => 'view', $prospecto['User']['id']), array('class' => '')); ?> &nbsp;
+						<?php echo $this->Html->link($prospecto['User']['nickname'], array('controller' => 'users', 'action' => 'view', $prospecto['User']['id']), array('class' => '')); ?> &nbsp;
 					</td>
 				</tr>
 				<tr>
@@ -166,7 +166,7 @@
 		<?php if (!empty($prospecto['Visita'])): ?>
 			<h3><span class="fa fa-calendar"></span> <?php echo __('Visitas'); ?>   
 				<div class="btn-group pull-right">
-					<?php echo $this->Html->link('<i class="fa fa-plus"></i> '.__('New').' '.__('Visita'), array('controller' => 'visitas', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+					<?php echo $this->CustomHtml->linkAdd(__('Visita'), array('controller' => 'visitas'), array('class' => 'btn btn-primary')); ?>
 				</div>
 			</h3>
 			<div class="table-responsive">
