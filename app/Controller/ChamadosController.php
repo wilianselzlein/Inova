@@ -203,7 +203,7 @@ class ChamadosController extends AppController {
         $this->TestaPermissao();
         $this->Chamado->id = $id;
         if (!$this->Chamado->exists($id)) {
-            throw new NotFoundException(__('The record could not be found.?>'));
+            throw new NotFoundException(__('The record could not be found.'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Chamado->save($this->request->data)) {
