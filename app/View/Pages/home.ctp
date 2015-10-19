@@ -324,10 +324,10 @@ if(strtolower($usuario_logado['role']) == 'operador'){
 
         </td>
       </tr>
-      <tr id="OS-<?php echo $task['Chamado']['id']; ?>" style="padding: 0">
+      <tr id="OS-<?php echo $task['Chamado']['id']; ?>" style="padding: 0" style="display: none">
         <td colspan="5"></td>
         <td colspan="4" align="" style="padding: 0">
-          <div class="panel panel-default">
+          <div class="panel panel-default" >
             <div class="panel-heading">
               <h3>
                 <span class="fa fa-file-text-o"></span>&nbsp;<?php echo __('addOs'); ?>
@@ -351,7 +351,7 @@ if(strtolower($usuario_logado['role']) == 'operador'){
                   'confirm' => 'Confirma inclusao de OS?',
                   //'indicator' => 'loading' . $task['Chamado']['id'],
               //'before' => '$("#segundo2' . $task['Chamado']['id'] . '").html("Aguarde...")',
-                  'complete' => 'alert(request.responseText)',
+                  //'complete' => 'alert(request.responseText)',
                   'after' => 
                   '$("#OS-' . $task['Chamado']['id'] . '").hide("slow");',
                   //'$("#loading' . $task['Chamado']['id'] . '").hide("slow");',

@@ -50,7 +50,7 @@ class AppController extends Controller {
         'FilterResults.Filter' => array(
             'auto' => array(
                 'paginate' => false,
-                'explode' => true, // recomendado
+                'explode' => false, // recomendado
             ),
             'explode' => array(
                 'character' => ' ',
