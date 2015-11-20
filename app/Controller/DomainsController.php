@@ -41,27 +41,30 @@ App::uses('AppController', 'Controller');
      *
      * @return void
      */
-    public function web_add() {
+    public function web_add($cid=null) {
         if ($this->request->is('post')) {
             $this->Domain->create();
             if ($this->Domain->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                   "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
-                      "action" => "view",
-                      $this->Domain->id
-                      )
-                   ));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Domain->id
+                  )
+                 ));
+                if(isset($cid))
+                   $this->redirect(array('controller' => 'services', $cid)); 
+               else
+                   $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
-        //$checklists = $this->Domain->Checklist->findAsCombo();
-        $customers = $this->Domain->Cliente->findAsCombo();
-        $payPlans = $this->Domain->PayPlan->findAsCombo();
-        $this->set(compact('customers', 'payPlans'));
     }
+        //$checklists = $this->Domain->Checklist->findAsCombo();
+    $customers = $this->Domain->Cliente->findAsCombo();
+    $payPlans = $this->Domain->PayPlan->findAsCombo();
+    $this->set(compact('customers', 'payPlans'));
+}
 
     /**
      * edit method
@@ -78,12 +81,12 @@ App::uses('AppController', 'Controller');
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Domain->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Domain->id
-                  )
-                 ));
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Domain->id
+                      )
+                   ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

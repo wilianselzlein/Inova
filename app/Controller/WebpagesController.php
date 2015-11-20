@@ -34,25 +34,28 @@ class WebpagesController extends AppController {
      *
      * @return void
      */
-    public function web_add() {
+    public function web_add($cid=null) {
         if ($this->request->is('post')) {
             $this->Webpage->create();
             if ($this->Webpage->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Webpage->id
-                  )
-                 ));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Webpage->id
+                      )
+                   ));
+                if(isset($cid))
+                   $this->redirect(array('controller' => 'services', $cid)); 
+               else
+                   $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
-        $websites = $this->Webpage->Website->findAsCombo();
-        $this->set(compact('websites'));
     }
+    $websites = $this->Webpage->Website->findAsCombo();
+    $this->set(compact('websites'));
+}
 
     /**
      * edit method
@@ -69,12 +72,12 @@ class WebpagesController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Webpage->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Webpage->id
-                  )
-                 ));
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Webpage->id
+                      )
+                   ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

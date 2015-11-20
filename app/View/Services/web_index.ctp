@@ -48,31 +48,31 @@
      	</div>
      	<div class="panel-body">
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-registered fa-4x"></i>', array('controller' => 'domains', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-registered fa-4x"></i>', array('controller' => 'domains', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Domínios'); ?></span>
      		</div>
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-cloud fa-4x"></i>', array('controller' => 'hostings', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-cloud fa-4x"></i>', array('controller' => 'hostings', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Hostings'); ?></span>
      		</div>
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-envelope fa-4x"></i>', array('controller' => 'webmails', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-envelope fa-4x"></i>', array('controller' => 'webmails', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Emails'); ?></span>
      		</div>     		    
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-share-alt fa-4x"></i>', array('controller' => 'socialmedias', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-share-alt fa-4x"></i>', array('controller' => 'socialmedias', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Social Medias'); ?></span>
      		</div>
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-money fa-4x"></i>', array('controller' => 'incomes', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-money fa-4x"></i>', array('controller' => 'incomes', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Incomes'); ?></span>
      		</div>
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-wordpress fa-4x"></i>', array('controller' => 'websites', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-wordpress fa-4x"></i>', array('controller' => 'websites', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Websites'); ?></span>
      		</div>
      		<div class="dashboard-icon">
-     			<?php echo $this->Html->link('<i class="fa fa-file-text fa-4x"></i>', array('controller' => 'webpages', 'action' => 'add', 'web' => true), array('escape'=> false)); ?>
+     			<?php echo $this->Html->link('<i class="fa fa-file-text fa-4x"></i>', array('controller' => 'webpages', 'action' => 'add', $cliente['Cliente']['id'], 'web' => true), array('escape'=> false)); ?>
      			<span><?php echo __('Webpages'); ?></span>
      		</div>     		
      	</div>

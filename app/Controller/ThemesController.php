@@ -1,6 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
- class ThemesController extends AppController {
+class ThemesController extends AppController {
     public $components = array('Paginator', 'Session');
 
     /**
@@ -33,23 +33,26 @@ App::uses('AppController', 'Controller');
      *
      * @return void
      */
-    public function web_add() {
+    public function web_add($cid=null) {
         if ($this->request->is('post')) {
             $this->Theme->create();
             if ($this->Theme->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                   "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
-                      "action" => "view",
-                      $this->Theme->id
-                      )
-                   ));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Theme->id
+                  )
+                 ));
+                if(isset($cid))
+                   $this->redirect(array('controller' => 'services', $cid)); 
+               else
+                   $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
+}
 
     /**
      * edit method
@@ -66,12 +69,12 @@ App::uses('AppController', 'Controller');
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Theme->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Theme->id
-                  )
-                 ));
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Theme->id
+                      )
+                   ));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

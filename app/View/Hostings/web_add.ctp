@@ -32,7 +32,7 @@
 			<div class="form-group">    
 				<?php echo $this->Form->input('emails_protocol', array('class' => 'form-control', 'options'=>array('I'=>'IMAP', 'P' => 'POP'), 'div'=> array('class'=>'col-sm-4'))); ?> 
 				<?php echo $this->Form->input('emails_size', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'))); ?> 
-				
+				<?php echo $this->Form->input('pay_plan_id', array('class' => 'form-control', 'div'=> array('class'=>'col-sm-4'))); ?> 
 			</div><!-- .form-group -->
 			<div class="form-group">   
 				<?php echo $this->Form->input('is_active', array('class' => 'form-control checkbox2', 'div'=> array('class'=>'col-sm-12'), 'before'=>'<label>Ativo</label>', 'label'=>false, 'checked'=>true)); ?>
