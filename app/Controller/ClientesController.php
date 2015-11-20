@@ -69,7 +69,7 @@ class ClientesController extends AppController {
         
         $this->Cliente->recursive = 0;
 
-        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  'N', 'Cliente.is_ativo'=> '1')));
+        $this->set('clientes', $this->paginate(array('Cliente.Prospect' =>  'N')));//, 'Cliente.is_ativo'=> '1'
     }
 
         /**
@@ -97,14 +97,14 @@ class ClientesController extends AppController {
         if ($this->request->is('post')) {
             $this->Cliente->create();
             if ($this->Cliente->save($this->request->data)) {
-             $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Cliente->id
-                  )
-                 ));
-             if(isset($origem)){
+               $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Cliente->id
+                      )
+                   ));
+               if(isset($origem)){
                 $this->redirect(array('controller' => $origem, 'action' => 'add', $this->Cliente->id));                   
             }else{
                 $this->redirect(array('action' => 'index'));
@@ -138,15 +138,15 @@ class ClientesController extends AppController {
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Cliente->save($this->request->data)) {
-               $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                   "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
-                      "action" => "view",
-                      $this->Cliente->id
-                      )
-                   ));
-               $this->redirect(array('action' => 'index'));
-           } else {
+             $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+                 "link_text" => __('GO_TO'),
+                 "link_url" => array(                  
+                  "action" => "view",
+                  $this->Cliente->id
+                  )
+                 ));
+             $this->redirect(array('action' => 'index'));
+         } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     } else {
