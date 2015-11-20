@@ -34,25 +34,28 @@ class WebmailsController extends AppController {
      *
      * @return void
      */
-    public function web_add() {
+    public function web_add($cid=null) {
         if ($this->request->is('post')) {
             $this->Webmail->create();
             if ($this->Webmail->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Webmail->id
-                  )
-                 ));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Webmail->id
+                      )
+                   ));
+                if(isset($cid))
+                   $this->redirect(array('controller' => 'services', $cid)); 
+               else
+                   $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
-        $hostings = $this->Webmail->Hosting->findAsCombo();
-        $this->set(compact('hostings'));
     }
+    $hostings = $this->Webmail->Hosting->findAsCombo();
+    $this->set(compact('hostings'));
+}
 
     /**
      * edit method
@@ -69,13 +72,13 @@ class WebmailsController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->Webmail->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->Webmail->id
-                  )
-                 ));
-                $this->redirect(array('action' => 'index'));
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->Webmail->id
+                      )
+                   ));
+                $this->redirect($this->referer(array('action'=>'index'), true));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
@@ -105,7 +108,7 @@ class WebmailsController extends AppController {
         }
         if ($this->Webmail->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($this->referer(array('action'=>'index'), true));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));

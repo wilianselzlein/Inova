@@ -78,7 +78,7 @@ class WebpagesController extends AppController {
                       $this->Webpage->id
                       )
                    ));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect($this->referer(array('action'=>'index'), true));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
@@ -108,7 +108,7 @@ class WebpagesController extends AppController {
         }
         if ($this->Webpage->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($this->referer(array('action'=>'index'), true));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));

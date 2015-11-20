@@ -75,7 +75,7 @@ class ThemesController extends AppController {
                       $this->Theme->id
                       )
                    ));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect($this->referer(array('action'=>'index'), true));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
@@ -103,7 +103,7 @@ class ThemesController extends AppController {
         }
         if ($this->Theme->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($this->referer(array('action'=>'index'), true));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));

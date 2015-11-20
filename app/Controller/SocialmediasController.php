@@ -34,27 +34,30 @@ class SocialMediasController extends AppController {
      *
      * @return void
      */
-    public function web_add() {
+    public function web_add($cid = null) {
         if ($this->request->is('post')) {
             $this->SocialMedia->create();
             if ($this->SocialMedia->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->SocialMedia->id
-                  )
-                 ));
-                $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-            }
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->SocialMedia->id
+                      )
+                   ));
+                if(isset($cid))
+                   $this->redirect(array('controller' => 'services', $cid)); 
+               else
+                   $this->redirect(array('action' => 'index'));
+           } else {
+            $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
-        $customers = $this->SocialMedia->Cliente->findAsCombo();
-        $postFrequencies = $this->SocialMedia->PostFrequency->findAsCombo();
-        $payPlans = $this->SocialMedia->PayPlan->findAsCombo();
-        $this->set(compact('customers', 'postFrequencies', 'payPlans'));
     }
+    $customers = $this->SocialMedia->Cliente->findAsCombo();
+    $postFrequencies = $this->SocialMedia->PostFrequency->findAsCombo();
+    $payPlans = $this->SocialMedia->PayPlan->findAsCombo();
+    $this->set(compact('customers', 'postFrequencies', 'payPlans'));
+}
 
     /**
      * edit method
@@ -71,13 +74,13 @@ class SocialMediasController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->SocialMedia->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-                 "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
-                  "action" => "view",
-                  $this->SocialMedia->id
-                  )
-                 ));
-                $this->redirect(array('action' => 'index'));
+                   "link_text" => __('GO_TO'),
+                   "link_url" => array(                  
+                      "action" => "view",
+                      $this->SocialMedia->id
+                      )
+                   ));
+                $this->redirect($this->referer(array('action'=>'index'), true));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
@@ -85,7 +88,7 @@ class SocialMediasController extends AppController {
             $options = array('conditions' => array('SocialMedia.' . $this->SocialMedia->primaryKey => $id));
             $this->request->data = $this->SocialMedia->find('first', $options);
         }
-		$customers = $this->SocialMedia->Cliente->findAsCombo();
+        $customers = $this->SocialMedia->Cliente->findAsCombo();
         $postFrequencies = $this->SocialMedia->PostFrequency->findAsCombo();
         $payPlans = $this->SocialMedia->PayPlan->findAsCombo();
         $this->set(compact('customers', 'postFrequencies', 'payPlans'));
@@ -109,7 +112,7 @@ class SocialMediasController extends AppController {
         }
         if ($this->SocialMedia->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($this->referer(array('action'=>'index'), true));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
         $this->redirect(array('action' => 'index'));
