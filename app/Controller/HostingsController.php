@@ -103,7 +103,7 @@ App::uses('AppController', 'Controller');
                       $this->Hosting->id
                       )
                    ));
-                $this->redirect($this->referer(array('action'=>'index'), true));
+                $this->redirect(array('controller' => 'services', $this->findClienteByHostingId($id)));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }

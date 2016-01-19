@@ -84,7 +84,7 @@ class SocialMediasController extends AppController {
                       $this->SocialMedia->id
                       )
                    ));
-                $this->redirect($this->referer(array('action'=>'index'), true));
+                $this->redirect(array('controller' => 'services', $this->findClienteBySocialMediaId($id)));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }

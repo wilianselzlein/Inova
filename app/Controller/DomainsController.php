@@ -95,7 +95,7 @@ App::uses('AppController', 'Controller');
                       $this->Domain->id
                       )
                    ));
-                $this->redirect($this->referer(array('action'=>'index'), true));
+                $this->redirect(array('controller' => 'services', $this->findClienteByDomainId($id)));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
