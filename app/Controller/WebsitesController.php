@@ -40,22 +40,41 @@ class WebsitesController extends AppController {
             if ($this->Website->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "websites",
                       $this->Website->id
                       )
                    ));
                 if(isset($cid))
-                   $this->redirect(array('controller' => 'services', $cid)); 
+                   $this->redirect(array('controller' => 'services', $cid));
                else
                    $this->redirect(array('action' => 'index'));
            } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
-    $hostings = $this->Website->Hosting->findAsCombo();
+
+    if(isset($cid)){
+      $domains = $this->Website->Hosting->Domain->findAsCombo('asc', 'Domain.customer_id = '.$cid.'');
+      $domainsId = implode(',',array_keys($domains));
+
+      if(count($domains)>0){
+        $hostings = $this->Website->Hosting->findAsCombo('asc', 'Hosting.domain_id in ('.$domainsId.')');
+        if(count($hostings) == 1){
+          $hostingDefaults = [
+              'id' => array_keys($hostings)[0],
+            ];
+        }
+      }else{
+        $hostings = $this->Website->Hosting->findAsCombo();
+      }
+    }else{
+      $hostings = $this->Website->Hosting->findAsCombo();
+    }
+
     $themes = $this->Website->Theme->findAsCombo();
-    $this->set(compact('hostings', 'themes'));
+    $this->set(compact('hostings', 'themes', 'hostingDefaults'));
 }
 
     /**
@@ -74,8 +93,9 @@ class WebsitesController extends AppController {
             if ($this->Website->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "websites",
                       $this->Website->id
                       )
                    ));
@@ -108,11 +128,20 @@ class WebsitesController extends AppController {
         if (!$this->Website->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteByWebsiteId($id);
+
         if ($this->Website->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteByWebsiteId($id){
+      $website = $this->Website->findById($id);
+      $domain = $this->Website->Hosting->Domain->findById($website['Hosting']['domain_id']);
+      return $domain['Domain']['customer_id'];
     }
 }

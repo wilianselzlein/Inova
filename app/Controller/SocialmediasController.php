@@ -40,23 +40,26 @@ class SocialMediasController extends AppController {
             if ($this->SocialMedia->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "socialmedias",
                       $this->SocialMedia->id
                       )
                    ));
                 if(isset($cid))
-                   $this->redirect(array('controller' => 'services', $cid)); 
+                   $this->redirect(array('controller' => 'services', $cid));
                else
                    $this->redirect(array('action' => 'index'));
            } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
-    $customers = $this->SocialMedia->Cliente->findAsCombo();
+    if(isset($cid)){
+      $customers = $this->SocialMedia->Cliente->findAsCombo('asc', 'Cliente.id = '.$cid.'');
+    }
     $postFrequencies = $this->SocialMedia->PostFrequency->findAsCombo();
     $payPlans = $this->SocialMedia->PayPlan->findAsCombo();
-    $this->set(compact('customers', 'postFrequencies', 'payPlans'));
+    $this->set(compact('customers', 'postFrequencies', 'payPlans', 'cid'));
 }
 
     /**
@@ -75,8 +78,9 @@ class SocialMediasController extends AppController {
             if ($this->SocialMedia->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "socialmedias",
                       $this->SocialMedia->id
                       )
                    ));
@@ -110,11 +114,19 @@ class SocialMediasController extends AppController {
         if (!$this->SocialMedia->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteBySocialMediaId($id);
+
         if ($this->SocialMedia->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteBySocialMediaId($id){
+      $socialMedia = $this->SocialMedia->findById($id);
+      return $socialMedia['SocialMedia']['customer_id'];
     }
 }

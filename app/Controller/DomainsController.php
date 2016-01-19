@@ -6,9 +6,9 @@ App::uses('AppController', 'Controller');
  *
  * @author Pedro Escobar
  */
- 
+
  class DomainsController extends AppController {
-    // public $uses = array('domains'); 
+    // public $uses = array('domains');
     public $components = array('Paginator', 'Session');
 
     /**
@@ -47,13 +47,14 @@ App::uses('AppController', 'Controller');
             if ($this->Domain->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                  "link_text" => __('GO_TO'),
-                 "link_url" => array(                  
+                 "link_url" => array(
                   "action" => "view",
+                  "controller" => "domains",
                   $this->Domain->id
                   )
                  ));
                 if(isset($cid))
-                   $this->redirect(array('controller' => 'services', $cid)); 
+                   $this->redirect(array('controller' => 'services', $cid));
                else
                    $this->redirect(array('action' => 'index'));
            } else {
@@ -61,9 +62,15 @@ App::uses('AppController', 'Controller');
         }
     }
         //$checklists = $this->Domain->Checklist->findAsCombo();
-    $customers = $this->Domain->Cliente->findAsCombo();
+
+    if(isset($cid)){
+      $customers = $this->Domain->Cliente->findAsCombo('asc', 'Cliente.id = '.$cid.'');
+    }else{
+      $customers = $this->Domain->Cliente->findAsCombo();
+    }
+
     $payPlans = $this->Domain->PayPlan->findAsCombo();
-    $this->set(compact('customers', 'payPlans'));
+    $this->set(compact('customers', 'payPlans', 'customerDefaults', 'cid'));
 }
 
     /**
@@ -82,8 +89,9 @@ App::uses('AppController', 'Controller');
             if ($this->Domain->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "domains",
                       $this->Domain->id
                       )
                    ));
@@ -97,7 +105,7 @@ App::uses('AppController', 'Controller');
         }
         $customers = $this->Domain->Cliente->findAsCombo();
         $payPlans = $this->Domain->PayPlan->findAsCombo();
-        $this->set(compact('customers', 'payPlans'));
+        $this->set(compact('customers', 'payPlans', 'cid'));
     }
 
     /**
@@ -116,11 +124,19 @@ App::uses('AppController', 'Controller');
         if (!$this->Domain->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteByDomainId($id);
+
         if ($this->Domain->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteByDomainId($id){
+      $domain = $this->Domain->findById($id);
+      return $domain['Domain']['customer_id'];
     }
 }

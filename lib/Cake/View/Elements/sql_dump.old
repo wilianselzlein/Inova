@@ -15,8 +15,6 @@
  * @since         CakePHP(tm) v 1.3
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-define('TEMPO_MEDIO', 100);
-define('TEMPO_LIMITE', 300);
 
 if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
 	return false;
@@ -45,7 +43,7 @@ if ($noLogs || isset($_forced_from_dbo_)):
 		printf('<caption>(%s) %s %s took %s ms</caption>', $source, $logInfo['count'], $text, $logInfo['time']);
 	?>
 	<thead>
-		<tr><th>#</th><th>&nbsp;Query</th><th>Err</th><th>Aff</th><th>Rows</th><th>Time</th></tr>
+		<tr><th>Nr</th><th>Query</th><th>Error</th><th>Affected</th><th>Num. rows</th><th>Took (ms)</th></tr>
 	</thead>
 	<tbody>
 	<?php
@@ -65,17 +63,9 @@ if ($noLogs || isset($_forced_from_dbo_)):
 				}
 				$i['query'] .= " , params[ " . rtrim($bindParam, ', ') . " ]";
 			}
-			$sql = '<h6>' . $i['query'] . '</h6>';
-			$sql = str_replace('FROM', '<br>FROM', $sql);
-			$sql = str_replace('LEFT', '<br>LEFT', $sql);
-			$sql = str_replace('WHERE', '<br>WHERE', $sql);
-			$sql = str_replace('ORDER', '<br>ORDER', $sql);
-			$sql = str_replace('`', '', $sql);
-
-			printf('<tr class="%s"><td>%d</td><td>%s</td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
-				($i['took'] > TEMPO_LIMITE) ? 'danger' : (($i['took'] > TEMPO_MEDIO) ? 'warning' : '') ,
+			printf('<tr><td>%d</td><td><h6>%s</h6></td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
 				$k + 1,
-				$sql,
+				h($i['query']),
 				$i['error'],
 				$i['affected'],
 				$i['numRows'],

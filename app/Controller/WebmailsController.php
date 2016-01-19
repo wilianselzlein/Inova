@@ -40,21 +40,33 @@ class WebmailsController extends AppController {
             if ($this->Webmail->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "webmails",
                       $this->Webmail->id
                       )
                    ));
                 if(isset($cid))
-                   $this->redirect(array('controller' => 'services', $cid)); 
+                   $this->redirect(array('controller' => 'services', $cid));
                else
                    $this->redirect(array('action' => 'index'));
            } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
-    $hostings = $this->Webmail->Hosting->findAsCombo();
-    $this->set(compact('hostings'));
+    if(isset($cid)){
+      $domains = $this->Webmail->Hosting->Domain->findAsCombo('asc', 'Domain.customer_id = '.$cid.'');
+      $domainsId = implode(',',array_keys($domains));
+      $hostings = $this->Webmail->Hosting->findAsCombo('asc', 'Hosting.domain_id in ('.$domainsId.')');
+      if(count($hostings) == 1){
+        $hostingDefaults = [
+            'id' => array_keys($hostings)[0],
+          ];
+      }
+    }else{
+      $hostings = $this->Webmail->Hosting->findAsCombo();
+    }
+    $this->set(compact('hostings','hostingDefaults'));
 }
 
     /**
@@ -73,8 +85,9 @@ class WebmailsController extends AppController {
             if ($this->Webmail->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "webmails",
                       $this->Webmail->id
                       )
                    ));
@@ -106,11 +119,20 @@ class WebmailsController extends AppController {
         if (!$this->Webmail->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteByWebmailId($id);
+
         if ($this->Webmail->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteByWebmailId($id){
+      $webmail = $this->Webmail->findById($id);
+      $domain = $this->Webmail->Hosting->Domain->findById($webmail['Hosting']['domain_id']);
+      return $domain['Domain']['customer_id'];
     }
 }

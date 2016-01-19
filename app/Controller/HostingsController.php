@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  *
  * @author Pedro Escobar
  */
- 
+
  class HostingsController extends AppController {
     public $components = array('Paginator', 'Session');
 
@@ -46,22 +46,39 @@ App::uses('AppController', 'Controller');
             if ($this->Hosting->save($this->request->data)) {
              $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
-               "link_url" => array(                  
+               "link_url" => array(
                   "action" => "view",
+                  "controller" => "hostings",
                   $this->Hosting->id
                   )
                ));
              if(isset($cid))
-                 $this->redirect(array('controller' => 'services', $cid)); 
+                 $this->redirect(array('controller' => 'services', $cid));
              else
                  $this->redirect(array('action' => 'index'));
          } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
-    $domains = $this->Hosting->Domain->findAsCombo();
-    $payPlans = $this->Hosting->PayPlan->findAsCombo();
-    $this->set(compact('domains', 'payPlans'));
+
+    if(isset($cid)){
+      $domains = $this->Hosting->Domain->findAsCombo('asc', 'Domain.customer_id = '.$cid);
+      if(count($domains) == 1){
+        $domain = array_values($domains)[0];
+        $domainDefaults = [
+            'id' => array_keys($domains)[0],
+            'ftp_user' => substr($domain, 0, strpos($domain, '.')),
+            'ftp_url' => 'ftp.'.$domain,
+          ];
+      }
+      $payPlans = $this->Hosting->PayPlan->findAsCombo();
+      $this->set(compact('domains', 'payPlans', 'domainDefaults'));
+    }else{
+      $domains = $this->Hosting->Domain->findAsCombo();
+      $payPlans = $this->Hosting->PayPlan->findAsCombo();
+      $this->set(compact('domains', 'payPlans'));
+    }
+
 }
 
     /**
@@ -80,8 +97,9 @@ App::uses('AppController', 'Controller');
             if ($this->Hosting->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "hostings",
                       $this->Hosting->id
                       )
                    ));
@@ -114,11 +132,20 @@ App::uses('AppController', 'Controller');
         if (!$this->Hosting->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteByHostingId($id);
+
         if ($this->Hosting->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteByHostingId($id){
+      $hosting = $this->Hosting->findById($id);
+      $domains = $this->Hosting->Domain->findById($hosting['Hosting']['domain_id']);
+      return $domains['Domain']['customer_id'];
     }
 }
