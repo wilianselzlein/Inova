@@ -49,8 +49,3 @@
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
-<script>
-$("#HostingDomainId").click(function(){
-    alert(this);
-});
-</script>
