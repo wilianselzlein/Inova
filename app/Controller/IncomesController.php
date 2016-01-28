@@ -40,23 +40,33 @@ class IncomesController extends AppController {
             if ($this->Income->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "incomes",
                       $this->Income->id
                       )
                    ));
                 if(isset($cid))
-                   $this->redirect(array('controller' => 'services', $cid)); 
+                   $this->redirect(array('controller' => 'services', $cid));
                else
                    $this->redirect(array('action' => 'index'));
            } else {
             $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         }
     }
-    $domains = $this->Income->Domain->findAsCombo();
-    $hostings = $this->Income->Hosting->findAsCombo();
-    $socialMedia = $this->Income->SocialMedia->findAsCombo();
-    $this->set(compact('domains', 'hostings', 'socialMedia'));
+    if(isset($cid)){
+      $domains = $this->Income->Domain->findAsCombo('asc', 'Domain.customer_id = '.$cid);
+      $domainsId = implode(',',array_keys($domains));
+      $hostings = $this->Income->Hosting->findAsCombo('asc', 'Hosting.domain_id in ('.$domainsId.')');
+      $socialMedia = $this->Income->SocialMedia->findAsCombo('asc', 'SocialMedia.customer_id = '.$cid);
+      $this->set(compact('domains', 'hostings', 'socialMedia'));
+    }else {
+      $domains = $this->Income->Domain->findAsCombo();
+      $hostings = $this->Income->Hosting->findAsCombo();
+      $socialMedia = $this->Income->SocialMedia->findAsCombo();
+      $this->set(compact('domains', 'hostings', 'socialMedia'));
+    }
+
 }
 
     /**
@@ -75,12 +85,15 @@ class IncomesController extends AppController {
             if ($this->Income->save($this->request->data)) {
                 $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                    "link_text" => __('GO_TO'),
-                   "link_url" => array(                  
+                   "link_url" => array(
                       "action" => "view",
+                      "controller" => "incomes",
                       $this->Income->id
                       )
                    ));
-                $this->redirect($this->referer(array('action'=>'index'), true));
+
+                $cid = $this->findClienteByIncomeId($id);
+                $this->redirect(array('controller' => 'services', $cid));
             } else {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
@@ -110,11 +123,31 @@ class IncomesController extends AppController {
         if (!$this->Income->exists()) {
             throw new NotFoundException(__('The record could not be found.'));
         }
+
+        $cid = $this->findClienteByIncomeId($id);
+
         if ($this->Income->delete()) {
             $this->Session->setFlash(__('Record deleted'), 'flash/success');
-            $this->redirect($this->referer(array('action'=>'index'), true));
+            $this->redirect(array('controller' => 'services', $cid));
         }
         $this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('controller' => 'services', $cid));
+    }
+
+    private function findClienteByIncomeId($id){
+      $income = $this->Income->findById($id);
+      $cid = null;
+
+      if(!empty($income['Hosting']['domain_id'])){
+        $domain = $this->Income->Domain->findById($income['Hosting']['domain_id']);
+        $cid = $domain['Domain']['customer_id'];
+      }
+      if(!empty($income['SocialMedia']['customer_id']))
+        $cid = $income['SocialMedia']['customer_id'];
+
+      if(!empty($income['Domain']['customer_id']))
+        $cid = $income['Domain']['customer_id'];
+
+      return $cid;
     }
 }
